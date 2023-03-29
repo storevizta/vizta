@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# dotenv environment variables file
+api/.env
+.env.test
+
+# package-lock.json
+api/package-lock.json
+client/package-lock.json
