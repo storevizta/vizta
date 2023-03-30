@@ -22,7 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# package-lock.json
-api/package-lock.json
-client/package-lock.json
