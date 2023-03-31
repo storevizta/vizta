@@ -1,13 +1,13 @@
-// import { DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 
-// import sequelize from "../database.js";
+import sequelize from "../database.js";
 
-// const Category = sequelize.define("Category", {
-//   id: {
-//     type: DataTypes.INTEGER,
-//     autoIncrement: true,
-//     primaryKey: true,
-//   },
-// });
+const Category = sequelize.define("Category", {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+});
 
-// export default Category;
+export default Category;

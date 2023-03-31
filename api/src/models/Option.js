@@ -1,13 +1,13 @@
-// import { DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 
-// import sequelize from "../database.js";
+import sequelize from "../database.js";
 
-// const Option = sequelize.define("Option", {
-//   id: {
-//     type: DataTypes.INTEGER,
-//     autoIncrement: true,
-//     primaryKey: true,
-//   },
-// });
+const Option = sequelize.define("Option", {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+});
 
-// export default Option;
+export default Option;
