@@ -4,6 +4,8 @@ dotenv.config();
 
 import express from "express";
 
+import cookieParser from "cookie-parser";
+
 import bodyParser from "body-parser";
 
 import cors from "cors";
@@ -15,6 +17,8 @@ import { sequelize } from "./database.js";
 const server = express();
 
 const port = process.env.PORT || 3001;
+
+server.use(cookieParser());
 
 server.use(bodyParser.urlencoded({ extended: false }));
 
@@ -38,7 +42,7 @@ sequelize
   .then(() => {
     console.log("Synchronized tables");
     server.listen(port, () => {
-      console.log(`Example app listening on port ${port}`);
+      console.log(`Listening on port ${port}`);
     });
   })
   .catch((error) => console.log(error.message));
