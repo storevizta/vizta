@@ -1,5 +1,3 @@
-import "./main.css";
-
 import React, { StrictMode } from "react";
 
 import ReactDOM, { render, createRoot } from "react-dom/client";

@@ -14,7 +14,7 @@ import { sequelize } from "./database.js";
 
 const server = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 server.use(bodyParser.urlencoded({ extended: false }));
 
