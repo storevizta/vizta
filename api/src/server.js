@@ -1,18 +1,16 @@
-import dotenv from "dotenv";
+require("dotenv").config();
 
-dotenv.config();
+const express = require("express");
 
-import express from "express";
+const cookieParser = require("cookie-parser");
 
-import cookieParser from "cookie-parser";
+const bodyParser = require("body-parser");
 
-import bodyParser from "body-parser";
+const cors = require("cors");
 
-import cors from "cors";
+const router = require("./routes/index.js");
 
-import router from "./routes/index.js";
-
-import { sequelize } from "./database.js";
+const { sequelize } = require("./database.js");
 
 const server = express();
 
@@ -45,4 +43,6 @@ sequelize
       console.log(`Listening on port ${port}`);
     });
   })
-  .catch((error) => console.log(error.message));
+  .catch((error) => {
+    console.log(`Error synchronizing models: ${err.message}`);
+  });
