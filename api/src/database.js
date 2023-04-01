@@ -1,26 +1,25 @@
-import dotenv from "dotenv";
+require("dotenv").config();
 
-dotenv.config();
+const { Sequelize } = require("sequelize");
 
-import { Sequelize } from "sequelize";
+const Category = require("./models/Category.js");
 
-// import Category from "./models/Category.js";
+const Comment = require("./models/Comment.js");
 
-// import Comment from "./models/Comment.js";
+const Option = require("./models/Option.js");
 
-// import Option from "./models/Option.js";
+const Order = require("./models/Order.js");
 
-// import Order from "./models/Order.js";
+const Product = require("./models/Product.js");
 
-// import Product from "./models/Product.js";
-
-// import User from "./models/User.js";
+const User = require("./models/User.js");
 
 const database = process.env.DB_NAME || "vizta";
 
 const username = process.env.DB_USER || "postgres";
 
-const password = process.env.DB_PASSWORD || "your password";
+const password =
+  process.env.DB_PASSWORD || "44019204"; /* Your postgres password */
 
 const host = process.env.DB_HOST || "localhost";
 
@@ -29,7 +28,7 @@ const dialect = process.env.DB_DIALECT || "postgres";
 const sequelize = new Sequelize(database, username, password, {
   host: host,
   dialect: dialect,
-  logging: false,
+  logging: false /* Output of log messages in the console */,
 });
 
 // Category(sequelize);
@@ -44,4 +43,34 @@ const sequelize = new Sequelize(database, username, password, {
 
 // User(sequelize);
 
-export { sequelize };
+// // Product - Category
+
+// Category.belongsToMany(Product, { through: "Product_Category" });
+
+// Product.belongsToMany(Category, { through: "Product_Category" });
+
+// // Product - Comment
+
+// Product.hasMany(Comment);
+
+// Comment.belongsTo(Product);
+
+// // Product - Option
+
+// Product.hasMany(Option);
+
+// Option.belongsTo(Product);
+
+// // Order - Product
+
+// Order.belongsToMany(Product, { through: "OrderProduct" });
+
+// Product.belongsToMany(Order, { through: "OrderProduct" });
+
+// // User - Order
+
+// User.hasMany(Order);
+
+// Order.belongsTo(User);
+
+module.exports = { sequelize, ...sequelize.models };

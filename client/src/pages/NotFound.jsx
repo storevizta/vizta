@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { useRouteError } from "react-router-dom";
+import { useRouteError } from 'react-router-dom';
 
 export const NotFound = () => {
   const error = useRouteError();
