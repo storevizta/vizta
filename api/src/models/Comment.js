@@ -1,13 +1,17 @@
-// import { DataTypes } from "sequelize";
+const { DataTypes } = require("sequelize");
 
-// import sequelize from "../database.js";
-
-// const Comment = sequelize.define("Comment", {
-//   id: {
-//     type: DataTypes.INTEGER,
-//     autoIncrement: true,
-//     primaryKey: true,
-//   },
-// });
-
-// export default Comment;
+module.exports = (sequelize) => {
+  sequelize.define(
+    "Comment",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      text: { type: DataTypes.STRING, allowNull: false },
+      rating: { type: DataTypes.INTEGER, allowNull: false },
+    },
+    { freezeTableName: true, timestamps: false }
+  );
+};

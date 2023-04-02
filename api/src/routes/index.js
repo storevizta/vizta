@@ -1,9 +1,11 @@
-import { Router } from "express";
+const router = require("express").Router();
 
-import example from "./example.js";
+const auth = require("./auth.js");
 
-const router = Router();
+const product = require("./product.js");
 
-router.use("/example", example);
+router.use("/auth", auth);
 
-export default router;
+router.use("/product", product);
+
+module.exports = router;

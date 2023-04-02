@@ -1,20 +1,22 @@
-import dotenv from "dotenv";
+require("dotenv").config();
 
-dotenv.config();
+const express = require("express");
 
-import express from "express";
+const cookieParser = require("cookie-parser");
 
-import bodyParser from "body-parser";
+const bodyParser = require("body-parser");
 
-import cors from "cors";
+const cors = require("cors");
 
-import router from "./routes/index.js";
+const router = require("./routes/index.js");
 
-import { sequelize } from "./database.js";
+const { sequelize } = require("./database.js");
 
 const server = express();
 
 const port = process.env.PORT || 3001;
+
+server.use(cookieParser());
 
 server.use(bodyParser.urlencoded({ extended: false }));
 
@@ -38,7 +40,9 @@ sequelize
   .then(() => {
     console.log("Synchronized tables");
     server.listen(port, () => {
-      console.log(`Example app listening on port ${port}`);
+      console.log(`Listening on port ${port}`);
     });
   })
-  .catch((error) => console.log(error.message));
+  .catch((error) => {
+    console.log(`Error synchronizing models: ${err.message}`);
+  });
