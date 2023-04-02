@@ -51,7 +51,7 @@
 
 ## Tables Relationship
 
-- Cada producto puede pertenecer a muchas categorías, y cada categoría puede tener muchos productos (relación de muchos a muchos).
+- Cada producto pertenece a una única categoría, y cada categoría puede tener muchos productos.
 
 - Cada producto puede tener muchos comentarios, pero cada comentario solo pertenece a un producto.
 
