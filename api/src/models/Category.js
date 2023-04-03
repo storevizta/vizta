@@ -9,7 +9,10 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         primaryKey: true,
       },
-      name: { type: DataTypes.STRING, allowNull: false },
+      type: {
+        type: DataTypes.ENUM("article", "estate", "service", "vehicle"),
+        allowNull: false,
+      },
     },
     { freezeTableName: true, timestamps: false }
   );

@@ -11,7 +11,11 @@ module.exports = (sequelize) => {
       },
       name: { type: DataTypes.STRING, allowNull: false },
       price: { type: DataTypes.FLOAT, allowNull: false },
-      weight: { type: DataTypes.FLOAT, allowNull: true },
+      currency: {
+        type: DataTypes.ENUM("pesos", "dollars"),
+        allowNull: false,
+        defaultValue: "pesos",
+      },
       description: { type: DataTypes.STRING, allowNull: true },
       image: { type: DataTypes.STRING, allowNull: true },
       quantity: { type: DataTypes.INTEGER, allowNull: true },
