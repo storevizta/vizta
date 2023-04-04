@@ -9,7 +9,6 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     name: { type: DataTypes.STRING, allowNull: false },
-    username: { type: DataTypes.STRING, allowNull: false, unique: true },
     email: { type: DataTypes.STRING, allowNull: false, unique: true },
     password: { type: DataTypes, allowNull: false },
     billingAddress: { type: DataTypes.STRING, allowNull: false },
@@ -27,3 +26,16 @@ module.exports = (sequelize) => {
     },
   });
 };
+
+// Usuarios:
+
+// ID de usuario (clave primaria)
+// Nombre de usuario
+// Dirección de correo electrónico
+// Contraseña
+// Fecha de registro
+// Rol de usuario (administrador, anunciante, etc.)
+// Número de teléfono
+// Ubicación (ciudad, estado, país)
+// Biografía (breve descripción del usuario)
+// URL de la foto de perfil
