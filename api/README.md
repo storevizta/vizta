@@ -16,6 +16,7 @@
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | controller  | Contiene los controladores que manejan las solicitudes HTTP entrantes.                                                            |
 | handler     | Contiene los manejadores de errores y excepciones que pueden ocurrir durante el procesamiento de las solicitudes HTTP.            |
+| middleware  | Contiene funciones o módulos de código que realizan tareas específicas.                                                           |
 | models      | Contiene las definiciones de los modelos de la base de datos utilizando Sequelize ORM.                                            |
 | routes      | Contiene los archivos de rutas que manejan las solicitudes HTTP entrantes y las dirigen hacia los controladores correspondientes. |
 | database.js | Archivo que utiliza la información de configuración para inicializar la conexión a la base de datos utilizando Sequelize ORM.     |
@@ -50,7 +51,7 @@
 
 ## Tables Relationship
 
-- Cada producto puede pertenecer a muchas categorías, y cada categoría puede tener muchos productos (relación de muchos a muchos).
+- Cada producto pertenece a una única categoría, y cada categoría puede tener muchos productos.
 
 - Cada producto puede tener muchos comentarios, pero cada comentario solo pertenece a un producto.
 

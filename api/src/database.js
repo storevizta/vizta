@@ -45,9 +45,9 @@ const sequelize = new Sequelize(database, username, password, {
 
 // // Product - Category
 
-// Category.belongsToMany(Product, { through: "Product_Category" });
+// Category.hasMany(Product);
 
-// Product.belongsToMany(Category, { through: "Product_Category" });
+// Product.belongsTo(Category);
 
 // // Product - Comment
 

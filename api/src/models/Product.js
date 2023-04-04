@@ -11,7 +11,6 @@ module.exports = (sequelize) => {
       },
       name: { type: DataTypes.STRING, allowNull: false },
       price: { type: DataTypes.FLOAT, allowNull: false },
-      weight: { type: DataTypes.FLOAT, allowNull: true },
       description: { type: DataTypes.STRING, allowNull: true },
       image: { type: DataTypes.STRING, allowNull: true },
       quantity: { type: DataTypes.INTEGER, allowNull: true },
@@ -29,3 +28,18 @@ module.exports = (sequelize) => {
     { freezeTableName: true, timestamps: false }
   );
 };
+
+// Anuncios:
+
+// ID de anuncio (clave primaria)
+// Título del anuncio
+// Descripción del anuncio
+// Categoría (inmuebles, vehículos, empleo, etc.)
+// Precio
+// Moneda (USD, EUR, MXN, etc.)
+// Tipo de venta (venta, alquiler, intercambio)
+// Ubicación (ciudad, estado, país)
+// Fecha de publicación
+// Fecha de caducidad (si se ha establecido una)
+// Estado del anuncio (activo, inactivo, eliminado)
+// ID de usuario (clave foránea) que publicó el anuncio
