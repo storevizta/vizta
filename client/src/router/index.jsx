@@ -10,6 +10,8 @@ import { Accounts } from '../pages/Accounts';
 
 import { Home } from '../pages/Home';
 
+import { Post } from '../pages/Post';
+
 import { Profile } from '../pages/Profile';
 
 export const router = createBrowserRouter([
@@ -30,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: '/home',
         element: <Home />,
+      },
+      {
+        path: '/post',
+        element: <Post />,
       },
       {
         path: '/profile',
