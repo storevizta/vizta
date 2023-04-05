@@ -14,6 +14,6 @@ module.exports = (sequelize) => {
       email: { type: DataTypes.STRING, alowwNull: false },
       password: { type: DataTypes.STRING, alowwNull: false },
     },
-    { freezeTableName: true, timestamps: false }
+    { freezeTableName: true }
   );
 };
