@@ -3,6 +3,9 @@ require("dotenv").config();
 const router = require("express").Router();
 
 const {
+  singIn,
+  singUp,
+  singOut,
   getUsers,
   getUsersById,
   getUsersAds,
@@ -11,14 +14,20 @@ const {
   getUsersRating,
 } = require("../controller/usersController.js");
 
-router.get("/");
+router.post("/singin", singIn); /* http://localhost:3001/users/singin */
 
-router.get("/:id");
+router.post("/singup", singUp); /* http://localhost:3001/users/singup */
 
-router.post("/");
+router.post("/singout", singOut); /* http://localhost:3001/users/singout */
 
-router.put("/");
+router.get("/"); /* http://localhost:3001/users/ */
 
-router.delete("/");
+router.get("/:id"); /* http://localhost:3001/users/ */
+
+router.post("/"); /* http://localhost:3001/users/ */
+
+router.put("/"); /* http://localhost:3001/users/ */
+
+router.delete("/"); /* http://localhost:3001/users/ */
 
 module.exports = router;
