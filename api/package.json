@@ -6,7 +6,9 @@
   "type": "commonjs",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +28,9 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "eslint": "^8.37.0",
+    "eslint-plugin-react": "^7.32.2",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.7"
   }
 }
