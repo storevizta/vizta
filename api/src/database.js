@@ -4,7 +4,7 @@ const { Sequelize } = require("sequelize");
 
 const database = process.env.DB_NAME || "vizta";
 
-const username = process.env.DB_USER || "postgres";
+const username = process.env.DB_USER || "postgres"; /* Your postgres username */
 
 const password =
   process.env.DB_PASSWORD || "44019204"; /* Your postgres password */
