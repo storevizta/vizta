@@ -51,14 +51,4 @@
 
 ## Tables Relationship
 
-- Cada producto pertenece a una única categoría, y cada categoría puede tener muchos productos.
-
-- Cada producto puede tener muchos comentarios, pero cada comentario solo pertenece a un producto.
-
-- Cada producto puede tener muchas opciones, pero cada opción solo pertenece a un producto.
-
-- Cada orden puede contener muchos productos, y cada producto puede estar en muchas órdenes (relación de muchos a muchos).
-
-- Un usuario puede tener muchas órdenes, pero cada orden solo pertenece a un usuario.
-
 ---
