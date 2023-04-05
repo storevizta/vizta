@@ -19,7 +19,7 @@ router.get('/:category', getAdsByCategory);
 
 router.post('/', postAds);
 
-router.put('/', putAds);
+router.patch('/:id', putAds);
 
 router.delete('/', deleteAds);
 
