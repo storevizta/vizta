@@ -6,23 +6,21 @@ const jwt = require("jsonwebtoken");
 
 const key = process.env.KEY || "secretkey";
 
-const User = require("../database.js");
-
-const singIn = (req, res) => {
+const singUp = async (req, res) => {
   try {
   } catch (e) {
     htppError(res, e);
   }
 };
 
-const singUp = (req, res) => {
+const singIn = async (req, res) => {
   try {
   } catch (e) {
     htppError(res, e);
   }
 };
 
-const singOut = (req, res) => {
+const singOut = async (req, res) => {
   try {
   } catch (e) {
     htppError(res, e);

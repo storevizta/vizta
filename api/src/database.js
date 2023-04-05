@@ -2,18 +2,6 @@ require("dotenv").config();
 
 const { Sequelize } = require("sequelize");
 
-const Category = require("./models/Category.js");
-
-const Comment = require("./models/Comment.js");
-
-const Option = require("./models/Option.js");
-
-const Order = require("./models/Order.js");
-
-const Product = require("./models/Product.js");
-
-const User = require("./models/User.js");
-
 const database = process.env.DB_NAME || "vizta";
 
 const username = process.env.DB_USER || "postgres";
@@ -31,46 +19,6 @@ const sequelize = new Sequelize(database, username, password, {
   logging: false /* Output of log messages in the console */,
 });
 
-// Category(sequelize);
-
-// Comment(sequelize);
-
-// Option(sequelize);
-
-// Order(sequelize);
-
-// Product(sequelize);
-
-// User(sequelize);
-
-// // Product - Category
-
-// Category.hasMany(Product);
-
-// Product.belongsTo(Category);
-
-// // Product - Comment
-
-// Product.hasMany(Comment);
-
-// Comment.belongsTo(Product);
-
-// // Product - Option
-
-// Product.hasMany(Option);
-
-// Option.belongsTo(Product);
-
-// // Order - Product
-
-// Order.belongsToMany(Product, { through: "OrderProduct" });
-
-// Product.belongsToMany(Order, { through: "OrderProduct" });
-
-// // User - Order
-
-// User.hasMany(Order);
-
-// Order.belongsTo(User);
+const {} = sequelize.models;
 
 module.exports = { sequelize, ...sequelize.models };
