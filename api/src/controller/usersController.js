@@ -8,6 +8,8 @@ const key = process.env.KEY || 'secretkey';
 
 const User = require('../database.js');
 
+const { Op } = require('sequelize');
+
 const signUp = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -50,8 +52,24 @@ const signOut = async (req, res) => {
   }
 };
 
+//Get / users
 const getUsers = async (req, res) => {
   try {
+    const { name } = req.query
+
+    let users;
+    if(name) {
+      users = await User.findAll({
+        where: {
+          name: {
+            [Op.like]: `%${name}`
+          },
+        },
+      });
+    } else {
+      users = await User.findAll();
+    }
+    res.json(users);    
   } catch (e) {
     htppError(res, e);
   }
