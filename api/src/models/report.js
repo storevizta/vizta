@@ -9,11 +9,17 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         primaryKey: true,
       },
+
       type: {
         type: DataTypes.ENUM("User", "Advertisement"),
       },
 
-      denouncedId: {
+      reporterId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+
+      reportedId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
