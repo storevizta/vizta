@@ -25,7 +25,7 @@ const order = require("./models/order")
 const rating = require("./models/rating")
 const report = require("./models/report")
 const user = require("./models/user")
-const favorites = require("./models/favorites")
+const favorites = require("./models/Favorite")
 
 ads(sequelize)
 category(sequelize)
