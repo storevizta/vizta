@@ -2,18 +2,6 @@ require("dotenv").config();
 
 const { Sequelize } = require("sequelize");
 
-const Category = require("./models/Category.js");
-
-const Comment = require("./models/Comment.js");
-
-const Option = require("./models/Option.js");
-
-const Order = require("./models/Order.js");
-
-const Product = require("./models/Product.js");
-
-const User = require("./models/User.js");
-
 const database = process.env.DB_NAME || "vizta";
 
 const username = process.env.DB_USER || "postgres";
@@ -31,46 +19,58 @@ const sequelize = new Sequelize(database, username, password, {
   logging: false /* Output of log messages in the console */,
 });
 
-// Category(sequelize);
+const ads = require("./models/ads")
+const category = require("./models/category")
+const order = require("./models/order")
+const rating = require("./models/rating")
+const report = require("./models/report")
+const user = require("./models/user")
+const favorites = require("./models/Favorite")
 
-// Comment(sequelize);
+ads(sequelize)
+category(sequelize)
+order(sequelize)
+rating(sequelize)
+report(sequelize)
+user(sequelize)
+favorites(sequelize)
 
-// Option(sequelize);
+const {Ads, Category, Order, Rating, Report, User, Favorite} = sequelize.models;
 
-// Order(sequelize);
+//user
+User.hasMany(Ads)
+Ads.belongsTo(User)
 
-// Product(sequelize);
+User.hasMany(Rating)
+Rating.belongsTo(User)
 
-// User(sequelize);
+User.hasMany(Rating)
+Order.belongsTo(User)
 
-// // Product - Category
+User.hasMany(Report)
+Report.belongsTo(User)
 
-// Category.hasMany(Product);
+User.hasMany(Favorite)
+Favorite.belongsTo(User)
 
-// Product.belongsTo(Category);
+//Ads
+Ads.hasMany(Rating)
+Rating.belongsTo(Ads)
 
-// // Product - Comment
+Ads.hasMany(Order)
+Order.belongsTo(Ads)
 
-// Product.hasMany(Comment);
+Ads.hasMany(Report)
+Report.belongsTo(Ads)
 
-// Comment.belongsTo(Product);
+Category.hasMany(Ads)
+Ads.belongsTo(Rating)
 
-// // Product - Option
+Ads.hasMany(Favorite)
+Favorite.belongsTo(Ads)
 
-// Product.hasMany(Option);
 
-// Option.belongsTo(Product);
 
-// // Order - Product
 
-// Order.belongsToMany(Product, { through: "OrderProduct" });
-
-// Product.belongsToMany(Order, { through: "OrderProduct" });
-
-// // User - Order
-
-// User.hasMany(Order);
-
-// Order.belongsTo(User);
 
 module.exports = { sequelize, ...sequelize.models };

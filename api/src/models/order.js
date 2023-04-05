@@ -2,21 +2,24 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "Category",
+    "Order",
     {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
-        type: DataTypes.ENUM(
-          "article",
-          "real estate",
-          "service",
-          "vehicle",
-          "job"
-        ),
+      buyerName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      amount: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      toPay: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
     },
     { freezeTableName: true }
