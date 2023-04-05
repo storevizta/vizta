@@ -70,12 +70,6 @@ User.hasMany(Order);
 
 Order.belongsTo(User);
 
-// User - Rating
-
-Ads.hasMany(Rating);
-
-Rating.belongsTo(Ads);
-
 // User - Report
 
 User.hasMany(Report);
@@ -83,18 +77,6 @@ User.hasMany(Report);
 Report.belongsTo(User);
 
 // --- Ads ---
-
-// Ads - Order
-
-Ads.hasMany(Order);
-
-Order.belongsTo(Ads);
-
-// Ads - Report
-
-Ads.hasMany(Report);
-
-Report.belongsTo(Ads);
 
 // Ads - Category
 
@@ -107,5 +89,23 @@ Category.hasMany(Ads);
 Ads.hasMany(Favorite);
 
 Favorite.belongsTo(Ads);
+
+// Ads - Order
+
+Ads.hasMany(Order);
+
+Order.belongsTo(Ads);
+
+// Ads - Rating
+
+Ads.hasMany(Rating);
+
+Rating.belongsTo(Ads);
+
+// Ads - Report
+
+Ads.hasMany(Report);
+
+Report.belongsTo(Ads);
 
 module.exports = { sequelize, ...sequelize.models };
