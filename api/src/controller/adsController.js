@@ -1,19 +1,18 @@
+const htppError = require('../handler/handlerError.js');
 
-const htppError = require("../handler/handlerError.js");
-
-const {Ads, Category} = require("../database.js")
+const { Ads, Category } = require('../database.js');
 
 const getAds = async (req, res) => {
-  const {title} = req.query
+  const { title } = req.query;
   try {
-    if(title){
+    if (title) {
       const response = await Ads.findOne({
-        where: {title: title}
-      })
-      res.status(200).json(response)
-    }else{
-      const response = await Ads.findAll()
-      res.status(200).json(response)
+        where: { title: title },
+      });
+      res.status(200).json(response);
+    } else {
+      const response = await Ads.findAll();
+      res.status(200).json(response);
     }
   } catch (e) {
     htppError(res, e);
@@ -21,15 +20,15 @@ const getAds = async (req, res) => {
 };
 
 const getAdsById = async (req, res) => {
-  const {id} = req.params
+  const { id } = req.params;
   try {
-    if(id){
+    if (id) {
       const response = await Ads.findOne({
-        where:{id: id}
-      })
-      res.status(200).json(response)
-    }else{
-      throw new Error("Falta el ID")
+        where: { id: id },
+      });
+      res.status(200).json(response);
+    } else {
+      throw new Error('Falta el ID');
     }
   } catch (e) {
     htppError(res, e);
@@ -37,72 +36,80 @@ const getAdsById = async (req, res) => {
 };
 
 const postAds = async (req, res) => {
-  const {image, title, price, description, stock, oldPrice, discount, category} = req.body
+  const {
+    image,
+    title,
+    price,
+    description,
+    stock,
+    oldPrice,
+    discount,
+    category,
+  } = req.body;
   try {
-    if(image || title || price || description || stock){
+    if (image || title || price || description || stock) {
       const newAds = await Ads.create({
         image,
-        title, 
-        price, 
-        description, 
-        stock, 
-        oldPrice, 
-        discount
-      })
+        title,
+        price,
+        description,
+        stock,
+        oldPrice,
+        discount,
+      });
 
       const filter = await Category.findOne({
-        where: {name: category}
-      })
+        where: { name: category },
+      });
 
-      await newAds.setAds(filter)
+      await newAds.setAds(filter);
 
       const response = await Ads.findOne({
-        where:{id: newAds?.id},
-        include:{
-          model: Category
-        }
-      })
+        where: { id: newAds?.id },
+        include: {
+          model: Category,
+        },
+      });
 
-      res.status(200).json(response)
-
-    }else{
-      throw new Error("Missing data")
+      res.status(200).json(response);
+    } else {
+      throw new Error('Missing data');
     }
   } catch (e) {
     htppError(res, e);
   }
 };
 
-const getAdsByCategory = async (req,res) => {
-  const {category} = req.params
+const getAdsByCategory = async (req, res) => {
+  const { category } = req.params;
   try {
-    if(category){
+    if (category) {
       const post = await Category.findAll({
-        where: {id: category},
-        include: {model: Ads}
-      })
+        where: { id: category },
+        include: { model: Ads },
+      });
 
-      res.status(200).json(post)
-    }else{
-      throw new Error("Missing data")
+      res.status(200).json(post);
+    } else {
+      throw new Error('Missing data');
     }
   } catch (e) {
     htppError(res, e);
   }
-}
+};
 
 const putAds = async (req, res) => {
-  const {changes} = req.body
-  const {id} = req.params
+  const { changes } = req.body;
+  const { id } = req.params;
   try {
-    if(changes && id){
+    if (changes && id) {
       const post = await Ads.findOne({
-        where:{id: id}
-      })
-      const response = await post.update({changes})
-      res.status(200).json(response)
-    }else{
-      throw new Error("Missing id or changes")
+        where: { id: id },
+      });
+      const response = await post.update({ changes });
+      res.status(200).json(response);
+    } else {
+      throw new Error('Missing id or changes');
     }
   } catch (e) {
     htppError(res, e);
@@ -110,16 +117,16 @@ const putAds = async (req, res) => {
 };
 
 const deleteAds = async (req, res) => {
-  const {id} = req.params
+  const { id } = req.params;
   try {
-    if(id){
+    if (id) {
       const post = await Ads.findOne({
-        where:{id:id}
-      })
-      const response = post.destroy()
-      res.status(200).json(response)
-    }else{
-      throw new Error("Missing id")
+        where: { id: id },
+      });
+      const response = post.destroy();
+      res.status(200).json(response);
+    } else {
+      throw new Error('Missing id');
     }
   } catch (e) {
     htppError(res, e);
@@ -132,5 +139,5 @@ module.exports = {
   postAds,
   putAds,
   deleteAds,
-  getAdsByCategory
+  getAdsByCategory,
 };
