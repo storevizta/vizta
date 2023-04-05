@@ -1,26 +1,49 @@
-const htppError = require("../handler/handlerError.js");
+const htppError = require('../handler/handlerError.js');
 
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
-const key = process.env.KEY || "secretkey";
+const key = process.env.KEY || 'secretkey';
 
-const singUp = async (req, res) => {
+const User = require('../database.js');
+
+const signUp = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Missing parameters' });
+    }
+
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res
+        .status(401)
+        .json({ message: 'This email is already registered' });
+    }
+
+    const newUser = await Videogame.create({
+      name,
+      email,
+      password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+    });
+
+    return res.status(201).json({ message: 'User created successfully' });
+  } catch (e) {
+    htppError(res, e);
+  }
+};
+
+const signIn = async (req, res) => {
   try {
   } catch (e) {
     htppError(res, e);
   }
 };
 
-const singIn = async (req, res) => {
-  try {
-  } catch (e) {
-    htppError(res, e);
-  }
-};
-
-const singOut = async (req, res) => {
+const signOut = async (req, res) => {
   try {
   } catch (e) {
     htppError(res, e);
@@ -70,9 +93,9 @@ const getUsersRating = async (req, res) => {
 };
 
 module.exports = {
-  singUp,
-  singIn,
-  singOut,
+  signUp,
+  signIn,
+  signOut,
   getUsers,
   getUsersById,
   getUsersAds,

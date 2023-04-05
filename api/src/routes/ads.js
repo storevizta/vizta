@@ -1,6 +1,6 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const router = require("express").Router();
+const router = require('express').Router();
 
 const {
   getAds,
@@ -9,18 +9,18 @@ const {
   postAds,
   putAds,
   deleteAds,
-} = require("../controller/adsController.js");
+} = require('../controller/adsController.js');
 
-router.get("/", getAds);
+router.get('/', getAds);
 
-router.get("/:id", getAdsById);
+router.get('/:id', getAdsById);
 
-router.get("/:category", getAdsByCategory);
+router.get('/:category', getAdsByCategory);
 
-router.post("/", postAds);
+router.post('/', postAds);
 
-router.put("/", putAds);
+router.put('/', putAds);
 
-router.delete("/", deleteAds);
+router.delete('/', deleteAds);
 
 module.exports = router;
