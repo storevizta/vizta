@@ -1,4 +1,6 @@
+
 const htppError = require("../handler/handlerError.js");
+
 const {Ads, Category} = require("../database.js")
 
 const getAds = async (req, res) => {

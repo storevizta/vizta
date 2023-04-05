@@ -1,16 +1,16 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const express = require("express");
+const express = require('express');
 
-const cookieParser = require("cookie-parser");
+const cookieParser = require('cookie-parser');
 
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 
-const cors = require("cors");
+const cors = require('cors');
 
-const router = require("./routes/index.js");
+const router = require('./routes/index.js');
 
-const { sequelize } = require("./database.js");
+const { sequelize } = require('./database.js');
 
 const server = express();
 
@@ -28,17 +28,17 @@ server.use(cors());
 //   origin: "http://example.com"
 // }));
 
-server.use("/", router);
+server.use('/', router);
 
 server.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).send("Internal Server Error");
+  res.status(500).send('Internal Server Error');
 });
 
 sequelize
   .sync({ force: false })
   .then(() => {
-    console.log("Synchronized tables");
+    console.log('Synchronized tables');
     server.listen(port, () => {
       console.log(`Listening on port ${port}`);
     });
