@@ -28,6 +28,6 @@ router.post("/"); /* http://localhost:3001/users/ */
 
 router.put("/"); /* http://localhost:3001/users/ */
 
-router.delete("/"); /* http://localhost:3001/users/ */
+router.delete("/");
 
 module.exports = router;
