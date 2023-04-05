@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "Category",
+    'Category',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -11,11 +11,11 @@ module.exports = (sequelize) => {
       },
       name: {
         type: DataTypes.ENUM(
-          "article",
-          "real estate",
-          "service",
-          "vehicle",
-          "job"
+          'article',
+          'real estate',
+          'service',
+          'vehicle',
+          'job'
         ),
       },
     },

@@ -1,4 +1,4 @@
-const htppError = require("../handler/handlerError.js");
+const htppError = require('../handler/handlerError.js');
 
 const getPublication = async (req, res) => {
   try {

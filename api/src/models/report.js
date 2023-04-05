@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "Report",
+    'Report',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -11,10 +11,10 @@ module.exports = (sequelize) => {
       },
 
       type: {
-        type: DataTypes.ENUM("User", "Advertisement"),
+        type: DataTypes.ENUM('User', 'Advertisement'),
       },
 
-      reporterId:{
+      reporterId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

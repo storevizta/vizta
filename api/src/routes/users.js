@@ -1,6 +1,6 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const router = require("express").Router();
+const router = require('express').Router();
 
 const {
   singIn,
@@ -12,22 +12,22 @@ const {
   getUsersOrders,
   getUsersFavorites,
   getUsersRating,
-} = require("../controller/usersController.js");
+} = require('../controller/usersController.js');
 
-router.post("/singin", singIn); /* http://localhost:3001/users/singin */
+router.post('/singin', singIn); /* http://localhost:3001/users/singin */
 
-router.post("/singup", singUp); /* http://localhost:3001/users/singup */
+router.post('/singup', singUp); /* http://localhost:3001/users/singup */
 
-router.post("/singout", singOut); /* http://localhost:3001/users/singout */
+router.post('/singout', singOut); /* http://localhost:3001/users/singout */
 
-router.get("/", getUsers); /* http://localhost:3001/users/ */
+router.get('/', getUsers); /* http://localhost:3001/users/ */
 
-router.get("/:id"); /* http://localhost:3001/users/ */
+router.get('/:id'); /* http://localhost:3001/users/ */
 
-router.post("/"); /* http://localhost:3001/users/ */
+router.post('/'); /* http://localhost:3001/users/ */
 
-router.put("/"); /* http://localhost:3001/users/ */
+router.put('/'); /* http://localhost:3001/users/ */
 
-router.delete("/");
+router.delete('/');
 
 module.exports = router;
