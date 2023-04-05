@@ -2,19 +2,19 @@ require('dotenv').config();
 
 const { Sequelize } = require('sequelize');
 
-const Ads = require('./models/Ads');
+const modelAds = require('./models/Ads');
 
-const Category = require('./models/Category');
+const modelCategory = require('./models/Category');
 
-const Favorites = require('./models/Favorite');
+const modelFavorites = require('./models/Favorite');
 
-const Order = require('./models/Order');
+const modelOrder = require('./models/Order');
 
-const Rating = require('./models/Rating');
+const modelRating = require('./models/Rating');
 
-const Report = require('./models/Report');
+const modelReport = require('./models/Report');
 
-const User = require('./models/User');
+const modelUser = require('./models/User');
 
 const database = process.env.DB_NAME || 'vizta';
 
@@ -33,19 +33,19 @@ const sequelize = new Sequelize(database, username, password, {
   logging: false /* Output of log messages in the console */,
 });
 
-Ads(sequelize);
+modelAds(sequelize);
 
-Category(sequelize);
+modelCategory(sequelize);
 
-Favorites(sequelize);
+modelFavorites(sequelize);
 
-Order(sequelize);
+modelOrder(sequelize);
 
-Rating(sequelize);
+modelRating(sequelize);
 
-Report(sequelize);
+modelReport(sequelize);
 
-User(sequelize);
+modelUser(sequelize);
 
 const { Ads, Category, Favorite, Order, Rating, Report, User } =
   sequelize.models;
