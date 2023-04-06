@@ -8,7 +8,14 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    // userId: { type: DataTypes },
+    userId: {
+      type: DataTypes.UUID,
+      references: {
+        model: 'User',
+        key: 'id',
+      },
+      allowNull: false,
+    },
     image: {
       type: DataTypes.TEXT,
       allowNull: true,

@@ -23,6 +23,8 @@ const getUsers = async (req, res) => {
   res.json(users);
 };
 
+const getUsersById = async () => {};
+
 const users = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -57,5 +59,6 @@ const users = async (req, res) => {
 
 module.exports = {
   getUsers,
+  getUsersById,
   users,
 };
