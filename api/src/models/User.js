@@ -15,3 +15,4 @@ module.exports = (sequelize) => {
     address: { type: DataTypes.ARRAY(DataTypes.STRING) },
   });
 };
+//
