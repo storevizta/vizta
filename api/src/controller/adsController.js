@@ -131,17 +131,19 @@ const putAds = async (req, res) => {
 const deleteAds = async (req, res) => {
   const { id } = req.params;
   try {
-    if (id) {
+    if(id) {
       const post = await Ads.findOne({
         where: { id: id },
       });
-      const response = post.destroy();
-      res.status(200).json(response);
+
+      if(post !== null){
+        post.destroy();
+      }
     } else {
       throw new Error('Missing id');
     }
   } catch (e) {
-    htppError(res, e);
+    res.status(400).send()
   }
 };
 

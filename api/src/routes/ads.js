@@ -21,6 +21,6 @@ router.post('/', postAds);
 
 router.patch('/:id', putAds);
 
-router.delete('/', deleteAds);
+router.delete('/:id', deleteAds);
 
 module.exports = router;
