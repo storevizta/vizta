@@ -1,34 +1,41 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Rating', {
+  sequelize.define('Ad', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,
     },
-    // adId: { type: DataTypes },
     // userId: { type: DataTypes },
-    rating: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        min: 1,
-        max: 5,
-      },
+    image: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
-    comment: {
-      type: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING(70),
       allowNull: false,
     },
-    UserId: {
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    adsId: {
+    price: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    oldPrice: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    discount: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
   });
 };
