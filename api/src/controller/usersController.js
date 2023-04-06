@@ -6,9 +6,23 @@ const key = process.env.JWT_SECRET;
 
 const { User } = require('../database.js');
 
-const getUsers = async (req, res) => {};
+const getUsers = async (req, res) => {
 
-const getUsersById = async (req, res) => {};
+  const { name } = req.query
+  let users;
+  if(name) {
+    users = await User.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${name}`
+        },
+      },
+    });
+  } else {
+    users = await User.findAll();
+  }
+  res.json(users);    
+};
 
 const users = async (req, res) => {
   const { name, email, password } = req.body;

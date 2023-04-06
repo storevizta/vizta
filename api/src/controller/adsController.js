@@ -50,12 +50,17 @@ const postAds = async (req, res) => {
       discount,
     });
 
+<<<<<<< HEAD
     const filter = await Category.findOne({
       where: { name: category },
     });
+=======
+      await newAds.setCategory(filter);
+>>>>>>> develop
 
     await newAds.setAds(filter);
 
+<<<<<<< HEAD
     const response = await Ads.findOne({
       where: { id: newAds?.id },
       include: {
@@ -66,6 +71,14 @@ const postAds = async (req, res) => {
     res.status(200).json(response);
   } else {
     throw new Error('Missing data');
+=======
+      res.status(200).json(response);
+    } else {
+      throw new Error('Missing data');
+    }
+  } catch (e) {
+    res.send(e.message)
+>>>>>>> develop
   }
 };
 
@@ -87,6 +100,7 @@ const getAdsByCategory = async (req, res) => {
 const putAds = async (req, res) => {
   const { changes } = req.body;
   const { id } = req.params;
+<<<<<<< HEAD
 
   if (changes && id) {
     const post = await Ads.findOne({
@@ -96,11 +110,38 @@ const putAds = async (req, res) => {
     res.status(200).json(response);
   } else {
     throw new Error('Missing id or changes');
+=======
+  try {
+    if (changes && id) {
+      const post = await Ads.findOne({
+        where: { id: id },
+      });
+
+
+        await post.update({
+          image: changes.image,
+          title: changes.title,
+          price: changes.price,
+          description: changes.description,
+          stock: changes.stock,
+          category: changes.category,
+          discount: changes.discount,
+          oldPrice: changes.oldPrice
+        });
+      
+      res.status(200).json(post);
+    } else {
+      throw new Error('Missing id or changes');
+    }
+  } catch (e) {
+    htppError(res, e);
+>>>>>>> develop
   }
 };
 
 const deleteAds = async (req, res) => {
   const { id } = req.params;
+<<<<<<< HEAD
 
   if (id) {
     const post = await Ads.findOne({
@@ -110,6 +151,22 @@ const deleteAds = async (req, res) => {
     res.status(200).json(response);
   } else {
     throw new Error('Missing id');
+=======
+  try {
+    if(id) {
+      const post = await Ads.findOne({
+        where: { id: id },
+      });
+
+      if(post !== null){
+        post.destroy();
+      }
+    } else {
+      throw new Error('Missing id');
+    }
+  } catch (e) {
+    res.status(400).send()
+>>>>>>> develop
   }
 };
 

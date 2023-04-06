@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       userId: { type: DataTypes },
       rating: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allownull:false,
         validate: {
           min: 1,
           max: 5,
@@ -22,8 +22,16 @@ module.exports = (sequelize) => {
       },
       comment: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allownull:false
       },
+      UserId:{
+        type: DataTypes.INTEGER,
+        allownull:false
+      },
+      adsId:{
+        type: DataTypes.INTEGER,
+        allownull:false
+      }
     },
     { freezeTableName: true }
   );
