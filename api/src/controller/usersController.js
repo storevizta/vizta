@@ -7,21 +7,20 @@ const key = process.env.JWT_SECRET;
 const { User } = require('../database.js');
 
 const getUsers = async (req, res) => {
-
-  const { name } = req.query
+  const { name } = req.query;
   let users;
-  if(name) {
+  if (name) {
     users = await User.findAll({
       where: {
         name: {
-          [Op.like]: `%${name}`
+          [Op.like]: `%${name}`,
         },
       },
     });
   } else {
     users = await User.findAll();
   }
-  res.json(users);    
+  res.json(users);
 };
 
 const users = async (req, res) => {
@@ -58,6 +57,5 @@ const users = async (req, res) => {
 
 module.exports = {
   getUsers,
-  getUsersById,
   users,
 };

@@ -10,8 +10,8 @@ module.exports = (sequelize) => {
         allowNull: false,
         primaryKey: true,
       },
-      adId: { type: DataTypes },
-      userId: { type: DataTypes },
+      // adId: { type: DataTypes },
+      // userId: { type: DataTypes },
       type: {
         type: DataTypes.ENUM('User', 'Advertisement'),
         allowNull: false,

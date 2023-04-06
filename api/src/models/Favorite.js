@@ -10,8 +10,8 @@ module.exports = (sequelize) => {
         allownull: false,
         primaryKey: true,
       },
-      adId: { type: DataTypes },
-      userId: { type: DataTypes },
+      // adId: { type: DataTypes },
+      // userId: { type: DataTypes },
       advertisement_id: {
         type: DataTypes.INTEGER,
         allowNull: false,

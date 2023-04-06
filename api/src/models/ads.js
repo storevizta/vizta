@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
         allownull: false,
         primaryKey: true,
       },
-      userId: { type: DataTypes },
+      // userId: { type: DataTypes },
       image: {
         type: DataTypes.TEXT,
         allownull: true,
