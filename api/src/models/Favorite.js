@@ -19,6 +19,8 @@ module.exports = (sequelize) => {
         defaultValue: DataTypes.NOW,
         allowNull: false,
       },
+      //Relations:
+      fav_user: { type: DataTypes.INTEGER },
     },
     {
       timestamps: false,

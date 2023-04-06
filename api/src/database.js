@@ -2,17 +2,17 @@ require('dotenv').config();
 
 const { Sequelize } = require('sequelize');
 
-const modelAds = require('./models/Ads');
+const modelAds = require('./models/ads');
 
 const modelCategory = require('./models/Category');
 
 const modelFavorites = require('./models/Favorite');
 
-const modelOrder = require('./models/Order');
+const modelOrder = require('./models/order');
 
-const modelRating = require('./models/Rating');
+const modelRating = require('./models/rating');
 
-const modelReport = require('./models/Report');
+const modelReport = require('./models/report');
 
 const modelUser = require('./models/User');
 
@@ -54,27 +54,27 @@ const { Ads, Category, Favorite, Order, Rating, Report, User } =
 
 // User - Ads
 
-User.hasMany(Ads);
+User.hasMany(Ads, { foreignKey: 'ads_user' });
 
-Ads.belongsTo(User);
+Ads.belongsTo(User, { foreignKey: 'ads_user' });
 
 // User - Favorite
 
-User.hasMany(Favorite);
+User.hasMany(Favorite, { foreignKey: 'fav_user' });
 
-Favorite.belongsTo(User);
+Favorite.belongsTo(User, { foreignKey: 'fav_user' });
 
 // User - Order
 
-User.hasMany(Order);
+User.hasMany(Order, { foreignKey: 'ord_user' });
 
-Order.belongsTo(User);
+Order.belongsTo(User, { foreignKey: 'ord_user' });
 
 // User - Report
 
-User.hasMany(Report);
+User.hasMany(Report, { foreignKey: 'rep_user' });
 
-Report.belongsTo(User);
+Report.belongsTo(User, { foreignKey: 'rep_user' });
 
 // --- Ads ---
 

@@ -44,5 +44,5 @@ sequelize
     });
   })
   .catch((error) => {
-    console.log(`Error synchronizing models: ${err.message}`);
+    console.log(`Error synchronizing models: ${error.message}`);
   });

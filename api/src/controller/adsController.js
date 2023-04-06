@@ -1,17 +1,17 @@
 const htppError = require('../handler/handlerError.js');
 
-const { Ads, Category } = require('../database.js');
+const { Ad, Category } = require('../database.js');
 
 const getAds = async (req, res) => {
   const { title } = req.query;
   try {
     if (title) {
-      const response = await Ads.findOne({
+      const response = await Ad.findOne({
         where: { title: title },
       });
       res.status(200).json(response);
     } else {
-      const response = await Ads.findAll();
+      const response = await Ad.findAll();
       res.status(200).json(response);
     }
   } catch (e) {
@@ -23,7 +23,7 @@ const getAdsById = async (req, res) => {
   const { id } = req.params;
   try {
     if (id) {
-      const response = await Ads.findOne({
+      const response = await Ad.findOne({
         where: { id: id },
       });
       res.status(200).json(response);
@@ -48,7 +48,7 @@ const postAds = async (req, res) => {
   } = req.body;
   try {
     if (image || title || price || description || stock) {
-      const newAds = await Ads.create({
+      const newAds = await Ad.create({
         image,
         title,
         price,
@@ -64,7 +64,7 @@ const postAds = async (req, res) => {
 
       await newAds.setCategory(filter);
 
-      const response = await Ads.findOne({
+      const response = await Ad.findOne({
         where: { id: newAds?.id },
         include: {
           model: Category,
@@ -86,7 +86,7 @@ const getAdsByCategory = async (req, res) => {
     if (category) {
       const post = await Category.findAll({
         where: { id: category },
-        include: { model: Ads },
+        include: { model: Ad },
       });
 
       res.status(200).json(post);
@@ -103,7 +103,7 @@ const putAds = async (req, res) => {
   const { id } = req.params;
   try {
     if (changes && id) {
-      const post = await Ads.findOne({
+      const post = await Ad.findOne({
         where: { id: id },
       });
 
@@ -132,7 +132,7 @@ const deleteAds = async (req, res) => {
   const { id } = req.params;
   try {
     if(id) {
-      const post = await Ads.findOne({
+      const post = await Ad.findOne({
         where: { id: id },
       });
 

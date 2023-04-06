@@ -28,6 +28,8 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      //Relations:
+      rep_user: { type: DataTypes.INTEGER },
     },
     { freezeTableName: true }
   );

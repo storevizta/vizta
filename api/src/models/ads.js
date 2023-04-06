@@ -9,6 +9,7 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         primaryKey: true,
       },
+
       image: {
         type: DataTypes.TEXT,
       },
@@ -34,6 +35,8 @@ module.exports = (sequelize) => {
       discount: {
         type: DataTypes.INTEGER,
       },
+      //Relations:
+      ads_user: { type: DataTypes.INTEGER },
     },
     { freezeTableName: true }
   );

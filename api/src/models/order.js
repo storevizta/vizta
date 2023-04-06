@@ -21,6 +21,8 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      //Relations:
+      ord_user: { type: DataTypes.INTEGER },
     },
     { freezeTableName: true }
   );

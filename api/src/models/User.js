@@ -13,6 +13,11 @@ module.exports = (sequelize) => {
       name: { type: DataTypes.STRING, alowwNull: false },
       email: { type: DataTypes.STRING, alowwNull: false },
       password: { type: DataTypes.STRING, alowwNull: false },
+      //Relations:
+      ads_user: { type: DataTypes.INTEGER },
+      fav_user: { type: DataTypes.INTEGER },
+      ord_user: { type: DataTypes.INTEGER },
+      rep_user: { type: DataTypes.INTEGER },
     },
     { freezeTableName: true }
   );
