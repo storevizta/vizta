@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const { Sequelize } = require('sequelize');
 
-const modelAds = require('./models/Ads');
+const modelAd = require('./models/Ad');
 
 const modelCategory = require('./models/Category');
 
@@ -33,7 +33,7 @@ const sequelize = new Sequelize(database, username, password, {
   logging: false /* Output of log messages in the console */,
 });
 
-modelAds(sequelize);
+modelAd(sequelize);
 
 modelCategory(sequelize);
 
@@ -47,16 +47,16 @@ modelReport(sequelize);
 
 modelUser(sequelize);
 
-const { Ads, Category, Favorite, Order, Rating, Report, User } =
+const { Ad, Category, Favorite, Order, Rating, Report, User } =
   sequelize.models;
 
 // --- User ---
 
-// User - Ads
+// User - Ad
 
-User.hasMany(Ads);
+User.hasMany(Ad);
 
-Ads.belongsTo(User);
+Ad.belongsTo(User);
 
 // User - Favorite
 
@@ -76,36 +76,36 @@ User.hasMany(Report);
 
 Report.belongsTo(User);
 
-// --- Ads ---
+// --- Ad ---
 
-// Ads - Category
+// Ad - Category
 
-Ads.belongsTo(Category);
+Ad.belongsTo(Category);
 
-Category.hasMany(Ads);
+Category.hasMany(Ad);
 
-// Ads - Favorite
+// Ad - Favorite
 
-Ads.hasMany(Favorite);
+Ad.hasMany(Favorite);
 
-Favorite.belongsTo(Ads);
+Favorite.belongsTo(Ad);
 
-// Ads - Order
+// Ad - Order
 
-Ads.hasMany(Order);
+Ad.hasMany(Order);
 
-Order.belongsTo(Ads);
+Order.belongsTo(Ad);
 
-// Ads - Rating
+// Ad - Rating
 
-Ads.hasMany(Rating);
+Ad.hasMany(Rating);
 
-Rating.belongsTo(Ads);
+Rating.belongsTo(Ad);
 
-// Ads - Report
+// Ad - Report
 
-Ads.hasMany(Report);
+Ad.hasMany(Report);
 
-Report.belongsTo(Ads);
+Report.belongsTo(Ad);
 
 module.exports = { sequelize, ...sequelize.models };

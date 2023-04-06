@@ -36,6 +36,8 @@
       DB_HOST=localhost
       DB_DIALECT=postgres
 
+      JWT_SECRET=vizta
+
       PORT=3000
 
 - ### package.json
