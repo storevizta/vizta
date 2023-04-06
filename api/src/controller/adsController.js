@@ -1,10 +1,7 @@
-const htppError = require('../handler/handlerError.js');
-
 const { Ads, Category } = require('../database.js');
 
 const getAds = async (req, res) => {
   const { title } = req.query;
-  try {
     if (title) {
       const response = await Ads.findOne({
         where: { title: title },
@@ -14,14 +11,11 @@ const getAds = async (req, res) => {
       const response = await Ads.findAll();
       res.status(200).json(response);
     }
-  } catch (e) {
-    htppError(res, e);
-  }
 };
 
 const getAdsById = async (req, res) => {
   const { id } = req.params;
-  try {
+
     if (id) {
       const response = await Ads.findOne({
         where: { id: id },
@@ -30,9 +24,7 @@ const getAdsById = async (req, res) => {
     } else {
       throw new Error('Falta el ID');
     }
-  } catch (e) {
-    htppError(res, e);
-  }
+  
 };
 
 const postAds = async (req, res) => {
@@ -46,7 +38,7 @@ const postAds = async (req, res) => {
     discount,
     category,
   } = req.body;
-  try {
+  try{
     if (image || title || price || description || stock) {
       const newAds = await Ads.create({
         image,
@@ -78,11 +70,12 @@ const postAds = async (req, res) => {
   } catch (e) {
     res.send(e.message)
   }
+  
 };
 
 const getAdsByCategory = async (req, res) => {
   const { category } = req.params;
-  try {
+  
     if (category) {
       const post = await Category.findAll({
         where: { id: category },
@@ -93,15 +86,13 @@ const getAdsByCategory = async (req, res) => {
     } else {
       throw new Error('Missing data');
     }
-  } catch (e) {
-    htppError(res, e);
-  }
+  
 };
 
 const putAds = async (req, res) => {
   const { changes } = req.body;
   const { id } = req.params;
-  try {
+  
     if (changes && id) {
       const post = await Ads.findOne({
         where: { id: id },
@@ -123,9 +114,7 @@ const putAds = async (req, res) => {
     } else {
       throw new Error('Missing id or changes');
     }
-  } catch (e) {
-    htppError(res, e);
-  }
+  
 };
 
 const deleteAds = async (req, res) => {
@@ -139,6 +128,7 @@ const deleteAds = async (req, res) => {
       if(post !== null){
         post.destroy();
       }
+      return res.status(200).json("Deleting successful")
     } else {
       throw new Error('Missing id');
     }

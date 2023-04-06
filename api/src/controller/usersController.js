@@ -1,123 +1,61 @@
-const htppError = require('../handler/handlerError.js');
-
 const bcrypt = require('bcrypt');
 
 const jwt = require('jsonwebtoken');
 
-const key = process.env.KEY || 'secretkey';
+const key = process.env.JWT_SECRET;
 
-const User = require('../database.js');
+const { User } = require('../database.js');
 
-const { Op } = require('sequelize');
+const getUsers = async (req, res) => {
+  const { name } = req.query;
+  let users;
+  if (name) {
+    users = await User.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${name}`,
+        },
+      },
+    });
+  } else {
+    users = await User.findAll();
+  }
+  res.json(users);
+};
 
-const signUp = async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
+const users = async (req, res) => {
+  const { name, email, password } = req.body;
 
-    if (!name || !email || !password) {
-      return res.status(400).json({ message: 'Missing parameters' });
+  const existingUser = await User.findOne({ where: { email: email } });
+
+  if (existingUser) {
+    const match = await bcrypt.compare(password, existingUser.password);
+
+    if (!match) {
+      return res.status(401).json({ message: 'The password is incorrect.' });
     }
 
-    const existingUser = await User.findOne({ email });
-
-    if (existingUser) {
-      return res
-        .status(401)
-        .json({ message: 'This email is already registered' });
-    }
-
-    const newUser = await Videogame.create({
-      name,
-      email,
-      password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+    const token = jwt.sign({ id: existingUser.id }, key, {
+      expiresIn: '12h',
     });
 
-    return res.status(201).json({ message: 'User created successfully' });
-  } catch (e) {
-    htppError(res, e);
-  }
-};
+    return res.status(200).json({ message: 'Successful login', token });
+  } else {
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-const signIn = async (req, res) => {
-  try {
-  } catch (e) {
-    htppError(res, e);
-  }
-};
+    const newUser = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
 
-const signOut = async (req, res) => {
-  try {
-  } catch (e) {
-    htppError(res, e);
-  }
-};
+    const token = jwt.sign({ id: newUser.id }, key, { expiresIn: '12h' });
 
-//Get / users
-const getUsers = async (req, res) => {
-  try {
-    const { name } = req.query
-
-    let users;
-    if(name) {
-      users = await User.findAll({
-        where: {
-          name: {
-            [Op.like]: `%${name}`
-          },
-        },
-      });
-    } else {
-      users = await User.findAll();
-    }
-    res.json(users);    
-  } catch (e) {
-    htppError(res, e);
-  }
-};
-
-const getUsersById = async (req, res) => {
-  try {
-  } catch (e) {
-    htppError(res, e);
-  }
-};
-
-const getUsersAds = async (req, res) => {
-  try {
-  } catch (e) {
-    htppError(res, e);
-  }
-};
-
-const getUsersOrders = async (req, res) => {
-  try {
-  } catch (e) {
-    htppError(res, e);
-  }
-};
-
-const getUsersFavorites = async (req, res) => {
-  try {
-  } catch (e) {
-    htppError(res, e);
-  }
-};
-
-const getUsersRating = async (req, res) => {
-  try {
-  } catch (e) {
-    htppError(res, e);
+    return res.status(201).json({ message: 'Successful register', token });
   }
 };
 
 module.exports = {
-  signUp,
-  signIn,
-  signOut,
   getUsers,
-  getUsersById,
-  getUsersAds,
-  getUsersOrders,
-  getUsersFavorites,
-  getUsersRating,
+  users,
 };

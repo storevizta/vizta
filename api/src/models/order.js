@@ -7,20 +7,14 @@ module.exports = (sequelize) => {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
+        allowNull: false,
         primaryKey: true,
       },
-      buyerName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      amount: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      toPay: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
+      // adsId: { type: DataTypes },
+      // userId: { type: DataTypes },
+      quantity: { type: DataTypes.INTEGER, allowNull: false },
+      total: { type: DataTypes.INTEGER, allowNull: false },
+      // status: { type: DataTypes.ENUM('', '', ''), allowNull: false },
     },
     { freezeTableName: true }
   );

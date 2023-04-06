@@ -32,7 +32,7 @@ server.use('/', router);
 
 server.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).send('Internal Server Error');
+  res.status(500).json('Internal Server Error');
 });
 
 sequelize
@@ -43,6 +43,6 @@ sequelize
       console.log(`Listening on port ${port}`);
     });
   })
-  .catch((error) => {
+  .catch((err) => {
     console.log(`Error synchronizing models: ${err.message}`);
   });
