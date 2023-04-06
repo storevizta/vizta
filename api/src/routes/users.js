@@ -20,7 +20,7 @@ const {
 
 // router.post('/singout', singOut); /* http://localhost:3001/users/singout */
 
-// router.get('/', getUsers); /* http://localhost:3001/users/ */
+router.get('/', getUsers); /* http://localhost:3001/users/ */
 
 // router.get('/:id'); /* http://localhost:3001/users/ */
 
