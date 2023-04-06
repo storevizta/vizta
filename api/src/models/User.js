@@ -10,9 +10,11 @@ module.exports = (sequelize) => {
         alowwNull: false,
         primaryKey: true,
       },
-      name: { type: DataTypes.STRING, alowwNull: false },
-      email: { type: DataTypes.STRING, alowwNull: false },
-      password: { type: DataTypes.STRING, alowwNull: false },
+      name: { type: DataTypes.STRING, allownull: false },
+      username: { type: DataTypes.STRING, allownull: false },
+      email: { type: DataTypes.STRING, allownull: false },
+      password: { type: DataTypes.STRING, allownull: false },
+      address: { type: DataTypes.ARRAY(DataTypes.STRING) },
     },
     { freezeTableName: true }
   );

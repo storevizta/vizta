@@ -7,17 +7,22 @@ module.exports = (sequelize) => {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
+        allowNull: false,
         primaryKey: true,
       },
-      punctuation: {
+      adId: { type: DataTypes },
+      userId: { type: DataTypes },
+      rating: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         validate: {
           min: 1,
           max: 5,
         },
       },
-      message: {
+      comment: {
         type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     { freezeTableName: true }

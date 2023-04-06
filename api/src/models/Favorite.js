@@ -5,11 +5,13 @@ module.exports = (sequelize) => {
     'Favorite',
     {
       id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allownull: false,
         primaryKey: true,
       },
+      adId: { type: DataTypes },
+      userId: { type: DataTypes },
       advertisement_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
