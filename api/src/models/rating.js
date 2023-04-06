@@ -11,6 +11,7 @@ module.exports = (sequelize) => {
       },
       punctuation: {
         type: DataTypes.INTEGER,
+        allownull:false,
         validate: {
           min: 1,
           max: 5,
@@ -18,7 +19,16 @@ module.exports = (sequelize) => {
       },
       message: {
         type: DataTypes.STRING,
+        allownull:false
       },
+      UserId:{
+        type: DataTypes.INTEGER,
+        allownull:false
+      },
+      adsId:{
+        type: DataTypes.INTEGER,
+        allownull:false
+      }
     },
     { freezeTableName: true }
   );

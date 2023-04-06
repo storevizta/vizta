@@ -62,7 +62,7 @@ const postAds = async (req, res) => {
         where: { name: category },
       });
 
-      await newAds.setAds(filter);
+      await newAds.setCategory(filter);
 
       const response = await Ads.findOne({
         where: { id: newAds?.id },
@@ -76,7 +76,7 @@ const postAds = async (req, res) => {
       throw new Error('Missing data');
     }
   } catch (e) {
-    htppError(res, e);
+    res.send(e.message)
   }
 };
 
@@ -106,8 +106,20 @@ const putAds = async (req, res) => {
       const post = await Ads.findOne({
         where: { id: id },
       });
-      const response = await post.update({ changes });
-      res.status(200).json(response);
+
+
+        await post.update({
+          image: changes.image,
+          title: changes.title,
+          price: changes.price,
+          description: changes.description,
+          stock: changes.stock,
+          category: changes.category,
+          discount: changes.discount,
+          oldPrice: changes.oldPrice
+        });
+      
+      res.status(200).json(post);
     } else {
       throw new Error('Missing id or changes');
     }
@@ -119,17 +131,19 @@ const putAds = async (req, res) => {
 const deleteAds = async (req, res) => {
   const { id } = req.params;
   try {
-    if (id) {
+    if(id) {
       const post = await Ads.findOne({
         where: { id: id },
       });
-      const response = post.destroy();
-      res.status(200).json(response);
+
+      if(post !== null){
+        post.destroy();
+      }
     } else {
       throw new Error('Missing id');
     }
   } catch (e) {
-    htppError(res, e);
+    res.status(400).send()
   }
 };
 
