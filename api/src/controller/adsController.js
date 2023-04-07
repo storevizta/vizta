@@ -76,7 +76,7 @@ const postAds = async (req, res) => {
       throw new Error('Missing data');
     }
   } catch (e) {
-    res.send(e.message)
+    res.send(e.message);
   }
 };
 
@@ -107,18 +107,17 @@ const putAds = async (req, res) => {
         where: { id: id },
       });
 
+      await post.update({
+        image: changes.image,
+        title: changes.title,
+        price: changes.price,
+        description: changes.description,
+        stock: changes.stock,
+        category: changes.category,
+        discount: changes.discount,
+        oldPrice: changes.oldPrice,
+      });
 
-        await post.update({
-          image: changes.image,
-          title: changes.title,
-          price: changes.price,
-          description: changes.description,
-          stock: changes.stock,
-          category: changes.category,
-          discount: changes.discount,
-          oldPrice: changes.oldPrice
-        });
-      
       res.status(200).json(post);
     } else {
       throw new Error('Missing id or changes');
@@ -131,19 +130,19 @@ const putAds = async (req, res) => {
 const deleteAds = async (req, res) => {
   const { id } = req.params;
   try {
-    if(id) {
+    if (id) {
       const post = await Ad.findOne({
         where: { id: id },
       });
 
-      if(post !== null){
+      if (post !== null) {
         post.destroy();
       }
     } else {
       throw new Error('Missing id');
     }
   } catch (e) {
-    res.status(400).send()
+    res.status(400).send();
   }
 };
 
