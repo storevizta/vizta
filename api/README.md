@@ -31,14 +31,17 @@
   #### Este esta configurado de esta forma:
 
       DB_NAME=vizta
-      DB_USER= Your postgres user
-      DB_PASSWORD= Your postgres password
+      DB_USER= postgres
+      DB_PASSWORD= 44019204
       DB_HOST=localhost
       DB_DIALECT=postgres
 
+      PORT=3000
+
       JWT_SECRET=vizta
 
-      PORT=3000
+      NM_EMAIL=
+      NM_PASSWORD=
 
 - ### package.json
 
@@ -57,10 +60,106 @@
 
 ## Routes
 
-#Hola
+- ### admin
 
----
+  - #### GET /admin/users
+
+  - #### GET /admin/users/:id
+
+  - #### PUT /admin/users/:id
+
+  - #### DELETE /admin/users/:id
+
+  - #### GET /admin/ads
+
+  - #### GET /admin/ads/:id
+
+  - #### PUT /admin/ads/:id
+
+  - #### DELETE /admin/ads/:id
+
+- ### ads
+
+  - #### GET /ads/
+
+  - #### GET /ads/:id
+
+  - #### GET /ads/category
+
+  - #### GET /ads/category/:name
+
+  - #### GET /ads/search/:term
+
+  - #### POST /ads
+
+  - #### POST /ads:id/ratings
+
+  - #### POST /ads/:id/reports
+
+  - #### POST /ads/:id
+
+  - #### PUT /ads/:id
+
+  - #### DELETE /ads/:id
+
+- ### auth
+
+  - #### POST /auth/singup
+
+  - #### POST /auth/singin
+
+- ### users
+
+  - #### GET /users/:id
+
+  - #### GET /users/:id/ads
+
+  - #### GET /users/:id/favorites
+
+  - #### PUT /users/:id
+
+  - #### DELETE /users/:id---
 
 ## Tables Relationship
+
+### Usuario (User)
+
+- #### Un usuario puede tener muchos anuncios (Ad).
+
+- #### Un anuncio (Ad) pertenece a un usuario.
+
+- #### Un usuario puede tener muchos favoritos (Favorite).
+
+- #### Un favorito (Favorite) pertenece a un usuario.
+
+- #### Un usuario puede tener muchas órdenes (Order).
+
+- #### Una orden (Order) pertenece a un usuario.
+
+- #### Un usuario puede tener muchos reportes (Report).
+
+- #### Un reporte (Report) pertenece a un usuario.
+
+### Anuncio (Ad)
+
+- #### Un anuncio (Ad) pertenece a una categoría (Category).
+
+- #### Una categoría (Category) puede tener muchos anuncios (Ad).
+
+- #### Un anuncio (Ad) puede tener muchos favoritos (Favorite).
+
+- #### Un favorito (Favorite) pertenece a un anuncio (Ad).
+
+- #### Un anuncio (Ad) puede tener muchas órdenes (Order).
+
+- #### Una orden (Order) pertenece a un anuncio (Ad).
+
+- #### Un anuncio (Ad) puede tener muchas calificaciones (Rating).
+
+- #### Una calificación (Rating) pertenece a un anuncio (Ad).
+
+- #### Un anuncio (Ad) puede tener muchos reportes (Report).
+
+- #### Un reporte (Report) pertenece a un anuncio (Ad).
 
 ---

@@ -8,14 +8,6 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    userId: {
-      type: DataTypes.UUID,
-      references: {
-        model: 'User',
-        key: 'id',
-      },
-      allowNull: false,
-    },
     image: {
       type: DataTypes.TEXT,
       allowNull: true,
@@ -26,11 +18,11 @@ module.exports = (sequelize) => {
     },
     description: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     stock: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     price: {
       type: DataTypes.INTEGER,

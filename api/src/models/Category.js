@@ -16,6 +16,7 @@ module.exports = (sequelize) => {
         'vehicle',
         'job'
       ),
+      allowNull: false,
     },
   });
 };
