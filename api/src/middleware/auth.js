@@ -1,18 +1,25 @@
-const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const key = process.env.JWT_SECRET;
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://www.example.com/auth/google/callback',
-    },
-    function (accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
+const verifyToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+
+  const token = authHeader && authHeader.split(' ')[1];
+
+  console.log(authHeader);
+
+  if (!token) {
+    return res.status(401).json({ message: 'Token required' });
+  }
+
+  jwt.verify(token, key, (err, user) => {
+    if (err) {
+      return res.status(403).json({ message: 'Invalid token' });
     }
-  )
-);
+    req.user = user;
+    next();
+  });
+};
+
+module.exports = verifyToken;

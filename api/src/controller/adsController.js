@@ -1,11 +1,18 @@
 const { Ad, User } = require('../database.js');
 
-const getAd = async (req, res) => {};
+const getAds = async (req, res) => {};
 
 const getAdById = async (req, res) => {};
 
-const postAd = async (req, res) => {
+const getCategory = async (req, res) => {};
+
+const getAdsByCategory = async (req, res) => {};
+
+const searchAds = async (req, res) => {};
+
+const createAd = async (req, res) => {
   const {
+    userId,
     image,
     title,
     description,
@@ -13,10 +20,16 @@ const postAd = async (req, res) => {
     price,
     oldPrice,
     discount,
-    userId,
   } = req.body;
 
+  const user = await User.findByPk(userId);
+
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
   const ad = await Ad.create({
+    UserId: user.id,
     image,
     title,
     description,
@@ -24,10 +37,28 @@ const postAd = async (req, res) => {
     price,
     oldPrice,
     discount,
-    userId: userId,
   });
 
-  return res.status(201).json({ ad });
+  return res.status(201).json(ad);
 };
 
-module.exports = { getAd, getAdById, postAd };
+const addRating = async (req, res) => {};
+
+const reportAd = async (req, res) => {};
+
+const updateAd = async (req, res) => {};
+
+const deleteAd = async (req, res) => {};
+
+module.exports = {
+  getAds,
+  getAdById,
+  getCategory,
+  getAdsByCategory,
+  searchAds,
+  createAd,
+  addRating,
+  reportAd,
+  updateAd,
+  deleteAd,
+};

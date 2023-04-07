@@ -8,8 +8,6 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    // adId: { type: DataTypes },
-    // userId: { type: DataTypes },
     rating: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -20,14 +18,6 @@ module.exports = (sequelize) => {
     },
     comment: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    UserId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    adsId: {
-      type: DataTypes.INTEGER,
       allowNull: false,
     },
   });
