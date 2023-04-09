@@ -2,10 +2,6 @@
 
 ## Explanation of folders
 
-- ### node_modules
-
-  #### Directorio que contiene las dependencias de Node.js.
-
 - ### scr
 
   #### La carpeta "src" es donde se escribe el código fuente de la aplicación.
@@ -45,8 +41,8 @@
       CLIENT_SECRET=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
       REDIRECT_URI=http://localhost:3001/auth/singingoogle
 
-      NM_EMAIL=
-      NM_PASSWORD=
+      NM_EMAIL=storevizta@gmail.com
+      NM_PASSWORD=fhndtzhxomddvroo
 
 - ### package.json
 
@@ -125,7 +121,9 @@
 
   - #### PUT /users/:id
 
-  - #### DELETE /users/:id---
+  - #### DELETE /users/:id
+
+---
 
 ## Tables Relationship
 

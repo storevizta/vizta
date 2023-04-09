@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const router = require('express').Router();
 
-const { verifyToken } = require('../middleware/auth.js');
+const { verifyToken, authorize } = require('../middleware/auth.js');
 
 const {
   singUp,
