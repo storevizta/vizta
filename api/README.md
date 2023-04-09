@@ -36,9 +36,14 @@
       DB_HOST=localhost
       DB_DIALECT=postgres
 
-      PORT=3000
+      PORT=3001
 
       JWT_SECRET=vizta
+      JWT_EXPIRATION=12
+
+      CLIENT_ID=577878164983-u5d6a8vgv7724d6ljdr93jq39rgn8drd.apps.googleusercontent.com
+      CLIENT_SECRET=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
+      REDIRECT_URI=http://localhost:3001/auth/singingoogle
 
       NM_EMAIL=
       NM_PASSWORD=
@@ -107,6 +112,8 @@
   - #### POST /auth/singup
 
   - #### POST /auth/singin
+
+  - #### GET /auth/singingoogle
 
 - ### users
 

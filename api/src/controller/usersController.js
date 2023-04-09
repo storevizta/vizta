@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const getUser = async (req, res) => {};
 
 const updateUser = async (req, res) => {};

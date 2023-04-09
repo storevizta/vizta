@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Logo from '../images/LogoVizta.png';
+import Logo from '../assets/LogoVizta.png';
 import Spline from '@splinetool/react-spline'
 
 export const Landing = () => {
@@ -78,8 +78,8 @@ const LandingAccountButton = styled.a`
   text-decoration: none;
   cursor: pointer;
 
-  &: visited {
-    color: #fffff;
+  &:visited {
+    color: #ffff;
   }
 `;
 
