@@ -1,11 +1,19 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-const accounts = require("./accounts.js");
+const admin = require('./admin.js');
 
-const product = require("./product.js");
+const ads = require('./ads.js');
 
-router.use("/accounts", accounts); /* http://localhost:3001/accounts */
+const auth = require('./auth.js');
 
-router.use("/product", product); /* http://localhost:3001/product */
+const users = require('./users.js');
+
+router.use('/admin', admin);
+
+router.use('/ads', ads);
+
+router.use('/auth', auth);
+
+router.use('/users', users);
 
 module.exports = router;

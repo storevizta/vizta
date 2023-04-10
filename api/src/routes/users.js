@@ -1,33 +1,23 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const router = require("express").Router();
+const router = require('express').Router();
+
+const { verifyToken, authorize } = require('../middleware/auth.js');
 
 const {
-  singIn,
-  singUp,
-  singOut,
-  getUsers,
-  getUsersById,
-  getUsersAds,
-  getUsersOrders,
-  getUsersFavorites,
-  getUsersRating,
-} = require("../controller/usersController.js");
+  getUser,
+  updateUser,
+  deleteUser,
+} = require('../controller/usersController.js');
 
-router.post("/singin", singIn); /* http://localhost:3001/users/singin */
+router.get('/:id', getUser);
 
-router.post("/singup", singUp); /* http://localhost:3001/users/singup */
+router.get('/:id/ads');
 
-router.post("/singout", singOut); /* http://localhost:3001/users/singout */
+router.get('/:id/favorites');
 
-router.get("/"); /* http://localhost:3001/users/ */
+router.put('/:id', updateUser);
 
-router.get("/:id"); /* http://localhost:3001/users/ */
-
-router.post("/"); /* http://localhost:3001/users/ */
-
-router.put("/"); /* http://localhost:3001/users/ */
-
-router.delete("/");
+router.delete('/:id'), deleteUser;
 
 module.exports = router;

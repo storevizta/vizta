@@ -1,26 +1,40 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const router = require("express").Router();
+const router = require('express').Router();
+
+const { verifyToken, authorize } = require('../middleware/auth.js');
 
 const {
   getAds,
-  getAdsById,
+  getAdById,
+  getCategory,
   getAdsByCategory,
-  postAds,
-  putAds,
-  deleteAds,
-} = require("../controller/adsController.js");
+  searchAds,
+  createAd,
+  addRating,
+  reportAd,
+  updateAd,
+  deleteAd,
+} = require('../controller/adsController.js');
 
-router.get("/", getAds);
+router.get('/', getAds);
 
-router.get("/:id", getAdsById);
+router.get('/:id', getAdById);
 
-router.get("/:category", getAdsByCategory);
+router.get('/category', getCategory);
 
-router.post("/", postAds);
+router.get('/category/:name', getAdsByCategory);
 
-router.put("/", putAds);
+router.get('/search/:term', searchAds);
 
-router.delete("/", deleteAds);
+router.post('/', verifyToken, authorize(['user']), createAd);
+
+router.post('/:id/ratings', addRating);
+
+router.post('/:id/reports', reportAd);
+
+router.put('/:id', updateAd);
+
+router.delete('/:id', deleteAd);
 
 module.exports = router;

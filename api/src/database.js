@@ -1,17 +1,31 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const { Sequelize } = require("sequelize");
+const { Sequelize } = require('sequelize');
 
-const database = process.env.DB_NAME || "vizta";
+const modelAd = require('./models/Ad');
 
-const username = process.env.DB_USER || "postgres";
+const modelCategory = require('./models/Category');
+
+const modelFavorites = require('./models/Favorite');
+
+const modelOrder = require('./models/Order');
+
+const modelRating = require('./models/Rating');
+
+const modelReport = require('./models/Report');
+
+const modelUser = require('./models/User');
+
+const database = process.env.DB_NAME || 'vizta';
+
+const username = process.env.DB_USER || 'postgres'; /* Your postgres username */
 
 const password =
-  process.env.DB_PASSWORD || "44019204"; /* Your postgres password */
+  process.env.DB_PASSWORD || '44019204'; /* Your postgres password */
 
-const host = process.env.DB_HOST || "localhost";
+const host = process.env.DB_HOST || 'localhost';
 
-const dialect = process.env.DB_DIALECT || "postgres";
+const dialect = process.env.DB_DIALECT || 'postgres';
 
 const sequelize = new Sequelize(database, username, password, {
   host: host,
@@ -19,58 +33,79 @@ const sequelize = new Sequelize(database, username, password, {
   logging: false /* Output of log messages in the console */,
 });
 
-const ads = require("./models/ads")
-const category = require("./models/category")
-const order = require("./models/order")
-const rating = require("./models/rating")
-const report = require("./models/report")
-const user = require("./models/user")
-const favorites = require("./models/Favorite")
+modelAd(sequelize);
 
-ads(sequelize)
-category(sequelize)
-order(sequelize)
-rating(sequelize)
-report(sequelize)
-user(sequelize)
-favorites(sequelize)
+modelCategory(sequelize);
 
-const {Ads, Category, Order, Rating, Report, User, Favorite} = sequelize.models;
+modelFavorites(sequelize);
 
-//user
-User.hasMany(Ads)
-Ads.belongsTo(User)
+modelOrder(sequelize);
 
-User.hasMany(Rating)
-Rating.belongsTo(User)
+modelRating(sequelize);
 
-User.hasMany(Rating)
-Order.belongsTo(User)
+modelReport(sequelize);
 
-User.hasMany(Report)
-Report.belongsTo(User)
+modelUser(sequelize);
 
-User.hasMany(Favorite)
-Favorite.belongsTo(User)
+const { Ad, Category, Favorite, Order, Rating, Report, User } =
+  sequelize.models;
 
-//Ads
-Ads.hasMany(Rating)
-Rating.belongsTo(Ads)
+// --- User ---
 
-Ads.hasMany(Order)
-Order.belongsTo(Ads)
+// User - Ad
 
-Ads.hasMany(Report)
-Report.belongsTo(Ads)
+User.hasMany(Ad);
 
-Category.hasMany(Ads)
-Ads.belongsTo(Rating)
+Ad.belongsTo(User);
 
-Ads.hasMany(Favorite)
-Favorite.belongsTo(Ads)
+// User - Favorite
 
+User.hasMany(Favorite);
 
+Favorite.belongsTo(User);
 
+// User - Order
 
+User.hasMany(Order);
+
+Order.belongsTo(User);
+
+// User - Report
+
+User.hasMany(Report);
+
+Report.belongsTo(User);
+
+// --- Ad ---
+
+// Ad - Category
+
+Ad.belongsTo(Category);
+
+Category.hasMany(Ad);
+
+// Ad - Favorite
+
+Ad.hasMany(Favorite);
+
+Favorite.belongsTo(Ad);
+
+// Ad - Order
+
+Ad.hasMany(Order);
+
+Order.belongsTo(Ad);
+
+// Ad - Rating
+
+Ad.hasMany(Rating);
+
+Rating.belongsTo(Ad);
+
+// Ad - Report
+
+Ad.hasMany(Report);
+
+Report.belongsTo(Ad);
 
 module.exports = { sequelize, ...sequelize.models };

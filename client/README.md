@@ -2,10 +2,6 @@
 
 ## Explanation of folders
 
-- ### node_modules
-
-  #### Directorio que contiene las dependencias de Node.js.
-
 - ### public
 
   #### La carpeta "public" es donde se almacenan los archivos estáticos necesarios para el proyecto.
