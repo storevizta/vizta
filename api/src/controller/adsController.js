@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { Ad, User } = require('../database.js');
 
 const getAds = async (req, res) => {};
