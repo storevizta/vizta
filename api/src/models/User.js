@@ -9,14 +9,13 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     name: { type: DataTypes.STRING, allowNull: false },
-    username: { type: DataTypes.STRING, allowNull: false, unique: true },
     email: { type: DataTypes.STRING, allowNull: false, unique: true },
     password: { type: DataTypes.STRING },
     address: { type: DataTypes.ARRAY(DataTypes.STRING) },
     role: {
       type: DataTypes.ENUM('visitor', 'user', 'admin'),
       allowNull: false,
-      defaultValue: 'visitor',
+      defaultValue: 'user',
     },
   });
 };

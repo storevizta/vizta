@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const getUsers = async (req, res) => {};
 
 const getUserById = async (req, res) => {};
