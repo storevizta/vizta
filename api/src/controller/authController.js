@@ -34,9 +34,9 @@ const singUp = async (req, res) => {
         .json({ message: 'Please provide a valid email address' });
     }
 
-    const existingUser = await User.findOne({ where: { email: email } });
+    const user = await User.findOne({ where: { email: email } });
 
-    if (existingUser) {
+    if (user) {
       return res
         .status(409)
         .json({ message: 'The email is already registered' });
@@ -44,7 +44,7 @@ const singUp = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await User.create({
+    const newUser = await User.create({
       name,
       email,
       password: hashedPassword,
@@ -74,26 +74,27 @@ const singIn = async (req, res) => {
         .json({ message: 'Please provide your email, and password' });
     }
 
-    const existingUser = await User.findOne({ where: { email: email } });
+    const user = await User.findOne({ where: { email: email } });
 
-    if (!existingUser) {
+    if (!user) {
       return res.status(401).json({ message: 'The email could not be found' });
     }
 
-    const passwordMatch = await bcrypt.compare(password, existingUser.password);
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
       return res.status(401).json({ message: 'The password is incorrect.' });
     }
 
-    const token = jwt.sign({ id: existingUser.id }, key, {
+    const token = jwt.sign({ id: user.id, role: user.role }, key, {
       expiresIn: expiration,
     });
 
     const responseData = {
-      id: existingUser.id,
-      name: existingUser.name,
-      email: existingUser.email,
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
       token,
     };
 
@@ -134,7 +135,7 @@ const singInGoogle = async (req, res) => {
 
     const { data } = await oauth2.userinfo.get();
 
-    const user = await User.findOne({ where: { email: data.email } });
+    let user = await User.findOne({ where: { email: data.email } });
 
     if (!user) {
       user = await User.create({
@@ -142,9 +143,16 @@ const singInGoogle = async (req, res) => {
         email: data.email,
         password: 'default', // Contraseña temporal para usuarios de Google
       });
+
+      await transporter.sendMail({
+        from: 'vizta <storevizta@gmail.com>',
+        to: data.email,
+        subject: 'Welcome to our website!',
+        text: 'Welcome to our website! We are delighted that you have decided to register on our platform and become a part of our online community.',
+      });
     }
 
-    const token = jwt.sign({ id: user.id }, key, {
+    const token = jwt.sign({ id: user.id, role: user.role }, key, {
       expiresIn: expiration,
     });
 
@@ -152,6 +160,7 @@ const singInGoogle = async (req, res) => {
       id: user.id,
       name: user.name,
       email: user.email,
+      role: user.role,
       token,
     };
 

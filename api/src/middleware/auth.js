@@ -26,11 +26,16 @@ const verifyToken = (req, res, next) => {
 
 const authorize = (roles) => {
   return (req, res, next) => {
+    console.log('User role:', req.user.role);
+    console.log('Roles authorized:', roles);
+
     if (!roles.includes(req.user.role)) {
       return res
         .status(403)
         .json({ message: 'You do not have permission to perform this action' });
     }
+
+    next(); // Debe llamar a next() si el usuario tiene el rol correcto
   };
 };
 

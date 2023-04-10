@@ -27,7 +27,7 @@ router.get('/category/:name', getAdsByCategory);
 
 router.get('/search/:term', searchAds);
 
-router.post('/', createAd);
+router.post('/', verifyToken, authorize(['user']), createAd);
 
 router.post('/:id/ratings', addRating);
 
