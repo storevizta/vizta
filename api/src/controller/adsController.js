@@ -61,15 +61,19 @@ const getCategory = async (req, res) => {
       { name: 'job' },
     ]);
 
-    const cats = await Category.findAll({
-      where: { [Op.not]: '' },
-      attributes: 'name',
-    });
-    res.json(cats);
+    const cats = await Category.findAll({ attributes: ['name'] });
+
+    if (cats.length > 0) {
+      const responseData = cats.map((cat) => cat.name);
+
+      return res.status(200).json(responseData);
+    }
   } catch (error) {
-    res.json(error);
+    console.log(error.message);
+    return res.status(400).json({ message: 'Failed to retrieve the data' });
   }
 };
+
 // { name: 'article' },
 // { name: 'real estate' },
 // { name: 'service' },
