@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { counterReducer } from './reducer.js';
+import adsReducer from './features/ads/adsSlice'
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer}, //ejemplo de store
+    counter: adsReducer}, //ejemplo de store
 });
