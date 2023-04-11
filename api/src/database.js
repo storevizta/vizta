@@ -47,8 +47,7 @@ modelReport(sequelize);
 
 modelUser(sequelize);
 
-const { Ad, Category, Favorite, Order, Rating, Report, User } =
-  sequelize.models;
+const { Ad, Category, Favorite, Rating, Report, User } = sequelize.models;
 
 // --- User ---
 
@@ -89,12 +88,6 @@ Category.hasMany(Ad);
 Ad.hasMany(Favorite);
 
 Favorite.belongsTo(Ad);
-
-// Ad - Order
-
-Ad.hasMany(Order);
-
-Order.belongsTo(Ad);
 
 // Ad - Rating
 

@@ -53,13 +53,17 @@ const getAdById = async (req, res) => {
 
 const getCategory = async (req, res) => {
   try {
-    await Category.bulkCreate([
-      { name: 'article' },
-      { name: 'real estate' },
-      { name: 'service' },
-      { name: 'vehicle' },
-      { name: 'job' },
-    ]);
+    const existingCats = await Category.findAll({ attributes: ['name'] });
+
+    if (existingCats.length === 0) {
+      await Category.bulkCreate([
+        { name: 'article' },
+        { name: 'real estate' },
+        { name: 'service' },
+        { name: 'vehicle' },
+        { name: 'job' },
+      ]);
+    }
 
     const cats = await Category.findAll({ attributes: ['name'] });
 

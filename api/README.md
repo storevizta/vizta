@@ -27,8 +27,8 @@
   #### Este esta configurado de esta forma:
 
       DB_NAME=vizta
-      DB_USER= postgres
-      DB_PASSWORD= 44019204
+      DB_USER=
+      DB_PASSWORD=
       DB_HOST=localhost
       DB_DIALECT=postgres
 
