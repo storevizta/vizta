@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const { Op } = require('sequelize');
 
-const { Ad, User } = require('../database.js');
+const { Ad, User, Category } = require('../database.js');
 
 const { transporter } = require('../middleware/nodemailer.js');
 
@@ -36,11 +36,49 @@ const getAds = async (req, res) => {
 
 const getAdById = async (req, res) => {
   try {
-    const { id } = req.query;
-  } catch (error) {}
+    const { id } = req.params;
+
+    const ad = await Ad.findByPk(id);
+
+    if (!ad) {
+      return res.status(404).json({ message: 'Ad not found' });
+    }
+
+    return res.status(200).json(ad);
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({ message: 'Failed to retrieve the data' });
+  }
 };
 
-const getCategory = async (req, res) => {};
+const getCategory = async (req, res) => {
+  try {
+    await Category.bulkCreate([
+      { name: 'article' },
+      { name: 'real estate' },
+      { name: 'service' },
+      { name: 'vehicle' },
+      { name: 'job' },
+    ]);
+
+    const cats = await Category.findAll({ attributes: ['name'] });
+
+    if (cats.length > 0) {
+      const responseData = cats.map((cat) => cat.name);
+
+      return res.status(200).json(responseData);
+    }
+  } catch (error) {
+    console.log(error.message);
+    return res.status(400).json({ message: 'Failed to retrieve the data' });
+  }
+};
+
+// { name: 'article' },
+// { name: 'real estate' },
+// { name: 'service' },
+// { name: 'vehicle' },
+// { name: 'job' },
 
 const getAdsByCategory = async (req, res) => {};
 
