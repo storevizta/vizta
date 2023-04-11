@@ -35,7 +35,7 @@
       PORT=3001
 
       JWT_SECRET=vizta
-      JWT_EXPIRATION=12
+      JWT_EXPIRATION=12h
 
       CLIENT_ID=577878164983-u5d6a8vgv7724d6ljdr93jq39rgn8drd.apps.googleusercontent.com
       CLIENT_SECRET=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
