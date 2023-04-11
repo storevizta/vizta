@@ -18,6 +18,6 @@ router.get('/:id/favorites');
 
 router.put('/:id', updateUser);
 
-router.delete('/:id'), deleteUser;
+router.delete('/:id', deleteUser);
 
 module.exports = router;

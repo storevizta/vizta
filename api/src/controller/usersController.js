@@ -9,8 +9,7 @@ const getUser = async (req, res) => {
       const response = await User.findByPk(id);
       res.status(200).json(response);
     } else {
-      const response = await User.findAll();
-      res.status(200).json(response);
+      throw new Error('Missing Id');
     }
   } catch (error) {
     res.status(400).json(error.message);
@@ -19,22 +18,41 @@ const getUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { id } = req.params;
+  const { name, email, password, address } = req.body;
   try {
     if (id) {
-      const actualUser = await findByPk(id);
-      const hashedPassword = await bcrypt.hash(actualUser.password, 10);
-      actualUser.update({
-        name: actualUser.name,
-        email: actualUser.email,
+      const actualUser = await User.findByPk(id);
+      const verifyEmail = await User.findOne({ where: { email: email } });
+      if (verifyEmail) {
+        throw new Error('Email already exist!');
+      }
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const updated = await actualUser.update({
+        name: name,
+        email: email,
         password: hashedPassword,
-        address: actualUser.address,
+        address: address,
       });
+      res.status(200).json(updated);
     }
   } catch (error) {
     res.status(400).json(error.message);
   }
 };
 
-const deleteUser = async (req, res) => {};
+const deleteUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    if (id) {
+      const actualUser = await User.findByPk(id);
+      await actualUser.destroy();
+      res.status(200).json('Deleted!');
+    } else {
+      throw new Error('Missing Id');
+    }
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
 
 module.exports = { getUser, updateUser, deleteUser };
