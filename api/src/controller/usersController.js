@@ -22,10 +22,7 @@ const updateUser = async (req, res) => {
   try {
     if (id) {
       const actualUser = await User.findByPk(id);
-      const verifyEmail = await User.findOne({ where: { email: email } });
-      if (verifyEmail) {
-        throw new Error('Email already exist!');
-      }
+
       const hashedPassword = await bcrypt.hash(password, 10);
       const updated = await actualUser.update({
         name: name,
