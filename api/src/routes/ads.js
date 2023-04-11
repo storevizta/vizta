@@ -9,7 +9,6 @@ const {
   getAdById,
   getCategory,
   getAdsByCategory,
-  searchAds,
   createAd,
   addRating,
   reportAd,
@@ -25,9 +24,7 @@ router.get('/category', getCategory);
 
 router.get('/category/:name', getAdsByCategory);
 
-router.get('/search/:term', searchAds);
-
-router.post('/', verifyToken, authorize(['user']), createAd);
+router.post('/', createAd);
 
 router.post('/:id/ratings', addRating);
 
@@ -38,3 +35,9 @@ router.put('/:id', updateAd);
 router.delete('/:id', deleteAd);
 
 module.exports = router;
+
+// { name: 'article' },
+// { name: 'real estate' },
+// { name: 'service' },
+// { name: 'vehicle' },
+// { name: 'job' },
