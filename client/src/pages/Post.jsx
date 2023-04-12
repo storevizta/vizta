@@ -1,5 +1,19 @@
+import styled from 'styled-components';
+import { useState } from 'react';
 
 export const Post = () => {
+
+    const {task, setTask} = useState({
+        title: "",
+        description: "",
+        price: "",
+        stock: "",
+        image: "",
+    })
+
+
+
+
   return (
     <div className={s.backGround}>
         <div className={s.divContainerAll}>
@@ -74,22 +88,6 @@ export const Post = () => {
                     </div>
     
                     <div className={s.divCardContainer}>
-                        <label className={s.Text}>Plataformas:</label>
-                        
-                        
-                         <select onChange={e => handlerSelectPlatforms(e)}>
-                            <option hidden value="default">Selecciona tus Plataformas...</option>
-                        {platformsApi.map((el, i) =>( 
-                            <option key={i} value={el}>{el}</option>)
-                        )}
-                        </select>
-                       
-                    </div>
-                    <div>
-                        {errors.platforms&&(<p className={s.TextContainer}>{errors.platforms}</p>)}     
-                    </div>
-    
-                    <div className={s.divCardContainer}>
                         <label className={s.Text}>Image:</label>
                         <input
                         type='text'
@@ -100,57 +98,15 @@ export const Post = () => {
                         required={true}
                         />
                     </div>
-                    <div></div>
                         {errors.image&&(<p className={s.TextContainer}>{errors.image}</p>)} 
                     
-                    <div className={s.divCardContainer}>
-                        <label className={s.Text}>Géneros:</label>
-                        <select onChange={e => handlerSelectGenres(e)}>
-                        <option hidden value="default">Selecciona tus generos...</option>
-                        {Allgenres.map((el) =>( 
-                            <option key={el.id} value={el.name}>{el.name}</option>)
-                        )}
-                        </select>
-                      
-                    </div>
-                    <div>
-                        {errors.genres&&(<p className={s.TextContainer}>{errors.genres}</p>)}
-                    </div>
                     </div>
                     </div>
                     <Link to='/home'><button className={s.button}>Volver</button></Link>
-                    <button type="submit" className={s.buttons} disabled={!input.genres.length || !input.platforms.length}>Crear Videojuego</button>
+                    <button type="submit" className={s.buttons} disabled={!input.genres.length || !input.platforms.length}>Crear Publicación</button>
     
                 </form>
             </div>
-                <div className={s.divPadre}>
-                {   input.platforms.length > 0 ? (
-                    <div className={s.divHijo1}>
-                        <p className={s.Text}>Listado de Plataformas</p>
-                        <div className={s.divHijo2}>
-                        { input.platforms.map( (e, id) =>
-                            <div className={s.divHijo3} key={id}>
-                                <button className={s.divButton} onClick={()=> {handlerDeletePlatforms(e)}}>X</button>
-                                <p className={s.Text}>{e}</p>
-                            </div>
-                            )}
-                        </div>
-                     </div>           
-                     ): null}   
-                {   input.genres.length > 0 ? (
-                    <div className={s.divHijo1}>
-                        <p className={s.Text}>Listado de Géneros</p>
-                        <div className={s.divHijo2}>
-                         { input.genres.map((e, id) =>
-                            <div className={s.divHijo3} key={id}>
-                                <button className={s.divButton} onClick={()=> {handlerDeleteGenres(e)}}>X</button>
-                                <p className={s.Text}>{e}</p>
-                            </div>
-                            )}
-                        </div>
-                    </div>           
-                    ): null}
-                </div>
         </div>
     </div>
           )
