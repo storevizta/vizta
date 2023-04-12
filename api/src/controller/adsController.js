@@ -14,7 +14,9 @@ const getAds = async (req, res) => {
       title,
       minPrice,
       maxPrice,
+      discount,
       sort,
+      date,
       category,
     } = req.query;
 
@@ -23,7 +25,7 @@ const getAds = async (req, res) => {
       offset: +page * +size,
     };
 
-    if (title) {
+    if (title && title.trim() !== '') {
       options.where = {
         title: {
           [Op.iLike]: `%${title}%`,
