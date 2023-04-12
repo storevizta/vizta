@@ -8,8 +8,6 @@ const modelCategory = require('./models/Category');
 
 const modelFavorites = require('./models/Favorite');
 
-const modelOrder = require('./models/Order');
-
 const modelRating = require('./models/Rating');
 
 const modelReport = require('./models/Report');
@@ -39,8 +37,6 @@ modelCategory(sequelize);
 
 modelFavorites(sequelize);
 
-modelOrder(sequelize);
-
 modelRating(sequelize);
 
 modelReport(sequelize);
@@ -62,12 +58,6 @@ Ad.belongsTo(User);
 User.hasMany(Favorite);
 
 Favorite.belongsTo(User);
-
-// User - Order
-
-User.hasMany(Order);
-
-Order.belongsTo(User);
 
 // User - Report
 

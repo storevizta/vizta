@@ -1,27 +1,28 @@
 require('dotenv').config();
-const {User, Ad }= require("../database.js");
-const bcrypt = require("bcrypt");
+
+const { User, Ad } = require('../database.js');
+
+const bcrypt = require('bcrypt');
 
 const getUsers = async (req, res) => {
-
   try {
-    const users = await User.findAll()
-    console.log(users)
-    res.status(200).json(users)
+    const users = await User.findAll();
+    console.log(users);
+    res.status(200).json(users);
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
 const getUserById = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
 
   try {
-    if(id){
+    if (id) {
       const user = await User.findByPk(id);
       res.status(200).json(user);
-    }else {
-      res.status(400).json("Missing ID")
+    } else {
+      res.status(400).json('Missing ID');
     }
   } catch (error) {
     res.status(400).json(error.message);
@@ -29,38 +30,38 @@ const getUserById = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const {id} = req.params;
-  const {name, email, password, address} = req.body;
+  const { id } = req.params;
+  const { name, email, password, address } = req.body;
   try {
-    if(id){
+    if (id) {
       const user = await User.findByPk(id);
-      
+
       const hashedPassword = await bcrypt.hash(password, 10);
       const modifyUser = await user.update({
         name: name,
         email: email,
         password: hashedPassword,
-        address: address
-      })
+        address: address,
+      });
 
-      res.status(200).json(modifyUser)
+      res.status(200).json(modifyUser);
     } else {
-      res.status(400).json("Missing ID")
+      res.status(400).json('Missing ID');
     }
   } catch (error) {
-    res.status(400).json(error.message)
+    res.status(400).json(error.message);
   }
 };
 
 const deleteUser = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   try {
-    if(id){
+    if (id) {
       const user = await User.findByPk(id);
       await user.destroy();
-      res.status(200).json("User deleted")
+      res.status(200).json('User deleted');
     } else {
-      res.status(400).json("Missing ID")
+      res.status(400).json('Missing ID');
     }
   } catch (error) {
     throw new Error(error.message);
@@ -70,32 +71,33 @@ const deleteUser = async (req, res) => {
 const getAds = async (req, res) => {
   try {
     const ads = await Ad.findAll();
-    res.status(200).json(ads)
+    res.status(200).json(ads);
   } catch (error) {
-    res.status(400).json(error.message)
+    res.status(400).json(error.message);
   }
 };
 
 const getAdById = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   try {
-    if(id){
+    if (id) {
       const ad = await Ad.findByPk(id);
       res.status(200).json(ad);
     } else {
-      res.status(400).json("Missing ID")
+      res.status(400).json('Missing ID');
     }
   } catch (error) {
-    res.status(400).json(error.message)
+    res.status(400).json(error.message);
   }
 };
 
 const updateAd = async (req, res) => {
-  const {id} = req.params;
-  const {image, title, description, stock, price, oldPrice, discount} = req.body;
+  const { id } = req.params;
+  const { image, title, description, stock, price, oldPrice, discount } =
+    req.body;
 
   try {
-    if(id){
+    if (id) {
       const ad = await Ad.findByPk(id);
       const updatedAd = await ad.update({
         image: image,
@@ -106,27 +108,27 @@ const updateAd = async (req, res) => {
         oldPrice: oldPrice,
         discount: discount,
       });
-      res.status(200).json(updatedAd)
+      res.status(200).json(updatedAd);
     } else {
-      res.status(400).json("Missing ID")
-    }   
+      res.status(400).json('Missing ID');
+    }
   } catch (error) {
-    res.status(400).json(error.message)
+    res.status(400).json(error.message);
   }
 };
 
 const deleteAd = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   try {
-    if(id){
+    if (id) {
       const ad = await Ad.findByPk(id);
       await ad.destroy();
-      res.status(200).json("Ad Deleted")
-    }else {
-      res.status(400).json("Missing ID")
+      res.status(200).json('Ad Deleted');
+    } else {
+      res.status(400).json('Missing ID');
     }
   } catch (error) {
-    res.status(400).json(error.message)
+    res.status(400).json(error.message);
   }
 };
 

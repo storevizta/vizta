@@ -1,5 +1,7 @@
 require('dotenv').config();
+
 const { User } = require('../database');
+
 const bcrypt = require('bcrypt');
 
 const getUser = async (req, res) => {
