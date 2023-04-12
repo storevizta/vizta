@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 export const Post = () => {
 
-    const {task, setTask} = useState({
+    const {input, setInput} = useState({
         title: "",
         description: "",
         price: "",
@@ -15,17 +15,17 @@ export const Post = () => {
 
 
   return (
-    <div className={s.backGround}>
-        <div className={s.divContainerAll}>
-            <div className={s.divContainer}>
+    <div >
+        <div >
+            <div >
                 <div>
-                <h1 className={s.Title}>Creá tu Publicación</h1>
+                <h1 >Creá tu Publicación</h1>
     
                 </div>
                 <form onSubmit={e => handlerSubmit(e)}>
                 <div>
-                    <div className={s.firstColumn}>
-                    <div className={s.divCardContainer}>
+                    <div >
+                    <div >
                         <label className={s.Text}> Título:</label>
                         <input
                         type='text'
@@ -36,12 +36,12 @@ export const Post = () => {
                         required={true}
                         />
                     </div>
-                    <div className={s.right}>
+                    <div >
                         {errors.name&&(<p className={s.TextContainer}>{errors.name}</p>)}               
                     </div>
     
-                    <div className={s.divCardContainer}>
-                        <label className={s.Text}>Description:</label>
+                    <div >
+                        <label >Description:</label>
                         <input
                         type='text'
                         value={input.description}
@@ -55,8 +55,8 @@ export const Post = () => {
                     {errors.description&&(<p className={s.TextContainer}>{errors.description}</p>)} 
                     </div>
     
-                    <div className={s.divCardContainer}>
-                        <label className={s.Text}>Price:</label>
+                    <div >
+                        <label>Price:</label>
                         <input
                         type='number'
                         value={input.released}
@@ -69,12 +69,12 @@ export const Post = () => {
                         {errors.released&&(<p className={s.TextContainer}>{errors.released}</p>)} 
                     </div>
     
-                    <div className={s.divCardContainer}>
-                        <label className={s.Text}>Stock:</label>
+                    <div >
+                        <label >Stock:</label>
                         <input
                         type='number'
                         value={input.rating}
-                        name='rating'
+                        name='stock'
                         placeholder='0.00 - 5.00'
                         min={0.00}
                         max={50000}
@@ -87,7 +87,7 @@ export const Post = () => {
                         {errors.rating&&(<p className={s.TextContainer}>{errors.rating}</p>)} 
                     </div>
     
-                    <div className={s.divCardContainer}>
+                    <div >
                         <label className={s.Text}>Image:</label>
                         <input
                         type='text'
@@ -102,8 +102,8 @@ export const Post = () => {
                     
                     </div>
                     </div>
-                    <Link to='/home'><button className={s.button}>Volver</button></Link>
-                    <button type="submit" className={s.buttons} disabled={!input.genres.length || !input.platforms.length}>Crear Publicación</button>
+                    <Link to='/home'><button >Volver</button></Link>
+                    <button type="submit"  disabled={!input.title || !input.description || !input.price|| !input.stock|| !input.image}>Crear Publicación</button>
     
                 </form>
             </div>
