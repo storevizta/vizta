@@ -9,14 +9,9 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     name: {
-      type: DataTypes.ENUM(
-        'article',
-        'real estate',
-        'service',
-        'vehicle',
-        'job'
-      ),
+      type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
   });
 };

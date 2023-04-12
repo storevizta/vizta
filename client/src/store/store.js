@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { taskSlice } from '../features/tasks/taskSlice.js';
+import adsReducer from './features/ads/adsSlice'
 
 export const store = configureStore({
   reducer: {
-    task: taskSlice.Reducer}, //ejemplo de store
+    counter: adsReducer}, //ejemplo de store
 });
