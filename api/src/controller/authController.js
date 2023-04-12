@@ -60,7 +60,7 @@ const singUp = async (req, res) => {
     res.status(201).json({ message: 'Successful registration' });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ message: 'Failed registration' });
+    return res.status(400).json({ message: 'Failed registration' });
   }
 };
 
@@ -103,7 +103,7 @@ const singIn = async (req, res) => {
       .json({ message: 'Successful login', data: responseData });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ message: 'Failed login' });
+    return res.status(400).json({ message: 'Failed login' });
   }
 };
 
@@ -164,10 +164,12 @@ const singInGoogle = async (req, res) => {
       token,
     };
 
-    res.status(200).json({ message: 'Successful login', data: responseData });
+    return res
+      .status(200)
+      .json({ message: 'Successful login', data: responseData });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ message: 'Failed login' });
+    return res.status(400).json({ message: 'Failed login' });
   }
 };
 

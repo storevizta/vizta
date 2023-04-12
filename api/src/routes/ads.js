@@ -7,12 +7,7 @@ const { verifyToken, authorize } = require('../middleware/auth.js');
 const {
   getAds,
   getAdById,
-  getCategory,
-  getAdsByCategory,
-  searchAds,
   createAd,
-  addRating,
-  reportAd,
   updateAd,
   deleteAd,
 } = require('../controller/adsController.js');
@@ -21,17 +16,7 @@ router.get('/', getAds);
 
 router.get('/:id', getAdById);
 
-router.get('/category', getCategory);
-
-router.get('/category/:name', getAdsByCategory);
-
-router.get('/search/:term', searchAds);
-
-router.post('/', verifyToken, authorize(['user']), createAd);
-
-router.post('/:id/ratings', addRating);
-
-router.post('/:id/reports', reportAd);
+router.post('/', createAd);
 
 router.put('/:id', updateAd);
 
