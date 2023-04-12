@@ -27,8 +27,8 @@
   #### Este esta configurado de esta forma:
 
       DB_NAME=vizta
-      DB_USER= postgres
-      DB_PASSWORD= 44019204
+      DB_USER=
+      DB_PASSWORD=
       DB_HOST=localhost
       DB_DIALECT=postgres
 
@@ -60,68 +60,6 @@
 ---
 
 ## Routes
-
-- ### admin
-
-  - #### GET /admin/users
-
-  - #### GET /admin/users/:id
-
-  - #### PUT /admin/users/:id
-
-  - #### DELETE /admin/users/:id
-
-  - #### GET /admin/ads
-
-  - #### GET /admin/ads/:id
-
-  - #### PUT /admin/ads/:id
-
-  - #### DELETE /admin/ads/:id
-
-- ### ads
-
-  - #### GET /ads/
-
-  - #### GET /ads/:id
-
-  - #### GET /ads/category
-
-  - #### GET /ads/category/:name
-
-  - #### GET /ads/search/:term
-
-  - #### POST /ads
-
-  - #### POST /ads:id/ratings
-
-  - #### POST /ads/:id/reports
-
-  - #### POST /ads/:id
-
-  - #### PUT /ads/:id
-
-  - #### DELETE /ads/:id
-
-- ### auth
-
-  - #### POST /auth/singup
-
-  - #### POST /auth/singin
-
-  - #### GET /auth/singingoogle
-
-- ### users
-
-  - #### GET /users/:id
-
-  - #### GET /users/:id/ads
-
-  - #### GET /users/:id/favorites
-
-  - #### PUT /users/:id
-
-  - #### DELETE /users/:id
 
 ---
 
