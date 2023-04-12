@@ -25,10 +25,27 @@ const getAds = async (req, res) => {
       offset: +page * +size,
     };
 
-    if (title && title.trim() !== '') {
+    if (title) {
       options.where = {
         title: {
           [Op.iLike]: `%${title}%`,
+        },
+      };
+    }
+
+    if (minPrice && maxPrice) {
+      options.where = {
+        price: {
+          [Op.gt]: minPrice,
+          [Op.lt]: maxPrice,
+        },
+      };
+    }
+
+    if (discount === 'true') {
+      options.where = {
+        discount: {
+          [Op.not]: null,
         },
       };
     }
@@ -113,31 +130,7 @@ const createAd = async (req, res) => {
   }
 };
 
-const updateAd = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const { image, title, description, stock, price, oldPrice, discount } =
-      req.body;
-
-    if (id) {
-      const ad = await Ad.findByPk(id);
-
-      const updatedAd = await ad.update({
-        image,
-        title,
-        description,
-        stock,
-        price,
-        oldPrice,
-        discount,
-      });
-      res.status(200).json(updatedAd);
-    }
-  } catch (error) {
-    res.status(400).json({ message: 'Error' });
-  }
-};
+const updateAd = async (req, res) => {};
 
 const deleteAd = async (req, res) => {
   try {
