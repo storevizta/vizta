@@ -10,7 +10,7 @@ const {
   deleteUser,
 } = require('../controller/usersController.js');
 
-router.get('/:id', verifyToken, authorize('admin'), getUser);
+router.get('/:id', verifyToken, authorize(['user', 'admin']), getUser);
 
 router.get('/:id/ads');
 
