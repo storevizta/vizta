@@ -9,9 +9,9 @@ const { transporter } = require('../middleware/nodemailer.js');
 const getAds = async (req, res) => {
   try {
     const {
-      title,
       page = 0,
       size = 20,
+      title,
       minPrice,
       maxPrice,
       sort,
@@ -111,7 +111,31 @@ const createAd = async (req, res) => {
   }
 };
 
-const updateAd = async (req, res) => {};
+const updateAd = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const { image, title, description, stock, price, oldPrice, discount } =
+      req.body;
+
+    if (id) {
+      const ad = await Ad.findByPk(id);
+
+      const updatedAd = await ad.update({
+        image,
+        title,
+        description,
+        stock,
+        price,
+        oldPrice,
+        discount,
+      });
+      res.status(200).json(updatedAd);
+    }
+  } catch (error) {
+    res.status(400).json({ message: 'Error' });
+  }
+};
 
 const deleteAd = async (req, res) => {
   try {

@@ -61,6 +61,26 @@
 
 ## Routes
 
+- Admin
+
+- Ads
+
+- Auth
+
+  |                        |     |
+  | ---------------------- | --- |
+  | POST /auth/singup      |     |
+  | POST /auth/singin      |     |
+  | GET /auth/singingoogle |     |
+
+- Category
+
+- Rating
+
+- Report
+
+- User
+
 ---
 
 ## Tables Relationship
