@@ -14,6 +14,8 @@ const report = require('./report.js');
 
 const users = require('./users.js');
 
+const message = require('./message.js');
+
 router.use('/admin', admin);
 
 router.use('/ads', ads);
@@ -27,5 +29,7 @@ router.use('/rating', rating);
 router.use('/report', report);
 
 router.use('/users', users);
+
+router.use('/message', message);
 
 module.exports = router;

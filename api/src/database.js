@@ -14,6 +14,8 @@ const modelReport = require('./models/Report');
 
 const modelUser = require('./models/User');
 
+const modelMessage = require('./models/Message');
+
 const database = process.env.DB_NAME || 'vizta';
 
 const username = process.env.DB_USER || 'postgres'; /* Your postgres username */
@@ -43,7 +45,10 @@ modelReport(sequelize);
 
 modelUser(sequelize);
 
-const { Ad, Category, Favorite, Rating, Report, User } = sequelize.models;
+modelMessage(sequelize);
+
+const { Ad, Category, Favorite, Rating, Report, User, Message } =
+  sequelize.models;
 
 // --- User ---
 
@@ -64,6 +69,11 @@ Favorite.belongsTo(User);
 User.hasMany(Report);
 
 Report.belongsTo(User);
+
+// User - Message
+
+User.hasMany(Message);
+Message.belongsTo(User);
 
 // --- Ad ---
 
@@ -90,5 +100,10 @@ Rating.belongsTo(Ad);
 Ad.hasMany(Report);
 
 Report.belongsTo(Ad);
+
+// Ad - Message
+
+Ad.hasMany(Message);
+Message.belongsTo(Ad);
 
 module.exports = { sequelize, ...sequelize.models };
