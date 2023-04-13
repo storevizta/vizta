@@ -71,9 +71,9 @@ Report.belongsTo(User);
 // User - Message
 
 User.hasMany(Message);
+
 Message.belongsTo(User);
 
-// --- Ad ---
 // Ad - Category
 
 Ad.belongsTo(Category);
