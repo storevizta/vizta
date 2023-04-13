@@ -12,41 +12,59 @@ const getAds = async (req, res) => {
       page = 0,
       size = 20,
       title,
+      category,
       minPrice,
       maxPrice,
-      discount,
       sort,
-      date,
-      category,
+      discount,
     } = req.query;
 
     const options = {
       limit: +size,
       offset: +page * +size,
+      where: {},
+      order: [['createdAt', 'DESC']],
     };
 
     if (title) {
-      options.where = {
-        title: {
-          [Op.iLike]: `%${title}%`,
-        },
+      options.where.title = {
+        [Op.iLike]: `%${title}%`,
       };
+    }
+
+    if (category) {
+      const cat = await Category.findOne({ where: { id: category } });
+
+      if (!cat) {
+        return res.status(404).json({ message: 'Category not found' });
+      }
+
+      options.where.CategoryId = cat.id;
     }
 
     if (minPrice && maxPrice) {
-      options.where = {
-        price: {
-          [Op.gt]: minPrice,
-          [Op.lt]: maxPrice,
-        },
+      options.where.price = {
+        [Op.between]: [+minPrice, +maxPrice],
+      };
+    } else if (minPrice) {
+      options.where.price = {
+        [Op.gte]: +minPrice,
+      };
+    } else if (maxPrice) {
+      options.where.price = {
+        [Op.lte]: +maxPrice,
       };
     }
 
+    if (sort === 'asc') {
+      options.order = [['title', 'ASC']];
+    } else if (sort === 'desc') {
+      options.order = [['title', 'DESC']];
+    }
+
     if (discount === 'true') {
-      options.where = {
-        discount: {
-          [Op.not]: null,
-        },
+      options.where.discount = {
+        [Op.not]: null,
       };
     }
 
