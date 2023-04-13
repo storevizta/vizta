@@ -5,15 +5,15 @@ const router = require('express').Router();
 const { verifyToken, authorize } = require('../middleware/auth.js');
 
 const {
-  singUp,
-  singIn,
-  singInGoogle,
+  signUp,
+  signIn,
+  signInGoogle,
 } = require('../controller/authController.js');
 
-router.post('/singup', singUp);
+router.post('/signup', signUp);
 
-router.post('/singin', singIn);
+router.post('/signin', signIn);
 
-router.get('/singingoogle', singInGoogle);
+router.get('/signingoogle', signInGoogle);
 
 module.exports = router;
