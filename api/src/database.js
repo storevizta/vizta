@@ -68,12 +68,18 @@ User.hasMany(Report);
 
 Report.belongsTo(User);
 
+// User - Rating
+
+User.hasMany(Rating);
+
+Rating.belongsTo(User);
+
 // User - Message
 
 User.hasMany(Message);
+
 Message.belongsTo(User);
 
-// --- Ad ---
 // Ad - Category
 
 Ad.belongsTo(Category);
@@ -86,12 +92,6 @@ Ad.hasMany(Favorite);
 
 Favorite.belongsTo(Ad);
 
-// Ad - Rating
-
-Ad.hasMany(Rating);
-
-Rating.belongsTo(Ad);
-
 // Ad - Report
 
 Ad.hasMany(Report);
@@ -101,6 +101,7 @@ Report.belongsTo(Ad);
 // Ad - Message
 
 Ad.hasMany(Message);
+
 Message.belongsTo(Ad);
 
 module.exports = { sequelize, ...sequelize.models };
