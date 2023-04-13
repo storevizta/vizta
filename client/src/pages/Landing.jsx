@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Logo from '../assets/LogoVizta.png';
-import Spline from '@splinetool/react-spline'
+import Spline from '@splinetool/react-spline';
 
 export const Landing = () => {
   return (
@@ -8,8 +8,8 @@ export const Landing = () => {
       <LandingNav>
         <LandingImgLogo src={Logo} alt="Logo VIZTA" />
         <LandingContainerButton>
-          <LandingAccountButton href="/account">Sing In</LandingAccountButton>
-          <LandingAccountButton href="/account">Log In</LandingAccountButton>
+          <LandingAccountButton href="/account">Sign In</LandingAccountButton>
+          <LandingAccountButton href="/account">Sing Up</LandingAccountButton>
         </LandingContainerButton>
       </LandingNav>
       <LandingFirstSection>
@@ -43,9 +43,9 @@ export const Landing = () => {
           </LandingParagraphInfo>
         </LandingSectionLeft>
         <LandingSectionRight>
-          <Spline scene="https://prod.spline.design/6g5THKbtu0Jnc8jc/scene.splinecode" />    
+          <Spline scene="https://prod.spline.design/6g5THKbtu0Jnc8jc/scene.splinecode" />
         </LandingSectionRight>
-        </LandingSecondSection>
+      </LandingSecondSection>
     </LandingStyled>
   );
 };

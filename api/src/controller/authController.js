@@ -18,7 +18,7 @@ const key = process.env.JWT_SECRET;
 
 const expiration = process.env.JWT_EXPIRATION;
 
-const singUp = async (req, res) => {
+const signUp = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -64,7 +64,7 @@ const singUp = async (req, res) => {
   }
 };
 
-const singIn = async (req, res) => {
+const signIn = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -107,8 +107,8 @@ const singIn = async (req, res) => {
   }
 };
 
-const singInGoogle = async (req, res) => {
-  // http://localhost:3001/auth/singingoogle
+const signInGoogle = async (req, res) => {
+  // http://localhost:3001/auth/signingoogle
   try {
     const authorizeUrl = oauth2Client.generateAuthUrl({
       access_type: 'offline',
@@ -173,4 +173,4 @@ const singInGoogle = async (req, res) => {
   }
 };
 
-module.exports = { singUp, singIn, singInGoogle };
+module.exports = { signUp, signIn, signInGoogle };
