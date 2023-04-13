@@ -27,8 +27,8 @@
   #### Este esta configurado de esta forma:
 
       DB_NAME=vizta
-      DB_USER=
-      DB_PASSWORD=
+      DB_USER= postgres
+      DB_PASSWORD= 44019204
       DB_HOST=localhost
       DB_DIALECT=postgres
 
@@ -41,8 +41,7 @@
       CLIENT_SECRET=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
       REDIRECT_URI=http://localhost:3001/auth/singingoogle
 
-      NM_EMAIL=storevizta@gmail.com
-      NM_PASSWORD=fhndtzhxomddvroo
+      NM_PASS=fhndtzhxomddvroo
 
 - ### package.json
 
