@@ -5,8 +5,6 @@ const initialState = {
     value: 0,
     ads: [],
     allAds: [],
-    genres: [],
-    detail: [],
     actualPage: 1,
   }
   
