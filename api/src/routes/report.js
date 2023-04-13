@@ -10,7 +10,7 @@ const {
   getReportById,
   getUserReports,
   getAdReports,
-} = require('../controller/reportControlle.js');
+} = require('../controller/reportController.js');
 
 router.post('/', createReport);
 

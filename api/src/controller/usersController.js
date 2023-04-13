@@ -32,14 +32,17 @@ const updateUser = async (req, res) => {
     if (!id) {
       throw createMissingIdException('Id is missing');
     }
+
     if (name === undefined || email === undefined || password === undefined) {
       throw createInvalidInputException(
         'Name, email and password are required'
       );
     }
+
     if (email && !isValidEmail(email)) {
       throw createInvalidInputException('Invalid email format');
     }
+
     if (id) {
       const actualUser = await User.findByPk(id);
 
@@ -54,6 +57,7 @@ const updateUser = async (req, res) => {
     }
   } catch (error) {
     let statusCode = 500;
+
     let errorMessage = 'Internal Server Error';
 
     if (error.statusCode) {
