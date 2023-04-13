@@ -8,7 +8,7 @@ export const Ads = createApi({
       query: () => `/ads`,
     }),
     getAdById: builder.query({
-      query: (id) => `${id}`,
+      query: (id) => `/ads/${id}`,
     }),
   }),
 });
