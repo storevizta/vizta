@@ -3,10 +3,15 @@ import axios from 'axios';
 
 
 const initialState = {
-  value: 0,
-  ads: [],
-  allAnuncios: [],
-  actualPage: 1,
+  allAds : [],
+  filteredProducts: [],
+  configFilter: {
+        name: '',
+        categoryId: '',
+        order: 'AZ',
+    },
+  productDetail : {},
+  currentPage : 1,
 }
 
 export const adsSlice = createSlice({
