@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Sidenav = styled.div`
   height: 100%;
-  width: 160px;
+  width: 175px;
   position: fixed;
   z-index: 0;
   top: 64px;
