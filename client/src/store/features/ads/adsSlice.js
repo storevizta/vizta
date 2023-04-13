@@ -1,12 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+
+const initialState = {
+  value: 0,
+  ads: [],
+  allAnuncios: [],
+  actualPage: 1,
+}
 
 export const adsSlice = createSlice({
   name: 'ad',
-  initialState: [],
+  initialState,
   reducers: {
-    getAllAds: (state, action) => {
-      const allAds = state.push('Traeremos todos los anuncios');
+    getAllAds: async (state, action) => {
+      const allAds = await axios.get('http://localhost:3001/')
+
     },
+    postAds: async (state, action) => {
+      const postAds1 = await axios.post('http://localhost:3001/', payload)
+    }
+    
   },
 });
 
