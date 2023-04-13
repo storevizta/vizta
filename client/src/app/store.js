@@ -1,9 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-// import { adsReducer } from '../features/slices/adsSlice';
+import { Ads } from '../features/slices/adsSlice';
 
 export const store = configureStore({
   reducer: {
-    // ad: adsReducer,
-  }, //ejemplo de store
+    [Ads.reducerPath]: Ads.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(Ads.middleware),
 });
