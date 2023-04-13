@@ -27,13 +27,13 @@ const authorize = (roles) => {
     console.log('User role:', req.user.role);
     console.log('Roles authorized:', roles);
 
-    if (!roles.includes(req.user.role)) {
-      return res
-        .status(403)
-        .json({ message: 'You do not have permission to perform this action' });
-    }
+    const response = roles.filter((value) => value === req.user.role);
 
-    next(); // Debe llamar a next() si el usuario tiene el rol correcto
+    if (!response.length) {
+      res.status(400).json('you do not have permission');
+    } else {
+      next(); // Debe llamar a next() si el usuario tiene el rol correcto
+    }
   };
 };
 

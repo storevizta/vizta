@@ -9,12 +9,14 @@ const { transporter } = require('../middleware/nodemailer.js');
 const getAds = async (req, res) => {
   try {
     const {
-      title,
       page = 0,
       size = 20,
+      title,
       minPrice,
       maxPrice,
+      discount,
       sort,
+      date,
       category,
     } = req.query;
 
@@ -27,6 +29,23 @@ const getAds = async (req, res) => {
       options.where = {
         title: {
           [Op.iLike]: `%${title}%`,
+        },
+      };
+    }
+
+    if (minPrice && maxPrice) {
+      options.where = {
+        price: {
+          [Op.gt]: minPrice,
+          [Op.lt]: maxPrice,
+        },
+      };
+    }
+
+    if (discount === 'true') {
+      options.where = {
+        discount: {
+          [Op.not]: null,
         },
       };
     }
