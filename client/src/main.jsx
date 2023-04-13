@@ -2,7 +2,7 @@ import React, { StrictMode } from 'react';
 
 import { createRoot } from 'react-dom/client';
 
-import { store } from './app/store';
+import { store } from './reduxToolkit/store/store';
 
 import { Provider } from 'react-redux';
 
