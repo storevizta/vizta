@@ -65,6 +65,12 @@ User.hasMany(Report);
 
 Report.belongsTo(User);
 
+// User - Rating
+
+User.hasMany(Rating);
+
+Rating.belongsTo(User);
+
 // --- Ad ---
 
 // Ad - Category
@@ -78,12 +84,6 @@ Category.hasMany(Ad);
 Ad.hasMany(Favorite);
 
 Favorite.belongsTo(Ad);
-
-// Ad - Rating
-
-Ad.hasMany(Rating);
-
-Rating.belongsTo(Ad);
 
 // Ad - Report
 
