@@ -45,8 +45,6 @@ modelUser(sequelize);
 
 const { Ad, Category, Favorite, Rating, Report, User } = sequelize.models;
 
-// --- User ---
-
 // User - Ad
 
 User.hasMany(Ad);
@@ -64,8 +62,6 @@ Favorite.belongsTo(User);
 User.hasMany(Report);
 
 Report.belongsTo(User);
-
-// --- Ad ---
 
 // Ad - Category
 
