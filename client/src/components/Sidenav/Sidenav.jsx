@@ -1,4 +1,4 @@
-import { Sidenav, ItemSidenav } from './Style';
+import { Sidenav, ItemSidenav } from './Style-Sidenav';
 
 export const SideNav = () => {
   return (
