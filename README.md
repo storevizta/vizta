@@ -41,3 +41,5 @@
 - Redux toolkit
 
 - Styled Components
+
+- Spline

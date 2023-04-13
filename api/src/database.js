@@ -50,8 +50,6 @@ modelMessage(sequelize);
 const { Ad, Category, Favorite, Rating, Report, User, Message } =
   sequelize.models;
 
-// --- User ---
-
 // User - Ad
 
 User.hasMany(Ad);
@@ -76,7 +74,6 @@ User.hasMany(Message);
 Message.belongsTo(User);
 
 // --- Ad ---
-
 // Ad - Category
 
 Ad.belongsTo(Category);
