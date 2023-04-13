@@ -16,6 +16,10 @@ const server = express();
 
 const port = process.env.PORT || 3001;
 
+/*maneja las excepciones que se producen en la aplicación y 
+genera una respuesta de error personalizada para el usuario. */
+const errorHandler = require('./middleware/errorHandler.js')
+
 server.use(cookieParser());
 
 server.use(bodyParser.urlencoded({ extended: false }));
@@ -23,6 +27,8 @@ server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
 server.use(cors());
+
+server.use(errorHandler);
 
 // server.use(cors({
 //   origin: "http://example.com"
