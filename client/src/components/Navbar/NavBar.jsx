@@ -60,8 +60,10 @@ const SignIn = styled.a`
   margin-right: 12px;
   background-color: #222222;
   border: 1px solid #333333;
+  color: #818181;
+  text-decoration: none;
   border-radius: 10px;
-  &:visited {
+  &:hover {
     color: #ffff;
   }
 `;
