@@ -103,8 +103,6 @@ const getRating = async () => {};
 
 const createRating = async () => {};
 
-const updateRating = async () => {};
-
 const deleteRating = async () => {};
 
 module.exports = { getUser, updateUser, deleteUser };
