@@ -28,4 +28,14 @@ router.delete('/:id', deleteUser);
 
 router.delete('/:id/favorites', deleteFavorite);
 
+router.get('/:id/ratings');
+
+router.get('/:id/ratings');
+
+router.post('/:id/ratings');
+
+router.put('/:id/ratings');
+
+router.delete('/:id/ratings');
+
 module.exports = router;

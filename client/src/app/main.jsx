@@ -1,8 +1,10 @@
+import './main.css';
+
 import React, { StrictMode } from 'react';
 
 import { createRoot } from 'react-dom/client';
 
-import { store } from '../store/store';
+import { store } from './store';
 
 import { Provider } from 'react-redux';
 
