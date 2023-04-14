@@ -1,12 +1,14 @@
+import './main.css';
+
 import React, { StrictMode } from 'react';
 
 import { createRoot } from 'react-dom/client';
 
-import { store } from './app/store';
+import { store } from './store';
 
 import { Provider } from 'react-redux';
 
-import { router } from './router';
+import { router } from '../router';
 
 import { RouterProvider } from 'react-router-dom';
 
