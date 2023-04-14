@@ -3,118 +3,117 @@ require('dotenv').config();
 const { Rating, User } = require('../database');
 
 const createRating = async (req, res) => {
-    const {rating, comment, userId} = req.body;
+  const { rating, comment, userId } = req.body;
 
-    const user = await User.findByPk(userId);
+  const user = await User.findByPk(userId);
 
-    if(!user){
-        return res.status(404).json({error: "User not found"})
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  try {
+    if (rating && comment) {
+      const newRating = await Rating.create({
+        rating: rating,
+        comment: comment,
+        UserId: user.id,
+      });
+      return res.status(200).json(newRating);
+    } else {
+      res.status(400).json('Please provide a rating and a comment');
     }
-
-    try {
-        if(rating && comment){
-            const newRating = await Rating.create({
-                rating: rating,
-                comment: comment,
-                UserId: user.id,
-            })
-        return res.status(200).json(newRating);
-        } else {
-            res.status(400).json("Please provide a rating and a comment")
-        }
-    } catch (error) {
-      res.status(400).json(error.message);
-    }
-}
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
 
 const getRatingById = async (req, res) => {
-    const {id} = req.params;
+  const { id } = req.params;
 
-    if(!id){
-        return res.status(400).json("Missing id");
+  if (!id) {
+    return res.status(400).json('Missing id');
+  }
+
+  const rating = await Rating.findByPk(id);
+
+  try {
+    if (rating) {
+      res.status(200).json(rating);
+    } else {
+      return res.status(404).json('The rating does not exist');
     }
-
-    const rating = await Rating.findByPk(id);
-
-    try {
-        if(rating){
-            res.status(200).json(rating)
-        } else {
-            return res.status(404).json("The rating does not exist")
-        } 
-    } catch (error) {
-        res.status(400).json(error.menssage);
-    }
-}
+  } catch (error) {
+    res.status(400).json(error.menssage);
+  }
+};
 
 const getRatingByUser = async (req, res) => {
-    const {userId} = req.params;
+  const { userId } = req.params;
 
-    if(!userId){
-        return res.status(400).json("Missing User Id")
+  if (!userId) {
+    return res.status(400).json('Missing User Id');
+  }
+
+  const userRatings = await Rating.findAll({ where: { UserId: userId } });
+
+  try {
+    if (userRatings) {
+      res.status(200).json(userRatings);
+    } else {
+      return res.status(404).json('The user has not rating');
     }
-
-    const userRatings = await Rating.findAll({where:{ UserId: userId}});
-
-    try {
-        if(userRatings){
-            res.status(200).json(userRatings)
-        } else {
-            return res.status(404).json("The user has not rating")
-        }
-    } catch (error) {
-        res.status(400).json(error.message);
-    }
-}
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
 
 const deleteRating = async (req, res) => {
-    const {id} = req.params;
+  const { id } = req.params;
 
-    if(!id){
-        return res.status(400).json({message: "Missing Id"})
+  if (!id) {
+    return res.status(400).json({ message: 'Missing Id' });
+  }
+
+  const rating = await Rating.findByPk(id);
+
+  try {
+    if (rating) {
+      await rating.destroy();
+      res.status(200).json('The rating was successfully deleted.');
+    } else {
+      return res.status(404).json('The rating does not exist');
     }
-
-    const rating = await Rating.findByPk(id);
-
-    try {
-        if(rating){
-            await rating.destroy();
-            res.status(200).json("The rating was successfully deleted.")
-        }else {
-            return res.status(404).json("The rating does not exist")
-        }
-    } catch (error) {
-        res.status(400).json(error.message);
-    }
-}
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
 
 const updateRating = async (req, res) => {
-    const {id} = req.params;
+  const { id } = req.params;
 
-    const {rating, comment} = req.body;
+  const { rating, comment } = req.body;
 
-    const actualRating = await Rating.findByPk(id);
+  const actualRating = await Rating.findByPk(id);
 
-    try {
-        if(actualRating){
-            const modifyRating = await actualRating.update({
-                rating: rating,
-                comment: comment,
-            })
-        return res.status(200).json(modifyRating);
-        } else {
-            res.status(400).json("Please provide a rating and a comment")
-        }
-    } catch (error) {
-      res.status(400).json(error.message);
+  try {
+    if (actualRating) {
+      const modifyRating = await actualRating.update({
+        rating: rating,
+        comment: comment,
+      });
+      return res.status(200).json(modifyRating);
+    } else {
+      res.status(400).json('Please provide a rating and a comment');
     }
-
-}
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
 
 module.exports = {
-    createRating,
-    getRatingById,
-    getRatingByUser,
-    deleteRating,
-    updateRating
+  createRating,
+  getRatingById,
+  getRatingByUser,
+  deleteRating,
+  updateRating,
 };

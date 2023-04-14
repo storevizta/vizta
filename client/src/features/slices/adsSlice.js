@@ -13,4 +13,4 @@ export const Ads = createApi({
   }),
 });
 
-export const { useGetAdsQuery } = Ads;
+export const { useGetAdsQuery, useGetAdByIdQuery } = Ads;
