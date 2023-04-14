@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const { Rating, User } = require('../database');
 
 const createRating = async (req, res) => {
@@ -48,23 +46,21 @@ const getRatingById = async (req, res) => {
 };
 
 const getRatingByUser = async (req, res) => {
-  const { userId } = req.params;
 
-  if (!userId) {
-    return res.status(400).json('Missing User Id');
-  }
-
-  const userRatings = await Rating.findAll({ where: { UserId: userId } });
-
-  try {
-    if (userRatings) {
-      res.status(200).json(userRatings);
-    } else {
-      return res.status(404).json('The user has not rating');
+    const {userId} = req.body;
+    console.log(userId)
+    if(!userId){
+        return res.status(400).json("Missing User Id")
     }
-  } catch (error) {
-    res.status(400).json(error.message);
-  }
+    try {
+        const user = await User.findOne({
+        where:{ id: userId},
+        include: {model: Rating}
+    });
+    res.status(200).json(user.Rating)
+    } catch (error) {
+        res.status(400).json(error.message);
+    }
 };
 
 const deleteRating = async (req, res) => {

@@ -9,13 +9,11 @@ export const Account = () => {
       </AccountSectionLeft>
       <AccountSectionRight>
         <AccountLogContainer>
-          <AccountMainTitle>
-            Log in your account
-          </AccountMainTitle>
+          <AccountMainTitle>Log in your account</AccountMainTitle>
           <AccountLabel>Dirección de correo electronico</AccountLabel>
-          <AccountEmail placeholder='Email...'></AccountEmail>
+          <AccountEmail placeholder="Email..."></AccountEmail>
           <AccountLabel>Password</AccountLabel>
-          <AccountEmail placeholder='Password'></AccountEmail>
+          <AccountEmail placeholder="Password"></AccountEmail>
         </AccountLogContainer>
       </AccountSectionRight>
     </AccountContainer>
@@ -56,7 +54,7 @@ const AccountEmail = styled.input`
   height: 40px;
   width: 300px;
   background-color: #eeeeee;
-`; 
+`;
 const AccountLabel = styled.label`
   font-size: 18px;
   color: #111111;
