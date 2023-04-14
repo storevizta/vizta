@@ -36,5 +36,6 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    state: { type: DataTypes.ENUM('Active', 'Sold', 'Paused') },
   });
 };
