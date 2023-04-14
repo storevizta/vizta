@@ -15,7 +15,7 @@ export const Home = () => {
 
   const category = queryParams.get('category');
 
-  const { data, error, isLoading } = useGetAdsQuery({ title, category });
+  const { data, error, isLoading } = useGetAdsQuery({ title, category});
 
   if (isLoading) return <div>Loading...</div>;
 

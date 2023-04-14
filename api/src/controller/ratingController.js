@@ -60,11 +60,7 @@ const getRatingByUser = async (req, res) => {
     res.status(200).json(user.Rating)
     } catch (error) {
         res.status(400).json(error.message);
-
     }
-  } catch (error) {
-    res.status(400).json(error.message);
-  }
 };
 
 const deleteRating = async (req, res) => {
