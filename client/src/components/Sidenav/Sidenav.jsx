@@ -8,10 +8,11 @@ export const SideNav = () => {
       <br />
       <br />
       <br />
-
       <ItemSidenav href="/post">Recently posted</ItemSidenav>
       <ItemSidenav href="#">Price</ItemSidenav>
-      <ItemSidenav href="#">Clients</ItemSidenav>
+      <ItemSidenav href="#">Category</ItemSidenav>
+      <ItemSidenav href="#">Discount %</ItemSidenav>
+      <ItemSidenav href="#">A-Z</ItemSidenav>
     </Sidenav>
   );
 };
