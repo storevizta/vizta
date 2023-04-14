@@ -1,13 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from '../layout/Layout';
 
-import { NotFound } from '../pages/NotFound'
+import { NotFound } from '../pages/NotFound';
 
 import { Landing } from '../pages/Landing';
 
 import { Account } from '../pages/Account';
 
 import { Home } from '../pages/Home';
+
+import { Detail } from '../pages/Detail';
 
 import { Post } from '../pages/Post';
 
@@ -43,9 +45,6 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
-
-
-
 
 // import { createBrowserRouter } from 'react-router-dom';
 // import { Layout } from '../layout/Layout';

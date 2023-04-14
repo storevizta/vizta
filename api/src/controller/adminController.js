@@ -132,6 +132,8 @@ const deleteAd = async (req, res) => {
   }
 };
 
+const createCategory= async () => {}
+
 module.exports = {
   getUsers,
   getUserById,
@@ -141,4 +143,5 @@ module.exports = {
   getAdById,
   updateAd,
   deleteAd,
+  createCategory
 };
