@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     message: {
-      type: DataTypes.TEXT(1200),
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     response: {
