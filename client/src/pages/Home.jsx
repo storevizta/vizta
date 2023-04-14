@@ -8,6 +8,8 @@ import { Sidebar } from '../components/Sidebar';
 
 import { Cards } from '../components/Cards';
 
+import Loading from '../components/Loading';
+
 export const Home = () => {
   const queryParams = new URLSearchParams(window.location.search);
 
@@ -17,7 +19,9 @@ export const Home = () => {
 
   const { data, error, isLoading } = useGetAdsQuery({ title, category});
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div><Loading/></div>;
+
+  if (error) return <div>Error: {error.message}</div>
 
   return (
     <div>
@@ -35,4 +39,4 @@ export const Home = () => {
       </div>
     </div>
   );
-};
+}
