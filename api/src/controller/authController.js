@@ -118,6 +118,8 @@ const signInGoogle = async (req, res) => {
       ],
     });
 
+    res.json(authorizeUrl);
+
     const { code } = req.query;
 
     if (!code) {

@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import {useSignInMutation} from "../features/slices/authSlice"
+import {useSignInMutation, useSignInGoogleQuery} from "../features/slices/authSlice"
 
 export const Signin = () => {
+    
+    localStorage.clear()
     
     const navigate = useNavigate()
     
@@ -11,15 +13,20 @@ export const Signin = () => {
         password: ""
     })
 
+    const signInGoogle = useSignInGoogleQuery()
     const signInMutation = useSignInMutation()
 
+    const googleConnect = () => {
+        console.log(signInGoogle);
+    }
+    
     const handleInput = (event) => {
         setData({...data, [event.target.name]: event.target.value})
     }
-
-    const sendForm = (event) => {
+    
+    const sendForm = async (event) => {
         event.preventDefault()
-        signInMutation[0](data).then(value => {
+        await signInMutation[0](data).then(value => {
             localStorage.setItem("id", value.data.data.id)
             localStorage.setItem("name", value.data.data.name)
             localStorage.setItem("email", value.data.data.email)
@@ -28,7 +35,8 @@ export const Signin = () => {
         })
         navigate("/home")
     }
-
+    
+    console.log(localStorage.getItem("id"));
     return(
         <div>
 <link rel="preconnect" href="https://rsms.me/"/>
@@ -39,7 +47,7 @@ export const Signin = () => {
         <p class="text-slate-500">Hi, Welcome back 👋</p>
 
         <div class="my-5">
-            <button class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
+            <button onClick={() => googleConnect()} class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
                 <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-6 h-6" alt=""/> <span>Login with Google</span>
             </button>
         </div>

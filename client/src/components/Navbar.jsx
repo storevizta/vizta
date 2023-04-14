@@ -2,6 +2,9 @@ import { useGetAdsQuery } from '../features/slices/adsSlice';
 import { useState } from 'react';
 
 export const Navbar = () => {
+
+  console.log(localStorage.getItem("id"));
+
   const [title, setTitle] = useState('');
   const { data, error, isLoading } = useGetAdsQuery(title);
 
@@ -36,8 +39,8 @@ export const Navbar = () => {
           </ul>
         )}
         <div className="flex">
-          <div className="">Sign In</div>
-          <div className="">Sign Up</div>
+          <a href='/signin' ><div className="">Sign In</div></a>
+          <a href='/signup' ><div className="">Sign Up</div></a>
         </div>
       </nav>
     </>
