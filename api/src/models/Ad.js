@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     stock: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.ENUM('in stock', 'out of stock'),
       allowNull: true,
     },
     price: {
