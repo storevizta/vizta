@@ -5,15 +5,19 @@ export const filterSlice = createSlice({
 
   initialState: {
     title: '',
+    category: '',
   },
 
   reducers: {
     setTitle: (state, action) => {
       state.title = action.payload;
     },
+    setCategory: (state, action) => {
+      state.category = action.payload;
+    },
   },
 });
 
-export const { setTitle } = filterSlice.actions;
+export const { setTitle, setCategory } = filterSlice.actions;
 
 export default filterSlice.reducer;

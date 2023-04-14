@@ -8,7 +8,7 @@ export const Ads = createApi({
       query: ({ title = null, category = null }) => {
         let url = '/ads';
 
-        if (title || category) {
+        if (title || category || minPrice || maxPrice || sort || discount) {
           url += '?';
           if (category) url += `category=${category}&`;
           if (title) url += `title=${title}&`;
