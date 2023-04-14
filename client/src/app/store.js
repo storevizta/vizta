@@ -6,11 +6,14 @@ import { Auth } from '../features/slices/authSlice';
 
 import { Category } from '../features/slices/categorySlice';
 
+import filterSlice from '../features/slices/filterSlice';
+
 export const store = configureStore({
   reducer: {
     [Ads.reducerPath]: Ads.reducer,
     [Auth.reducerPath]: Auth.reducer,
     [Category.reducerPath]: Category.reducer,
+    filter: filterSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
