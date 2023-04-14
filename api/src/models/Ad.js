@@ -20,10 +20,6 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    stock: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
     price: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -35,6 +31,11 @@ module.exports = (sequelize) => {
     discount: {
       type: DataTypes.INTEGER,
       allowNull: true,
+    },
+    state: {
+      type: DataTypes.ENUM('Active', 'Sold', 'Paused'),
+      allowNull: false,
+      defaultValue: 'Active',
     },
   });
 };

@@ -150,6 +150,18 @@ const createAd = async (req, res) => {
 
 const updateAd = async (req, res) => {};
 
+const setStatusAd = async () => {
+  const { status, adId } = req.body;
+  try {
+    const actualAd = await Ad.findByPk(adId);
+    const adMod = actualAd.update({ state: status });
+    res.status(200).json(adMod);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json(error);
+  }
+};
+
 const deleteAd = async (req, res) => {
   try {
     const { id } = req.params;
@@ -181,4 +193,5 @@ module.exports = {
   createAd,
   updateAd,
   deleteAd,
+  setStatusAd,
 };
