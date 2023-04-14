@@ -1,15 +1,23 @@
+import { Link } from 'react-router-dom';
+
 import { useGetAdsQuery } from '../features/slices/adsSlice';
 
-import { Navbar } from '../components/Navbar/NavBar';
+import { Navbar } from '../components/Navbar';
 
-import { Sidenav } from '../components/Sidenav';
+import { Sidebar } from '../components/Sidebar';
 
 import { Cards } from '../components/Cards';
 
 import Loading from '../components/Loading';
 
 export const Home = () => {
-  const { data, error, isLoading } = useGetAdsQuery();
+  const queryParams = new URLSearchParams(window.location.search);
+
+  const title = queryParams.get('title');
+
+  const category = queryParams.get('category');
+
+  const { data, error, isLoading } = useGetAdsQuery({ title, category});
 
   if (isLoading) return <div><Loading/></div>;
 
@@ -18,11 +26,17 @@ export const Home = () => {
   return (
     <div>
       <Navbar />
-      <Sidenav />
-      {data &&
-        data?.map((el) => (
-            <Cards info={el} />
-        ))}
+      <div className="flex">
+        <Sidebar />
+        <div>
+          {data &&
+            data?.map((el) => (
+              <Link to={`/detail/${el.id}`} key={el.id}>
+                <Cards info={el} />
+              </Link>
+            ))}
+        </div>
+      </div>
     </div>
   );
 }

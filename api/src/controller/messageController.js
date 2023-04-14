@@ -31,21 +31,31 @@ const response = async (req, res) => {
 };
 
 const searchMessageAd = async (req, res) => {
-  const { adId } = req.body;
-  const ad = await Ad.findOne({
-    where: { id: adId },
-    include: { model: Message },
-  });
-  res.json(ad.Messages);
+  try {
+    const { adId } = req.body;
+    const ad = await Ad.findOne({
+      where: { id: adId },
+      include: { model: Message },
+    });
+    res.json(ad.Messages);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json(error);
+  }
 };
 
 const searchMessageUser = async (req, res) => {
-  const { userId } = req.body;
-  const user = await User.findOne({
-    where: { id: userId },
-    include: { model: Message },
-  });
-  res.json(user.Messages);
+  try {
+    const { userId } = req.body;
+    const user = await User.findOne({
+      where: { id: userId },
+      include: { model: Message },
+    });
+    res.json(user.Messages);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json(error);
+  }
 };
 
 module.exports = {
