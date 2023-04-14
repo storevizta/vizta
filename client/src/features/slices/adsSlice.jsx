@@ -21,6 +21,16 @@ export const Ads = createApi({
     getAdById: builder.query({
       query: (id) => `/ads/${id}`,
     }),
+    addPost: build.mutation({
+      query: (body) => ({
+        url: `/post`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    getUserId: builder.query({
+      query: (userId) => `/ads/${userId}`
+      }),
   }),
 });
 
