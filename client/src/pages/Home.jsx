@@ -6,7 +6,7 @@ import { useGetAdsQuery } from '../features/slices/adsSlice';
 
 import { Navbar } from '../components/Navbar/NavBar';
 
-import { SideNav } from '../components/Sidenav/Sidenav';
+import { Sidenav } from '../components/Sidenav';
 
 import { Cards } from '../components/Cards';
 
@@ -18,7 +18,7 @@ export const Home = () => {
   return (
     <div>
       <Navbar />
-      {/* <SideNav /> */}
+      <Sidenav />
       {data &&
         data?.map((el) => (
           <Link to={`/detail/${el.id}`} key={el.id}>
