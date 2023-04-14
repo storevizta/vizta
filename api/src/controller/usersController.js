@@ -27,7 +27,7 @@ const getUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { name, email, password, address } = req.body;
+  const { name, email, password, address, phone } = req.body;
   try {
     if (!id) {
       throw createMissingIdException('Id is missing');
@@ -52,6 +52,7 @@ const updateUser = async (req, res) => {
         email: email,
         password: hashedPassword,
         address: address,
+        phone: phone,
       });
       res.status(200).json(updated);
     }

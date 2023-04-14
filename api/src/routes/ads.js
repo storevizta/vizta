@@ -10,6 +10,7 @@ const {
   createAd,
   updateAd,
   deleteAd,
+  setStatusAd,
 } = require('../controller/adsController.js');
 
 router.get('/', getAds);
@@ -19,6 +20,8 @@ router.get('/:id', getAdById);
 router.post('/', createAd);
 
 router.put('/:id', updateAd);
+
+router.put('/setstatus', setStatusAd);
 
 router.delete('/:id', deleteAd);
 
