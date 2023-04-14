@@ -16,6 +16,10 @@ import { Post } from '../pages/Post';
 
 import { Profile } from '../pages/Profile';
 
+import { Signin } from '../pages/signin';
+
+import { Signup } from '../pages/signup';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -47,6 +51,14 @@ export const router = createBrowserRouter([
         path: '/profile',
         element: <Profile />,
       },
+      {
+        path: "/signin",
+        element: <Signin/>,
+      },
+      {
+        path: "/signup",
+        element: <Signup/>,
+      }
     ],
   },
 ]);
