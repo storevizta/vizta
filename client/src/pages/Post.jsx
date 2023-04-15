@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
@@ -8,13 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { usePostAdMutation } from '../features/slices/adsSlice.jsx';
 
+export const Post = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const allAds = useSelector((state) => state.usePostAdMutation);
 
-export default function Post (){
-const navigate = useNavigate();
-const dispatch = useDispatch();
-const allAds = useSelector((state) => state.usePostAdMutation);
-
-const [input, setInput] = useState({
+  const [input, setInput] = useState({
     title: '',
     description: '',
     price: '',
@@ -48,12 +45,19 @@ const [input, setInput] = useState({
         });
       }
     });
-    return setErrors(objectError)
+    return setErrors(objectError);
   }
 
   useEffect(() => {
-    validate()
+    validate();
   }, [input]);
+
+  function handlerChange(e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  }
 
   function handlerSubmit(e) {
     e.preventDefault();
@@ -62,7 +66,7 @@ const [input, setInput] = useState({
 
       return alert('This ad already exists');
     } else {
-    usePostAdMutation(input); // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
+      usePostAdMutation(input); // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
       alert('This ad has been created successfully');
       setInput({
         title: '',
@@ -86,7 +90,7 @@ const [input, setInput] = useState({
             <div>
               <div>
                 <div>
-                  <label className={s.Text}> Título:</label>
+                  {/* <label className={s.Text}> Título:</label> */}
                   <input
                     type="text"
                     value={input.name}
@@ -153,9 +157,9 @@ const [input, setInput] = useState({
                 {errors.image && <p>{errors.image}</p>}
               </div>
             </div>
-            <Link to="/home">
+            {/* <Link to="/home">
               <button>Volver</button>
-            </Link>
+            </Link> */}
             <button
               type="submit"
               disabled={
