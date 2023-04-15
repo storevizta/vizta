@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addPost } from "../features/slices/adsSlice.jsx"
+import { usePostAdMutation } from "../features/slices/adsSlice.jsx"
 
 const navigate = useNavigate();
 const dispatch = useDispatch();
 const allAds = useSelector((state) => state.allAds);  
-
+const adPostMutation = usePostAdMutation();
 
 export const Post = () => {
   const { input, setInput } = useState({
@@ -71,7 +71,7 @@ function validate () {
            return alert("This ad already exists")
         } else {
 
-            dispatch(addPost(input)) // REVISA EL ADDPOST PARA VER SI SE IMPORTÓ CORRECTAMENTE
+            dispatch(adPostMutation(input)) // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
             alert("This ad has been created successfully")
             setInput({
                 title: "",
