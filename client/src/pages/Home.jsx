@@ -67,7 +67,7 @@ export const Home = () => {
       <Navbar />
       <div className="flex">
         <Sidebar />
-        <div className="w-full">
+        <div className="w-full p-5">
           <Featured />
           <Pagination />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
