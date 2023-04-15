@@ -1,45 +1,35 @@
-import { useGetAdsQuery } from '../features/slices/adsSlice';
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { setTitle } from '../features/slices/filterSlice';
+import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
-  const [title, setTitle] = useState('');
-  const { data, error, isLoading } = useGetAdsQuery(title);
+  const dispatch = useDispatch();
 
-  const handleChange = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const handleSearch = () => {
-    refetch();
+  const handlerChange = (e) => {
+    const newTitle = e.target.value;
+    dispatch(setTitle(newTitle));
   };
 
   return (
-    <>
-      <nav className="flex justify-between p-5 bg-gray-300">
-        <div className="">VIZTA</div>
-        <input
-          className=""
-          type="text"
-          placeholder="Search..."
-          value={title}
-          name="title"
-          onChange={handleChange}
-        />
-        <button onClick={handleSearch}>Search</button>
-        {isLoading && <div>Cargando...</div>}
-        {error && <div>{error.message}</div>}
-        {data && (
-          <ul>
-            {data.map((ad) => {
-              <li key={ad.id}>{ad.title}</li>;
-            })}
-          </ul>
-        )}
-        <div className="flex">
-          <div className="">Sign In</div>
-          <div className="">Sign Up</div>
+      <nav className="flex justify-between py-2 px-6 bg-zinc-900 items-center">
+        <h2 className="text-white font-Montserrat">VIZTA</h2>
+        <form>
+          <input
+            className="bg-zinc-800 outline-none p-1 rounded-md w-96 h-6 items-center text-white"
+            type="text"
+            placeholder="Search..."
+            onChange={handlerChange}
+          />
+        </form>
+        <div className="flex w-40 justify-between">
+          <Link to="/SignIn" className='text-white border border-white rounded-lg content-center px-2 py-1'>
+            Sign In
+          </Link>
+          <Link to="/SignUp" className='text-white border border-white rounded-lg content-center px-2 py-1 '>
+            Sign Up
+          </Link>
         </div>
       </nav>
-    </>
   );
 };
