@@ -6,13 +6,13 @@ import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
 
-import { useGetUserByIdQuery } from '../features/slices/userSlice';
+import { useGetUserIdQuery } from '../features/slices/userSlice';
 
 export const Profile = () => {
 
     const { id } = useParams();
     
-    const { data, error, isLoading } = useGetUserByIdQuery(id);
+    const { data, error, isLoading } = useGetUserIdQuery(id);
 
     if (isLoading)
     return (

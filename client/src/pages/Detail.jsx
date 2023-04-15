@@ -10,23 +10,19 @@ import { Navbar } from "../components/Navbar";
 
 import { UserDetail } from '../components/UserDetail';
 
-import { useGetUserByIdQuery } from '../features/slices/userSlice';
-
 export const Detail = () => {
   const { id , userId } = useParams();
 
   const { data, error, isLoading } = useGetAdByIdQuery(id);
 
-  const { dataUser, errorUser, isLoadingUser } = useGetUserByIdQuery(userId);
-
-  if (isLoading || isLoadingUser)
+  if (isLoading)
     return (
       <div>
         <Loading />
       </div>
     );
 
-  if (error || errorUser)
+  if (error)
     return (
       <div>
         <Error />
@@ -34,8 +30,6 @@ export const Detail = () => {
     );
 
   const { title, image, description, stock, price, oldPrice, discount, UserId} = data;
-
- 
 
   return (
 
