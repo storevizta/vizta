@@ -5,13 +5,37 @@ export const Ads = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/' }),
   endpoints: (builder) => ({
     getAds: builder.query({
-      query: ({ title = null, category = null }) => {
+      query: ({
+        page = 0,
+        size = 20,
+        title = null,
+        category = null,
+        minPrice = null,
+        maxPrice = null,
+        sort = null,
+        discount = null,
+      }) => {
         let url = '/ads';
 
-        if (title || category) {
+        if (
+          page ||
+          size ||
+          title ||
+          category ||
+          minPrice ||
+          maxPrice ||
+          sort ||
+          discount
+        ) {
           url += '?';
+          if (page) url += `page=${page}&`;
+          if (size) url += `size=${size}&`;
           if (category) url += `category=${category}&`;
           if (title) url += `title=${title}&`;
+          if (minPrice) url += `minPrice=${minPrice}&`;
+          if (maxPrice) url += `maxPrice=${maxPrice}&`;
+          if (sort) url += `sort=${sort}&`;
+          if (discount) url += `discount=${discount}&`;
           url = url.slice(0, -1);
         }
 
@@ -29,9 +53,9 @@ export const Ads = createApi({
       }),
     }),
     getUserId: builder.query({
-      query: (userId) => `/ads/${userId}`
-      }),
+      query: (userId) => `/ads/${userId}`,
+    }),
   }),
 });
 
-export const { useGetAdsQuery, useGetAdByIdQuery } = Ads;
+export const { useGetAdsQuery, useGetAdByIdQuery, usePostAdMutation } = Ads;

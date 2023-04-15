@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 import { Link } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
 
 import { useGetAdsQuery } from '../features/slices/adsSlice';
 
@@ -6,37 +10,68 @@ import { Navbar } from '../components/Navbar';
 
 import { Sidebar } from '../components/Sidebar';
 
-import { Cards } from '../components/Cards';
+import { Card } from '../components/Card';
 
-import Loading from '../components/Loading';
+import { Loading } from '../components/Loading';
+
+import { Error } from '../components/Error';
 
 export const Home = () => {
-  const queryParams = new URLSearchParams(window.location.search);
+  const page = useSelector((state) => state.filter.page);
 
-  const title = queryParams.get('title');
+  const size = useSelector((state) => state.filter.size);
 
-  const category = queryParams.get('category');
+  const title = useSelector((state) => state.filter.title);
 
-  const { data, error, isLoading } = useGetAdsQuery({ title, category});
+  const category = useSelector((state) => state.filter.category);
 
-  if (isLoading) return <div><Loading/></div>;
+  const minPrice = useSelector((state) => state.filter.minPrice);
 
-  if (error) return <div>Error: {error.message}</div>
+  const maxPrice = useSelector((state) => state.filter.maxPrice);
+
+  const sort = useSelector((state) => state.filter.sort);
+
+  const discount = useSelector((state) => state.filter.discount);
+
+  const { data, error, isLoading } = useGetAdsQuery({
+    page,
+    size,
+    title,
+    category,
+    minPrice,
+    maxPrice,
+    sort,
+    discount,
+  });
+
+  if (isLoading)
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div>
+        <Error />
+      </div>
+    );
 
   return (
     <div>
       <Navbar />
       <div className="flex">
         <Sidebar />
-        <div>
+        <div className="w-screen grid grid-cols-[auto-fit_minmax(250px,_250px)]">
           {data &&
             data?.map((el) => (
               <Link to={`/detail/${el.id}`} key={el.id}>
-                <Cards info={el} />
+                <Card info={el} />
               </Link>
             ))}
         </div>
       </div>
     </div>
   );
-}
+};
