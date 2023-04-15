@@ -15,9 +15,11 @@ export const Navbar = () => {
   };
 
   return (
+<>
     <nav className="p-5 flex">
       <div className="w-full px-5 py-1 rounded-full flex justify-between items-center bg-zinc-700">
         <div className="text-xl text-slate-50">VIZTA</div>
+
         <form>
           <input
             className="w-96 px-3 py-1 rounded-full bg-zinc-200"
@@ -26,15 +28,18 @@ export const Navbar = () => {
             onChange={handlerChange}
           />
         </form>
+
         <div className="flex justify-center gap-5">
           <Link className="flex justify-center items-center" to="/post">
             <img className="w-5" src={post} alt="post" />
+
           </Link>
           <div className="flex justify-center items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-zinc-200"></div>
             <div className="text-slate-50">Ronaldo</div>
           </div>
         </div>
+
 
         {/* <div className="flex w-40 justify-between">
         <Link
@@ -52,5 +57,6 @@ export const Navbar = () => {
       </div> */}
       </div>
     </nav>
+</>
   );
 };
