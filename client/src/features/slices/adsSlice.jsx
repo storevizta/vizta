@@ -14,6 +14,7 @@ export const Ads = createApi({
         maxPrice = null,
         sort = null,
         discount = null,
+        condition = null,
       }) => {
         let url = '/ads';
 
