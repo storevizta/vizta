@@ -118,11 +118,16 @@ const signInGoogle = async (req, res) => {
       ],
     });
 
-    const { code } = req.query;
+    res.status(200).json(authorizeUrl);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ message: 'Failed login' });
+  }
+};
 
-    if (!code) {
-      return res.redirect(authorizeUrl);
-    }
+const googleRegister = async (req, res) => {
+  try {
+    const { code } = req.query;
 
     const { tokens } = await oauth2Client.getToken(code);
 
@@ -156,21 +161,15 @@ const signInGoogle = async (req, res) => {
       expiresIn: expiration,
     });
 
-    const responseData = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      token,
-    };
+    res.header('Authorization', token);
 
     return res
       .status(200)
-      .json({ message: 'Successful login', data: responseData });
+      .redirect(`http://localhost:3000/signin/?code=${user.id}`);
   } catch (error) {
     console.log(error);
     return res.status(400).json({ message: 'Failed login' });
   }
 };
 
-module.exports = { signUp, signIn, signInGoogle };
+module.exports = { signUp, signIn, signInGoogle, googleRegister };

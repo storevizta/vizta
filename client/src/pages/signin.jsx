@@ -1,52 +1,114 @@
-import { useState } from 'react';
-
-import { useNavigate } from 'react-router-dom';
-
-import { useSignInMutation } from '../features/slices/authSlice';
+import { useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom";
+import {useSignInMutation, useSignInGoogleQuery} from "../features/slices/authSlice"
+import {useGetUserIdQuery} from "../features/slices/userSlice"
+import { useDispatch } from 'react-redux';
+import {
+  setId,
+  setName,
+  setEmail,
+  setRole,
+  resetInfo
+} from '../features/slices/userSlice';
 
 export const SignIn = () => {
-  const navigate = useNavigate();
 
-  const [data, setData] = useState({
-    email: '',
-    password: '',
-  });
+    const dispatch = useDispatch();
+    
+    const navigate = useNavigate()
 
-  const signInMutation = useSignInMutation();
+    const handlerName = (data) => {
+      dispatch(setName(data))
+    }
 
-  const handleInput = (event) => {
-    setData({ ...data, [event.target.name]: event.target.value });
-  };
+    const handlerId = (data) => {
+      dispatch(setId(data))
+    }
+    
+    const handlerEmail = (data) => {
+      dispatch(setEmail(data))
+    }
 
-  const sendForm = (event) => {
-    event.preventDefault();
-    signInMutation[0](data).then((value) => {
-      localStorage.setItem('id', value.data.data.id);
-      localStorage.setItem('name', value.data.data.name);
-      localStorage.setItem('email', value.data.data.email);
-      localStorage.setItem('role', value.data.data.role);
-      localStorage.setItem('token', value.data.data.token);
-    });
-    navigate('/home');
-  };
+    const handlerRole = (data) => {
+      dispatch(setRole(data))
+    }
 
-  return (
-    <div>
-      <link rel="preconnect" href="https://rsms.me/" />
-      <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-      <body class="antialiased bg-slate-200">
-        <div class="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
-          <h1 class="text-4xl font-medium">Login</h1>
-          <p class="text-slate-500">Hi, Welcome back 👋</p>
+    const resetUserData = () => {
+      dispatch(resetInfo())
+    }
 
-          <div class="my-5">
-            <button class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
-              <img
-                src="https://www.svgrepo.com/show/355037/google.svg"
-                class="w-6 h-6"
-                alt=""
-              />{' '}
-              <span>Login with Google</span>
+    resetUserData()
+    
+    const [data, setData] = useState({
+        email: "",
+        password: ""
+    })
+
+    const [error, setError] = useState({
+      email: "",
+      password: ""
+    })
+
+    const signInGoogle = useSignInGoogleQuery()
+    const signInMutation = useSignInMutation()
+
+    const googleConnect = () => {
+        window.location.href = signInGoogle.data
+    }
+
+    const location = useLocation()
+
+    const searchUser = async (id) => {
+      const userData = await useGetUserIdQuery(id)?.data
+      if(userData !== undefined){
+        handlerId(userData.id)
+        handlerName(userData.name)
+        handlerEmail(userData.email)
+        handlerRole(userData.role)
+        navigate("/home")
+      }
+      
+    }
+
+    if(location.search.length > 0){
+      searchUser(location.search.split("=")[1])
+    }
+    
+    const handleInput = (event) => {
+        setData({...data, [event.target.name]: event.target.value})
+    }
+    
+    const sendForm = async (event) => {
+      setError({
+        email: "",
+        password: ""
+      })
+        event.preventDefault()
+          await signInMutation[0](data)
+          .then(value => {
+            if(value.data.data.email){
+              handlerId(value.data.data.id)
+              handlerName(value.data.data.name)
+              handlerEmail(value.data.data.email)
+              handlerRole(value.data.data.role)
+              navigate("/home")
+            }
+          })
+          .catch(error => setError({...error, email: "The email could not be found"}))
+      }
+
+    return(
+        <div>
+<link rel="preconnect" href="https://rsms.me/"/>
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css"/>
+<body class="antialiased bg-slate-200">
+    <div class="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
+        <h1 class="text-4xl font-medium">Login</h1>
+        <p class="text-slate-500">Hi, Welcome back 👋</p>
+
+        <div class="my-5">
+            <button onClick={() => googleConnect()} class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
+                <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-6 h-6" alt=""/> <span>Login with Google</span>
             </button>
           </div>
           <form onSubmit={sendForm} action="" class="my-10">
@@ -64,6 +126,7 @@ export const SignIn = () => {
                   placeholder="Enter email address"
                 />
               </label>
+                {error.email? <p>{error.email}</p> : null}
               <label for="password">
                 <p class="font-medium text-slate-700 pb-2">Password</p>
                 <input

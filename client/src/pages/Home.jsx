@@ -33,6 +33,8 @@ export const Home = () => {
 
   const discount = useSelector((state) => state.filter.discount);
 
+  const condition = useSelector((state) => state.filter.condition);
+
   const { data, error, isLoading } = useGetAdsQuery({
     page,
     title,
@@ -41,6 +43,7 @@ export const Home = () => {
     maxPrice,
     sort,
     discount,
+    condition,
   });
 
   if (isLoading) {
