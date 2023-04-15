@@ -10,9 +10,11 @@ import { Navbar } from '../components/Navbar';
 
 import { Sidebar } from '../components/Sidebar';
 
-import { Card } from '../components/Card';
+import { Featured } from '../components/Featured';
 
 import { Pagination } from '../components/Pagination';
+
+import { Card } from '../components/Card';
 
 import { Loading } from '../components/Loading';
 
@@ -64,9 +66,10 @@ export const Home = () => {
       <Navbar />
       <div className="flex">
         <Sidebar />
-        <div>
+        <div className="w-full">
+          <Featured />
           <Pagination />
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
             {data &&
               data.map((el) => (
                 <Link to={`/detail/${el.id}`} key={el.id}>
