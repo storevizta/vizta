@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { User , Ad, Favorite} = require('../database');
+const { User, Ad, Favorite } = require('../database');
 
 const {
   createMissingIdException,
@@ -21,7 +21,7 @@ const getUser = async (req, res) => {
     }
   } catch (error) {
     //res.status(400).json(error.message);
-    res.status(error.statusCode).json({ message: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -98,58 +98,52 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const getUserAds = async (req, res) => {};
 
-const getUserAds = async (req, res) => {
-
-}
-
-const getUserFavorites = async (req, res) => {
-
-}
+const getUserFavorites = async (req, res) => {};
 
 const createFavorite = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
 
   const user = await User.findByPk(id);
 
-  if(!user){
-    return res.status(404).json("User ID invalid")
+  if (!user) {
+    return res.status(404).json('User ID invalid');
   }
 
   try {
-      const newFavorite = await Favorite.create({
-        UserId: id
-      })
-      res.status(200).json(newFavorite);
-    } catch (error) {
-      res.status(400).json(error.message);
-    }
-}
+    const newFavorite = await Favorite.create({
+      UserId: id,
+    });
+    res.status(200).json(newFavorite);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
 
 const deleteFavorite = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
 
   const favorite = await Favorite.findByPk(id);
 
-  if(!favorite){
-    return res.status(404).json("Favorite ID invalid")
+  if (!favorite) {
+    return res.status(404).json('Favorite ID invalid');
   }
 
   try {
     await favorite.destroy();
-    res.status(200).json("The favorite was successfully deleted");
+    res.status(200).json('The favorite was successfully deleted');
   } catch (error) {
-    res.status(400).json(error.message)
+    res.status(400).json(error.message);
   }
-}
+};
 
-module.exports = { 
-  getUser, 
-  updateUser, 
-  deleteUser, 
+module.exports = {
+  getUser,
+  updateUser,
+  deleteUser,
   getUserAds,
   getUserFavorites,
   createFavorite,
-  deleteFavorite
-  };
-
+  deleteFavorite,
+};
