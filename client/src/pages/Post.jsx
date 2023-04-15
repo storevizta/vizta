@@ -10,70 +10,77 @@ import { usePostAdMutation } from '../features/slices/adsSlice.jsx';
 
 
 export default function Post (){
-const navigate = useNavigate();
-const dispatch = useDispatch();
-const allAds = useSelector((state) => state.usePostAdMutation);
+// const navigate = useNavigate();
+// const dispatch = useDispatch();
+// const allAds = useSelector((state) => state.usePostAdMutation);
 
-const [input, setInput] = useState({
-    title: '',
-    description: '',
-    price: '',
-    stock: '',
-    image: '',
-  });
+// const [input, setInput] = useState({
+//     title: '',
+//     description: '',
+//     price: '',
+//     stock: '',
+//     image: '',
+//   });
 
-  const [errors, setErrors] = useState({
-    title: '',
-    description: '',
-    price: '',
-    stock: '',
-    image: '',
-  });
+//   const [errors, setErrors] = useState({
+//     title: '',
+//     description: '',
+//     price: '',
+//     stock: '',
+//     image: '',
+//   });
 
-  function validate() {
-    const inputValues = Object.entries(input); //genera un arreglo de tuplas de un objeto que vos le pases. Las tuplas son mini arreglos donde vos guardas el key por un lado y el valor por el otro.
-    const objectError = {};
-    const errorsMessages = {
-      title: 'title is required',
-      description: 'description is required',
-      image: 'image is required',
-      price: 'price is required',
-      stock: 'stock is required',
-    };
+//   function validate() {
+//     const inputValues = Object.entries(input); //genera un arreglo de tuplas de un objeto que vos le pases. Las tuplas son mini arreglos donde vos guardas el key por un lado y el valor por el otro.
+//     const objectError = {};
+//     const errorsMessages = {
+//       title: 'title is required',
+//       description: 'description is required',
+//       image: 'image is required',
+//       price: 'price is required',
+//       stock: 'stock is required',
+//     };
 
-    inputValues.forEach(([key, value]) => {
-      if (value === '' || value.length === 0) {
-        return Object.assign(objectError, {
-          [key]: errorsMessages[key],
-        });
-      }
-    });
-    return setErrors(objectError)
-  }
+//     inputValues.forEach(([key, value]) => {
+//       if (value === '' || value.length === 0) {
+//         return Object.assign(objectError, {
+//           [key]: errorsMessages[key],
+//         });
+//       }
+//     });
+//     return setErrors(objectError)
+//   }
 
-  useEffect(() => {
-    validate()
-  }, [input]);
+//   useEffect(() => {
+//     validate()
+//   }, [input]);
 
-  function handlerSubmit(e) {
-    e.preventDefault();
-    if (allAds.some((e) => e.title === input.title)) {
-      //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
+//   function handlerChange(e) {
+//     setInput({
+//         ...input,
+//         [e.target.name]: e.target.value
+//     })
+//   }
 
-      return alert('This ad already exists');
-    } else {
-    usePostAdMutation(input); // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
-      alert('This ad has been created successfully');
-      setInput({
-        title: '',
-        description: '',
-        price: '',
-        stock: '',
-        image: '',
-      });
-      navigate.push('/home');
-    }
-  }
+//   function handlerSubmit(e) {
+//     e.preventDefault();
+//     if (allAds.some((e) => e.title === input.title)) {
+//       //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
+
+//       return alert('This ad already exists');
+//     } else {
+//     usePostAdMutation(input); // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
+//       alert('This ad has been created successfully');
+//       setInput({
+//         title: '',
+//         description: '',
+//         price: '',
+//         stock: '',
+//         image: '',
+//       });
+//       navigate.push('/home');
+//     }
+//   }
 
   return (
     <div>
@@ -86,7 +93,7 @@ const [input, setInput] = useState({
             <div>
               <div>
                 <div>
-                  <label className={s.Text}> Título:</label>
+                  <label > Título:</label>
                   <input
                     type="text"
                     value={input.name}
