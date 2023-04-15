@@ -19,6 +19,8 @@ export const Sidebar = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
+  if (error) return <div>Error...</div>;
+
   const handlerCategory = (id) => {
     dispatch(setCategory(id));
   };
@@ -144,11 +146,11 @@ export const Sidebar = () => {
           </div>
         </div>
         <div>
-          <div className="px-2 hover:bg-zinc-900" onClick={handlerReset}>
+          <div className="hover:bg-zinc-900" onClick={handlerReset}>
             Reset
           </div>
         </div>
-        <h4 className="font-thin text-slate-50 text-sm mt-8 ml-2 ">
+        <h4 className="font-thin text-slate-50 text-sm mt-8 ml-2">
           Vizta Copyrigth ©
         </h4>
       </aside>
