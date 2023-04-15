@@ -70,7 +70,7 @@ export const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
             {data &&
               data.map((el) => (
-                <Link to={`/detail/${el.id}`} key={el.id}>
+                <Link to={`/detail/${el.id}/${el.UserId}`} key={el.id}>
                   <Card info={el} />
                 </Link>
               ))}
