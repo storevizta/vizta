@@ -4,8 +4,8 @@ export const filterSlice = createSlice({
   name: 'filter',
 
   initialState: {
+    currentPage: '',
     page: '',
-    size: '',
     title: '',
     category: '',
     minPrice: '',
@@ -15,11 +15,11 @@ export const filterSlice = createSlice({
   },
 
   reducers: {
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
     setPage: (state, action) => {
       state.page = action.payload;
-    },
-    setSize: (state, action) => {
-      state.size = action.payload;
     },
     setTitle: (state, action) => {
       state.title = action.payload;
@@ -41,7 +41,6 @@ export const filterSlice = createSlice({
     },
     resetFilters: (state) => {
       state.page = '';
-      state.size = '';
       state.title = '';
       state.category = '';
       state.minPrice = '';
@@ -53,8 +52,8 @@ export const filterSlice = createSlice({
 });
 
 export const {
+  setCurrentPage,
   setPage,
-  setSize,
   setTitle,
   setCategory,
   setMinPrice,

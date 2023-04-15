@@ -1,13 +1,16 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { usePostAdMutation } from "../features/slices/adsSlice.jsx"
 
-const navigate = useNavigate();
-const dispatch = useDispatch();
-const allAds = useSelector((state) => state.allAds);  
-const adPostMutation = usePostAdMutation();
+import { useState, useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { usePostAdMutation } from '../features/slices/adsSlice.jsx';
+
+// const navigate = useNavigate();
+// const dispatch = useDispatch();
+// const allAds = useSelector((state) => state.allAds);
 
 export const Post = () => {
   const { input, setInput } = useState({
@@ -24,46 +27,26 @@ export const Post = () => {
     price: '',
     stock: '',
     image: '',
-})
+  });
 
-function validate () {
-    
-
-    const inputValues = Object.entries(input) //genera un arreglo de tuplas de un objeto que vos le pases. Las tuplas son mini arreglos donde vos guardas el key por un lado y el valor por el otro.
-    const objectError = {}
+  function validate() {
+    const inputValues = Object.entries(input); //genera un arreglo de tuplas de un objeto que vos le pases. Las tuplas son mini arreglos donde vos guardas el key por un lado y el valor por el otro.
+    const objectError = {};
     const errorsMessages = {
-
-        title: "title is required",
-        description: "description is required",
-        image: "image is required",
-        price: "price is required",
-        stock: "stock is required"
-    }
+      title: 'title is required',
+      description: 'description is required',
+      image: 'image is required',
+      price: 'price is required',
+      stock: 'stock is required',
+    };
 
     inputValues.forEach(([key, value]) => {
-     
-        if(value === "" || value.length === 0 ) {
-            return Object.assign(objectError, { 
-         
-            [key]: errorsMessages[key]
-        })
-        }
-    })
-    return setErrors(objectError)
-}
-
-    useEffect(() => {
-        validate()
-      }, [input]);
-
-
-    function handlerChange(e) {
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value
-        })
+      if (value === '' || value.length === 0) {
+        return Object.assign(objectError, {
+          [key]: errorsMessages[key],
+        });
       }
-
+      
     function handlerSubmit (e) {
         e.preventDefault();
         if(allAds.some((e) => e.title === input.title)){ //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
@@ -83,6 +66,7 @@ function validate () {
             navigate.push('/home')
         }
     }
+  }
 
   return (
     <div>
@@ -105,11 +89,7 @@ function validate () {
                     required={true}
                   />
                 </div>
-                <div>
-                  {errors.name && (
-                    <p >{errors.name}</p>
-                  )}
-                </div>
+                <div>{errors.name && <p>{errors.name}</p>}</div>
 
                 <div>
                   <label>Description:</label>
@@ -122,11 +102,7 @@ function validate () {
                     required={true}
                   />
                 </div>
-                <div>
-                  {errors.description && (
-                    <p>{errors.description}</p>
-                  )}
-                </div>
+                <div>{errors.description && <p>{errors.description}</p>}</div>
 
                 <div>
                   <label>Price:</label>
@@ -138,11 +114,7 @@ function validate () {
                     required={true}
                   />
                 </div>
-                <div>
-                  {errors.released && (
-                    <p>{errors.released}</p>
-                  )}
-                </div>
+                <div>{errors.released && <p>{errors.released}</p>}</div>
 
                 <div>
                   <label>Stock:</label>
@@ -158,11 +130,7 @@ function validate () {
                     required={true}
                   />
                 </div>
-                <div>
-                  {errors.rating && (
-                    <p>{errors.rating}</p>
-                  )}
-                </div>
+                <div>{errors.rating && <p>{errors.rating}</p>}</div>
 
                 <div>
                   <label>Image:</label>
@@ -175,9 +143,7 @@ function validate () {
                     required={true}
                   />
                 </div>
-                {errors.image && (
-                  <p >{errors.image}</p>
-                )}
+                {errors.image && <p>{errors.image}</p>}
               </div>
             </div>
             <Link to="/home">
