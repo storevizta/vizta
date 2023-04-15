@@ -70,17 +70,15 @@ const getAds = async (req, res) => {
     }
 
     if (condition === 'new') {
-      options.where.condition = 'new';
+      options.where.condition = 'New';
     } else if (condition === 'used') {
-      options.where.condition = 'used';
+      options.where.condition = 'Used';
     }
 
     const ads = await Ad.findAll(options);
 
-    const count = await Ad.findAll(options.where);
-
     return res.status(200).json({
-      length: count,
+      length: ads.length,
       ads: ads,
     });
   } catch (error) {

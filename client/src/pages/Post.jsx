@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
@@ -8,80 +6,77 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { usePostAdMutation } from '../features/slices/adsSlice.jsx';
 
+export const Post = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const allAds = useSelector((state) => state.usePostAdMutation);
+  const [input, setInput] = useState({
+    title: '',
+    description: '',
+    price: '',
+    stock: '',
+    image: '',
+  });
 
-export default function Post (){
-// const navigate = useNavigate();
-// const dispatch = useDispatch();
-// const allAds = useSelector((state) => state.usePostAdMutation);
+  const [errors, setErrors] = useState({
+    title: '',
+    description: '',
+    price: '',
+    stock: '',
+    image: '',
+  });
 
-// const [input, setInput] = useState({
-//     title: '',
-//     description: '',
-//     price: '',
-//     stock: '',
-//     image: '',
-//   });
+  function validate() {
+    const inputValues = Object.entries(input); //genera un arreglo de tuplas de un objeto que vos le pases. Las tuplas son mini arreglos donde vos guardas el key por un lado y el valor por el otro.
+    const objectError = {};
+    const errorsMessages = {
+      title: 'title is required',
+      description: 'description is required',
+      image: 'image is required',
+      price: 'price is required',
+      stock: 'stock is required',
+    };
 
-//   const [errors, setErrors] = useState({
-//     title: '',
-//     description: '',
-//     price: '',
-//     stock: '',
-//     image: '',
-//   });
+    inputValues.forEach(([key, value]) => {
+      if (value === '' || value.length === 0) {
+        return Object.assign(objectError, {
+          [key]: errorsMessages[key],
+        });
+      }
+    });
+    return setErrors(objectError);
+  }
 
-//   function validate() {
-//     const inputValues = Object.entries(input); //genera un arreglo de tuplas de un objeto que vos le pases. Las tuplas son mini arreglos donde vos guardas el key por un lado y el valor por el otro.
-//     const objectError = {};
-//     const errorsMessages = {
-//       title: 'title is required',
-//       description: 'description is required',
-//       image: 'image is required',
-//       price: 'price is required',
-//       stock: 'stock is required',
-//     };
+  useEffect(() => {
+    validate();
+  }, [input]);
 
-//     inputValues.forEach(([key, value]) => {
-//       if (value === '' || value.length === 0) {
-//         return Object.assign(objectError, {
-//           [key]: errorsMessages[key],
-//         });
-//       }
-//     });
-//     return setErrors(objectError)
-//   }
+  function handlerChange(e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  }
 
-//   useEffect(() => {
-//     validate()
-//   }, [input]);
+  function handlerSubmit(e) {
+    e.preventDefault();
+    if (allAds.some((e) => e.title === input.title)) {
+      //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
 
-//   function handlerChange(e) {
-//     setInput({
-//         ...input,
-//         [e.target.name]: e.target.value
-//     })
-//   }
-
-//   function handlerSubmit(e) {
-//     e.preventDefault();
-//     if (allAds.some((e) => e.title === input.title)) {
-//       //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
-
-//       return alert('This ad already exists');
-//     } else {
-//     usePostAdMutation(input); // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
-//       alert('This ad has been created successfully');
-//       setInput({
-//         title: '',
-//         description: '',
-//         price: '',
-//         stock: '',
-//         image: '',
-//       });
-//       navigate.push('/home');
-//     }
-//   }
-
+      return alert('This ad already exists');
+    } else {
+      usePostAdMutation(input); // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
+      alert('This ad has been created successfully');
+      setInput({
+        title: '',
+        description: '',
+        price: '',
+        stock: '',
+        image: '',
+      });
+      navigate.push('/home');
+    }
+  }
   return (
     <div>
       <div>
@@ -160,9 +155,9 @@ export default function Post (){
                 {errors.image && <p>{errors.image}</p>}
               </div>
             </div>
-            <Link to="/home">
+            {/* <Link to="/home">
               <button>Volver</button>
-            </Link>
+            </Link> */}
             <button
               type="submit"
               disabled={
