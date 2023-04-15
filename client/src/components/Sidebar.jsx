@@ -40,79 +40,80 @@ export const Sidebar = () => {
   };
 
   return (
-    <>
-      <aside className="w-72 h-full bg-gray-100">
-        <div>
-          <div>Categories</div>
-          {data &&
-            data?.map((el) => (
-              <ul key={el.id}>
-                <li
-                  className="px-4  hover:bg-gray-200"
-                  onClick={() => handlerCategory(el.id)}
-                >
-                  {el.name}
-                </li>
-              </ul>
-            ))}
+
+    <aside className="w-72 h-screen bg-zinc-800 p-4">
+      <div className="categorys">
+        <h2 className="font-bold text-xl mb-2 text-slate-50">Categories:</h2>
+        {data &&
+          data?.map((el) => (
+            <div
+              key={el.id}
+              className="px-2 py-2 rounded-lg hover:bg-zinc-900 text-slate-50"
+              onClick={() => handlerCategory(el.id)}
+            >
+              {el.name}
+            </div>
+          ))}
+      </div>
+      <div className="filters mt-8">
+        <h2 className="font-bold text-xl mb-2 text-slate-50">Filters:</h2>
+        <div className="filterPrice">
+          <h3 className="font-bold text-lg text-slate-50 pl-2 mb-2">Price:</h3>
+          <form className="flex w-auto justify-between px-2">
+            <input
+              className="w-16 rounded-md pl-2 bg-zinc-900 text-slate-50"
+              type="text"
+              placeholder="Min"
+              onChange={handlerMinPrice}
+            />
+            <p className="font-thin text-slate-50">and</p>
+            <input
+              className="w-16 rounded-md pl-2 bg-zinc-900 text-slate-50"
+              type="text"
+              placeholder="Max"
+              onChange={handlerMaxPrice}
+            />
+          </form>
         </div>
-        <div>
-          <div>Filters</div>
-          <ul>
-            <li>
-              <div>Price</div>
-              <form className="flex">
-                <input
-                  className="w-16"
-                  type="text"
-                  placeholder="minPrice"
-                  onChange={handlerMinPrice}
-                />
-                <input
-                  className="w-16"
-                  type="text"
-                  placeholder="maxPrice"
-                  onChange={handlerMaxPrice}
-                />
-              </form>
-            </li>
-            <li>
-              <div>
-                <div>Sort</div>
-                <ul>
-                  <li
-                    className="px-4  hover:bg-gray-200"
-                    onClick={() => handlerSort('asc')}
-                  >
-                    Asd
-                  </li>
-                  <li
-                    className="px-4  hover:bg-gray-200"
-                    onClick={() => handlerSort('desc')}
-                  >
-                    Desc
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <div>Discount</div>
-              <select className="px-4" onChange={(e) => handlerDiscount(e)}>
-                <option value="">All</option>
-                <option value="10">10%</option>
-                <option value="20">20%</option>
-                <option value="30">30%</option>
-                <option value="40">40%</option>
-                <option value="50">50%</option>
-                <option value="60">60%</option>
-                <option value="70">70%</option>
-                <option value="80">80%</option>
-                <option value="90">100%</option>
-              </select>
-            </li>
-          </ul>
+        <div className="filterSort">
+          <h3 className="font-bold text-lg text-slate-50 pl-2 mb-2 mt-2">
+            Sort:
+          </h3>
+          <div className="filterSortButtons h-12 aling content-between">
+            <div
+              className="px-2 hover:bg-zinc-900 text-slate-50 text-center h-8 rounded-md"
+              onClick={() => handlerSort('asc')}
+            >
+              Ascending
+            </div>
+            <div
+              className="px-2 hover:bg-zinc-900 text-slate-50 text-center h-8 rounded-md"
+              onClick={() => handlerSort('desc')}
+            >
+              Descending
+            </div>
+          </div>
+
         </div>
-      </aside>
-    </>
+        <div className="filterDiscount">
+          <h3 className="font-bold text-lg text-slate-50 pl-2 mb-2 mt-2">
+            Discount:
+          </h3>
+          <select className="w-48 rounded-md ml-2 px-2 py-1 bg-zinc-900 text-slate-50" onChange={(e) => handlerDiscount(e)}>
+            <option value="">All</option>
+            <option value="10">10%</option>
+            <option value="20">20%</option>
+            <option value="30">30%</option>
+            <option value="40">40%</option>
+            <option value="50">50%</option>
+            <option value="60">60%</option>
+            <option value="70">70%</option>
+            <option value="80">80%</option>
+            <option value="90">100%</option>
+          </select>
+        </div>
+      </div>
+      <h4 className="font-thin text-slate-50 text-sm mt-8 ml-2 ">Vizta Copyrigth ©</h4>
+    </aside>
   );
 };
