@@ -12,6 +12,8 @@ import { Sidebar } from '../components/Sidebar';
 
 import { Card } from '../components/Card';
 
+import { Pagination } from '../components/Pagination';
+
 import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
@@ -44,32 +46,37 @@ export const Home = () => {
     discount,
   });
 
-  if (isLoading)
+  if (isLoading) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Loading />
       </div>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Error />
       </div>
     );
+  }
 
   return (
     <div>
       <Navbar />
       <div className="flex">
         <Sidebar />
-        <div className="w-screen grid grid-cols-[auto-fit_minmax(250px,_250px)]">
-          {data &&
-            data?.map((el) => (
-              <Link to={`/detail/${el.id}`} key={el.id}>
-                <Card info={el} />
-              </Link>
-            ))}
+        <div>
+          <Pagination />
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5">
+            {data &&
+              data.map((el) => (
+                <Link to={`/detail/${el.id}`} key={el.id}>
+                  <Card info={el} />
+                </Link>
+              ))}
+          </div>
         </div>
       </div>
     </div>
