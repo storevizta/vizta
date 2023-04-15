@@ -7,7 +7,7 @@ export const Ads = createApi({
     getAds: builder.query({
       query: ({
         page = 0,
-        size = 20,
+        size = 10,
         title = null,
         category = null,
         minPrice = null,

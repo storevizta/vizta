@@ -1,16 +1,18 @@
 import { useDispatch } from 'react-redux';
 
-import { setCurrentPage, setPage } from '../features/slices/filterSlice';
+import { setPage } from '../features/slices/filterSlice';
 
 export const Pagination = () => {
   const dispatch = useDispatch();
 
+  const handlerNextPage = () => {
+    dispatch({ payload: page + 1 });
+  };
+
   return (
     <>
       <div className="flex">
-        <div>previousPage</div>
-        <div>currentPage</div>
-        <div>nextPage</div>
+        <div onClick={handlerNextPage}>Next</div>
       </div>
     </>
   );

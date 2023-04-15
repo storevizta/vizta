@@ -41,7 +41,7 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="w-72 h-screen bg-gray-100">
+      <aside className="w-72 h-full bg-gray-100">
         <div>
           <div>Categories</div>
           {data &&
@@ -63,13 +63,13 @@ export const Sidebar = () => {
               <div>Price</div>
               <form className="flex">
                 <input
-                  className=""
+                  className="w-16"
                   type="text"
                   placeholder="minPrice"
                   onChange={handlerMinPrice}
                 />
                 <input
-                  className=""
+                  className="w-16"
                   type="text"
                   placeholder="maxPrice"
                   onChange={handlerMaxPrice}
