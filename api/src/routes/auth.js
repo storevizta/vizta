@@ -8,6 +8,7 @@ const {
   signUp,
   signIn,
   signInGoogle,
+  googleRegister,
 } = require('../controller/authController.js');
 
 router.post('/signup', signUp);
@@ -15,5 +16,7 @@ router.post('/signup', signUp);
 router.post('/signin', signIn);
 
 router.get('/signingoogle', signInGoogle);
+
+router.get('/signingoogle/register', googleRegister);
 
 module.exports = router;

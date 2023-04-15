@@ -22,7 +22,11 @@ export const Auth = createApi({
         };
       },
     }),
+    signInGoogle: builder.query({
+      query: () => `/auth/signingoogle`,
+    }),
   }),
 });
 
-export const { useSignInMutation, useSignUpMutation } = Auth;
+export const { useSignInMutation, useSignUpMutation, useSignInGoogleQuery } =
+  Auth;
