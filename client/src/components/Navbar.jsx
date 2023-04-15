@@ -20,7 +20,6 @@ export const Navbar = () => {
           <input
             className=""
             type="text"
-            value={title}
             placeholder="Search..."
             onChange={handlerChange}
           />

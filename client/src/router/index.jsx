@@ -6,8 +6,6 @@ import { NotFound } from '../pages/NotFound';
 
 import { Landing } from '../pages/Landing';
 
-import { Account } from '../pages/Account';
-
 import { Home } from '../pages/Home';
 
 import { Detail } from '../pages/Detail';
@@ -16,9 +14,9 @@ import { Post } from '../pages/Post';
 
 import { Profile } from '../pages/Profile';
 
-import { Signin } from '../pages/signin';
+import { SignIn } from '../pages/SignIn';
 
-import { Signup } from '../pages/signup';
+import { SignUp } from '../pages/SignUp';
 
 export const router = createBrowserRouter([
   {
@@ -30,10 +28,6 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
-      },
-      {
-        path: '/account',
-        element: <Account />,
       },
       {
         path: '/home',
@@ -52,13 +46,13 @@ export const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "/signin",
-        element: <Signin/>,
+        path: '/signin',
+        element: <SignIn />,
       },
       {
-        path: "/signup",
-        element: <Signup/>,
-      }
+        path: '/signup',
+        element: <SignUp />,
+      },
     ],
   },
 ]);
