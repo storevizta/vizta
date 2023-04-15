@@ -10,6 +10,8 @@ import { User } from '../features/slices/userSlice';
 
 import filterSlice from '../features/slices/filterSlice';
 
+import infoUser from "../features/slices/userSlice"
+
 export const store = configureStore({
   reducer: {
     [Ads.reducerPath]: Ads.reducer,
@@ -17,6 +19,7 @@ export const store = configureStore({
     [Category.reducerPath]: Category.reducer,
     [User.reducerPath]: User.reducer,
     filter: filterSlice,
+    info_user: infoUser
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

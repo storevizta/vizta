@@ -2,16 +2,51 @@ import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom";
 import {useSignInMutation, useSignInGoogleQuery} from "../features/slices/authSlice"
 import {useGetUserIdQuery} from "../features/slices/userSlice"
+import { useDispatch } from 'react-redux';
+import {
+  setId,
+  setName,
+  setEmail,
+  setRole,
+  resetInfo
+} from '../features/slices/userSlice';
 
 export const SignIn = () => {
-    
-    localStorage.clear()
+
+    const dispatch = useDispatch();
     
     const navigate = useNavigate()
+
+    const handlerName = (data) => {
+      dispatch(setName(data))
+    }
+
+    const handlerId = (data) => {
+      dispatch(setId(data))
+    }
+    
+    const handlerEmail = (data) => {
+      dispatch(setEmail(data))
+    }
+
+    const handlerRole = (data) => {
+      dispatch(setRole(data))
+    }
+
+    const resetUserData = () => {
+      dispatch(resetInfo())
+    }
+
+    resetUserData()
     
     const [data, setData] = useState({
         email: "",
         password: ""
+    })
+
+    const [error, setError] = useState({
+      email: "",
+      password: ""
     })
 
     const signInGoogle = useSignInGoogleQuery()
@@ -26,15 +61,17 @@ export const SignIn = () => {
     const searchUser = async (id) => {
       const userData = await useGetUserIdQuery(id)?.data
       if(userData !== undefined){
-        localStorage.setItem("id", value.id)
-            localStorage.setItem("name", value.name)
-            localStorage.setItem("email", value.email)
-            localStorage.setItem("role", value.role)
+        handlerId(userData.id)
+        handlerName(userData.name)
+        handlerEmail(userData.email)
+        handlerRole(userData.role)
+        navigate("/home")
       }
+      
     }
 
     if(location.search.length > 0){
-      const response = searchUser(location.search.split("=")[1])
+      searchUser(location.search.split("=")[1])
     }
     
     const handleInput = (event) => {
@@ -42,15 +79,23 @@ export const SignIn = () => {
     }
     
     const sendForm = async (event) => {
+      setError({
+        email: "",
+        password: ""
+      })
         event.preventDefault()
-        await signInMutation[0](data).then(value => {
-            localStorage.setItem("id", value.data.data.id)
-            localStorage.setItem("name", value.data.data.name)
-            localStorage.setItem("email", value.data.data.email)
-            localStorage.setItem("role", value.data.data.role)
-        })
-        navigate("/home")
-    }
+          await signInMutation[0](data)
+          .then(value => {
+            if(value.data.data.email){
+              handlerId(value.data.data.id)
+              handlerName(value.data.data.name)
+              handlerEmail(value.data.data.email)
+              handlerRole(value.data.data.role)
+              navigate("/home")
+            }
+          })
+          .catch(error => setError({...error, email: "The email could not be found"}))
+      }
 
     return(
         <div>
@@ -81,6 +126,7 @@ export const SignIn = () => {
                   placeholder="Enter email address"
                 />
               </label>
+                {error.email? <p>{error.email}</p> : null}
               <label for="password">
                 <p class="font-medium text-slate-700 pb-2">Password</p>
                 <input
