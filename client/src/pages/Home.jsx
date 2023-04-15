@@ -12,7 +12,9 @@ import { Sidebar } from '../components/Sidebar';
 
 import { Card } from '../components/Card';
 
-import Loading from '../components/Loading';
+import { Loading } from '../components/Loading';
+
+import { Error } from '../components/Error';
 
 export const Home = () => {
   const page = useSelector((state) => state.filter.page);
@@ -61,7 +63,7 @@ export const Home = () => {
       <Navbar />
       <div className="flex">
         <Sidebar />
-        <div>
+        <div className="w-screen grid grid-cols-[auto-fit_minmax(250px,_250px)]">
           {data &&
             data?.map((el) => (
               <Link to={`/detail/${el.id}`} key={el.id}>
