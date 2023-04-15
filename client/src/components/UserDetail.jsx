@@ -1,38 +1,38 @@
-import { Loading } from '../components/Loading';
+// import { Loading } from '../components/Loading';
 
-import { Error } from '../components/Error';
+// import { Error } from '../components/Error';
 
-import { useGetUserByIdQuery } from '../features/slices/userSlice';
+// import { useGetUserByIdQuery } from '../features/slices/userSlice';
 
-export const UserDetail = (userId) => {
-    const {id} = userId;
+// export const UserDetail = (userId) => {
+//     const {id} = userId;
 
-    const { data, error, isLoading } = useGetUserByIdQuery(id);
+//     const { data, error, isLoading } = useGetUserByIdQuery(id);
 
-    if (isLoading)
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
+//     if (isLoading)
+//     return (
+//       <div>
+//         <Loading />
+//       </div>
+//     );
 
-  if (error)
-    return (
-      <div>
-        <Error />
-      </div>
-    );
+//   if (error)
+//     return (
+//       <div>
+//         <Error />
+//       </div>
+//     );
 
-     const {name, address, createdAt} = data;
+//      const {name, address, createdAt} = data;
 
-     const date = createdAt.slice(0,10)
+//      const date = createdAt.slice(0,10)
 
-    return (
-        <div>
-            <p>Seller:</p>
-            <p>{name}</p>
-            <p>{address}</p>
-            <p>Joined in {date}</p>
-        </div>
-    )
-}
+//     return (
+//         <div>
+//             <p>Seller:</p>
+//             <p>{name}</p>
+//             <p>{address}</p>
+//             <p>Joined in {date}</p>
+//         </div>
+//     )
+// }
