@@ -24,13 +24,14 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    oldPrice: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
     discount: {
       type: DataTypes.INTEGER,
       allowNull: true,
+    },
+    condition: {
+      type: DataTypes.ENUM('New', 'Used'),
+      allowNull: false,
+      defaultValue: 'New',
     },
     state: {
       type: DataTypes.ENUM('Active', 'Sold', 'Paused'),

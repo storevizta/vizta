@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { setTitle } from '../features/slices/filterSlice';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,7 @@ export const Navbar = () => {
 
   return (
       <nav className="flex justify-between py-2 px-6 bg-zinc-900 items-center">
-        <h2 className="text-white">VIZTA</h2>
+        <h2 className="text-white font-Montserrat">VIZTA</h2>
         <form>
           <input
             className="bg-zinc-800 outline-none p-1 rounded-md w-96 h-6 items-center text-white"
