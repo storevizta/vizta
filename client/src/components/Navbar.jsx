@@ -12,6 +12,7 @@ export const Navbar = () => {
   };
 
   return (
+    <>
       <nav className="flex justify-between py-2 px-6 bg-zinc-900 items-center">
         <h2 className="text-white font-Montserrat">VIZTA</h2>
         <form>
@@ -23,13 +24,20 @@ export const Navbar = () => {
           />
         </form>
         <div className="flex w-40 justify-between">
-          <Link to="/signIn" className='text-white border border-white rounded-lg content-center px-2 py-1'>
+          <Link
+            to="/signIn"
+            className="text-white border border-white rounded-lg content-center px-2 py-1"
+          >
             Sign In
           </Link>
-          <Link to="/signUp" className='text-white border border-white rounded-lg content-center px-2 py-1 '>
+          <Link
+            to="/signUp"
+            className="text-white border border-white rounded-lg content-center px-2 py-1 "
+          >
             Sign Up
           </Link>
         </div>
       </nav>
+    </>
   );
 };

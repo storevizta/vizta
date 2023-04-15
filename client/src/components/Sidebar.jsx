@@ -9,6 +9,7 @@ import {
   setSort,
   setDiscount,
   setCondition,
+  resetFilters,
 } from '../features/slices/filterSlice';
 
 export const Sidebar = () => {
@@ -42,6 +43,10 @@ export const Sidebar = () => {
 
   const handlerCondition = (e) => {
     dispatch(setCondition(e));
+  };
+
+  const handlerReset = () => {
+    dispatch(resetFilters());
   };
 
   return (
@@ -139,7 +144,9 @@ export const Sidebar = () => {
           </div>
         </div>
         <div>
-          <div onClick="">Reset</div>
+          <div className="px-2 hover:bg-zinc-900" onClick={handlerReset}>
+            Reset
+          </div>
         </div>
         <h4 className="font-thin text-slate-50 text-sm mt-8 ml-2 ">
           Vizta Copyrigth ©

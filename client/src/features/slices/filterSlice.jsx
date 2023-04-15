@@ -42,7 +42,6 @@ export const filterSlice = createSlice({
     },
     resetFilters: (state) => {
       state.page = 0;
-      state.title = '';
       state.category = '';
       state.minPrice = '';
       state.maxPrice = '';
