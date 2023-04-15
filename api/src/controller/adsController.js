@@ -114,10 +114,9 @@ const createAd = async (req, res) => {
       image,
       title,
       description,
-      stock,
       price,
-      oldPrice,
       discount,
+      condition,
     } = req.body;
 
     const user = await User.findByPk(userId);
@@ -138,10 +137,9 @@ const createAd = async (req, res) => {
       image,
       title,
       description,
-      stock,
       price,
-      oldPrice,
       discount,
+      condition,
     });
 
     await transporter.sendMail({
