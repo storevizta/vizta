@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { usePostAdMutation } from '../features/slices/adsSlice.jsx';
 
 
-export default function CreateVideogame (){
+export default function Post (){
 const navigate = useNavigate();
 const dispatch = useDispatch();
 const allAds = useSelector((state) => state.usePostAdMutation);
