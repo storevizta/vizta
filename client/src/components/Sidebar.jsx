@@ -40,6 +40,7 @@ export const Sidebar = () => {
   };
 
   return (
+
     <aside className="w-72 h-screen bg-zinc-800 p-4">
       <div className="categorys">
         <h2 className="font-bold text-xl mb-2 text-slate-50">Categories:</h2>
@@ -92,6 +93,7 @@ export const Sidebar = () => {
               Descending
             </div>
           </div>
+
         </div>
         <div className="filterDiscount">
           <h3 className="font-bold text-lg text-slate-50 pl-2 mb-2 mt-2">

@@ -5,7 +5,7 @@ export const Card = ({ info }) => {
 
   return (
     <>
-      <div className="flex justify-center items-center flex-colo outline outline-black outline-1">
+      <div className="flex justify-center items-center flex-col outline">
         <img
           className="w-20"
           src={image}

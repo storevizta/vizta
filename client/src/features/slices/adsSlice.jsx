@@ -7,7 +7,7 @@ export const Ads = createApi({
     getAds: builder.query({
       query: ({
         page = 0,
-        size = 20,
+        size = 10,
         title = null,
         category = null,
         minPrice = null,
@@ -46,13 +46,11 @@ export const Ads = createApi({
       query: (id) => `/ads/${id}`,
     }),
     postAd: builder.mutation({
-      query: (data) => {
-        return {
-          url: '/ads',
-          method: 'POST',
-          body: data,
-        };
-      },
+      query: (data) => ({
+        url: `/post`,
+        method: 'POST',
+        body: data,
+      }),
     }),
     getUserId: builder.query({
       query: (userId) => `/ads/${userId}`,

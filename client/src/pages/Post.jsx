@@ -1,5 +1,16 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { usePostAdMutation } from '../features/slices/adsSlice.jsx';
+
+// const navigate = useNavigate();
+// const dispatch = useDispatch();
+// const allAds = useSelector((state) => state.allAds);
 
 export const Post = () => {
   const { input, setInput } = useState({
@@ -9,6 +20,54 @@ export const Post = () => {
     stock: '',
     image: '',
   });
+
+  const [errors, setErrors] = useState({
+    title: '',
+    description: '',
+    price: '',
+    stock: '',
+    image: '',
+  });
+
+  function validate() {
+    const inputValues = Object.entries(input); //genera un arreglo de tuplas de un objeto que vos le pases. Las tuplas son mini arreglos donde vos guardas el key por un lado y el valor por el otro.
+    const objectError = {};
+    const errorsMessages = {
+      title: 'title is required',
+      description: 'description is required',
+      image: 'image is required',
+      price: 'price is required',
+      stock: 'stock is required',
+    };
+
+    inputValues.forEach(([key, value]) => {
+      if (value === '' || value.length === 0) {
+        return Object.assign(objectError, {
+          [key]: errorsMessages[key],
+        });
+      }
+    });
+  }
+
+  function handlerSubmit(e) {
+    e.preventDefault();
+    if (allAds.some((e) => e.title === input.title)) {
+      //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
+
+      return alert('This ad already exists');
+    } else {
+      dispatch(adPostMutation(input)); // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
+      alert('This ad has been created successfully');
+      setInput({
+        title: '',
+        description: '',
+        price: '',
+        stock: '',
+        image: '',
+      });
+      navigate.push('/home');
+    }
+  }
 
   return (
     <div>
@@ -31,11 +90,7 @@ export const Post = () => {
                     required={true}
                   />
                 </div>
-                <div>
-                  {errors.name && (
-                    <p className={s.TextContainer}>{errors.name}</p>
-                  )}
-                </div>
+                <div>{errors.name && <p>{errors.name}</p>}</div>
 
                 <div>
                   <label>Description:</label>
@@ -48,11 +103,7 @@ export const Post = () => {
                     required={true}
                   />
                 </div>
-                <div>
-                  {errors.description && (
-                    <p className={s.TextContainer}>{errors.description}</p>
-                  )}
-                </div>
+                <div>{errors.description && <p>{errors.description}</p>}</div>
 
                 <div>
                   <label>Price:</label>
@@ -64,11 +115,7 @@ export const Post = () => {
                     required={true}
                   />
                 </div>
-                <div>
-                  {errors.released && (
-                    <p className={s.TextContainer}>{errors.released}</p>
-                  )}
-                </div>
+                <div>{errors.released && <p>{errors.released}</p>}</div>
 
                 <div>
                   <label>Stock:</label>
@@ -84,14 +131,10 @@ export const Post = () => {
                     required={true}
                   />
                 </div>
-                <div>
-                  {errors.rating && (
-                    <p className={s.TextContainer}>{errors.rating}</p>
-                  )}
-                </div>
+                <div>{errors.rating && <p>{errors.rating}</p>}</div>
 
                 <div>
-                  <label className={s.Text}>Image:</label>
+                  <label>Image:</label>
                   <input
                     type="text"
                     value={input.image}
@@ -101,9 +144,7 @@ export const Post = () => {
                     required={true}
                   />
                 </div>
-                {errors.image && (
-                  <p className={s.TextContainer}>{errors.image}</p>
-                )}
+                {errors.image && <p>{errors.image}</p>}
               </div>
             </div>
             <Link to="/home">
