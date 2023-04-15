@@ -17,6 +17,7 @@ const getAds = async (req, res) => {
       maxPrice,
       sort,
       discount,
+      condition,
     } = req.query;
 
     const options = {
@@ -68,9 +69,20 @@ const getAds = async (req, res) => {
       };
     }
 
+    if (condition === 'new') {
+      options.where.condition = 'new';
+    } else if (condition === 'used') {
+      options.where.condition = 'used';
+    }
+
     const ads = await Ad.findAll(options);
 
-    return res.status(200).json(ads);
+    const count = await Ad.findAll(options.where);
+
+    return res.status(200).json({
+      length: count,
+      ads: ads,
+    });
   } catch (error) {
     console.error(error);
     return res

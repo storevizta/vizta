@@ -19,7 +19,7 @@ export const Pagination = () => {
     <>
       <div className="flex">
         <div onClick={handlerPrevPage}>Preview</div>
-        <div>{page}</div>
+        <div>{page + 1}</div>
         <div onClick={handlerNextPage}>Next</div>
       </div>
     </>
