@@ -4,7 +4,7 @@ export const filterSlice = createSlice({
   name: 'filter',
 
   initialState: {
-    page: '0',
+    page: 0,
     title: '',
     category: '',
     minPrice: '',
@@ -15,7 +15,8 @@ export const filterSlice = createSlice({
 
   reducers: {
     setPage: (state, action) => {
-      state.page = action.payload;
+      const newPage = state.page + action.payload;
+      state.page = newPage >= 0 ? newPage : 0;
     },
     setTitle: (state, action) => {
       state.title = action.payload;
