@@ -8,7 +8,7 @@ import { Category } from '../features/slices/categorySlice';
 
 import { User } from '../features/slices/userSlice';
 
-import filterSlice from '../features/slices/filterSlice';
+import FilterSlice from '../features/slices/filterSlice';
 
 export const store = configureStore({
   reducer: {
@@ -16,7 +16,7 @@ export const store = configureStore({
     [Auth.reducerPath]: Auth.reducer,
     [Category.reducerPath]: Category.reducer,
     [User.reducerPath]: User.reducer,
-    filter: filterSlice,
+    filter: FilterSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

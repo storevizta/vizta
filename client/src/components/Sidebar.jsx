@@ -9,6 +9,7 @@ import {
   setSort,
   setDiscount,
   setCondition,
+  resetFilters,
 } from '../features/slices/filterSlice';
 
 export const Sidebar = () => {
@@ -17,6 +18,8 @@ export const Sidebar = () => {
   const { data, error, isLoading } = useGetCategoryQuery();
 
   if (isLoading) return <div>Loading...</div>;
+
+  if (error) return <div>Error...</div>;
 
   const handlerCategory = (id) => {
     dispatch(setCategory(id));
@@ -42,6 +45,10 @@ export const Sidebar = () => {
 
   const handlerCondition = (e) => {
     dispatch(setCondition(e));
+  };
+
+  const handlerReset = (e) => {
+    dispatch(resetFilters(e));
   };
 
   return (
@@ -139,7 +146,7 @@ export const Sidebar = () => {
           </div>
         </div>
         <div>
-          <div onClick="">Reset</div>
+          <div onClick={() => handlerReset(e)}>Reset</div>
         </div>
         <h4 className="font-thin text-slate-50 text-sm mt-8 ml-2 ">
           Vizta Copyrigth ©

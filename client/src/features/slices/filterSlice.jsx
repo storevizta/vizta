@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const filterSlice = createSlice({
+export const FilterSlice = createSlice({
   name: 'filter',
 
   initialState: {
@@ -42,7 +42,6 @@ export const filterSlice = createSlice({
     },
     resetFilters: (state) => {
       state.page = 0;
-      state.title = '';
       state.category = '';
       state.minPrice = '';
       state.maxPrice = '';
@@ -63,6 +62,6 @@ export const {
   setDiscount,
   setCondition,
   resetFilters,
-} = filterSlice.actions;
+} = FilterSlice.actions;
 
-export default filterSlice.reducer;
+export default FilterSlice.reducer;
