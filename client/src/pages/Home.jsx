@@ -69,7 +69,7 @@ export const Home = () => {
           <Pagination />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
             {data &&
-              data.map((el) => (
+              data.ads.map((el) => (
                 <Link to={`/detail/${el.id}`} key={el.id}>
                   <Card info={el} />
                 </Link>

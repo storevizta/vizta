@@ -40,7 +40,6 @@ export const Sidebar = () => {
   };
 
   return (
-
     <aside className="w-72 h-screen bg-zinc-800 p-4">
       <div className="categorys">
         <h2 className="font-bold text-xl mb-2 text-slate-50">Categories:</h2>
@@ -59,16 +58,15 @@ export const Sidebar = () => {
         <h2 className="font-bold text-xl mb-2 text-slate-50">Filters:</h2>
         <div className="filterPrice">
           <h3 className="font-bold text-lg text-slate-50 pl-2 mb-2">Price:</h3>
-          <form className="flex w-auto justify-between px-2">
+          <form className="flex w-auto justify-center gap-5">
             <input
-              className="w-16 rounded-md pl-2 bg-zinc-900 text-slate-50"
+              className="w-24 rounded-md pl-2 bg-zinc-900 text-slate-50"
               type="text"
               placeholder="Min"
               onChange={handlerMinPrice}
             />
-            <p className="font-thin text-slate-50">and</p>
             <input
-              className="w-16 rounded-md pl-2 bg-zinc-900 text-slate-50"
+              className="w-24 rounded-md pl-2 bg-zinc-900 text-slate-50"
               type="text"
               placeholder="Max"
               onChange={handlerMaxPrice}
@@ -93,13 +91,15 @@ export const Sidebar = () => {
               Descending
             </div>
           </div>
-
         </div>
         <div className="filterDiscount">
           <h3 className="font-bold text-lg text-slate-50 pl-2 mb-2 mt-2">
             Discount:
           </h3>
-          <select className="w-48 rounded-md ml-2 px-2 py-1 bg-zinc-900 text-slate-50" onChange={(e) => handlerDiscount(e)}>
+          <select
+            className="w-48 rounded-md ml-2 px-2 py-1 bg-zinc-900 text-slate-50"
+            onChange={(e) => handlerDiscount(e)}
+          >
             <option value="">All</option>
             <option value="10">10%</option>
             <option value="20">20%</option>
@@ -113,7 +113,9 @@ export const Sidebar = () => {
           </select>
         </div>
       </div>
-      <h4 className="font-thin text-slate-50 text-sm mt-8 ml-2 ">Vizta Copyrigth ©</h4>
+      <h4 className="font-thin text-slate-50 text-sm mt-8 ml-2 ">
+        Vizta Copyrigth ©
+      </h4>
     </aside>
   );
 };
