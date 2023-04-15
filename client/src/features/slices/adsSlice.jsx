@@ -22,7 +22,7 @@ export const Ads = createApi({
       query: (id) => `/ads/${id}`,
     }),
     addPost: build.mutation({
-      query: (body) => ({
+      query: (data) => ({
         url: `/post`,
         method: 'POST',
         body: data,

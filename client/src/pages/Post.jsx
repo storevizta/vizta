@@ -1,5 +1,13 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addPost } from "../features/slices/adsSlice.jsx"
+
+const navigate = useNavigate();
+const dispatch = useDispatch();
+const allAds = useSelector((state) => state.allAds);  
+
 
 export const Post = () => {
   const { input, setInput } = useState({
@@ -9,6 +17,72 @@ export const Post = () => {
     stock: '',
     image: '',
   });
+
+  const [errors, setErrors] = useState({
+    title: '',
+    description: '',
+    price: '',
+    stock: '',
+    image: '',
+})
+
+function validate () {
+    
+
+    const inputValues = Object.entries(input) //genera un arreglo de tuplas de un objeto que vos le pases. Las tuplas son mini arreglos donde vos guardas el key por un lado y el valor por el otro.
+    const objectError = {}
+    const errorsMessages = {
+
+        title: "title is required",
+        description: "description is required",
+        image: "image is required",
+        price: "price is required",
+        stock: "stock is required"
+    }
+
+    inputValues.forEach(([key, value]) => {
+     
+        if(value === "" || value.length === 0 ) {
+            return Object.assign(objectError, { 
+         
+            [key]: errorsMessages[key]
+        })
+        }
+    })
+    return setErrors(objectError)
+}
+
+    useEffect(() => {
+        validate()
+      }, [input]);
+
+
+    function handlerChange(e) {
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        })
+      }
+
+    function handlerSubmit (e) {
+        e.preventDefault();
+        if(allAds.some((e) => e.title === input.title)){ //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
+
+           return alert("This ad already exists")
+        } else {
+
+            dispatch(addPost(input)) // REVISA EL ADDPOST PARA VER SI SE IMPORTÓ CORRECTAMENTE
+            alert("This ad has been created successfully")
+            setInput({
+                title: "",
+                description: "",
+                price: "",
+                stock: "",
+                image: "",
+            })
+            navigate.push('/home')
+        }
+    }
 
   return (
     <div>
@@ -33,7 +107,7 @@ export const Post = () => {
                 </div>
                 <div>
                   {errors.name && (
-                    <p className={s.TextContainer}>{errors.name}</p>
+                    <p >{errors.name}</p>
                   )}
                 </div>
 
@@ -50,7 +124,7 @@ export const Post = () => {
                 </div>
                 <div>
                   {errors.description && (
-                    <p className={s.TextContainer}>{errors.description}</p>
+                    <p>{errors.description}</p>
                   )}
                 </div>
 
@@ -66,7 +140,7 @@ export const Post = () => {
                 </div>
                 <div>
                   {errors.released && (
-                    <p className={s.TextContainer}>{errors.released}</p>
+                    <p>{errors.released}</p>
                   )}
                 </div>
 
@@ -86,12 +160,12 @@ export const Post = () => {
                 </div>
                 <div>
                   {errors.rating && (
-                    <p className={s.TextContainer}>{errors.rating}</p>
+                    <p>{errors.rating}</p>
                   )}
                 </div>
 
                 <div>
-                  <label className={s.Text}>Image:</label>
+                  <label>Image:</label>
                   <input
                     type="text"
                     value={input.image}
@@ -102,7 +176,7 @@ export const Post = () => {
                   />
                 </div>
                 {errors.image && (
-                  <p className={s.TextContainer}>{errors.image}</p>
+                  <p >{errors.image}</p>
                 )}
               </div>
             </div>
