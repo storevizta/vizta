@@ -1,0 +1,620 @@
+[{
+    "userId": "6132a290-73d8-4b1c-9f05-1c0e728d38b8",
+    "categoryId": 1,
+    "image": "https://example.com/image7865.jpg",
+    "title": "Laptop HP",
+    "description": "Potente laptop HP con procesador Intel Core i7, pantalla Full HD y 16GB de RAM.",
+    "stock": 5,
+    "price": 1000,
+    "oldPrice": 1200,
+    "discount": 17
+  },
+  
+  {
+    "userId": "2d8b0c10-2452-482a-8499-ee8d7f066c85",
+    "categoryId": 3,
+    "image": "https://example.com/image1234.jpg",
+    "title": "Camiseta Nike",
+    "description": "Camiseta Nike de alta calidad, transpirable y resistente al sudor.",
+    "stock": 15,
+    "price": 30,
+    "oldPrice": 35,
+    "discount": 14
+  },
+  
+  {
+    "userId": "5e5c5aa5-b634-4a21-8f7f-0ec1f222d752",
+    "categoryId": 2,
+    "image": "https://example.com/image9988.jpg",
+    "title": "Gafas de sol Ray-Ban",
+    "description": "Gafas de sol Ray-Ban con lentes polarizadas y montura de acetato resistente.",
+    "stock": 8,
+    "price": 150,
+    "oldPrice": 170,
+    "discount": 12
+  },
+  
+  {
+    "userId": "cf6c692f-7f03-4edc-8a3a-4c6b9ef6f52c",
+    "categoryId": 4,
+    "image": "https://example.com/image4444.jpg",
+    "title": "Pelota de tenis",
+    "description": "Pelota de tenis profesional con alta durabilidad y buen agarre.",
+    "stock": 20,
+    "price": 5,
+    "oldPrice": 7,
+    "discount": 28
+  },
+  
+  {
+    "userId": "07a45b3c-3dd7-43d5-9e7a-c25a34189fc2",
+    "categoryId": 1,
+    "image": "https://example.com/image5555.jpg",
+    "title": "Tablet Samsung",
+    "description": "Tablet Samsung de 10 pulgadas con batería de larga duración y procesador octa-core.",
+    "stock": 3,
+    "price": 400,
+    "oldPrice": 450,
+    "discount": 11
+  },
+  {
+    "userId": "8b2e9b7b-086e-4db7-8aa1-2391f91efab1",
+    "categoryId": 5,
+    "image": "https://example.com/tools.jpg",
+    "title": "Kit de herramientas",
+    "description": "Kit de herramientas de alta calidad, nuevas en su caja original.",
+    "stock": 3,
+    "price": 200,
+    "oldPrice": 250,
+    "discount": 20
+},
+{
+    "userId": "5b5f4664-d4d4-427a-8f2e-4a92d70f65b4",
+    "categoryId": 4,
+    "image": "https://example.com/furniture.jpg",
+    "title": "Sofá de cuero",
+    "description": "Sofá de cuero en perfecto estado.",
+    "stock": 1,
+    "price": 800,
+    "oldPrice": 1000,
+    "discount": 20
+  },
+  {
+    "userId": "6e3f5105-6e06-45bb-bec6-9a6f29ee6c52",
+    "categoryId": 6,
+    "image": "https://example.com/pet.jpg",
+    "title": "Cachorro Golden Retriever",
+    "description": "Cachorro Golden Retriever de 2 meses de edad.",
+    "stock": 1,
+    "price": 1000,
+    "oldPrice": 1200,
+    "discount": 17
+  },
+  {
+    "userId": "cb88c0fb-fd15-4c68-8da5-cf16a4759d9b",
+    "categoryId": 3,
+    "image": "https://example.com/clothes.jpg",
+    "title": "Chaqueta de cuero",
+    "description": "Chaqueta de cuero en excelente estado.",
+    "stock": 1,
+    "price": 150,
+    "oldPrice": 200,
+    "discount": 25
+  },
+  {
+    "userId": "39af30cb-0c53-4f33-a6f9-7a9ba31a8f7b",
+    "categoryId": 2,
+    "image": "https://example.com/phone.jpg",
+    "title": "Samsung Galaxy S21",
+    "description": "Nuevo Samsung Galaxy S21, en su caja original.",
+    "stock": 5,
+    "price": 800,
+    "oldPrice": 900,
+    "discount": 11
+  },
+  {
+    "userId": "a2a6fe2d-8f44-41e5-9ce9-2f76f8c20b7d",
+    "categoryId": 1,
+    "image": "https://example.com/bike.jpg",
+    "title": "Bicicleta de montaña",
+    "description": "Bicicleta de montaña en excelentes condiciones",
+    "stock": 1,
+    "price": 500,
+    "oldPrice": 700,
+    "discount": 28
+  },
+  {
+    "userId": "7e924771-96c6-43a6-91a6-2e1d21a46da5",
+    "categoryId": 3,
+    "image": "https://example.com/image432.jpg",
+    "title": "Reloj de pulsera",
+    "description": "Elegante reloj de pulsera para hombre",
+    "stock": 8,
+    "price": 120,
+    "oldPrice": 150,
+    "discount": 20
+  },
+  
+  {
+    "userId": "a6efc87b-99e8-4630-9de7-c573c66b87d7",
+    "categoryId": 7,
+    "image": "https://example.com/image988.jpg",
+    "title": "Gafas de sol",
+    "description": "Gafas de sol polarizadas con protección UV400",
+    "stock": 15,
+    "price": 25,
+    "oldPrice": 30,
+    "discount": 16.6
+  },
+  
+  {
+    "userId": "bf13c05d-8af7-4125-b695-2ca46b0d8e68",
+    "categoryId": 1,
+    "image": "https://example.com/image543.jpg",
+    "title": "Mesa de comedor",
+    "description": "Mesa de comedor moderna con superficie de vidrio",
+    "stock": 4,
+    "price": 300,
+    "oldPrice": 400,
+    "discount": 25
+  },
+  
+  {
+    "userId": "3f260ea4-4d4f-4d4b-9917-836e50d04a7c",
+    "categoryId": 2,
+    "image": "https://example.com/image872.jpg",
+    "title": "Silla de oficina",
+    "description": "Silla de oficina ergonómica con soporte lumbar ajustable",
+    "stock": 10,
+    "price": 150,
+    "oldPrice": 200,
+    "discount": 25
+  },
+  
+  {
+    "userId": "9c30025a-8512-4d23-88a8-d27cbe89d7ce",
+    "categoryId": 6,
+    "image": "https://example.com/image765.jpg",
+    "title": "Auriculares inalámbricos",
+    "description": "Auriculares inalámbricos con cancelación de ruido y micrófono",
+    "stock": 20,
+    "price": 80,
+    "oldPrice": 100,
+    "discount": 20
+  },
+  {
+    "userId": "2e245a1d-6fa8-474f-88a9-c78aa5bb0b2f",
+    "categoryId": 5,
+    "image": "https://example.com/image98.jpg",
+    "title": "Bicicleta de montaña",
+    "description": "Explora la naturaleza con esta bicicleta de montaña resistente.",
+    "stock": 7,
+    "price": 500,
+    "oldPrice": 600,
+    "discount": 16.7
+  },
+  {
+    "userId": "f1238f7a-845d-4330-9b1c-918e7f4f4d92",
+    "categoryId": 4,
+    "image": "https://example.com/image67.jpg",
+    "title": "Raqueta de tenis",
+    "description": "Mejora tu juego con esta raqueta de tenis de alta calidad.",
+    "stock": 8,
+    "price": 150,
+    "oldPrice": 200,
+    "discount": 25
+  },
+  {
+    "userId": "30c3b5f5-5c22-4eb1-9cd6-5e6cb4ec9024",
+    "categoryId": 3,
+    "image": "https://example.com/image501.jpg",
+    "title": "Smartphone",
+    "description": "Mantente conectado con este smartphone de última generación.",
+    "stock": 15,
+    "price": 600,
+    "oldPrice": 700,
+    "discount": 14
+  },
+  {
+    "userId": "d93cbf62-8b08-4278-a48d-5157b93c0f16",
+    "categoryId": 2,
+    "image": "https://example.com/image34.jpg",
+    "title": "Laptop",
+    "description": "Trabaja y estudia desde cualquier lugar con esta potente laptop.",
+    "stock": 10,
+    "price": 1200,
+    "oldPrice": 1400,
+    "discount": 14
+  },
+  {
+    "userId": "d3981926-ff2c-48ab-bb89-26e7d6339c61",
+    "categoryId": 1,
+    "image": "https://example.com/image987.jpg",
+    "title": "Cámara fotográfica",
+    "description": "Captura los momentos más importantes con esta cámara profesional.",
+    "stock": 5,
+    "price": 800,
+    "oldPrice": 1000,
+    "discount": 20
+  },
+  {
+    "userId": "c34d1ed1-2a58-42e8-a983-745cb064bfef",
+    "categoryId": 9,
+    "image": "https://example.com/image19.jpg",
+    "title": "Guitarra eléctrica Gibson Les Paul",
+    "description": "Guitarra eléctrica de alta calidad con cuerpo de caoba y pastillas humbucker.",
+    "stock": 2,
+    "price": 1799,
+    "oldPrice": 1999,
+    "discount": 10
+  },
+  {
+    "userId": "986f5a5d-13d3-4f29-ba70-1d6a4a4ce433",
+    "categoryId": 7,
+    "image": "https://example.com/image55.jpg",
+    "title": "Bicicleta de montaña",
+    "description": "Bicicleta con marco de aluminio y suspensión delantera para terrenos difíciles.",
+    "stock": 3,
+    "price": 699,
+    "oldPrice": 799,
+    "discount": 13
+  },
+  {
+    "userId": "3c3ec8e7-35d9-4e7f-9a03-92d197a1162c",
+    "categoryId": 1,
+    "image": "https://example.com/image47.jpg",
+    "title": "Silla de oficina ergonómica",
+    "description": "Silla con diseño ergonómico y ajustable para mayor comodidad en el trabajo.",
+    "stock": 10,
+    "price": 249,
+    "oldPrice": 299,
+    "discount": 17
+  },
+  {
+    "userId": "1d65a4bc-4a4f-4d71-a65e-6ec3c98bdf8e",
+    "categoryId": 2,
+    "image": "https://example.com/image29.jpg",
+    "title": "Computadora de escritorio HP Pavilion",
+    "description": "Equipo de cómputo potente con procesador Intel Core i7 y tarjeta gráfica Nvidia.",
+    "stock": 7,
+    "price": 999,
+    "oldPrice": 1199,
+    "discount": 16
+  },
+  {
+    "userId": "d7f73c1f-7b8a-47cc-9d51-2b9e81b91221",
+    "categoryId": 3,
+    "image": "https://example.com/image31.jpg",
+    "title": "Teléfono celular Samsung Galaxy S21",
+    "description": "Teléfono inteligente de última generación con cámara de alta resolución y pantalla AMOLED.",
+    "stock": 5,
+    "price": 799,
+    "oldPrice": 899,
+    "discount": 11
+  },
+  {
+    "userId": "38b8e068-46af-4696-a5b6-5b5a5d6f5c73",
+    "categoryId": 2,
+    "image": "https://example.com/image31.jpg",
+    "title": "Mesa de comedor",
+    "description": "Mesa de comedor extensible en madera maciza, perfecta para reuniones familiares.",
+    "stock": 5,
+    "price": 300,
+    "oldPrice": 350,
+    "discount": 14
+  },
+  
+  {
+    "userId": "f65e15c2-d0e8-4b0d-b2c2-fcc1f5768a33",
+    "categoryId": 3,
+    "image": "https://example.com/image12.jpg",
+    "title": "Smart TV Samsung",
+    "description": "Televisor Samsung Smart de 55 pulgadas con resolución 4K y sistema operativo Tizen.",
+    "stock": 2,
+    "price": 700,
+    "oldPrice": 800,
+    "discount": 12.5
+  },
+  
+  {
+    "userId": "86e418d9-39a1-4eaf-a889-06d8206cd5e6",
+    "categoryId": 1,
+    "image": "https://example.com/image4.jpg",
+    "title": "Bicicleta de montaña",
+    "description": "Bicicleta de montaña con cuadro de aluminio, frenos de disco hidráulicos y suspensión delantera.",
+    "stock": 3,
+    "price": 500,
+    "oldPrice": 550,
+    "discount": 9
+  },
+  
+  {
+    "userId": "47d372e5-424a-4a29-9e20-4f4ec9ef32e4",
+    "categoryId": 4,
+    "image": "https://example.com/image2.jpg",
+    "title": "Balón de baloncesto",
+    "description": "Balón de baloncesto oficial de la NBA, con diseño y materiales de alta calidad.",
+    "stock": 10,
+    "price": 50,
+    "oldPrice": 60,
+    "discount": 16.7
+  },
+  
+  {
+    "userId": "c72d02d8-16de-4ba4-8e57-5aaf10165d1c",
+    "categoryId": 2,
+    "image": "https://example.com/image18.jpg",
+    "title": "Sillas de oficina",
+    "description": "Pack de dos sillas de oficina ergonómicas con respaldo y reposabrazos ajustables.",
+    "stock": 7,
+    "price": 150,
+    "oldPrice": 170,
+    "discount": 11.8
+  },
+  {
+    "userId": "dcd1a6b9-9d8f-45db-bbf2-4812e814d6d8",
+    "categoryId": 1,
+    "image": "https://example.com/image4456.jpg",
+    "title": "Departamento en alquiler",
+    "description": "Departamento de 2 ambientes en alquiler, ubicado en pleno centro.",
+    "stock": 1,
+    "price": 800,
+    "oldPrice": 800,
+    "discount": 0
+  },
+  {
+    "userId": "43d906f2-2a09-4d8d-88f5-1081b6c0f6d8",
+    "categoryId": 5,
+    "image": "https://example.com/image9871.jpg",
+    "title": "Teclado mecánico gaming",
+    "description": "Teclado mecánico para gaming, con iluminación RGB y teclas programables.",
+    "stock": 8,
+    "price": 60,
+    "oldPrice": 80,
+    "discount": 25
+  },
+  {
+    "userId": "4d4c9e88-48ed-4f60-b6b7-6bfc52516b3e",
+    "categoryId": 3,
+    "image": "https://example.com/image1452.jpg",
+    "title": "Zapatillas Nike Air Max",
+    "description": "Zapatillas Nike Air Max, color negro y gris. Talle 41.",
+    "stock": 2,
+    "price": 80,
+    "oldPrice": 100,
+    "discount": 20
+  },
+  {
+    "userId": "7d9a75a3-f7da-429d-a87a-b02c5e1481a7",
+    "categoryId": 7,
+    "image": "https://example.com/image2234.jpg",
+    "title": "Mesa de escritorio",
+    "description": "Mesa de escritorio con cajones y espacio para guardar libros y papeles.",
+    "stock": 5,
+    "price": 120,
+    "oldPrice": 150,
+    "discount": 20
+  },
+  {
+    "userId": "b6d135fe-22e4-44b1-a60d-2a01d9fbb3c3",
+    "categoryId": 2,
+    "image": "https://example.com/image9483.jpg",
+    "title": "iPhone X 64GB",
+    "description": "Excelente estado, usado con protector y funda desde el primer día.",
+    "stock": 1,
+    "price": 350,
+    "oldPrice": 500,
+    "discount": 30
+  },
+  {
+    "userId": "b501ca4b-d4de-4cd3-b3fc-17aae787e893",
+    "categoryId": 4,
+    "image": "https://example.com/image1213.jpg",
+    "title": "Balón de fútbol",
+    "description": "Disfruta del fútbol con este balón de alta calidad y diseño.",
+    "stock": 12,
+    "price": 40,
+    "oldPrice": 40,
+    "discount": 0
+  },
+  {
+    "userId": "d67e9c14-6b23-462c-90f4-84d0a4a0891b",
+    "categoryId": 7,
+    "image": "https://example.com/image1011.jpg",
+    "title": "Camiseta de algodón",
+    "description": "Viste con estilo y comodidad con esta camiseta de alta calidad para hombre.",
+    "stock": 20,
+    "price": 25,
+    "oldPrice": 27.78,
+    "discount": 10
+  },
+  {
+    "userId": "9df873eb-cc7f-4350-9b67-98a91845a236",
+    "categoryId": 3,
+    "image": "https://example.com/image789.jpg",
+    "title": "Juego de sábanas",
+    "description": "Viste tu cama con estilo y comodidad con este juego de sábanas de alta calidad.",
+    "stock": 8,
+    "price": 60,
+    "oldPrice": 70.59,
+    "discount": 15
+  },
+  {
+    "userId": "6fddc90e-33bb-42e8-997e-72d129c892f9",
+    "categoryId": 2,
+    "image": "https://example.com/image456.jpg",
+    "title": "Auriculares inalámbricos",
+    "description": "Escucha tu música favorita sin cables y con gran calidad de sonido.",
+    "stock": 15,
+    "price": 50,
+    "oldPrice": 62.5,
+    "discount": 20
+  },
+  {
+    "userId": "12d7c8f0-16b7-4ed9-9e7d-9f38b0c1bf42",
+    "categoryId": 8,
+    "image": "https://example.com/image123.jpg",
+    "title": "Crema hidratante",
+    "description": "Hidrata tu piel en profundidad con esta crema de alta calidad.",
+    "stock": 10,
+    "price": 30,
+    "oldPrice": 30,
+    "discount": 0
+  },
+  {
+    "userId": "c94b44f5-0548-4a77-84a3-2461d5cb5bc2",
+    "categoryId": 4,
+    "image": "https://example.com/wooden-coffee-table.jpg",
+    "title": "Mesa de Centro de Madera Maciza con Patas de Metal Negro",
+    "description": "La mesa de centro de madera maciza tiene un diseño elegante y moderno, con una superficie de madera de roble y patas de metal negro. Es perfecta para una sala de estar contemporánea.",
+    "stock": 7,
+    "price": 349,
+    "oldPrice": 399,
+    "discount": 13
+  },
+  {
+    "userId": "96f30b9f-777a-45ec-bfb8-08373a96a1bb",
+    "categoryId": 3,
+    "image": "https://example.com/gas-grill.jpg",
+    "title": "Parrilla de Gas de Acero Inoxidable con Quemadores Independientes",
+    "description": "La parrilla de gas de acero inoxidable cuenta con cuatro quemadores independientes y una superficie de cocción de 580 pulgadas cuadradas, lo que la hace ideal para preparar comidas para grupos grandes.",
+    "stock": 3,
+    "price": 599,
+    "oldPrice": 699,
+    "discount": 14
+  },
+  {
+    "userId": "f0ca1c98-4326-42d6-86ee-9a9b9c0ec27f",
+    "categoryId": 2,
+    "image": "https://example.com/kids-mountain-bike.jpg",
+    "title": "Bicicleta de Montaña para Niños (24 pulgadas)",
+    "description": "La bicicleta de montaña para niños cuenta con un cuadro de aluminio ligero, frenos de disco mecánicos y una suspensión delantera para una mayor comodidad en los terrenos irregulares.",
+    "stock": 5,
+    "price": 299,
+    "oldPrice": 349,
+    "discount": 14
+  },
+  {
+    "userId": "48275c8b-1a51-467d-9f2c-0fa3b3e6e0c6",
+    "categoryId": 1,
+    "image": "https://example.com/samsung-galaxy-s21-ultra.jpg",
+    "title": "Samsung Galaxy S21 Ultra (256GB, Negro)",
+    "description": "El Samsung Galaxy S21 Ultra es un teléfono inteligente de alta gama con una pantalla AMOLED de 6.8 pulgadas, una cámara trasera de 108MP y una cámara frontal de 40MP.",
+    "stock": 10,
+    "price": 1199,
+    "oldPrice": 1399,
+    "discount": 14
+  },
+  {
+    "userId": "b501ca4b-d4de-4cd3-b3fc-17aae787e893",
+    "categoryId": 4,
+    "image": "https://example.com/image1213.jpg",
+    "title": "Balón de fútbol",
+    "description": "Disfruta del fútbol con este balón de alta calidad y diseño.",
+    "stock": 12,
+    "price": 40,
+    "oldPrice": 40,
+    "discount": 0
+  },
+  {
+    "userId": "d67e9c14-6b23-462c-90f4-84d0a4a0891b",
+    "categoryId": 7,
+    "image": "https://example.com/image1011.jpg",
+    "title": "Camiseta de algodón",
+    "description": "Viste con estilo y comodidad con esta camiseta de alta calidad para hombre.",
+    "stock": 20,
+    "price": 25,
+    "oldPrice": 27.78,
+    "discount": 10
+  },
+  {
+    "userId": "9df873eb-cc7f-4350-9b67-98a91845a236",
+    "categoryId": 3,
+    "image": "https://example.com/image789.jpg",
+    "title": "Juego de sábanas",
+    "description": "Viste tu cama con estilo y comodidad con este juego de sábanas de alta calidad.",
+    "stock": 8,
+    "price": 60,
+    "oldPrice": 70.59,
+    "discount": 15
+  },
+  {
+    "userId": "6fddc90e-33bb-42e8-997e-72d129c892f9",
+    "categoryId": 2,
+    "image": "https://example.com/image456.jpg",
+    "title": "Auriculares inalámbricos",
+    "description": "Escucha tu música favorita sin cables y con gran calidad de sonido.",
+    "stock": 15,
+    "price": 50,
+    "oldPrice": 62.5,
+    "discount": 20
+  },
+  {
+    "userId": "12d7c8f0-16b7-4ed9-9e7d-9f38b0c1bf42",
+    "categoryId": 8,
+    "image": "https://example.com/image123.jpg",
+    "title": "Crema hidratante",
+    "description": "Hidrata tu piel en profundidad con esta crema de alta calidad.",
+    "stock": 10,
+    "price": 30,
+    "oldPrice": 30,
+    "discount": 0
+  },  
+  {
+    "userId": "c94b44f5-0548-4a77-84a3-2461d5cb5bc2",
+    "categoryId": 4,
+    "image": "https://example.com/wooden-coffee-table.jpg",
+    "title": "Mesa de Centro de Madera Maciza con Patas de Metal Negro",
+    "description": "La mesa de centro de madera maciza tiene un diseño elegante y moderno, con una superficie de madera de roble y patas de metal negro. Es perfecta para una sala de estar contemporánea.",
+    "stock": 7,
+    "price": 349,
+    "oldPrice": 399,
+    "discount": 13
+  },
+  {
+    "userId": "96f30b9f-777a-45ec-bfb8-08373a96a1bb",
+    "categoryId": 3,
+    "image": "https://example.com/gas-grill.jpg",
+    "title": "Parrilla de Gas de Acero Inoxidable con Quemadores Independientes",
+    "description": "La parrilla de gas de acero inoxidable cuenta con cuatro quemadores independientes y una superficie de cocción de 580 pulgadas cuadradas, lo que la hace ideal para preparar comidas para grupos grandes.",
+    "stock": 3,
+    "price": 599,
+    "oldPrice": 699,
+    "discount": 14
+  },
+  {
+    "userId": "96f30b9f-777a-45ec-bfb8-08373a96a1bb",
+    "categoryId": 3,
+    "image": "https://example.com/gas-grill.jpg",
+    "title": "Parrilla de Gas de Acero Inoxidable con Quemadores Independientes",
+    "description": "La parrilla de gas de acero inoxidable cuenta con cuatro quemadores independientes y una superficie de cocción de 580 pulgadas cuadradas, lo que la hace ideal para preparar comidas para grupos grandes.",
+    "stock": 3,
+    "price": 599,
+    "oldPrice": 699,
+    "discount": 14
+  },
+  {
+    "userId": "f0ca1c98-4326-42d6-86ee-9a9b9c0ec27f",
+    "categoryId": 2,
+    "image": "https://example.com/kids-mountain-bike.jpg",
+    "title": "Bicicleta de Montaña para Niños (24 pulgadas)",
+    "description": "La bicicleta de montaña para niños cuenta con un cuadro de aluminio ligero, frenos de disco mecánicos y una suspensión delantera para una mayor comodidad en los terrenos irregulares.",
+    "stock": 5,
+    "price": 299,
+    "oldPrice": 349,
+    "discount": 14
+  },
+  {
+    "userId": "48275c8b-1a51-467d-9f2c-0fa3b3e6e0c6",
+    "categoryId": 1,
+    "image": "https://example.com/samsung-galaxy-s21-ultra.jpg",
+    "title": "Samsung Galaxy S21 Ultra (256GB, Negro)",
+    "description": "El Samsung Galaxy S21 Ultra es un teléfono inteligente de alta gama con una pantalla AMOLED de 6.8 pulgadas, una cámara trasera de 108MP y una cámara frontal de 40MP.",
+    "stock": 10,
+    "price": 1199,
+    "oldPrice": 1399,
+    "discount": 14
+  }
+
+]
+
