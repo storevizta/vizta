@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 
 import { setTitle } from '../features/slices/filterSlice';
 
+import post from '../assets/post.svg';
+
 export const Navbar = () => {
   const dispatch = useDispatch();
 
@@ -13,27 +15,28 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="p-5 flex justify-between bg-zinc-100">
-      <div className="">VIZTA</div>
-      <form>
-        <input
-          className="w-96 px-3 py-1 rounded-full bg-zinc-200"
-          type="text"
-          placeholder="Search..."
-          onChange={handlerChange}
-        />
-      </form>
-      <div className="flex items-center gap-5">
-        <Link to="/post">
-          <div>+</div>
-        </Link>
-        <div className="flex justify-center items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-zinc-900"></div>
-          <div>Ronaldo</div>
+    <nav className="p-5 flex">
+      <div className="w-full px-5 py-1 rounded-full flex justify-between items-center bg-zinc-700">
+        <div className="text-xl text-slate-50">VIZTA</div>
+        <form>
+          <input
+            className="w-96 px-3 py-1 rounded-full bg-zinc-200"
+            type="text"
+            placeholder="Search..."
+            onChange={handlerChange}
+          />
+        </form>
+        <div className="flex justify-center gap-5">
+          <Link className="flex justify-center items-center" to="/post">
+            <img className="w-5" src={post} alt="post" />
+          </Link>
+          <div className="flex justify-center items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-zinc-200"></div>
+            <div className="text-slate-50">Ronaldo</div>
+          </div>
         </div>
-      </div>
 
-      {/* <div className="flex w-40 justify-between">
+        {/* <div className="flex w-40 justify-between">
         <Link
           to="/signIn"
           className="text-white border border-white rounded-lg content-center px-2 py-1"
@@ -47,6 +50,7 @@ export const Navbar = () => {
           Sign Up
         </Link>
       </div> */}
+      </div>
     </nav>
   );
 };

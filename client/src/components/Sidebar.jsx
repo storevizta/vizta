@@ -47,8 +47,8 @@ export const Sidebar = () => {
     dispatch(setCondition(e));
   };
 
-  const handlerReset = (e) => {
-    dispatch(resetFilters(e));
+  const handlerReset = () => {
+    dispatch(resetFilters());
   };
 
   return (
@@ -146,9 +146,11 @@ export const Sidebar = () => {
           </div>
         </div>
         <div>
-          <div onClick={() => handlerReset(e)}>Reset</div>
+          <div className="hover:bg-zinc-900" onClick={handlerReset}>
+            Reset
+          </div>
         </div>
-        <h4 className="font-thin text-slate-50 text-sm mt-8 ml-2 ">
+        <h4 className="font-thin text-slate-50 text-sm mt-8 ml-2">
           Vizta Copyrigth ©
         </h4>
       </aside>
