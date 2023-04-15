@@ -10,7 +10,6 @@ export const Post = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const allAds = useSelector((state) => state.usePostAdMutation);
-
   const [input, setInput] = useState({
     title: '',
     description: '',
@@ -78,7 +77,6 @@ export const Post = () => {
       navigate.push('/home');
     }
   }
-
   return (
     <div>
       <div>
@@ -90,7 +88,7 @@ export const Post = () => {
             <div>
               <div>
                 <div>
-                  {/* <label className={s.Text}> Título:</label> */}
+                  <label > Título:</label>
                   <input
                     type="text"
                     value={input.name}
