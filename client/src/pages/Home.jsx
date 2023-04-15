@@ -21,8 +21,6 @@ import { Error } from '../components/Error';
 export const Home = () => {
   const page = useSelector((state) => state.filter.page);
 
-  const size = useSelector((state) => state.filter.size);
-
   const title = useSelector((state) => state.filter.title);
 
   const category = useSelector((state) => state.filter.category);
@@ -37,7 +35,6 @@ export const Home = () => {
 
   const { data, error, isLoading } = useGetAdsQuery({
     page,
-    size,
     title,
     category,
     minPrice,
