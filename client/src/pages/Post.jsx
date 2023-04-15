@@ -8,12 +8,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { usePostAdMutation } from '../features/slices/adsSlice.jsx';
 
-// const navigate = useNavigate();
-// const dispatch = useDispatch();
-// const allAds = useSelector((state) => state.allAds);
 
-export const Post = () => {
-  const { input, setInput } = useState({
+export default function Post (){
+const navigate = useNavigate();
+const dispatch = useDispatch();
+const allAds = useSelector((state) => state.usePostAdMutation);
+
+const [input, setInput] = useState({
     title: '',
     description: '',
     price: '',
@@ -47,7 +48,12 @@ export const Post = () => {
         });
       }
     });
+    return setErrors(objectError)
   }
+
+  useEffect(() => {
+    validate()
+  }, [input]);
 
   function handlerSubmit(e) {
     e.preventDefault();
@@ -56,7 +62,7 @@ export const Post = () => {
 
       return alert('This ad already exists');
     } else {
-      dispatch(adPostMutation(input)); // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
+    usePostAdMutation(input); // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
       alert('This ad has been created successfully');
       setInput({
         title: '',
