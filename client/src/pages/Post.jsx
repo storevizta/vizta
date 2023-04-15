@@ -1,7 +1,11 @@
 import styled from 'styled-components';
+
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
+
 import { usePostAdMutation } from '../features/slices/adsSlice.jsx';
 
 // const navigate = useNavigate();
@@ -42,38 +46,25 @@ export const Post = () => {
           [key]: errorsMessages[key],
         });
       }
-    });
-    return setErrors(objectError);
-  }
+      
+    function handlerSubmit (e) {
+        e.preventDefault();
+        if(allAds.some((e) => e.title === input.title)){ //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
 
-  useEffect(() => {
-    validate();
-  }, [input]);
+           return alert("This ad already exists")
+        } else {
 
-  function handlerChange(e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  function handlerSubmit(e) {
-    e.preventDefault();
-    if (allAds.some((e) => e.title === input.title)) {
-      //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
-
-      return alert('This ad already exists');
-    } else {
-      dispatch(addPost(input)); // REVISA EL ADDPOST PARA VER SI SE IMPORTÓ CORRECTAMENTE
-      alert('This ad has been created successfully');
-      setInput({
-        title: '',
-        description: '',
-        price: '',
-        stock: '',
-        image: '',
-      });
-      navigate.push('/home');
+            dispatch(adPostMutation(input)) // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
+            alert("This ad has been created successfully")
+            setInput({
+                title: "",
+                description: "",
+                price: "",
+                stock: "",
+                image: "",
+            })
+            navigate.push('/home')
+        }
     }
   }
 
