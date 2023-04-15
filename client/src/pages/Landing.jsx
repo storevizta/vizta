@@ -8,8 +8,8 @@ export const Landing = () => {
       <LandingNav>
         <LandingImgLogo src={Logo} alt="Logo VIZTA" />
         <LandingContainerButton>
-          <LandingAccountButton href="/account">Sign In</LandingAccountButton>
-          <LandingAccountButton href="/account">Sing Up</LandingAccountButton>
+          <LandingAccountButton href="/signin">Sign In</LandingAccountButton>
+          <LandingAccountButton href="/signup">Sing Up</LandingAccountButton>
         </LandingContainerButton>
       </LandingNav>
       <LandingFirstSection>
