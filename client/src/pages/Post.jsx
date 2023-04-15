@@ -46,25 +46,26 @@ export const Post = () => {
           [key]: errorsMessages[key],
         });
       }
-      
-    function handlerSubmit (e) {
-        e.preventDefault();
-        if(allAds.some((e) => e.title === input.title)){ //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
+    });
+  }
 
-           return alert("This ad already exists")
-        } else {
+  function handlerSubmit(e) {
+    e.preventDefault();
+    if (allAds.some((e) => e.title === input.title)) {
+      //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
 
-            dispatch(adPostMutation(input)) // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
-            alert("This ad has been created successfully")
-            setInput({
-                title: "",
-                description: "",
-                price: "",
-                stock: "",
-                image: "",
-            })
-            navigate.push('/home')
-        }
+      return alert('This ad already exists');
+    } else {
+      dispatch(adPostMutation(input)); // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
+      alert('This ad has been created successfully');
+      setInput({
+        title: '',
+        description: '',
+        price: '',
+        stock: '',
+        image: '',
+      });
+      navigate.push('/home');
     }
   }
 
