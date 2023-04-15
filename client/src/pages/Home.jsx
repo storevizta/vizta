@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
@@ -8,22 +10,51 @@ import { Navbar } from '../components/Navbar';
 
 import { Sidebar } from '../components/Sidebar';
 
-import { Cards } from '../components/Cards';
+import { Card } from '../components/Card';
 
 import Loading from '../components/Loading';
 
 export const Home = () => {
+  const page = useSelector((state) => state.filter.page);
+
+  const size = useSelector((state) => state.filter.size);
+
   const title = useSelector((state) => state.filter.title);
 
   const category = useSelector((state) => state.filter.category);
 
-  console.log({ title, category });
+  const minPrice = useSelector((state) => state.filter.minPrice);
 
-  const { data, error, isLoading } = useGetAdsQuery({ title, category });
+  const maxPrice = useSelector((state) => state.filter.maxPrice);
 
-  if (isLoading) return <div><Loading/></div>;
+  const sort = useSelector((state) => state.filter.sort);
 
-  if (error) return <div>Error: {error.message}</div>
+  const discount = useSelector((state) => state.filter.discount);
+
+  const { data, error, isLoading } = useGetAdsQuery({
+    page,
+    size,
+    title,
+    category,
+    minPrice,
+    maxPrice,
+    sort,
+    discount,
+  });
+
+  if (isLoading)
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div>
+        <Error />
+      </div>
+    );
 
   return (
     <div>
@@ -34,11 +65,11 @@ export const Home = () => {
           {data &&
             data?.map((el) => (
               <Link to={`/detail/${el.id}`} key={el.id}>
-                <Cards info={el} />
+                <Card info={el} />
               </Link>
             ))}
         </div>
       </div>
     </div>
   );
-}
+};

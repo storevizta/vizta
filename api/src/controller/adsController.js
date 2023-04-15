@@ -62,9 +62,9 @@ const getAds = async (req, res) => {
       options.order = [['title', 'DESC']];
     }
 
-    if (discount === 'true') {
+    if (discount) {
       options.where.discount = {
-        [Op.not]: null,
+        [Op.eq]: +discount,
       };
     }
 
