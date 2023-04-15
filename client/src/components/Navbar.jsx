@@ -23,10 +23,10 @@ export const Navbar = () => {
           />
         </form>
         <div className="flex w-40 justify-between">
-          <Link to="/SignIn" className='text-white border border-white rounded-lg content-center px-2 py-1'>
+          <Link to="/signIn" className='text-white border border-white rounded-lg content-center px-2 py-1'>
             Sign In
           </Link>
-          <Link to="/SignUp" className='text-white border border-white rounded-lg content-center px-2 py-1 '>
+          <Link to="/signUp" className='text-white border border-white rounded-lg content-center px-2 py-1 '>
             Sign Up
           </Link>
         </div>
