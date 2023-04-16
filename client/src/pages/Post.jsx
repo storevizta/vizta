@@ -8,8 +8,11 @@ import { usePostAdMutation } from '../features/slices/adsSlice.jsx';
 
 export const Post = () => {
   const navigate = useNavigate();
+
   const dispatch = useDispatch();
+
   const allAds = useSelector((state) => state.usePostAdMutation);
+
   const [input, setInput] = useState({
     title: '',
     description: '',
