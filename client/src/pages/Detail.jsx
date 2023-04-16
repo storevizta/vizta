@@ -11,10 +11,11 @@ import { Navbar } from "../components/Navbar";
 import { UserDetail } from '../components/UserDetail';
 
 export const Detail = () => {
-  const { id , userId } = useParams();
+  const { id } = useParams();
 
   const { data, error, isLoading } = useGetAdByIdQuery(id);
 
+  if (isLoading)
   if (isLoading)
     return (
       <div>
@@ -23,49 +24,26 @@ export const Detail = () => {
     );
 
   if (error)
+  if (error)
     return (
       <div>
         <Error />
       </div>
     );
 
-  const { title, image, description, stock, price, oldPrice, discount, UserId} = data;
+  const { title, image, description, stock, price, oldPrice, discount } = data;
 
   return (
-
-    <div>
-      <Navbar />
-      <div>
-        <div key={id} className="bg-stone-300 p-15 w-9/12">
-
-        <div className='grid grid-rows-2 gap-2'>
-          <img src={image} alt="image not found" className="block w-1/2 px-10 item-center" />
-
-          <div className='block w-1/2'>
-
-            <h1 className='text-center text-4xl py-10 my-10 font-bold uppercase'>{title}</h1>
-
-            <span className='p-15'>${price}</span>
-
-             <div>
-              <p>Description: </p>
-              <p>{description}</p>
-            </div>
-
-            <div>
-              <p className="inline">Stock: </p>
-              <p className='inline'>{stock}</p>
-            </div> 
-    
-            <div>
-              <UserDetail id={userId} />
-            </div>
-          </div>
-        </div>
-        
+    <>
+      <div key={id}>
+        {/* <img src={image} alt="image not found" /> */}
+        <h1>{title}</h1>
+        <h2>{price}</h2>
+        <h3>{stock}</h3>
+        <h3>{oldPrice}</h3>
+        <h3>{discount}</h3>
+        <h4>{description}</h4>
       </div>
-      </div>
-      
-  </div>
+    </>
   );
 };
