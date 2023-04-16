@@ -62,6 +62,8 @@ export const Home = () => {
     );
   }
 
+  console.log(data.ads);
+
   return (
     <div>
       <Navbar />

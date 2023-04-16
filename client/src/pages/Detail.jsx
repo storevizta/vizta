@@ -31,9 +31,9 @@ export const Detail = () => {
     );
   }
 
-  console.log(data);
-
   const { image, title, description, UserId } = data;
+
+  console.log(data);
 
   return (
     <div>
