@@ -33,8 +33,6 @@ export const Post = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  console.log(data)
-
   const handleSubmit = (e) => {
     e.preventDefault();
     createAd({
@@ -68,7 +66,7 @@ export const Post = () => {
         <div>
           <h1 className='text-center text-white pt-5 text-3xl'>Creá tu Publicación</h1>
         </div>
-        <form className="space-y-3 mt-5" onSubmit={handleSubmit}>
+        <form className="space-y-3 mt-5 pb-10" onSubmit={handleSubmit}>
           
           <div className='flex ml-36 mr-36'>
             <label className='basis-1/6 font-bold text-white mr-3'>Titulo: </label>
@@ -159,11 +157,13 @@ export const Post = () => {
               </option>
             </select>
           </div>
-        
-        <button className="hover:bg-zinc-600" type="submit">
-          Submit
-        </button>
-      </form>
+              
+          <button className="ml-80 bg-white hover:bg-zinc-600 px-8 py-2 rounded" type="submit">
+            <p className='font-bold hover:text-white'>Submit</p>
+          </button>
+
+          
+        </form>
       </div>
       </div>
 )
