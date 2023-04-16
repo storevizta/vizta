@@ -17,7 +17,7 @@ import imageError from '../assets/imageError.svg';
 import atras from "../assets/row-left.svg";
 
 export const Detail = () => {
-  const { id , userId} = useParams();
+  const { id } = useParams();
 
   const { data, error, isLoading } = useGetAdByIdQuery(id);
 
@@ -37,7 +37,7 @@ export const Detail = () => {
     );
   }
 
-  const { title, image, description, price, oldPrice, discount, condition, state } = data;
+  const { title, image, description, price, oldPrice, discount, condition, state, UserId } = data;
 
   return (
     <div>
@@ -71,7 +71,7 @@ export const Detail = () => {
           </div>
           
           <div className='block text-white mt-15'>
-              <UserDetail id={userId}/>
+              <UserDetail id={UserId}/>
           </div>
         </div>
         
