@@ -8,7 +8,7 @@ import { Category } from '../features/slices/categorySlice';
 
 import { User } from '../features/slices/userSlice';
 
-import FilterSlice from '../features/slices/filterSlice';
+import filterSlice from '../features/slices/filterSlice';
 
 import infoUser from "../features/slices/userSlice"
 
