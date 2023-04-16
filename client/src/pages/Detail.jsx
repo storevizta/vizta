@@ -31,7 +31,7 @@ export const Detail = () => {
     );
   }
 
-  const { image, title, description, UserId } = data;
+  const { image, title, description, price, UserId } = data;
 
   console.log(data);
 
@@ -39,16 +39,18 @@ export const Detail = () => {
     <div>
       <Navbar />
       <div className="p-5 flex outline">
-        <img
-          className="w-32"
-          src={image}
-          alt="image"
-          onError={(e) => (e.target.src = `${imageError}`)}
-        />
-
+        <div className="outline">
+          <img
+            className="w-32"
+            src={image}
+            alt="image"
+            onError={(e) => (e.target.src = `${imageError}`)}
+          />
+        </div>
         <div className="w-64 outline">
           <div>{title}</div>
           <div>{description}</div>
+          <div>{price}</div>
         </div>
       </div>
     </div>

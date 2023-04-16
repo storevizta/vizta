@@ -24,7 +24,9 @@ export const Navbar = () => {
     <>
       <nav className="p-5 flex">
         <div className="w-full px-5 py-1 rounded-full flex justify-between items-center">
-          <div className="text-xl text-slate-50">VIZTA</div>
+          <Link to="/home">
+            <div className="text-xl text-slate-50">VIZTA</div>
+          </Link>
           {searchbar && (
             <form>
               <input
