@@ -11,11 +11,10 @@ import { Navbar } from "../components/Navbar";
 import { UserDetail } from '../components/UserDetail';
 
 export const Detail = () => {
-  const { id } = useParams();
+  const { id , userId} = useParams();
 
   const { data, error, isLoading } = useGetAdByIdQuery(id);
 
-  if (isLoading)
   if (isLoading)
     return (
       <div>
@@ -24,26 +23,49 @@ export const Detail = () => {
     );
 
   if (error)
-  if (error)
     return (
       <div>
         <Error />
       </div>
     );
 
-  const { title, image, description, stock, price, oldPrice, discount } = data;
+  const { title, image, description, price, oldPrice, discount, condition, state } = data;
 
   return (
     <>
+    <div>
+      < Navbar />
       <div key={id}>
-        {/* <img src={image} alt="image not found" /> */}
-        <h1>{title}</h1>
-        <h2>{price}</h2>
-        <h3>{stock}</h3>
-        <h3>{oldPrice}</h3>
-        <h3>{discount}</h3>
-        <h4>{description}</h4>
+        <img src={image} alt="image not found" />
+        <div>
+          <h1>{title}</h1>
+
+          <div>
+            <h2>{price}</h2>
+          </div>
+
+          <div>
+            <p>Description: </p>
+            <h4>{description}</h4>
+          </div>
+
+          <div>
+            <p>Condition: </p>
+            <h3>{condition}</h3>
+          </div>
+
+          <div>
+            <p>State: </p>
+            <p>{state}</p>
+          </div>
+          
+          <UserDetail id={userId}/>
+
+        </div>
+        
       </div>
+    </div>
+      
     </>
   );
 };
