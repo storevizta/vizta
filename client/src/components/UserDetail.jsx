@@ -29,10 +29,10 @@ export const UserDetail = (userId) => {
 
     return (
         <div>
-            <p>Seller:</p>
-            <p>{name}</p>
-            <p>{address}</p>
-            <p>Joined in {date}</p>
+            <p className='pl-5 pt-10 font-bold'>Seller:</p>
+            <p className='pl-5 text-sm'>{name}</p>
+            <p className='pl-5 text-sm'>{address}</p>
+            <p className='pl-5 text-sm'>Joined in {date}</p>
         </div>
     )
 }

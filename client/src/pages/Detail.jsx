@@ -35,32 +35,34 @@ export const Detail = () => {
     <>
     <div>
       < Navbar />
-      <div key={id}>
-        <img src={image} alt="image not found" />
-        <div>
-          <h1>{title}</h1>
+
+      <div className="flex items-stretch w-4/5 m-auto" key={id}>
+        <img src={image} className="basis-2/3 rounded-md"alt="image not found" />
+        <div className='basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md'>
+          <h1 className='font-bold text-white pl-5 text-3xl pt-3'>{title}</h1>
 
           <div>
-            <h2>{price}</h2>
+            <p className='pl-5 text-white'>$ {price}</p>
           </div>
 
           <div>
-            <p>Description: </p>
-            <h4>{description}</h4>
+            <p className='pl-5 text-white font-bold pt-5'>Description: </p>
+            <h4 className='pl-8 text-white pb-3'>{description}</h4>
           </div>
 
           <div>
-            <p>Condition: </p>
-            <h3>{condition}</h3>
+            <p className='font-bold text-white pl-5 inline'>Condition: </p>
+            <h3 className='inline text-white'> {condition}</h3>
           </div>
 
           <div>
-            <p>State: </p>
-            <p>{state}</p>
+            <p className='inline text-white font-bold pl-5'>State: </p>
+            <p className='inline text-white pb-15'>{state}</p>
           </div>
           
-          <UserDetail id={userId}/>
-
+          <div className='block text-white mt-15'>
+              <UserDetail id={userId}/>
+          </div>
         </div>
         
       </div>
