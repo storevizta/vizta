@@ -8,74 +8,47 @@ import { Error } from '../components/Error';
 
 import { Navbar } from '../components/Navbar';
 
-// import { UserDetail } from '../components/UserDetail';
-
-// import { useGetUserByIdQuery } from '../features/slices/userSlice';
+import imageError from '../assets/imageError.svg';
 
 export const Detail = () => {
-  const { id, userId } = useParams();
+  const { id } = useParams();
 
   const { data, error, isLoading } = useGetAdByIdQuery(id);
 
-  const { dataUser, errorUser, isLoadingUser } = useGetUserByIdQuery(userId);
-
-  if (isLoading || isLoadingUser)
+  if (isLoading) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Loading />
       </div>
     );
+  }
 
-  if (error || errorUser)
+  if (error) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Error />
       </div>
     );
+  }
 
-  const {
-    title,
-    image,
-    description,
-    stock,
-    price,
-    oldPrice,
-    discount,
-    UserId,
-  } = data;
+  console.log(data);
+
+  const { image, title, description } = data;
 
   return (
     <div>
       <Navbar />
-      <div>
-        <div key={id} className="bg-stone-300 p-15 w-9/12">
-          <div className="grid grid-rows-2 gap-2">
-            <img
-              src={image}
-              alt="image not found"
-              className="block w-1/2 px-10 item-center"
-            />
+      <div className="p-5 flex outline">
+        <img
+          className="w-32"
+          src={image}
+          alt="image"
+          onError={(e) => (e.target.src = `${imageError}`)}
+        />
 
-            <div className="block w-1/2">
-              <h1 className="text-center text-4xl py-10 my-10 font-bold uppercase">
-                {title}
-              </h1>
-
-              <span className="p-15">${price}</span>
-
-              <div>
-                <p>Description: </p>
-                <p>{description}</p>
-              </div>
-
-              <div>
-                <p className="inline">Stock: </p>
-                <p className="inline">{stock}</p>
-              </div>
-
-              <div>{/* <UserDetail id={userId} /> */}</div>
-            </div>
-          </div>
+        <div className="w-64 outline">
+          <div>{title}</div>
+          <div>{description}</div>
         </div>
       </div>
     </div>

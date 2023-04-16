@@ -88,7 +88,7 @@ export const Post = () => {
             <div>
               <div>
                 <div>
-                  <label > Título:</label>
+                  <label> Título:</label>
                   <input
                     type="text"
                     value={input.name}

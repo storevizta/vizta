@@ -11,19 +11,21 @@ export const Profile = () => {
 
   const { data, error, isLoading } = useGetUserByIdQuery(id);
 
-  if (isLoading)
+  if (isLoading) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Loading />
       </div>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Error />
       </div>
     );
+  }
 
   const { name, address } = data;
 

@@ -11,7 +11,7 @@ const {
   getUserAds,
   getUserFavorites,
   createFavorite,
-  deleteFavorite
+  deleteFavorite,
 } = require('../controller/usersController.js');
 
 router.get('/:id', getUser);

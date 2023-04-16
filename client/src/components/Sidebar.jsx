@@ -2,6 +2,10 @@ import { useDispatch } from 'react-redux';
 
 import { useGetCategoryQuery } from '../features/slices/categorySlice';
 
+import { Loading } from './Loading';
+
+import { Error } from './Error';
+
 import {
   setCategory,
   setMinPrice,
@@ -17,9 +21,21 @@ export const Sidebar = () => {
 
   const { data, error, isLoading } = useGetCategoryQuery();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loading />
+      </div>
+    );
+  }
 
-  if (error) return <div>Error...</div>;
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Error />
+      </div>
+    );
+  }
 
   const handlerCategory = (id) => {
     dispatch(setCategory(id));
@@ -53,43 +69,47 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="w-72 p-5 rounded bg-zinc-700">
-        <div>
+      <aside className="p-5 rounded ">
+        <div className="w-64 p-5 rounded-xl bg-zinc-700 flex flex-col gap-5">
           <div>
-            <div className="">Categories:</div>
-            {data &&
-              data?.map((el) => (
-                <div
-                  className="px-2 rounded hover:bg-zinc-600"
-                  key={el.id}
-                  onClick={() => handlerCategory(el.id)}
-                >
-                  {el.name}
-                </div>
-              ))}
+            <div>Categories:</div>
+            <div>
+              {data &&
+                data?.map((el) => (
+                  <div
+                    className="px-2 rounded hover:bg-zinc-600"
+                    key={el.id}
+                    onClick={() => handlerCategory(el.id)}
+                  >
+                    {el.name}
+                  </div>
+                ))}
+            </div>
           </div>
           <div>
-            <div className="">Filters:</div>
-            <div className="">
-              <h3 className="">Price:</h3>
-              <form className="flex gap-5">
-                <input
-                  className="w-24 rounded"
-                  type="text"
-                  placeholder="Min."
-                  onChange={handlerMinPrice}
-                />
-                <input
-                  className="w-24 rounded"
-                  type="text"
-                  placeholder="Max."
-                  onChange={handlerMaxPrice}
-                />
-              </form>
+            <div>Filters:</div>
+            <div>
+              <div>Price:</div>
+              <div>
+                <form className="flex gap-5">
+                  <input
+                    className="w-24 rounded outline-none"
+                    type="text"
+                    placeholder="Min."
+                    onChange={handlerMinPrice}
+                  />
+                  <input
+                    className="w-24 rounded outline-none"
+                    type="text"
+                    placeholder="Max."
+                    onChange={handlerMaxPrice}
+                  />
+                </form>
+              </div>
             </div>
-            <div className="">
-              <h3 className="">Sort:</h3>
-              <div className="">
+            <div>
+              <div>Sort:</div>
+              <div>
                 <div
                   className="px-2 rounded hover:bg-zinc-600"
                   onClick={() => handlerSort('asc')}
@@ -104,10 +124,10 @@ export const Sidebar = () => {
                 </div>
               </div>
             </div>
-            <div className="">
-              <h3 className="">Discount:</h3>
+            <div>
+              <div className="">Discount:</div>
               <select
-                className="px-2 rounded hover:bg-zinc-600"
+                className="w-52 px-2 rounded outline-none"
                 onChange={(e) => handlerDiscount(e)}
               >
                 <option value="">All</option>
@@ -122,24 +142,25 @@ export const Sidebar = () => {
                 <option value="90">100%</option>
               </select>
             </div>
-          </div>
-          <div>
-            <h3>Condition:</h3>
             <div>
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerCondition('new')}
-              >
-                New
-              </div>
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerCondition('used')}
-              >
-                Used
+              <div>Condition:</div>
+              <div>
+                <div
+                  className="px-2 rounded hover:bg-zinc-600"
+                  onClick={() => handlerCondition('new')}
+                >
+                  New
+                </div>
+                <div
+                  className="px-2 rounded hover:bg-zinc-600"
+                  onClick={() => handlerCondition('used')}
+                >
+                  Used
+                </div>
               </div>
             </div>
           </div>
+
           <div>
             <div
               className="px-2 rounded hover:bg-red-600"

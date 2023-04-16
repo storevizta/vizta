@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/detail/:id/:userId',
+        path: '/detail/:id',
         element: <Detail />,
       },
       {

@@ -55,9 +55,6 @@ export const Ads = createApi({
         body: data,
       }),
     }),
-    getUserId: builder.query({
-      query: (userId) => `/ads/${userId}`,
-    }),
   }),
 });
 
