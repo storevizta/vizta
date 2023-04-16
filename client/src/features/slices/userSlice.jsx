@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import { createSlice } from '@reduxjs/toolkit';
 
 export const User = createApi({
@@ -15,10 +16,10 @@ export const infoUser = createSlice({
   name: 'info_user',
 
   initialState: {
-    id: "",
+    id: '',
     name: '',
     email: '',
-    role: ''
+    role: '',
   },
 
   reducers: {
@@ -35,21 +36,13 @@ export const infoUser = createSlice({
       state.role = action.payload;
     },
     resetInfo: (state) => {
-      state.id = "",
-      state.name = '',
-      state.email = '',
-      state.role = ''
+      (state.id = ''), (state.name = ''), (state.email = ''), (state.role = '');
     },
   },
 });
 
-export const {
-  setId,
-  setName,
-  setEmail,
-  setRole,
-  resetInfo
-} = infoUser.actions;
+export const { setId, setName, setEmail, setRole, resetInfo } =
+  infoUser.actions;
 
 export default infoUser.reducer;
 
