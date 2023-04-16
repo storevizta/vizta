@@ -18,7 +18,7 @@ export const store = configureStore({
     [Auth.reducerPath]: Auth.reducer,
     [Category.reducerPath]: Category.reducer,
     [User.reducerPath]: User.reducer,
-    filter: FilterSlice,
+    filter: filterSlice,
     info_user: infoUser
   },
   middleware: (getDefaultMiddleware) =>
