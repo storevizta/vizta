@@ -11,7 +11,7 @@ export const UserDetail = (userId) => {
 
     if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div>
         <Loading />
       </div>
     );
@@ -19,7 +19,7 @@ export const UserDetail = (userId) => {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div>
         <Error />
       </div>
     );

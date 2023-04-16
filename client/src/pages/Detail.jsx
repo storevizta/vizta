@@ -23,7 +23,7 @@ export const Detail = () => {
 
   if (isLoading) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Loading />
       </div>
     );
@@ -31,7 +31,7 @@ export const Detail = () => {
 
   if (error) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Error />
       </div>
     );
