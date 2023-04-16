@@ -70,14 +70,19 @@ export const Home = () => {
         <div className="w-full h-max p-5">
           <Featured />
           <Pagination />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
-            {data &&
-              data.ads.map((el) => (
-                <Link to={`/detail/${el.id}`} key={el.id}>
-                  <Card info={el} />
-                </Link>
-              ))}
-          </div>
+
+          {data && data.ads.length === 0 ? (
+            <p>No se encontraron resultados</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
+              {data &&
+                data.ads.map((el) => (
+                  <Link to={`/detail/${el.id}`} key={el.id}>
+                    <Card info={el} />
+                  </Link>
+                ))}
+            </div>
+          )}
         </div>
       </main>
     </div>
