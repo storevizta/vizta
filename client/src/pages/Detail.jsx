@@ -47,12 +47,12 @@ export const Detail = () => {
 
           <div>
             <p className='pl-5 text-white font-bold pt-5'>Description: </p>
-            <h4 className='pl-8 text-white pb-3'>{description}</h4>
+            <p className='pl-8 text-white pb-3'>{description}</p>
           </div>
 
           <div>
             <p className='font-bold text-white pl-5 inline'>Condition: </p>
-            <h3 className='inline text-white'> {condition}</h3>
+            <p className='inline text-white'> {condition}</p>
           </div>
 
           <div>
