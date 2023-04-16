@@ -2,22 +2,25 @@ import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useSignUpMutation, useSignInGoogleQuery} from '../features/slices/authSlice';
+import {
+  useSignUpMutation,
+  useSignInGoogleQuery,
+} from '../features/slices/authSlice';
 
 export const SignUp = () => {
   const navigate = useNavigate();
 
   const [error, setError] = useState({
-    email: "",
-  })
+    email: '',
+  });
 
   const [data, setData] = useState({
-    name: "",
+    name: '',
     email: '',
     password: '',
   });
 
-  const signInGoogle = useSignInGoogleQuery()
+  const signInGoogle = useSignInGoogleQuery();
   const signUpMutation = useSignUpMutation();
 
   const handleInput = (event) => {
@@ -26,18 +29,19 @@ export const SignUp = () => {
 
   const sendForm = (event) => {
     event.preventDefault();
-    signUpMutation[0](data).then(value => {
-      if(value.data.data.email){
-        return "ERROR"
-      }
-      navigate('/signin');
-    })
-    .catch(err => setError({...error, email: "Email already exist!"}))
+    signUpMutation[0](data)
+      .then((value) => {
+        if (value.data.data.email) {
+          return 'ERROR';
+        }
+        navigate('/signin');
+      })
+      .catch((err) => setError({ ...error, email: 'Email already exist!' }));
   };
 
   const googleConnect = () => {
-    window.location.href = signInGoogle.data
-}
+    window.location.href = signInGoogle.data;
+  };
 
   return (
     <div>
@@ -49,7 +53,10 @@ export const SignUp = () => {
           <p class="text-slate-500">Hi, Welcome back 👋</p>
 
           <div class="my-5">
-            <button onClick={() => googleConnect()} class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
+            <button
+              onClick={() => googleConnect()}
+              class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150"
+            >
               <img
                 src="https://www.svgrepo.com/show/355037/google.svg"
                 class="w-6 h-6"

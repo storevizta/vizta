@@ -43,5 +43,3 @@
 - Styled Components
 
 - Spline
-
-- Tailwind CSS 

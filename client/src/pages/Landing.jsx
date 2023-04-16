@@ -1,29 +1,52 @@
 import styled from 'styled-components';
+import Logo from '../assets/LogoVizta.png';
 import Spline from '@splinetool/react-spline';
-import { Link } from 'react-router-dom'
 
 export const Landing = () => {
   return (
-    <div className='h-screen bg-orange-500'>
-      <nav className='display h-1/10 flex w-full px-5 py-1 rounden-full justify-between bg-zinc-900'>
-        <h3 className='text-xl text-slate-50'>VIZTA</h3>
-        <div className='flex w-36 justify-between'> 
-          <Link to='/SignIn' className='text-xl text-slate-50'>
-            Sign In
-          </Link>
-          <Link to='/SignUp' className='text-xl text-slate-50'>
-            Sign Up
-          </Link>
-        </div>
-      </nav>
-      <section className='flex flex-col h-screen bg-zinc-900 justify-center items-center gap-y-8'>
-        <h2 className='text-slate-50 text-8xl text-center font-bold'>The Best Website<br/>to do your shopping</h2>
-        <p className='text-slate-50 text-2xl text-center font-medium'>In this Website you will find the best products<br/>to do your research for any category</p>
-        <Link to='/home' className="bg-slate-50 text-3xl px-6 py-2 rounded-xl font-bold text-zinc-900">
-          Let's Shop
-        </Link>
-      </section>
-    </div>
+    <LandingStyled>
+      <LandingNav>
+        <LandingImgLogo src={Logo} alt="Logo VIZTA" />
+        <LandingContainerButton>
+          <LandingAccountButton href="/signin">Sign In</LandingAccountButton>
+          <LandingAccountButton href="/signup">Sing Up</LandingAccountButton>
+        </LandingContainerButton>
+      </LandingNav>
+      <LandingFirstSection>
+        <LandingTitle>
+          The Best Website
+          <br />
+          to do your shopping!
+        </LandingTitle>
+        <LandingParagraph>
+          This place was created just for you,
+          <br />
+          to check wich product is better and make your shopping safety
+        </LandingParagraph>
+        <LandingLaunchButton href="/home">Let's Shop</LandingLaunchButton>
+      </LandingFirstSection>
+      <LandingSecondSection>
+        <LandingSectionLeft>
+          <LandingQuestion>
+            What will you
+            <br />
+            find here?
+          </LandingQuestion>
+          <LandingParagraphInfo>
+            This Website has diferent filters to make your
+            <br />
+            life eassier an check all the products just by
+            <br />
+            some clicks, check the prices and
+            <br />
+            post your product here!
+          </LandingParagraphInfo>
+        </LandingSectionLeft>
+        <LandingSectionRight>
+          <Spline scene="https://prod.spline.design/6g5THKbtu0Jnc8jc/scene.splinecode" />
+        </LandingSectionRight>
+      </LandingSecondSection>
+    </LandingStyled>
   );
 };
 

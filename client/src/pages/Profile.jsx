@@ -1,36 +1,37 @@
-import styled from 'styled-components';
-
 import { useParams } from 'react-router-dom';
 
 import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
 
-import { useGetUserIdQuery } from '../features/slices/userSlice';
+// import { useGetUserByIdQuery } from '../features/slices/userSlice';
 
 export const Profile = () => {
+  const { id } = useParams();
 
-    const { id } = useParams();
-    
-    const { data, error, isLoading } = useGetUserIdQuery(id);
+  const { data, error, isLoading } = useGetUserByIdQuery(id);
 
-    if (isLoading)
+  if (isLoading) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Loading />
       </div>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Error />
       </div>
     );
+  }
 
-    const {name, address} = data;
+  const { name, address } = data;
 
-  return (<div>
-            <p>{name}</p>
-  </div>);
+  return (
+    <div>
+      <p>{name}</p>
+    </div>
+  );
 };

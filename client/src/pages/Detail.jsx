@@ -6,68 +6,51 @@ import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
 
-import { Navbar } from "../components/Navbar";
+import { Navbar } from '../components/Navbar';
 
-import { UserDetail } from '../components/UserDetail';
+import imageError from '../assets/imageError.svg';
 
 export const Detail = () => {
-  const { id , userId} = useParams();
+  const { id } = useParams();
 
   const { data, error, isLoading } = useGetAdByIdQuery(id);
 
-  if (isLoading)
+  if (isLoading) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Loading />
       </div>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         <Error />
       </div>
     );
+  }
 
-  const { title, image, description, price, oldPrice, discount, condition, state } = data;
+  console.log(data);
+
+  const { image, title, description } = data;
 
   return (
-    <>
     <div>
-      < Navbar />
+      <Navbar />
+      <div className="p-5 flex outline">
+        <img
+          className="w-32"
+          src={image}
+          alt="image"
+          onError={(e) => (e.target.src = `${imageError}`)}
+        />
 
-      <div className="flex items-stretch w-4/5 m-auto" key={id}>
-        <img src={image} className="basis-2/3 rounded-md"alt="image not found" />
-        <div className='basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md'>
-          <h1 className='font-bold text-white pl-5 text-3xl pt-3'>{title}</h1>
-
-          <div>
-            <p className='pl-5 text-white'>$ {price}</p>
-          </div>
-
-          <div>
-            <p className='pl-5 text-white font-bold pt-5'>Description: </p>
-            <p className='pl-8 text-white pb-3'>{description}</p>
-          </div>
-
-          <div>
-            <p className='font-bold text-white pl-5 inline'>Condition: </p>
-            <p className='inline text-white'> {condition}</p>
-          </div>
-
-          <div>
-            <p className='inline text-white font-bold pl-5'>State: </p>
-            <p className='inline text-white pb-15'>{state}</p>
-          </div>
-          
-          <div className='block text-white mt-15'>
-              <UserDetail id={userId}/>
-          </div>
+        <div className="w-64 outline">
+          <div>{title}</div>
+          <div>{description}</div>
         </div>
-        
       </div>
     </div>
-      
-    </>
   );
 };

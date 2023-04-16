@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
@@ -7,7 +7,13 @@ import { setTitle } from '../features/slices/filterSlice';
 import post from '../assets/post.svg';
 
 export const Navbar = () => {
+  const { id } = useParams();
+
+  const location = useLocation();
+
   const dispatch = useDispatch();
+
+  const searchbar = location.pathname !== `/detail/${id}`;
 
   const handlerChange = (e) => {
     const newTitle = e.target.value;
@@ -19,15 +25,16 @@ export const Navbar = () => {
       <nav className="p-5 flex">
         <div className="w-full px-5 py-1 rounded-full flex justify-between items-center">
           <div className="text-xl text-slate-50">VIZTA</div>
-
-          <form>
-            <input
-              className="w-96 px-3 py-1 rounded-full outline-none bg-zinc-700"
-              type="text"
-              placeholder="Search..."
-              onChange={handlerChange}
-            />
-          </form>
+          {searchbar && (
+            <form>
+              <input
+                className="w-96 px-3 py-1 rounded-full outline-none bg-zinc-700"
+                type="text"
+                placeholder="Search..."
+                onChange={handlerChange}
+              />
+            </form>
+          )}
 
           <div className="flex justify-center gap-5">
             <Link className="flex justify-center items-center" to="/post">
