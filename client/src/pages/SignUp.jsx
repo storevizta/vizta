@@ -21,6 +21,7 @@ export const SignUp = () => {
   });
 
   const signInGoogle = useSignInGoogleQuery();
+
   const signUpMutation = useSignUpMutation();
 
   const handleInput = (event) => {

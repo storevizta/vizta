@@ -33,7 +33,7 @@ export const Detail = () => {
 
   console.log(data);
 
-  const { image, title, description } = data;
+  const { image, title, description, UserId } = data;
 
   return (
     <div>
