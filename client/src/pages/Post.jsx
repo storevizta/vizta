@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { useCreateAdMutation } from '../features/slices/adsSlice';
 
-import {Navbar} from '../components/Navbar';
+import { Navbar } from '../components/Navbar';
 
-import { useGetCategoryQuery } from "../features/slices/categorySlice";7
+import { useGetCategoryQuery } from '../features/slices/categorySlice';
+7;
 
 import swal from 'sweetalert';
 
@@ -14,7 +15,7 @@ export const Post = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState({
-    userId: '09168922-e71c-4416-8742-8ad6e284ca0a',
+    userId: 'cd7460f6-6032-4d43-929f-729f0095dbf5',
     categoryId: '',
     title: '',
     description: '',
@@ -22,12 +23,12 @@ export const Post = () => {
     price: '',
     discount: '',
     condition: '',
-    state: ''
+    state: '',
   });
 
   const [createAd] = useCreateAdMutation();
 
-  const {data: datacategory} = useGetCategoryQuery();
+  const { data: datacategory } = useGetCategoryQuery();
 
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -44,7 +45,7 @@ export const Post = () => {
       categoryId: parseFloat(data.categoryId),
       state: data.state,
       condition: data.condition,
-      discount: parseFloat(data.discount)
+      discount: parseFloat(data.discount),
     })
       .unwrap()
       .then((data) => {
@@ -62,121 +63,153 @@ export const Post = () => {
   return (
     <div>
       <Navbar />
-      <div className='bg-zinc-700 w-3/4 m-auto'>
+      <div className="bg-zinc-700 w-3/4 m-auto">
         <div>
-          <h1 className='text-center text-white pt-5 text-3xl'>Creá tu Publicación</h1>
+          <h1 className="text-center text-white pt-5 text-3xl">
+            Creá tu Publicación
+          </h1>
         </div>
         <form className="space-y-3 mt-5 pb-10" onSubmit={handleSubmit}>
-          
-          <div className='flex ml-36 mr-36'>
-            <label className='basis-1/6 font-bold text-white mr-3'>Titulo: </label>
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Title:{' '}
+            </label>
             <input
               type="text"
               placeholder="Title"
               name="title"
               value={data.title}
               onChange={handleInput}
-              className='w-auto basis-5/6 p-1 rounded'
+              className="w-auto basis-5/6 p-1 rounded"
             />
           </div>
-          
-          <div className='flex ml-36 mr-36'>
-            <label className='basis-1/6 font-bold text-white mr-3'>Category: </label>
-            <select name='categoryId' onChange={handleInput} className='w-auto basis-5/6 p-1 rounded'> 
-              <option value="select" disabled>Seleccione una categoria</option>
-              {datacategory && datacategory.length > 0 &&
-                datacategory.map(category => 
+
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Category:{' '}
+            </label>
+            <select
+              className="w-auto basis-5/6 p-1 rounded"
+              name="categoryId"
+              defaultValue="default"
+              onChange={handleInput}
+            >
+              <option value="default" disabled>
+                Select a category.
+              </option>
+              {datacategory &&
+                datacategory.length > 0 &&
+                datacategory.map((category) => (
                   <option
                     key={category.id}
                     value={category.id}
-                    className='w-auto basis-5/6 p-1 rounded'>
+                    className="w-auto basis-5/6 p-1 rounded"
+                  >
                     {category.name}
-                  </option>)
-              }
+                  </option>
+                ))}
             </select>
           </div>
-          
-          <div className='flex ml-36 mr-36'>
-            <label className='basis-1/6 font-bold text-white mr-3'>Image: </label>
+
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Image:{' '}
+            </label>
             <input
               type="text"
               placeholder="Image"
               name="image"
               value={data.image}
               onChange={handleInput}
-              className='w-auto basis-5/6 p-1 rounded'
+              className="w-auto basis-5/6 p-1 rounded"
             />
           </div>
 
-          <div className='flex ml-36 mr-36'>
-            <label className='basis-1/6 font-bold text-white mr-3'>Description: </label>
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Description:{' '}
+            </label>
             <textarea
               type="text"
               placeholder="Enter a description"
               name="description"
               value={data.description}
               onChange={handleInput}
-              className='basis-5/6 p-1 rounded h-28'
+              className="basis-5/6 p-1 rounded h-28"
             />
           </div>
 
-          <div className='flex ml-36 mr-36'>
-            <label className='basis-1/6 font-bold text-white mr-3'>Price: </label>
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Price:{' '}
+            </label>
             <input
               type="number"
               placeholder="Price"
               name="price"
               value={data.price}
               onChange={handleInput}
-              className='w-auto basis-5/6 p-1 rounded'
+              className="w-auto basis-5/6 p-1 rounded"
             />
           </div>
 
-          <div className='flex ml-36 mr-36'>
-            <label className='basis-1/6 font-bold text-white mr-3'>Discount: </label>
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Discount:{' '}
+            </label>
             <input
               type="number"
               placeholder="Discount"
               name="discount"
               value={data.discount}
               onChange={handleInput}
-              className='w-auto basis-5/6 p-1 rounded'
+              className="w-auto basis-5/6 p-1 rounded"
             />
           </div>
-           
-          <div className='flex ml-36 mr-36'>
-            <label className='basis-1/6 font-bold text-white mr-3'>Condition: </label>
-            <select name='condition' onChange={handleInput} className='w-auto basis-5/6 p-1 rounded'> 
-              <option value="select" disabled>Seleccione una categoria</option>
-      
-              <option value="New" className='w-auto basis-5/6 p-1 rounded'>
+
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Condition:{' '}
+            </label>
+            <select
+              className="w-auto basis-5/6 p-1 rounded"
+              name="condition"
+              defaultValue="default"
+              onChange={handleInput}
+            >
+              <option value="default" disabled>
+                Select a condition.
+              </option>
+
+              <option value="New" className="w-auto basis-5/6 p-1 rounded">
                 New
               </option>
-              <option value="Used" className='w-auto basis-5/6 p-1 rounded'>
+              <option value="Used" className="w-auto basis-5/6 p-1 rounded">
                 Used
               </option>
             </select>
           </div>
-              
-          <button className="ml-80 bg-white hover:bg-zinc-600 px-8 py-2 rounded" type="submit">
-            <p className='font-bold hover:text-white'>Submit</p>
-          </button>
 
-          
+          <button
+            className="ml-80 bg-white hover:bg-zinc-600 px-8 py-2 rounded"
+            type="submit"
+          >
+            <p className="font-bold hover:text-white">Submit</p>
+          </button>
         </form>
       </div>
-      </div>
-)
+    </div>
+  );
 };
 {
-// {
-//   "userId": "cd7460f6-6032-4d43-929f-729f0095dbf5",
-//   "categoryId": 5,
-//   "image": "https://example.com/image45.jpg",
-//   "title": "Product COT",
-//   "description": "This is a new product description.",
-//   "price": 80,
-//   "discount": 30,
-//   "condition": "Used"
-// }
+  // {
+  //   "userId": "cd7460f6-6032-4d43-929f-729f0095dbf5",
+  //   "categoryId": 5,
+  //   "image": "https://example.com/image45.jpg",
+  //   "title": "Product COT",
+  //   "description": "This is a new product description.",
+  //   "price": 80,
+  //   "discount": 30,
+  //   "condition": "Used"
+  // }
 }
