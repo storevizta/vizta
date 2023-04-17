@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   useSignUpMutation,
   useSignInGoogleQuery,
-} from '../features/slices/authSlice';
+} from '../features/query/authQuery';
 
 export const SignUp = () => {
   const navigate = useNavigate();
