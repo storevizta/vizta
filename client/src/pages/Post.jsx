@@ -24,8 +24,6 @@ export const Post = () => {
     state: '',
   });
 
-  console.log(data);
-
   const [errors, setErrors] = useState({});
 
   const [createAd] = useCreateAdMutation();
@@ -47,6 +45,8 @@ export const Post = () => {
 
     if (data.price === '') {
       errors.price = 'The Price is required';
+    } else if (data.price <= 0){
+      errors.price = "The price has to be equal to or greater than 0"
     }
 
     if (data.condition === '') {
@@ -54,6 +54,7 @@ export const Post = () => {
     }
     return errors;
   }
+  
 
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -243,6 +244,9 @@ export const Post = () => {
           <button
             className="block mx-auto bg-white hover:bg-zinc-600 px-8 py-2 rounded"
             type="submit"
+            disabled= {
+              !data.title || !data.price || !data.categoryId || !data.condition
+            }
           >
             <p className="font-bold hover:text-white">Submit</p>
           </button>
