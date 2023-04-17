@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useCreateAdMutation } from '../features/slices/adsSlice';
+import { useCreateAdMutation } from '../features/query/adsQuery';
 
 import { Navbar } from '../components/Navbar';
 
-import { useGetCategoryQuery } from '../features/slices/categorySlice';
+import { useGetCategoryQuery } from '../features/query/categoryQuery';
 
 import swal from 'sweetalert';
 
@@ -32,58 +32,63 @@ export const Post = () => {
 
   const { data: datacategory } = useGetCategoryQuery();
 
-  function validate(input){
+  function validate(input) {
     let errors = {};
 
-    if(data.categoryId === ""){
-      errors.categoryId = "You must select a category"
+    if (data.categoryId === '') {
+      errors.categoryId = 'You must select a category';
     }
 
-    if(data.title === ""){
-      errors.title = "Title is required" 
-    } else if(data.title.length < 10){
-      errors.title = "The title must be more than 10 characters"
+    if (data.title === '') {
+      errors.title = 'Title is required';
+    } else if (data.title.length < 10) {
+      errors.title = 'The title must be more than 10 characters';
     }
 
-    if(data.price === ""){
-      errors.price = "The Price is required"
+    if (data.price === '') {
+      errors.price = 'The Price is required';
     }
 
-    if(data.condition === ""){
-      errors.condition = "You must select a condition"
-    };
+    if (data.condition === '') {
+      errors.condition = 'You must select a condition';
+    }
     return errors;
-  };
+  }
 
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-    setErrors(validate({...data, [e.target.name]: e.target.value }))
+    setErrors(validate({ ...data, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!errors.title && !errors.condition && !errors.price && !errors.categoryId){
+    if (
+      !errors.title &&
+      !errors.condition &&
+      !errors.price &&
+      !errors.categoryId
+    ) {
       createAd({
-      userId: data.userId,
-      title: data.title,
-      image: data.image,
-      price: parseFloat(data.price),
-      description: data.description,
-      categoryId: parseFloat(data.categoryId),
-      state: data.state,
-      condition: data.condition,
-    })
-      .unwrap()
-      .then((data) => {
-        console.log(data);
+        userId: data.userId,
+        title: data.title,
+        image: data.image,
+        price: parseFloat(data.price),
+        description: data.description,
+        categoryId: parseFloat(data.categoryId),
+        state: data.state,
+        condition: data.condition,
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .unwrap()
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
-    swal('Successful created!');
+      swal('Successful created!');
 
-    navigate('/home');
+      navigate('/home');
     }
   };
 
@@ -111,9 +116,13 @@ export const Post = () => {
             />
           </div>
 
-          {errors.title && <div className='bg-red-600 w-96 m-auto p-1 rounded'>
-                              <p className='text-center text-white font-bold capitalize'>{errors.title}</p>
-                            </div>}
+          {errors.title && (
+            <div className="bg-red-600 w-96 m-auto p-1 rounded">
+              <p className="text-center text-white font-bold capitalize">
+                {errors.title}
+              </p>
+            </div>
+          )}
 
           <div className="flex ml-36 mr-36">
             <label className="basis-1/6 font-bold text-white mr-3">
@@ -142,9 +151,13 @@ export const Post = () => {
             </select>
           </div>
 
-          {errors.categoryId && <div className='bg-red-600 w-96 m-auto p-1 rounded'>
-                              <p className='text-center text-white font-bold capitalize'>{errors.categoryId}</p>
-                            </div>}
+          {errors.categoryId && (
+            <div className="bg-red-600 w-96 m-auto p-1 rounded">
+              <p className="text-center text-white font-bold capitalize">
+                {errors.categoryId}
+              </p>
+            </div>
+          )}
 
           <div className="flex ml-36 mr-36">
             <label className="basis-1/6 font-bold text-white mr-3">
@@ -188,9 +201,13 @@ export const Post = () => {
             />
           </div>
 
-          {errors.price && <div className='bg-red-600 w-96 m-auto p-1 rounded'>
-                              <p className='text-center text-white font-bold capitalize'>{errors.price}</p>
-                            </div>}
+          {errors.price && (
+            <div className="bg-red-600 w-96 m-auto p-1 rounded">
+              <p className="text-center text-white font-bold capitalize">
+                {errors.price}
+              </p>
+            </div>
+          )}
 
           <div className="flex ml-36 mr-36">
             <label className="basis-1/6 font-bold text-white mr-3">
@@ -215,9 +232,13 @@ export const Post = () => {
             </select>
           </div>
 
-          {errors.condition && <div className='bg-red-600 w-96 m-auto p-1 rounded'>
-                              <p className='text-center text-white font-bold capitalize'>{errors.condition}</p>
-                            </div>}
+          {errors.condition && (
+            <div className="bg-red-600 w-96 m-auto p-1 rounded">
+              <p className="text-center text-white font-bold capitalize">
+                {errors.condition}
+              </p>
+            </div>
+          )}
 
           <button
             className="block mx-auto bg-white hover:bg-zinc-600 px-8 py-2 rounded"

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
-import { useGetAdsQuery } from '../features/slices/adsSlice';
+import { useGetAdsQuery } from '../features/query/adsQuery';
 
 import { Navbar } from '../components/Navbar';
 
