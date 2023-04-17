@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { setTitle } from '../features/slices/filterSlice';
 
-import post from '../assets/post.svg';
+import { Login } from './Login';
 
 export const Navbar = () => {
   const { id } = useParams();
@@ -12,8 +12,6 @@ export const Navbar = () => {
   const location = useLocation();
 
   const dispatch = useDispatch();
-
-  const searchbar = location.pathname !== `/detail/${id}`;
 
   const handlerChange = (e) => {
     const newTitle = e.target.value;
@@ -27,41 +25,18 @@ export const Navbar = () => {
           <Link to="/home">
             <div className="text-xl text-slate-50">VIZTA</div>
           </Link>
-          {searchbar && (
-            <form>
-              <input
-                className="w-96 px-3 py-1 rounded-full outline-none bg-zinc-700"
-                type="text"
-                placeholder="Search..."
-                onChange={handlerChange}
-              />
-            </form>
-          )}
+          <form>
+            <input
+              className="w-96 px-3 py-1 rounded-full outline-none bg-zinc-700"
+              type="text"
+              placeholder="Search..."
+              onChange={handlerChange}
+            />
+          </form>
 
-          <div className="flex justify-center gap-5">
-            <Link className="flex justify-center items-center" to="/post">
-              <img className="w-5" src={post} alt="post" />
-            </Link>
-            <div className="flex justify-center items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-zinc-200"></div>
-              <div className="text-slate-50">Ronaldo</div>
-            </div>
+          <div>
+            <Login />
           </div>
-
-          {/* <div className="flex w-40 justify-between">
-        <Link
-          to="/signIn"
-          className="text-white border border-white rounded-lg content-center px-2 py-1"
-        >
-          Sign In
-        </Link>
-        <Link
-          to="/signUp"
-          className="text-white border border-white rounded-lg content-center px-2 py-1 "
-        >
-          Sign Up
-        </Link>
-      </div> */}
         </div>
       </nav>
     </>

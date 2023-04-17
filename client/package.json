@@ -11,6 +11,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.0.1",
     "@fontsource/roboto": "^4.5.8",
     "@reduxjs/toolkit": "^1.9.3",
     "@splinetool/react-spline": "^2.2.6",

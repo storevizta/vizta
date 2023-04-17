@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux';
 
 import { useGetAdsQuery } from '../features/query/adsQuery';
 
-import { Navbar } from '../components/Navbar';
+import { Loading } from '../components/Loading';
+
+import { Error } from '../components/Error';
 
 import { Sidebar } from '../components/Sidebar';
 
@@ -14,9 +16,7 @@ import { Pagination } from '../components/Pagination';
 
 import { Card } from '../components/Card';
 
-import { Loading } from '../components/Loading';
-
-import { Error } from '../components/Error';
+import { Profile } from './Profile';
 
 export const Home = () => {
   const page = useSelector((state) => state.filter.page);
@@ -66,8 +66,8 @@ export const Home = () => {
 
   return (
     <div>
-      <Navbar />
-      <main className="flex">
+      <Profile />
+      {/* <main className="flex">
         <Sidebar />
         <div className="w-full h-max p-5">
           <Featured />
@@ -86,7 +86,7 @@ export const Home = () => {
             </div>
           )}
         </div>
-      </main>
+      </main> */}
     </div>
   );
 };
