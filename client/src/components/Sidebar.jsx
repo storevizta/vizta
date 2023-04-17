@@ -72,8 +72,8 @@ export const Sidebar = () => {
       <aside className="p-5 rounded ">
         <div className="w-64 p-5 rounded-xl bg-zinc-700 flex flex-col gap-5">
           <div>
-            <div>Categories:</div>
-            <div>
+            <div className="flex items-center justify-center text-lg font-bold">Categories</div>
+            <div className='cursor-pointer' >
               {data &&
                 data?.map((el) => (
                   <div
@@ -87,7 +87,7 @@ export const Sidebar = () => {
             </div>
           </div>
           <div>
-            <div>Filters:</div>
+            <div className="flex items-center justify-center text-lg font-bold">Filters</div>
             <div>
               <div>Price:</div>
               <div>
@@ -109,7 +109,7 @@ export const Sidebar = () => {
             </div>
             <div>
               <div>Sort:</div>
-              <div>
+              <div  className="cursor-pointer">
                 <div
                   className="px-2 rounded hover:bg-zinc-600"
                   onClick={() => handlerSort('asc')}
@@ -144,7 +144,7 @@ export const Sidebar = () => {
             </div>
             <div>
               <div>Condition:</div>
-              <div>
+              <div className="cursor-pointer">
                 <div
                   className="px-2 rounded hover:bg-zinc-600"
                   onClick={() => handlerCondition('new')}
@@ -161,9 +161,9 @@ export const Sidebar = () => {
             </div>
           </div>
 
-          <div>
-            <div
-              className="px-2 rounded hover:bg-red-600"
+          <div className="flex justify-center">
+            <div 
+              className="px-2 rounded bg-gray-800 text-white hover:bg-red-600 cursor-pointer"
               onClick={handlerReset}
             >
               Reset

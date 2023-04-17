@@ -17,8 +17,8 @@ export const Card = ({ info }) => {
           />
         )}
 
-        <div>{title}</div>
-        <div>{price}</div>
+        <div className="text-lg text-white">{title}</div>
+        <div className="text-lg font-bold text-white">${price}</div>
       </div>
     </>
   );
