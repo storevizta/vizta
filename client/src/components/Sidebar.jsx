@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { useGetCategoryQuery } from '../features/slices/categorySlice';
+import { useGetCategoryQuery } from '../features/query/categoryQuery';
 
 import { Loading } from './Loading';
 
@@ -72,8 +72,10 @@ export const Sidebar = () => {
       <aside className="p-5 rounded ">
         <div className="w-64 p-5 rounded-xl bg-zinc-700 flex flex-col gap-5">
           <div>
-            <div className="flex items-center justify-center text-lg font-bold">Categories</div>
-            <div className='cursor-pointer' >
+            <div className="flex items-center justify-center text-lg font-bold">
+              Categories
+            </div>
+            <div className="cursor-pointer">
               {data &&
                 data?.map((el) => (
                   <div
@@ -87,7 +89,9 @@ export const Sidebar = () => {
             </div>
           </div>
           <div>
-            <div className="flex items-center justify-center text-lg font-bold">Filters</div>
+            <div className="flex items-center justify-center text-lg font-bold">
+              Filters
+            </div>
             <div>
               <div>Price:</div>
               <div>
@@ -109,7 +113,7 @@ export const Sidebar = () => {
             </div>
             <div>
               <div>Sort:</div>
-              <div  className="cursor-pointer">
+              <div className="cursor-pointer">
                 <div
                   className="px-2 rounded hover:bg-zinc-600"
                   onClick={() => handlerSort('asc')}
@@ -139,7 +143,8 @@ export const Sidebar = () => {
                 <option value="60">60%</option>
                 <option value="70">70%</option>
                 <option value="80">80%</option>
-                <option value="90">100%</option>
+                <option value="90">90%</option>
+                <option value="100">100%</option>
               </select>
             </div>
             <div>
@@ -162,7 +167,7 @@ export const Sidebar = () => {
           </div>
 
           <div className="flex justify-center">
-            <div 
+            <div
               className="px-2 rounded bg-gray-800 text-white hover:bg-red-600 cursor-pointer"
               onClick={handlerReset}
             >
