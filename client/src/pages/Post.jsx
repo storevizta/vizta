@@ -45,8 +45,6 @@ export const Post = () => {
 
     if (data.price === '') {
       errors.price = 'The Price is required';
-    if(data.price === ""){
-      errors.price = "The Price is required"
     } else if (data.price <= 0){
       errors.price = "The price has to be equal to or greater than 0"
     }
@@ -56,6 +54,7 @@ export const Post = () => {
     }
     return errors;
   }
+  
 
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
