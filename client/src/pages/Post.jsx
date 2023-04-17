@@ -7,7 +7,6 @@ import { useCreateAdMutation } from '../features/slices/adsSlice';
 import { Navbar } from '../components/Navbar';
 
 import { useGetCategoryQuery } from '../features/slices/categorySlice';
-7;
 
 import swal from 'sweetalert';
 
@@ -15,28 +14,56 @@ export const Post = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState({
-    userId: 'cd7460f6-6032-4d43-929f-729f0095dbf5',
+    userId: '09168922-e71c-4416-8742-8ad6e284ca0a',
     categoryId: '',
     title: '',
     description: '',
     image: '',
     price: '',
-    discount: '',
     condition: '',
     state: '',
   });
+
+  console.log(data);
+
+  const [errors, setErrors] = useState({});
 
   const [createAd] = useCreateAdMutation();
 
   const { data: datacategory } = useGetCategoryQuery();
 
+  function validate(input){
+    let errors = {};
+
+    if(data.categoryId === ""){
+      errors.categoryId = "You must select a category"
+    }
+
+    if(data.title === ""){
+      errors.title = "Title is required" 
+    } else if(data.title.length < 10){
+      errors.title = "The title must be more than 10 characters"
+    }
+
+    if(data.price === ""){
+      errors.price = "The Price is required"
+    }
+
+    if(data.condition === ""){
+      errors.condition = "You must select a condition"
+    };
+    return errors;
+  };
+
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
+    setErrors(validate({...data, [e.target.name]: e.target.value }))
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createAd({
+    if(!errors.title && !errors.condition && !errors.price && !errors.categoryId){
+      createAd({
       userId: data.userId,
       title: data.title,
       image: data.image,
@@ -45,7 +72,6 @@ export const Post = () => {
       categoryId: parseFloat(data.categoryId),
       state: data.state,
       condition: data.condition,
-      discount: parseFloat(data.discount),
     })
       .unwrap()
       .then((data) => {
@@ -58,15 +84,16 @@ export const Post = () => {
     swal('Successful created!');
 
     navigate('/home');
+    }
   };
 
   return (
     <div>
       <Navbar />
-      <div className="bg-zinc-700 w-3/4 m-auto">
+      <div className="bg-zinc-700 basis-2/4 w-1/2 m-auto">
         <div>
           <h1 className="text-center text-white pt-5 text-3xl">
-            Creá tu Publicación
+            Create your post
           </h1>
         </div>
         <form className="space-y-3 mt-5 pb-10" onSubmit={handleSubmit}>
@@ -84,6 +111,10 @@ export const Post = () => {
             />
           </div>
 
+          {errors.title && <div className='bg-red-600 w-96 m-auto p-1 rounded'>
+                              <p className='text-center text-white font-bold capitalize'>{errors.title}</p>
+                            </div>}
+
           <div className="flex ml-36 mr-36">
             <label className="basis-1/6 font-bold text-white mr-3">
               Category:{' '}
@@ -95,7 +126,7 @@ export const Post = () => {
               onChange={handleInput}
             >
               <option value="default" disabled>
-                Select a category.
+                Select a category
               </option>
               {datacategory &&
                 datacategory.length > 0 &&
@@ -110,6 +141,10 @@ export const Post = () => {
                 ))}
             </select>
           </div>
+
+          {errors.categoryId && <div className='bg-red-600 w-96 m-auto p-1 rounded'>
+                              <p className='text-center text-white font-bold capitalize'>{errors.categoryId}</p>
+                            </div>}
 
           <div className="flex ml-36 mr-36">
             <label className="basis-1/6 font-bold text-white mr-3">
@@ -153,32 +188,22 @@ export const Post = () => {
             />
           </div>
 
-          <div className="flex ml-36 mr-36">
-            <label className="basis-1/6 font-bold text-white mr-3">
-              Discount:{' '}
-            </label>
-            <input
-              type="number"
-              placeholder="Discount"
-              name="discount"
-              value={data.discount}
-              onChange={handleInput}
-              className="w-auto basis-5/6 p-1 rounded"
-            />
-          </div>
+          {errors.price && <div className='bg-red-600 w-96 m-auto p-1 rounded'>
+                              <p className='text-center text-white font-bold capitalize'>{errors.price}</p>
+                            </div>}
 
           <div className="flex ml-36 mr-36">
             <label className="basis-1/6 font-bold text-white mr-3">
               Condition:{' '}
             </label>
             <select
-              className="w-auto basis-5/6 p-1 rounded"
+              className="w-auto basis-5/6 p-1 rounded mb-8"
               name="condition"
               defaultValue="default"
               onChange={handleInput}
             >
               <option value="default" disabled>
-                Select a condition.
+                Select a condition
               </option>
 
               <option value="New" className="w-auto basis-5/6 p-1 rounded">
@@ -190,8 +215,12 @@ export const Post = () => {
             </select>
           </div>
 
+          {errors.condition && <div className='bg-red-600 w-96 m-auto p-1 rounded'>
+                              <p className='text-center text-white font-bold capitalize'>{errors.condition}</p>
+                            </div>}
+
           <button
-            className="ml-80 bg-white hover:bg-zinc-600 px-8 py-2 rounded"
+            className="block mx-auto bg-white hover:bg-zinc-600 px-8 py-2 rounded"
             type="submit"
           >
             <p className="font-bold hover:text-white">Submit</p>
