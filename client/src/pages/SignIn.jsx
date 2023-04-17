@@ -5,9 +5,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {
   useSignInMutation,
   useSignInGoogleQuery,
-} from '../features/slices/authSlice';
+} from '../features/query/authQuery';
 
-import { useGetUserIdQuery } from '../features/slices/userSlice';
+import { useGetUserIdQuery } from '../features/query/userQuery';
 
 import { useDispatch } from 'react-redux';
 
