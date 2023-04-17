@@ -1,10 +1,10 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-import { Ads } from '../features/slices/adsSlice';
+import { Ads } from '../features/query/adsQuery';
 
 import { Auth } from '../features/query/authQuery';
 
-import { Category } from '../features/slices/categorySlice';
+import { Category } from '../features/query/categoryQuery';
 
 import { User } from '../features/query/userQuery';
 

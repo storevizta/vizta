@@ -1,16 +1,4 @@
-// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
 import { createSlice } from '@reduxjs/toolkit';
-
-// export const User = createApi({
-//   reducerPath: 'user',
-//   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/' }),
-//   endpoints: (builder) => ({
-//     getUserId: builder.query({
-//       query: (id) => `/users/${id}`,
-//     }),
-//   }),
-// });
 
 export const infoUser = createSlice({
   name: 'info_user',
@@ -45,5 +33,3 @@ export const { setId, setName, setEmail, setRole, resetInfo } =
   infoUser.actions;
 
 export default infoUser.reducer;
-
-// export const { useGetUserIdQuery } = User;
