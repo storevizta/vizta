@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
-import { useGetAdsQuery } from '../features/query/adsQuery';
+import { useGetAdsQuery } from '../features/query/AdsQuery';
 
 import { Loading } from '../components/Loading';
 
@@ -60,14 +60,12 @@ export const Home = () => {
     );
   }
 
-  console.log(data.ads);
-
   return (
     <div className="h-full flex">
       <Sidebar />
       <div className="w-full p-5">
         <Featured />
-        <Pagination />
+        <Pagination items={data.length} />
         {data && data.ads.length === 0 ? (
           <p>No results found.</p>
         ) : (
