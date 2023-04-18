@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +7,12 @@ import { useCreateAdMutation } from '../features/query/adsQuery';
 import { Navbar } from '../components/Navbar';
 
 import { useGetCategoryQuery } from '../features/query/categoryQuery';
+
+import {uploadBytes, ref, listAll, getDownloadURL } from "firebase/storage";
+
+import { storage } from '../firebase/config';
+
+import { v4 } from "uuid";
 
 import swal from 'sweetalert';
 
@@ -24,11 +30,15 @@ export const Post = () => {
     state: '',
   });
 
+  const [imageUpload, setImageUpload] = useState(null);
+  const [image, setImage] = useState([]);
+ 
   const [errors, setErrors] = useState({});
 
   const [createAd] = useCreateAdMutation();
 
   const { data: datacategory } = useGetCategoryQuery();
+
 
   function validate(input) {
     let errors = {};
@@ -54,8 +64,25 @@ export const Post = () => {
     }
     return errors;
   }
-  
 
+  const uploadImage = (e) => {
+    e.preventDefault();
+    if(imageUpload === null) return;
+    const imageRef = ref(storage, `posts/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snaphsot) =>{
+      getDownloadURL(snaphsot.ref).then((url) => {
+        setImage(url);
+      })
+    }
+    )
+  }
+  /*
+  const handleInputImage = async (e) => {
+    const file = e.target.files[0];
+    const url = await uploadFile(file);
+    setData({...data, image: url})
+  }
+  */
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
     setErrors(validate({ ...data, [e.target.name]: e.target.value }));
@@ -72,7 +99,7 @@ export const Post = () => {
       createAd({
         userId: data.userId,
         title: data.title,
-        image: data.image,
+        image: image,
         price: parseFloat(data.price),
         description: data.description,
         categoryId: parseFloat(data.categoryId),
@@ -165,14 +192,16 @@ export const Post = () => {
               Image:{' '}
             </label>
             <input
-              type="text"
-              placeholder="Image"
+              type="file"
               name="image"
-              value={data.image}
-              onChange={handleInput}
+              onChange={(e) => setImageUpload(e.target.files[0])}
               className="w-auto basis-5/6 p-1 rounded"
             />
+            <button onClick={uploadImage}>Upload Image</button>
           </div>
+
+          {image ? <img src={image}/> : <p>No funciona</p>
+          }
 
           <div className="flex ml-36 mr-36">
             <label className="basis-1/6 font-bold text-white mr-3">
