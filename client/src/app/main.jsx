@@ -20,7 +20,9 @@ createRoot(document.getElementById('root')).render(
       <Auth0Provider
         domain="dev-cts718frtyfcon0v.us.auth0.com"
         clientId="ypJUdX0NihDz1q2ElwRY5v4M2mlZeZCb"
-        redirect_uri={window.location.origin}
+        authorizationParams={{
+          redirect_uri: window.location.origin,
+        }}
       >
         <RouterProvider router={router} />
       </Auth0Provider>

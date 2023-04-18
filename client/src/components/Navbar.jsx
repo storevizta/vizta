@@ -2,9 +2,15 @@ import { Link, useParams, useLocation } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 import { setTitle } from '../features/slices/filterSlice';
 
-import { Login } from './Login';
+import { Login } from '../components/Login';
+
+import { Profile } from '../pages/Profile';
+
+import { LogOut } from '../components/LogOut';
 
 export const Navbar = () => {
   const { id } = useParams();
@@ -12,6 +18,8 @@ export const Navbar = () => {
   const location = useLocation();
 
   const dispatch = useDispatch();
+
+  const { isAuthenticated } = useAuth0();
 
   const handlerChange = (e) => {
     const newTitle = e.target.value;
@@ -35,7 +43,16 @@ export const Navbar = () => {
           </form>
 
           <div>
-            <Login />
+            {isAuthenticated ? (
+              <>
+                <Profile />
+                <LogOut />
+              </>
+            ) : (
+              <>
+                <Login />
+              </>
+            )}
           </div>
         </div>
       </nav>

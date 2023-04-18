@@ -16,8 +16,6 @@ import { Pagination } from '../components/Pagination';
 
 import { Card } from '../components/Card';
 
-import { Profile } from './Profile';
-
 export const Home = () => {
   const page = useSelector((state) => state.filter.page);
 
@@ -66,7 +64,6 @@ export const Home = () => {
 
   return (
     <div>
-      <Profile />
       {/* <main className="flex">
         <Sidebar />
         <div className="w-full h-max p-5">
