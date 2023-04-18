@@ -17,5 +17,4 @@ export const User = createApi({
   }),
 });
 
-// Todavia no se mueve
 export const { useGetUserIdQuery, useCreateUserMutation } = User;

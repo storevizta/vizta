@@ -1,4 +1,4 @@
-import { useGetUserIdQuery } from '../features/query/userQuery';
+import { useGetUserIdQuery } from '../features/query/UserQuery';
 
 import { Loading } from '../components/Loading';
 
