@@ -32,7 +32,7 @@ export const Post = () => {
 
   const [imageUpload, setImageUpload] = useState(null);
   const [image, setImage] = useState([]);
- 
+
   const [errors, setErrors] = useState({});
 
   const [createAd] = useCreateAdMutation();
@@ -43,23 +43,23 @@ export const Post = () => {
   function validate(input) {
     let errors = {};
 
-    if (data.categoryId === '') {
+    if (input.categoryId === '') {
       errors.categoryId = 'You must select a category';
     }
 
-    if (data.title === '') {
+    if (input.title === '') {
       errors.title = 'Title is required';
-    } else if (data.title.length < 10) {
+    } else if (input.title.length < 10) {
       errors.title = 'The title must be more than 10 characters';
     }
 
     if (data.price === '') {
       errors.price = 'The Price is required';
-    } else if (data.price <= 0){
+    } else if (input.price <= 0){
       errors.price = "The price has to be equal to or greater than 0"
     }
 
-    if (data.condition === '') {
+    if (input.condition === '') {
       errors.condition = 'You must select a condition';
     }
     return errors;
