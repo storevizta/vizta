@@ -8,6 +8,8 @@ import { Landing } from '../pages/Landing';
 
 import { Home } from '../pages/Home';
 
+import { Profile } from '../pages/Profile';
+
 import { Detail } from '../pages/Detail';
 
 import { Post } from '../pages/Post';
@@ -26,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: '/home',
         element: <Home />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
       },
       {
         path: '/detail/:id',
