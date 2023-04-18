@@ -27,9 +27,9 @@ export const Profile = () => {
 
   return (
     isAuthenticated && (
-      <div className="flex gap-2">
+      <div className="p-2 flex gap-2 hover:bg-zinc-700">
         <img className="w-5" src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
+        <div className="text-slate-50">{user.name}</div>
       </div>
     )
   );

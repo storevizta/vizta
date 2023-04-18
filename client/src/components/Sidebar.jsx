@@ -14,7 +14,7 @@ import {
   setDiscount,
   setCondition,
   resetFilters,
-} from '../features/slices/filterSlice';
+} from '../features/slices/FilterSlice';
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
