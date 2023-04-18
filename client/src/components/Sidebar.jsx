@@ -61,11 +61,9 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="w-64 max-w-64 mx-5 p-5 rounded-xl bg-zinc-700 flex flex-col gap-5">
+      <aside className="w-64 max-w-64 p-5 bg-zinc-700 flex flex-col gap-5">
         <div>
-          <div className="flex items-center justify-center text-lg font-bold">
-            Categories
-          </div>
+          <div className="text-lg font-bold flex">Categories</div>
           <div className="cursor-pointer">
             {data &&
               data?.map((el) => (
@@ -80,9 +78,7 @@ export const Sidebar = () => {
           </div>
         </div>
         <div>
-          <div className="flex items-center justify-center text-lg font-bold">
-            Filters
-          </div>
+          <div className="text-lg font-bold flex">Filters</div>
           <div>
             <div>Price:</div>
             <div>
@@ -159,7 +155,7 @@ export const Sidebar = () => {
 
         <div className="flex justify-center">
           <div
-            className="px-2 rounded bg-gray-800 text-white hover:bg-red-600 cursor-pointer"
+            className="px-2 rounded bg-gray-600 hover:bg-red-600 cursor-pointer"
             onClick={handlerReset}
           >
             Reset
