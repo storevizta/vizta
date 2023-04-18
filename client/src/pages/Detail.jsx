@@ -2,13 +2,11 @@ import { useParams } from 'react-router-dom';
 
 import { Link } from 'react-router-dom';
 
-import { useGetAdByIdQuery } from '../features/query/adsQuery';
+import { useGetAdByIdQuery } from '../features/query/AdsQuery';
 
 import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
-
-import { Navbar } from '../components/Navbar';
 
 import { UserDetail } from '../components/UserDetail';
 
