@@ -1,178 +1,269 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useCreateAdMutation } from '../features/query/adsQuery';
 
-import { usePostAdMutation } from '../features/slices/adsSlice.jsx';
+import { Navbar } from '../components/Navbar';
+
+import { useGetCategoryQuery } from '../features/query/categoryQuery';
+
+import swal from 'sweetalert';
 
 export const Post = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const allAds = useSelector((state) => state.usePostAdMutation);
-  const [input, setInput] = useState({
+
+  const [data, setData] = useState({
+    userId: '09168922-e71c-4416-8742-8ad6e284ca0a',
+    categoryId: '',
     title: '',
     description: '',
-    price: '',
-    stock: '',
     image: '',
+    price: '',
+    condition: '',
+    state: '',
   });
 
-  const [errors, setErrors] = useState({
-    title: '',
-    description: '',
-    price: '',
-    stock: '',
-    image: '',
-  });
+  const [errors, setErrors] = useState({});
 
-  function validate() {
-    const inputValues = Object.entries(input); //genera un arreglo de tuplas de un objeto que vos le pases. Las tuplas son mini arreglos donde vos guardas el key por un lado y el valor por el otro.
-    const objectError = {};
-    const errorsMessages = {
-      title: 'title is required',
-      description: 'description is required',
-      image: 'image is required',
-      price: 'price is required',
-      stock: 'stock is required',
-    };
+  const [createAd] = useCreateAdMutation();
 
-    inputValues.forEach(([key, value]) => {
-      if (value === '' || value.length === 0) {
-        return Object.assign(objectError, {
-          [key]: errorsMessages[key],
-        });
-      }
-    });
-    return setErrors(objectError);
-  }
+  const { data: datacategory } = useGetCategoryQuery();
 
-  useEffect(() => {
-    validate();
-  }, [input]);
+  function validate(input) {
+    let errors = {};
 
-  function handlerChange(e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  function handlerSubmit(e) {
-    e.preventDefault();
-    if (allAds.some((e) => e.title === input.title)) {
-      //OJO CON ESTO PORQUE SI EL TITULO YA EXISTE VA A TIRAR ERROR
-
-      return alert('This ad already exists');
-    } else {
-      usePostAdMutation(input); // REVISA EL adPostMutation PARA VER SI SE IMPORTÓ CORRECTAMENTE
-      alert('This ad has been created successfully');
-      setInput({
-        title: '',
-        description: '',
-        price: '',
-        stock: '',
-        image: '',
-      });
-      navigate.push('/home');
+    if (data.categoryId === '') {
+      errors.categoryId = 'You must select a category';
     }
+
+    if (data.title === '') {
+      errors.title = 'Title is required';
+    } else if (data.title.length < 10) {
+      errors.title = 'The title must be more than 10 characters';
+    }
+
+    if (data.price === '') {
+      errors.price = 'The Price is required';
+    } else if (data.price <= 0){
+      errors.price = "The price has to be equal to or greater than 0"
+    }
+
+    if (data.condition === '') {
+      errors.condition = 'You must select a condition';
+    }
+    return errors;
   }
+  
+
+  const handleInput = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+    setErrors(validate({ ...data, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      !errors.title &&
+      !errors.condition &&
+      !errors.price &&
+      !errors.categoryId
+    ) {
+      createAd({
+        userId: data.userId,
+        title: data.title,
+        image: data.image,
+        price: parseFloat(data.price),
+        description: data.description,
+        categoryId: parseFloat(data.categoryId),
+        state: data.state,
+        condition: data.condition,
+      })
+        .unwrap()
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      swal('Successful created!');
+
+      navigate('/home');
+    }
+  };
+
   return (
     <div>
-      <div>
+      <Navbar />
+      <div className="bg-zinc-700 basis-2/4 w-1/2 m-auto">
         <div>
-          <div>
-            <h1>Creá tu Publicación</h1>
-          </div>
-          <form onSubmit={(e) => handlerSubmit(e)}>
-            <div>
-              <div>
-                <div>
-                  <label > Título:</label>
-                  <input
-                    type="text"
-                    value={input.name}
-                    name="name"
-                    placeholder="Auto"
-                    onChange={(e) => handlerChange(e)}
-                    required={true}
-                  />
-                </div>
-                <div>{errors.name && <p>{errors.name}</p>}</div>
-
-                <div>
-                  <label>Description:</label>
-                  <input
-                    type="text"
-                    value={input.description}
-                    name="description"
-                    placeholder="Enter a description"
-                    onChange={(e) => handlerChange(e)}
-                    required={true}
-                  />
-                </div>
-                <div>{errors.description && <p>{errors.description}</p>}</div>
-
-                <div>
-                  <label>Price:</label>
-                  <input
-                    type="number"
-                    value={input.released}
-                    name="price"
-                    onChange={(e) => handlerChange(e)}
-                    required={true}
-                  />
-                </div>
-                <div>{errors.released && <p>{errors.released}</p>}</div>
-
-                <div>
-                  <label>Stock:</label>
-                  <input
-                    type="number"
-                    value={input.rating}
-                    name="stock"
-                    placeholder="0.00 - 5.00"
-                    min={0.0}
-                    max={50000}
-                    step={0.01}
-                    onChange={(e) => handlerChange(e)}
-                    required={true}
-                  />
-                </div>
-                <div>{errors.rating && <p>{errors.rating}</p>}</div>
-
-                <div>
-                  <label>Image:</label>
-                  <input
-                    type="text"
-                    value={input.image}
-                    name="image"
-                    placeholder="Img URL"
-                    onChange={(e) => handlerChange(e)}
-                    required={true}
-                  />
-                </div>
-                {errors.image && <p>{errors.image}</p>}
-              </div>
-            </div>
-            {/* <Link to="/home">
-              <button>Volver</button>
-            </Link> */}
-            <button
-              type="submit"
-              disabled={
-                !input.title ||
-                !input.description ||
-                !input.price ||
-                !input.stock ||
-                !input.image
-              }
-            >
-              Crear Publicación
-            </button>
-          </form>
+          <h1 className="text-center text-white pt-5 text-3xl">
+            Create your post
+          </h1>
         </div>
+        <form className="space-y-3 mt-5 pb-10" onSubmit={handleSubmit}>
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Title:{' '}
+            </label>
+            <input
+              type="text"
+              placeholder="Title"
+              name="title"
+              value={data.title}
+              onChange={handleInput}
+              className="w-auto basis-5/6 p-1 rounded"
+            />
+          </div>
+
+          {errors.title && (
+            <div className="bg-red-600 w-96 m-auto p-1 rounded">
+              <p className="text-center text-white font-bold capitalize">
+                {errors.title}
+              </p>
+            </div>
+          )}
+
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Category:{' '}
+            </label>
+            <select
+              className="w-auto basis-5/6 p-1 rounded"
+              name="categoryId"
+              defaultValue="default"
+              onChange={handleInput}
+            >
+              <option value="default" disabled>
+                Select a category
+              </option>
+              {datacategory &&
+                datacategory.length > 0 &&
+                datacategory.map((category) => (
+                  <option
+                    key={category.id}
+                    value={category.id}
+                    className="w-auto basis-5/6 p-1 rounded"
+                  >
+                    {category.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+
+          {errors.categoryId && (
+            <div className="bg-red-600 w-96 m-auto p-1 rounded">
+              <p className="text-center text-white font-bold capitalize">
+                {errors.categoryId}
+              </p>
+            </div>
+          )}
+
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Image:{' '}
+            </label>
+            <input
+              type="text"
+              placeholder="Image"
+              name="image"
+              value={data.image}
+              onChange={handleInput}
+              className="w-auto basis-5/6 p-1 rounded"
+            />
+          </div>
+
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Description:{' '}
+            </label>
+            <textarea
+              type="text"
+              placeholder="Enter a description"
+              name="description"
+              value={data.description}
+              onChange={handleInput}
+              className="basis-5/6 p-1 rounded h-28"
+            />
+          </div>
+
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Price:{' '}
+            </label>
+            <input
+              type="number"
+              placeholder="Price"
+              name="price"
+              value={data.price}
+              onChange={handleInput}
+              className="w-auto basis-5/6 p-1 rounded"
+            />
+          </div>
+
+          {errors.price && (
+            <div className="bg-red-600 w-96 m-auto p-1 rounded">
+              <p className="text-center text-white font-bold capitalize">
+                {errors.price}
+              </p>
+            </div>
+          )}
+
+          <div className="flex ml-36 mr-36">
+            <label className="basis-1/6 font-bold text-white mr-3">
+              Condition:{' '}
+            </label>
+            <select
+              className="w-auto basis-5/6 p-1 rounded mb-8"
+              name="condition"
+              defaultValue="default"
+              onChange={handleInput}
+            >
+              <option value="default" disabled>
+                Select a condition
+              </option>
+
+              <option value="New" className="w-auto basis-5/6 p-1 rounded">
+                New
+              </option>
+              <option value="Used" className="w-auto basis-5/6 p-1 rounded">
+                Used
+              </option>
+            </select>
+          </div>
+
+          {errors.condition && (
+            <div className="bg-red-600 w-96 m-auto p-1 rounded">
+              <p className="text-center text-white font-bold capitalize">
+                {errors.condition}
+              </p>
+            </div>
+          )}
+
+          <button
+            className="block mx-auto bg-white hover:bg-zinc-600 px-8 py-2 rounded"
+            type="submit"
+            disabled= {
+              !data.title || !data.price || !data.categoryId || !data.condition
+            }
+          >
+            <p className="font-bold hover:text-white">Submit</p>
+          </button>
+        </form>
       </div>
     </div>
   );
 };
+{
+  // {
+  //   "userId": "cd7460f6-6032-4d43-929f-729f0095dbf5",
+  //   "categoryId": 5,
+  //   "image": "https://example.com/image45.jpg",
+  //   "title": "Product COT",
+  //   "description": "This is a new product description.",
+  //   "price": 80,
+  //   "discount": 30,
+  //   "condition": "Used"
+  // }
+}

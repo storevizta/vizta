@@ -38,8 +38,12 @@
 
 ## Front-end libraries
 
+- React JS
+
 - Redux toolkit
 
-- Styled Components
+- Tailwind CSS
 
 - Spline
+
+- SweetAlert

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
-import { useGetAdsQuery } from '../features/slices/adsSlice';
+import { useGetAdsQuery } from '../features/query/adsQuery';
 
 import { Navbar } from '../components/Navbar';
 
@@ -62,24 +62,31 @@ export const Home = () => {
     );
   }
 
+  console.log(data.ads);
+
   return (
     <div>
       <Navbar />
-      <div className="flex">
+      <main className="flex">
         <Sidebar />
-        <div className="w-full">
+        <div className="w-full h-max p-5">
           <Featured />
           <Pagination />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
-            {data &&
-              data.ads.map((el) => (
-                <Link to={`/detail/${el.id}`} key={el.id}>
-                  <Card info={el} />
-                </Link>
-              ))}
-          </div>
+
+          {data && data.ads.length === 0 ? (
+            <p>No results found.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
+              {data &&
+                data.ads.map((el) => (
+                  <Link to={`/detail/${el.id}`} key={el.id}>
+                    <Card info={el} />
+                  </Link>
+                ))}
+            </div>
+          )}
         </div>
-      </div>
+      </main>
     </div>
   );
 };

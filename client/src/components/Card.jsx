@@ -6,14 +6,19 @@ export const Card = ({ info }) => {
   return (
     <>
       <div className="flex justify-center items-center flex-col outline">
-        <img
-          className="w-20"
-          src={image}
-          alt="image"
-          onError={(e) => (e.target.src = `${imageError}`)}
-        />
-        <div>{title}</div>
-        <div>{price}</div>
+        {!image ? (
+          <img className="w-20" src={imageError} alt="image" />
+        ) : (
+          <img
+            className="w-20"
+            src={image}
+            alt="image"
+            onError={(e) => (e.target.src = `${imageError}`)}
+          />
+        )}
+
+        <div className="text-lg text-white">{title}</div>
+        <div className="text-lg font-bold text-white">${price}</div>
       </div>
     </>
   );

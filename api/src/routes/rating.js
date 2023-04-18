@@ -5,21 +5,21 @@ const router = require('express').Router();
 const { verifyToken, authorize } = require('../middleware/auth.js');
 
 const {
-    createRating,
-    getRatingById,
-    getRatingByUser,
-    deleteRating,
-    updateRating
+  createRating,
+  getRatingById,
+  getRatingByUser,
+  deleteRating,
+  updateRating,
 } = require('../controller/ratingController.js');
 
-router.post("/", createRating);
+router.post('/', createRating);
 
-router.get("/:id", getRatingById);
+router.get('/:id', getRatingById);
 
-router.get("/:userId", getRatingByUser);
+router.get('/:userId', getRatingByUser);
 
-router.delete("/:id", deleteRating);
+router.delete('/:id', deleteRating);
 
-router.put("/:id", updateRating);
+router.put('/:id', updateRating);
 
 module.exports = router;
