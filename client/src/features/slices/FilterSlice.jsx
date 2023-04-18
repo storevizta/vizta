@@ -4,7 +4,6 @@ export const FilterSlice = createSlice({
   name: 'filter',
 
   initialState: {
-    pages: '',
     page: 0,
     title: '',
     category: '',
