@@ -61,7 +61,7 @@ export const Home = () => {
   }
 
   return (
-    <div className="h-full flex">
+    <div className="h-full flex flex-grow">
       <Sidebar />
       <div className="w-full p-5">
         <Featured />
