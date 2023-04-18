@@ -1,14 +1,34 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
+
 import { useAuth0 } from '@auth0/auth0-react';
+
 import { setTitle } from '../features/slices/FilterSlice';
+
 import { Profile } from '../components/Profile';
+
 import { LogOutButton } from '../components/LogOutButton';
+
 import { LoginButton } from '../components/LoginButton';
+
 import post from '../assets/post.svg';
 
 export const Navbar = () => {
   const dispatch = useDispatch();
+
+  const { id } = useParams();
+
+  console.log(id);
+
+  const location = useLocation();
+
+  const searchLanding = location.pathname !== `/`;
+
+  const searchDetail = location.pathname !== `/detail/${id}`;
+
+  const searchProfile = location.pathname !== `/profile`;
+
   const { isAuthenticated } = useAuth0();
 
   const handlerChange = (e) => {
@@ -22,14 +42,16 @@ export const Navbar = () => {
         <Link to="/home">
           <div className="text-xl text-slate-50">VIZTA</div>
         </Link>
-        <form>
-          <input
-            className="w-96 px-5 py-1 rounded-full outline-none text-slate-50 bg-zinc-700"
-            type="text"
-            placeholder="Search..."
-            onChange={handlerChange}
-          />
-        </form>
+        {searchProfile && searchLanding && searchDetail && (
+          <form>
+            <input
+              className="w-96 px-5 py-1 rounded-full outline-none text-slate-50 bg-zinc-700"
+              type="text"
+              placeholder="Search..."
+              onChange={handlerChange}
+            />
+          </form>
+        )}
 
         <div className="flex items-center gap-5">
           {isAuthenticated ? (

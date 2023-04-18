@@ -22,19 +22,11 @@ export const Sidebar = () => {
   const { data, error, isLoading } = useGetCategoryQuery();
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <Loading />
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <Error />
-      </div>
-    );
+    return <div>Error...</div>;
   }
 
   const handlerCategory = (id) => {
@@ -69,7 +61,7 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="w-64 max-w-64 p-5 rounded-xl bg-zinc-700 flex flex-col gap-5">
+      <aside className="w-64 max-w-64 mx-5 p-5 rounded-xl bg-zinc-700 flex flex-col gap-5">
         <div>
           <div className="flex items-center justify-center text-lg font-bold">
             Categories
