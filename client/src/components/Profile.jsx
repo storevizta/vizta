@@ -2,6 +2,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { useEffect } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { useCreateUserMutation } from '../features/query/UserQuery';
 
 export const Profile = () => {
@@ -27,10 +29,12 @@ export const Profile = () => {
 
   return (
     isAuthenticated && (
-      <div className="flex gap-2">
-        <img className="w-5" src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-      </div>
+      <Link to="/profile">
+        <div className="p-2 flex gap-2 hover:bg-zinc-700">
+          <img className="w-5" src={user.picture} alt={user.name} />
+          <div className="text-slate-50">{user.name}</div>
+        </div>
+      </Link>
     )
   );
 };

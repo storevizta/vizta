@@ -12,6 +12,8 @@ import { LogOutButton } from '../components/LogOutButton';
 
 import { LoginButton } from '../components/LoginButton';
 
+import post from '../assets/post.svg';
+
 export const Navbar = () => {
   const { id } = useParams();
 
@@ -42,9 +44,12 @@ export const Navbar = () => {
             />
           </form>
 
-          <div>
+          <div className="flex items-center gap-5">
             {isAuthenticated ? (
               <>
+                <Link to="/post">
+                  <img className="w-5 " src={post} alt="" />
+                </Link>
                 <Profile />
                 <LogOutButton />
               </>
