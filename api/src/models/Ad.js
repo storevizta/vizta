@@ -3,13 +3,13 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('Ad', {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
     image: {
-      type: DataTypes.TEXT,
+      type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: true,
     },
     title: {
@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
       allowNull: false,
     },
     discount: {
@@ -32,6 +32,15 @@ module.exports = (sequelize) => {
       type: DataTypes.ENUM('New', 'Used'),
       allowNull: false,
       defaultValue: 'New',
+    },
+    method: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false,
+    },
+    shipment: {
+      type: DataTypes.ENUM('Yes', 'No'),
+      allowNull: false,
+      defaultValue: 'No',
     },
     state: {
       type: DataTypes.ENUM('Active', 'Sold', 'Paused'),

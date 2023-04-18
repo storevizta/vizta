@@ -12,12 +12,6 @@ import { Detail } from '../pages/Detail';
 
 import { Post } from '../pages/Post';
 
-import { Profile } from '../pages/Profile';
-
-import { SignIn } from '../pages/SignIn';
-
-import { SignUp } from '../pages/SignUp';
-
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -40,18 +34,6 @@ export const router = createBrowserRouter([
       {
         path: '/post',
         element: <Post />,
-      },
-      {
-        path: '/profile/:id',
-        element: <Profile />,
-      },
-      {
-        path: '/signin',
-        element: <SignIn />,
-      },
-      {
-        path: '/signup',
-        element: <SignUp />,
       },
     ],
   },

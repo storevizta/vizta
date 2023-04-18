@@ -1,6 +1,14 @@
 require('dotenv').config();
 
-const { User, Ad } = require('../database.js');
+const {
+  Ad,
+  Category,
+  Favorite,
+  Message,
+  Rating,
+  Report,
+  User,
+} = require('../database.js');
 
 const bcrypt = require('bcrypt');
 

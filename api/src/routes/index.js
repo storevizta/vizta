@@ -4,8 +4,6 @@ const admin = require('./admin.js');
 
 const ads = require('./ads.js');
 
-const auth = require('./auth.js');
-
 const category = require('./category.js');
 
 const rating = require('./rating.js');
@@ -20,16 +18,14 @@ router.use('/admin', admin);
 
 router.use('/ads', ads);
 
-router.use('/auth', auth);
-
 router.use('/category', category);
 
 router.use('/rating', rating);
 
 router.use('/report', report);
 
-router.use('/users', users);
-
 router.use('/message', message);
+
+router.use('/users', users);
 
 module.exports = router;

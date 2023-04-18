@@ -1,6 +1,14 @@
 require('dotenv').config();
 
-const { Report } = require('../database.js');
+const {
+  Ad,
+  Category,
+  Favorite,
+  Message,
+  Rating,
+  Report,
+  User,
+} = require('../database.js');
 
 const createReport = async (req, res) => {
   const { type, reason, userId, adId } = req.body;
