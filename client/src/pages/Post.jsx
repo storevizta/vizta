@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 import { useNavigate } from 'react-router-dom';
-
-import { useCreateAdMutation } from '../features/query/adsQuery';
-
-import { Navbar } from '../components/Navbar';
 
 import { useGetCategoryQuery } from '../features/query/categoryQuery';
 
@@ -14,13 +12,17 @@ import { storage } from '../firebase/config';
 
 import { v4 } from "uuid";
 
+import { useCreateAdMutation } from '../features/query/adsQuery';
+
+console.log("user");
+
 import swal from 'sweetalert';
 
 export const Post = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState({
-    userId: '09168922-e71c-4416-8742-8ad6e284ca0a',
+    userId: '',
     categoryId: '',
     title: '',
     description: '',
@@ -55,8 +57,8 @@ export const Post = () => {
 
     if (data.price === '') {
       errors.price = 'The Price is required';
-    } else if (input.price <= 0){
-      errors.price = "The price has to be equal to or greater than 0"
+    } else if (data.price <= 0) {
+      errors.price = 'The price has to be equal to or greater than 0';
     }
 
     if (input.condition === '') {
@@ -122,7 +124,6 @@ export const Post = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="bg-zinc-700 basis-2/4 w-1/2 m-auto">
         <div>
           <h1 className="text-center text-white pt-5 text-3xl">
@@ -273,7 +274,7 @@ export const Post = () => {
           <button
             className="block mx-auto bg-white hover:bg-zinc-600 px-8 py-2 rounded"
             type="submit"
-            disabled= {
+            disabled={
               !data.title || !data.price || !data.categoryId || !data.condition
             }
           >
@@ -284,15 +285,3 @@ export const Post = () => {
     </div>
   );
 };
-{
-  // {
-  //   "userId": "cd7460f6-6032-4d43-929f-729f0095dbf5",
-  //   "categoryId": 5,
-  //   "image": "https://example.com/image45.jpg",
-  //   "title": "Product COT",
-  //   "description": "This is a new product description.",
-  //   "price": 80,
-  //   "discount": 30,
-  //   "condition": "Used"
-  // }
-}

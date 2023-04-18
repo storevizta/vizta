@@ -1,53 +1,51 @@
 require('dotenv').config();
 
+const fs = require('fs');
+
+const path = require('path');
+
 const { Sequelize } = require('sequelize');
 
-const modelAd = require('./models/Ad');
-
-const modelCategory = require('./models/Category');
-
-const modelFavorites = require('./models/Favorite');
-
-const modelRating = require('./models/Rating');
-
-const modelReport = require('./models/Report');
-
-const modelUser = require('./models/User');
-
-const modelMessage = require('./models/Message');
-
-const database = process.env.DB_NAME || 'vizta';
-
-const username = process.env.DB_USER || 'postgres'; /* Your postgres username */
-
-const password =
-  process.env.DB_PASSWORD || '44019204'; /* Your postgres password */
-
-const host = process.env.DB_HOST || 'localhost';
-
-const dialect = process.env.DB_DIALECT || 'postgres';
-
-const sequelize = new Sequelize(database, username, password, {
-  host: host,
-  dialect: dialect,
-  logging: false /* Output of log messages in the console */,
+const sequelize = new Sequelize({
+  dialect: 'postgres',
+  host: 'dpg-cgurfe4s3fvhrtsiqob0-a.oregon-postgres.render.com',
+  port: 5432,
+  database: 'vizta',
+  username: 'vizta',
+  password: 'iehVr9sOAKqUkqTdtyuQOMtG9WJC23vI',
+  ssl: true,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+  logging: false,
 });
 
-modelAd(sequelize);
+const basename = path.basename(__filename);
 
-modelCategory(sequelize);
+const modelDefiners = [];
 
-modelFavorites(sequelize);
+fs.readdirSync(path.join(__dirname, '/models'))
+  .filter(
+    (file) =>
+      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
+  )
+  .forEach((file) => {
+    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+  });
 
-modelRating(sequelize);
+modelDefiners.forEach((model) => model(sequelize));
 
-modelReport(sequelize);
+let entries = Object.entries(sequelize.models);
+let capsEntries = entries.map((entry) => [
+  entry[0][0].toUpperCase() + entry[0].slice(1),
+  entry[1],
+]);
+sequelize.models = Object.fromEntries(capsEntries);
 
-modelUser(sequelize);
-
-modelMessage(sequelize);
-
-const { Ad, Category, Favorite, Rating, Report, User, Message } =
+const { Ad, Category, Favorite, Message, Rating, Report, User } =
   sequelize.models;
 
 // User - Ad

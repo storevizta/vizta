@@ -1,4 +1,12 @@
-const { Rating, User } = require('../database');
+const {
+  Ad,
+  Category,
+  Favorite,
+  Message,
+  Rating,
+  Report,
+  User,
+} = require('../database');
 
 const createRating = async (req, res) => {
   const { rating, comment, userId } = req.body;

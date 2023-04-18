@@ -2,7 +2,15 @@ require('dotenv').config();
 
 const { Op } = require('sequelize');
 
-const { Ad, User, Category } = require('../database.js');
+const {
+  Ad,
+  Category,
+  Favorite,
+  Message,
+  Rating,
+  Report,
+  User,
+} = require('../database.js');
 
 const { transporter } = require('../middleware/nodemailer.js');
 
@@ -117,6 +125,8 @@ const createAd = async (req, res) => {
       price,
       discount,
       condition,
+      method,
+      shipment,
     } = req.body;
 
     const user = await User.findByPk(userId);
@@ -140,27 +150,21 @@ const createAd = async (req, res) => {
       price,
       discount,
       condition,
+      method,
+      shipment,
     });
 
-    await transporter.sendMail({
-      from: 'vizta <storevizta@gmail.com>',
-      to: user.email,
-      subject: 'Ad successfully published',
-      text: 'Your post has been successfully created on the platform.',
-    });
-
-    return res.status(201).json(ad);
+    return res.status(201).json({ message: 'Ad create' });
   } catch (error) {
     console.log(error);
-    return res.status(400).json({ message: 'Error' });
+    return res.status(400).json({ message: 'Error creating ad', error });
   }
 };
 
-const updateAd = async (req, res) => {};
-
 const setStatusAd = async () => {
-  const { status, adId } = req.body;
   try {
+    const { status, adId } = req.body;
+
     const actualAd = await Ad.findByPk(adId);
     const adMod = actualAd.update({ state: status });
     res.status(200).json(adMod);
@@ -170,36 +174,9 @@ const setStatusAd = async () => {
   }
 };
 
-const deleteAd = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    if (!id) {
-      return res.status(400).json({ message: 'Missing Id' });
-    }
-
-    const ad = await Ad.findByPk(id);
-
-    if (!ad) {
-      return res.status(400).json({ message: 'The ad does not exist' });
-    }
-
-    await ad.destroy();
-
-    return res
-      .status(200)
-      .json({ message: 'The ad was successfully deleted.' });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json(error.message);
-  }
-};
-
 module.exports = {
   getAds,
   getAdById,
   createAd,
-  updateAd,
-  deleteAd,
   setStatusAd,
 };
