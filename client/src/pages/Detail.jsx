@@ -51,7 +51,6 @@ export const Detail = () => {
 
   return (
     <div>
-      <Navbar />
       <Link to="/home">
         <img src={atras} alt="atras" className="pl-5 w-12" />
       </Link>

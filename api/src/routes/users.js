@@ -2,15 +2,14 @@ require('dotenv').config();
 
 const router = require('express').Router();
 
-const { verifyToken, authorize } = require('../middleware/auth.js');
-
 const {
   getUser,
-  updateUser,
-  deleteUser,
   getUserAds,
   getUserFavorites,
+  createUser,
   createFavorite,
+  updateUser,
+  deleteUser,
   deleteFavorite,
 } = require('../controller/usersController.js');
 
@@ -20,21 +19,21 @@ router.get('/:id/ads', getUserAds);
 
 router.get('/:id/favorites', getUserFavorites);
 
+router.get('/:id/ratings');
+
 router.put('/:id', updateUser);
 
+router.put('/:id/ratings');
+
+router.post('/', createUser);
+
 router.post('/:id/favorites', createFavorite);
+
+router.post('/:id/ratings');
 
 router.delete('/:id', deleteUser);
 
 router.delete('/:id/favorites', deleteFavorite);
-
-router.get('/:id/ratings');
-
-router.get('/:id/ratings');
-
-router.post('/:id/ratings');
-
-router.put('/:id/ratings');
 
 router.delete('/:id/ratings');
 

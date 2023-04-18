@@ -1,100 +1,31 @@
 require('dotenv').config();
 
-const { User, Ad, Favorite } = require('../database');
-
 const {
-  createMissingIdException,
-  createInvalidInputException,
-} = require('../handler/exceptions');
-
-const bcrypt = require('bcrypt');
+  Ad,
+  Category,
+  Favorite,
+  Message,
+  Rating,
+  Report,
+  User,
+} = require('../database');
 
 const getUser = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ message: 'Missing Id' });
+    }
+
     if (id) {
       const response = await User.findByPk(id);
+
       res.status(200).json(response);
-    } else {
-      //throw new Error('Missing Id');
-      throw createMissingIdException('Missing Id');
     }
   } catch (error) {
-    //res.status(400).json(error.message);
-    res.status(400).json({ message: error.message });
-  }
-};
-
-const updateUser = async (req, res) => {
-  const { id } = req.params;
-  const { name, email, password, address, phone } = req.body;
-  try {
-    if (!id) {
-      throw createMissingIdException('Id is missing');
-    }
-
-    if (name === undefined || email === undefined || password === undefined) {
-      throw createInvalidInputException(
-        'Name, email and password are required'
-      );
-    }
-
-    if (email && !isValidEmail(email)) {
-      throw createInvalidInputException('Invalid email format');
-    }
-
-    if (id) {
-      const actualUser = await User.findByPk(id);
-
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const updated = await actualUser.update({
-        name: name,
-        email: email,
-        password: hashedPassword,
-        address: address,
-        phone: phone,
-      });
-      res.status(200).json(updated);
-    }
-  } catch (error) {
-    let statusCode = 500;
-
-    let errorMessage = 'Internal Server Error';
-
-    if (error.statusCode) {
-      statusCode = error.statusCode;
-      errorMessage = error.message;
-    } else if (error.name === 'SequelizeUniqueConstraintError') {
-      statusCode = 409;
-      errorMessage = 'Unique constraint error';
-    } else if (error.name === 'MissingIdException') {
-      statusCode = 400;
-      errorMessage = 'Missing Id';
-    } else if (error.name === 'NotFoundException') {
-      statusCode = 404;
-      errorMessage = 'Resource not found';
-    } else if (error.name === 'InvalidInputException') {
-      statusCode = 400;
-      errorMessage = 'Invalid input';
-    }
-
-    console.error(error);
-    res.status(statusCode).json({ error: errorMessage });
-  }
-};
-
-const deleteUser = async (req, res) => {
-  const { id } = req.params;
-  try {
-    if (id) {
-      const actualUser = await User.findByPk(id);
-      await actualUser.destroy();
-      res.status(200).json('Deleted!');
-    } else {
-      throw new Error('Missing Id');
-    }
-  } catch (error) {
-    res.status(400).json(error.message);
+    console.log(error);
+    res.status(400).json({ message: 'Error get user', error });
   }
 };
 
@@ -102,48 +33,83 @@ const getUserAds = async (req, res) => {};
 
 const getUserFavorites = async (req, res) => {};
 
-const createFavorite = async (req, res) => {
-  const { id } = req.params;
-
-  const user = await User.findByPk(id);
-
-  if (!user) {
-    return res.status(404).json('User ID invalid');
-  }
-
+const createUser = async (req, res) => {
   try {
-    const newFavorite = await Favorite.create({
-      UserId: id,
-    });
-    res.status(200).json(newFavorite);
+    const { id, name, lastname, nickname, email, picture } = req.body;
+
+    const existingUser = await User.findOne({ where: { id } });
+
+    if (existingUser) {
+      return res.status(200).json({ message: 'User alredy exists' });
+    }
+    if (!existingUser) {
+      const user = await User.create({
+        id,
+        name,
+        nickname,
+        email,
+        picture,
+      });
+
+      return res.status(201).json({ message: 'User create' });
+    }
   } catch (error) {
-    res.status(400).json(error.message);
+    console.log(error);
+    return res.status(500).json({ message: 'Error creating user', error });
   }
 };
 
-const deleteFavorite = async (req, res) => {
-  const { id } = req.params;
-
-  const favorite = await Favorite.findByPk(id);
-
-  if (!favorite) {
-    return res.status(404).json('Favorite ID invalid');
-  }
-
+const createFavorite = async (req, res) => {
   try {
-    await favorite.destroy();
-    res.status(200).json('The favorite was successfully deleted');
+    const { id } = req.params;
+
+    const user = await User.findByPk(id);
+
+    if (!user) {
+      return res.status(404).json('User ID invalid');
+    }
+
+    const newFavorite = await Favorite.create({
+      UserId: id,
+    });
+    return res.status(200).json(newFavorite);
   } catch (error) {
-    res.status(400).json(error.message);
+    return res.status(400).json(error.message);
+  }
+};
+
+const updateUser = async (req, res) => {};
+
+const deleteUser = async (req, res) => {};
+
+const deleteFavorite = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const favorite = await Favorite.findByPk(id);
+
+    if (!favorite) {
+      return res.status(404).json('Favorite ID invalid');
+    }
+
+    await favorite.destroy();
+
+    return res
+      .status(200)
+      .json({ message: 'The favorite was successfully deleted' });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Error creating favorite' });
   }
 };
 
 module.exports = {
   getUser,
-  updateUser,
-  deleteUser,
   getUserAds,
   getUserFavorites,
+  createUser,
   createFavorite,
+  updateUser,
+  deleteUser,
   deleteFavorite,
 };

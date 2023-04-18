@@ -64,7 +64,7 @@ export const Home = () => {
 
   return (
     <div>
-      {/* <main className="flex">
+      <div className="flex">
         <Sidebar />
         <div className="w-full h-max p-5">
           <Featured />
@@ -83,7 +83,7 @@ export const Home = () => {
             </div>
           )}
         </div>
-      </main> */}
+      </div>
     </div>
   );
 };

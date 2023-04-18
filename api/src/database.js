@@ -45,7 +45,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Ad, Category, Favorite, Rating, Report, User, Message } =
+const { Ad, Category, Favorite, Message, Rating, Report, User } =
   sequelize.models;
 
 // User - Ad

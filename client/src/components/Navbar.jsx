@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { setTitle } from '../features/slices/filterSlice';
+import { setTitle } from '../features/slices/FilterSlice';
 
-import { Login } from '../components/Login';
+import { Profile } from '../components/Profile';
 
-import { Profile } from '../pages/Profile';
+import { LogOutButton } from '../components/LogOutButton';
 
-import { LogOut } from '../components/LogOut';
+import { LoginButton } from '../components/LoginButton';
 
 export const Navbar = () => {
   const { id } = useParams();
@@ -46,11 +46,11 @@ export const Navbar = () => {
             {isAuthenticated ? (
               <>
                 <Profile />
-                <LogOut />
+                <LogOutButton />
               </>
             ) : (
               <>
-                <Login />
+                <LoginButton />
               </>
             )}
           </div>

@@ -1,6 +1,14 @@
 require('dotenv').config();
 
-const { Category } = require('../database.js');
+const {
+  Ad,
+  Category,
+  Favorite,
+  Message,
+  Rating,
+  Report,
+  User,
+} = require('../database.js');
 
 const getCategory = async (req, res) => {
   try {

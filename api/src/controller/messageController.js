@@ -1,4 +1,12 @@
-const { Message, Ad, User } = require('../database');
+const {
+  Ad,
+  Category,
+  Favorite,
+  Message,
+  Rating,
+  Report,
+  User,
+} = require('../database');
 
 const ask = async (req, res) => {
   const { userId, message, adId } = req.body;

@@ -7,8 +7,15 @@ export const User = createApi({
     getUserId: builder.query({
       query: (id) => `/users/${id}`,
     }),
+    createUser: builder.mutation({
+      query: (data) => ({
+        url: '/users',
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
 // Todavia no se mueve
-export const { useGetUserIdQuery } = User;
+export const { useGetUserIdQuery, useCreateUserMutation } = User;
