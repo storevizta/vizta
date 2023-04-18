@@ -38,14 +38,14 @@ export const Navbar = () => {
 
   return (
     <nav className="max-h-16 h-16 flex">
-      <div className="w-full p-5 rounded-full flex justify-between items-center">
+      <div className="w-full p-5 flex justify-between items-center">
         <Link to="/home">
-          <div className="text-xl text-slate-50">VIZTA</div>
+          <div className="text-xl">VIZTA</div>
         </Link>
         {searchProfile && searchLanding && searchDetail && (
           <form>
             <input
-              className="w-96 px-5 py-1 rounded-full outline-none text-slate-50 bg-zinc-700"
+              className="w-96 px-5 py-1 rounded-full outline-none bg-zinc-700"
               type="text"
               placeholder="Search..."
               onChange={handlerChange}
