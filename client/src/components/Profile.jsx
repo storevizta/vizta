@@ -23,6 +23,8 @@ export const Profile = () => {
         nickname: user.nickname,
         email: user.email,
         picture: user.picture,
+        address: user.address,
+        phone: user.phone,
       });
     }
   }, [isAuthenticated, user, createUser]);
