@@ -13,13 +13,22 @@ import { LogOutButton } from '../components/LogOutButton';
 import { LoginButton } from '../components/LoginButton';
 
 import post from '../assets/post.svg';
+import Logo from '../assets/LogoVizta.png';
 
 export const Navbar = () => {
+  const dispatch = useDispatch();
+
   const { id } = useParams();
+
+  console.log(id);
 
   const location = useLocation();
 
-  const dispatch = useDispatch();
+  const searchLanding = location.pathname !== `/`;
+
+  const searchDetail = location.pathname !== `/detail/${id}`;
+
+  const searchProfile = location.pathname !== `/profile`;
 
   const { isAuthenticated } = useAuth0();
 
@@ -29,38 +38,41 @@ export const Navbar = () => {
   };
 
   return (
-    <>
-      <nav className="p-5 flex">
-        <div className="w-full px-5 py-1 rounded-full flex justify-between items-center">
-          <Link to="/home">
-            <div className="text-xl text-slate-50">VIZTA</div>
-          </Link>
+    <nav className="max-h-16 h-16 flex">
+      <div className="w-full p-5 flex justify-between items-center">
+        <Link to="/home">
+          {/* <div className="text-xl">{Logo}</div> */}
+          <div>
+            <img src={Logo} className="h-8"></img>
+          </div>
+        </Link>
+        {searchProfile && searchLanding && searchDetail && (
           <form>
             <input
-              className="w-96 px-3 py-1 rounded-full outline-none bg-zinc-700"
+              className="w-80 px-2.5  py-1 rounded-full outline-none bg-zinc-700 hover:bg-zinc-600"
               type="text"
-              placeholder="Search..."
+              placeholder="Search.."
               onChange={handlerChange}
             />
           </form>
+        )}
 
-          <div className="flex items-center gap-5">
-            {isAuthenticated ? (
-              <>
-                <Link to="/post">
-                  <img className="w-5 " src={post} alt="" />
-                </Link>
-                <Profile />
-                <LogOutButton />
-              </>
-            ) : (
-              <>
-                <LoginButton />
-              </>
-            )}
-          </div>
+        <div className="flex items-center gap-5">
+          {isAuthenticated ? (
+            <>
+              <Link to="/post">
+                <img className="w-5 " src={post} alt="" />
+              </Link>
+              <Profile />
+              <LogOutButton />
+            </>
+          ) : (
+            <>
+              <LoginButton />
+            </>
+          )}
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };

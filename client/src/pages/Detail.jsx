@@ -18,6 +18,9 @@ import rowLeft from '../assets/row-left.svg';
 
 import rowRight from '../assets/row-right.svg';
 
+const FakeIMG = 'https://picsum.photos/200/300';
+// Cambie image por FakeIMG para Mokup 
+
 export const Detail = () => {
   const { id } = useParams();
 
@@ -100,6 +103,7 @@ export const Detail = () => {
         </div>
 
         <div className="pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md">
+
           <h1 className="font-bold text-white pl-5 text-3xl pt-3">{title}</h1>
 
           <div>

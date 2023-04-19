@@ -5,8 +5,10 @@ import { Navbar } from '../components/Navbar';
 export const Layout = () => {
   return (
     <>
-      <Navbar />
-      <Outlet />
+      <div className="h-screen overflow-hidden">
+        <Navbar />
+        <Outlet />
+      </div>
     </>
   );
 };
