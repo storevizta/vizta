@@ -26,7 +26,7 @@ export const Pagination = ({ items }) => {
   const canGoNext = page < totalPages - 1;
 
   return (
-    <div className="flex justify-center items-center gap-5">
+    <div className="flex justify-center items-center gap-5 mt-6">
       <button
         className={`w-5 h-5 rounded-full ${
           canGoPrev
