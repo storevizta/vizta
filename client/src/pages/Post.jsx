@@ -6,19 +6,23 @@ import { useNavigate } from 'react-router-dom';
 
 import { useGetCategoryQuery } from '../features/query/categoryQuery';
 
-import {uploadBytes, ref, listAll, getDownloadURL } from "firebase/storage";
+import { uploadBytes, ref, listAll, getDownloadURL } from 'firebase/storage';
 
 import { storage } from '../firebase/config';
 
-import { v4 } from "uuid";
+import { v4 } from 'uuid';
 
-import { useCreateAdMutation } from '../features/query/adsQuery';
+import { useCreateAdMutation } from '../features/query/AdsQuery.jsx';
 
 import swal from 'sweetalert';
 
 export const Post = () => {
 
-  const { user } = useAuth0();
+  const { user, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
 
   const navigate = useNavigate();
 
@@ -29,21 +33,20 @@ export const Post = () => {
     description: '',
     price: '',
     condition: '',
-    shipment: "",
+    shipment: '',
     state: '',
   });
 
   const [imageUpload, setImageUpload] = useState(null);
   const [image, setImage] = useState([]);
 
-  const [method, setMethod] = useState([])
+  const [method, setMethod] = useState([]);
 
   const [errors, setErrors] = useState({});
 
   const [createAd] = useCreateAdMutation();
 
   const { data: datacategory } = useGetCategoryQuery();
-
 
   function validate(input) {
     let errors = {};
@@ -72,19 +75,18 @@ export const Post = () => {
 
   const uploadImage = (e) => {
     e.preventDefault();
-    if(imageUpload === null) return;
-    let newImage = []
+    if (imageUpload === null) return;
+    let newImage = [];
     for (let i = 0; i < imageUpload.length; i++) {
       const imageRef = ref(storage, `posts/${imageUpload[i].name + v4()}`);
-      uploadBytes(imageRef, imageUpload[i]).then((snaphsot) =>{
+      uploadBytes(imageRef, imageUpload[i]).then((snaphsot) => {
         getDownloadURL(snaphsot.ref).then((url) => {
-          newImage.push(url)
+          newImage.push(url);
           setImage(newImage);
-        })
-      }
-      ) 
+        });
+      });
     }
-  }
+  };
   /*
   const handleInputImage = async (e) => {
     const file = e.target.files[0];
@@ -98,20 +100,22 @@ export const Post = () => {
   };
 
   const modifyMethod = (e) => {
-    let newMethods = [...method]
+    let newMethods = [...method];
     for (let i = 0; i < newMethods.length; i++) {
-      if(e.target.value === newMethods[i]){
+      if (e.target.value === newMethods[i]) {
         return swal('Already selected!');
       }
     }
-    newMethods.push(e.target.value)
-    setMethod(newMethods)
-  }
+    newMethods.push(e.target.value);
+    setMethod(newMethods);
+  };
 
   const deleteMethod = (value, index) => {
-    const newMethod = method.filter(element => method.indexOf(element) !== index)
-    setMethod(newMethod)
-  }
+    const newMethod = method.filter(
+      (element) => method.indexOf(element) !== index
+    );
+    setMethod(newMethod);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -141,223 +145,256 @@ export const Post = () => {
           console.log(error);
         });
 
-        
-        navigate('/home');
-        swal('Successful created!');
+      navigate('/home');
+      swal('Successful created!');
     }
   };
 
-  console.log(data.shipment);
-
   return (
     <div>
-      {!user ? <p className='text-white'>Loading...</p> : 
-      <div className="bg-zinc-700 basis-2/4 w-1/2 m-auto">
-      <div>
-        <h1 className="text-center text-white pt-5 text-3xl">
-          Create your post
-        </h1>
-      </div>
-      <form className="space-y-3 mt-5 pb-10" onSubmit={handleSubmit}>
-        <div className="flex ml-36 mr-36">
-          <label className="basis-1/6 font-bold text-white mr-3">
-            Title:{' '}
-          </label>
-          <input
-            type="text"
-            placeholder="Title"
-            name="title"
-            value={data.title}
-            onChange={handleInput}
-            className="w-auto basis-5/6 p-1 rounded"
-            required
-          />
-        </div>
-
-        {errors.title && (
-          <div className="bg-red-600 w-96 m-auto p-1 rounded">
-            <p className="text-center text-white font-bold capitalize">
-              {errors.title}
-            </p>
+      {!user ? (
+        <p className="text-white">Loading...</p>
+      ) : (
+        <div className="bg-zinc-800 basis-2/4 w-1/2 m-auto">
+          <div>
+            <h1 className="text-center text-white pt-5 text-3xl">
+              Create your post
+            </h1>
           </div>
-        )}
+          <form className="space-y-3 mt-5 pb-10" onSubmit={handleSubmit}>
+            <div className="flex ml-52">
+              <label className="basis-1/6 font-bold text-white mr-3">
+                Title:{' '}
+              </label>
+              <input
+                type="text"
+                placeholder="Title"
+                name="title"
+                value={data.title}
+                onChange={handleInput}
+                className="input w-full max-w-xs"
+                required
+              />
+            </div>
 
-        <div className="flex ml-36 mr-36">
-          <label className="basis-1/6 font-bold text-white mr-3">
-            Category:{' '}
-          </label>
-          <select
-            className="w-auto basis-5/6 p-1 rounded"
-            name="categoryId"
-            defaultValue="default"
-            onChange={handleInput}
-            required
-          >
-            <option value="default" disabled>
-              Select a category
-            </option>
-            {datacategory &&
-              datacategory.length > 0 &&
-              datacategory.map((category) => (
+            {errors.title && (
+              <div className="bg-red-600 w-96 m-auto p-1 rounded">
+                <p className="text-center text-white font-bold capitalize">
+                  {errors.title}
+                </p>
+              </div>
+            )}
+
+            <div className="flex ml-52">
+              <label className="basis-1/6 font-bold text-white mr-3">
+                Category:{' '}
+              </label>
+              <select
+                className="select w-full max-w-xs"
+                name="categoryId"
+                defaultValue="default"
+                onChange={handleInput}
+                required
+              >
+                <option value="default" disabled>
+                  Select a category
+                </option>
+                {datacategory &&
+                  datacategory.length > 0 &&
+                  datacategory.map((category) => (
+                    <option
+                      key={category.id}
+                      value={category.id}
+                      className="w-auto basis-5/6 p-1 rounded"
+                    >
+                      {category.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+
+            {errors.categoryId && (
+              <div className="bg-red-600 w-96 m-auto p-1 rounded">
+                <p className="text-center text-white font-bold capitalize">
+                  {errors.categoryId}
+                </p>
+              </div>
+            )}
+
+            <div className="flex ml-52">
+              <label className="basis-1/6 font-bold text-white mr-3">
+                Image:{' '}
+              </label>
+              <input type="file" name='image' className="file-input w-full max-w-xs" onChange={(e) => setImageUpload(e.target.files)} multiple required/>
+              <button onClick={uploadImage} className="btn ml-10">Upload Image</button>
+            </div>
+
+            <div className='flex gap-10 justify-center'>
+              {image ? (
+                image.map((value) => <img className='w-40 h-40 object-cover' src={value}></img>)
+              ) : (
+                <p>No funciona</p>
+              )}
+            </div>
+            
+            <div className="flex ml-52">
+              <label className="basis-1/6 font-bold text-white mr-3">
+                Description:{' '}
+              </label>
+              <textarea
+                type="text"
+                placeholder="Enter a description"
+                name="description"
+                value={data.description}
+                onChange={handleInput}
+                className="input w-full max-w-xs"
+                required
+              />
+            </div>
+
+            <div className="flex ml-52">
+              <label className="basis-1/6 font-bold text-white mr-3">
+                Price:{' '}
+              </label>
+              <input
+                type="number"
+                placeholder="Price"
+                name="price"
+                value={data.price}
+                onChange={handleInput}
+                className="input w-full max-w-xs"
+                required
+              />
+            </div>
+
+            {errors.price && (
+              <div className="bg-red-600 w-96 m-auto p-1 rounded">
+                <p className="text-center text-white font-bold capitalize">
+                  {errors.price}
+                </p>
+              </div>
+            )}
+
+            <div className="flex ml-52">
+              <label className="basis-1/6 font-bold text-white mr-3">
+                Condition:{' '}
+              </label>
+              <select
+                className="select w-full max-w-xs"
+                name="condition"
+                defaultValue="default"
+                onChange={handleInput}
+                required
+              >
+                <option value="default" disabled>
+                  Select a condition
+                </option>
+
+                <option value="New" className="w-auto basis-5/6 p-1 rounded">
+                  New
+                </option>
+                <option value="Used" className="w-auto basis-5/6 p-1 rounded">
+                  Used
+                </option>
+              </select>
+            </div>
+
+            {errors.condition && (
+              <div className="bg-red-600 w-96 m-auto p-1 rounded">
+                <p className="text-center text-white font-bold capitalize">
+                  {errors.condition}
+                </p>
+              </div>
+            )}
+
+            <div className="flex ml-52">
+              <label className="basis-1/6 font-bold text-white mr-3">
+                Pay method:{' '}
+              </label>
+              <select
+                className="select w-full max-w-xs"
+                onChange={modifyMethod}
+                required
+              >
+                <option selected disabled>
+                  Select a payment method
+                </option>
                 <option
-                  key={category.id}
-                  value={category.id}
+                  value="Effective"
                   className="w-auto basis-5/6 p-1 rounded"
                 >
-                  {category.name}
+                  Effective
                 </option>
-              ))}
-          </select>
+                <option
+                  value="Debit card"
+                  className="w-auto basis-5/6 p-1 rounded"
+                >
+                  Debit card
+                </option>
+                <option
+                  value="Credit card"
+                  className="w-auto basis-5/6 p-1 rounded"
+                >
+                  Credit card
+                </option>
+                <option value="Swap" className="w-auto basis-5/6 p-1 rounded">
+                  Swap
+                </option>
+              </select>
+            </div>
+              <div className='flex ml-52 items-center gap-10' >
+                {method.map((value, index) => (
+                  <div className='flex items-center gap-5'>
+                    <p>{value}</p>
+                    <button
+                      className="btn"
+                      type="button"
+                      onClick={() => deleteMethod(value, index)}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+            <div className="flex ml-52">
+              <label className="basis-1/6 font-bold text-white mr-3">
+                Shipment:{' '}
+              </label>
+              <select
+                className="select w-full max-w-xs"
+                onChange={handleInput}
+                name="shipment"
+                required
+              >
+                <option selected disabled>
+                  Does this product include shipping?
+                </option>
+                <option value="Yes" className="w-auto basis-5/6 p-1 rounded">
+                  Yes
+                </option>
+                <option value="No" className="w-auto basis-5/6 p-1 rounded">
+                  No
+                </option>
+              </select>
+            </div>
+            <div className='flex flex-col items-center'>
+              <button
+                className="btn "
+                type="submit"
+                disabled={
+                  !data.title ||
+                  !data.price ||
+                  !data.categoryId ||
+                  !data.condition
+                }
+              >
+                <p className="font-bold hover:text-white">Submit</p>
+              </button>
+            </div>
+          </form>
         </div>
-
-        {errors.categoryId && (
-          <div className="bg-red-600 w-96 m-auto p-1 rounded">
-            <p className="text-center text-white font-bold capitalize">
-              {errors.categoryId}
-            </p>
-          </div>
-        )}
-
-        <div className="flex ml-36 mr-36">
-          <label className="basis-1/6 font-bold text-white mr-3">
-            Image:{' '}
-          </label>
-          <input
-            type="file"
-            name="image"
-            onChange={(e) => setImageUpload(e.target.files)}
-            className="w-auto basis-5/6 p-1 rounded"
-            multiple
-            required
-          />
-          <button onClick={uploadImage}>Upload Image</button>
-        </div>
-
-        {image ? image.map(value => <img src={value}></img>) : <p>No funciona</p>}
-
-        <div className="flex ml-36 mr-36">
-          <label className="basis-1/6 font-bold text-white mr-3">
-            Description:{' '}
-          </label>
-          <textarea
-            type="text"
-            placeholder="Enter a description"
-            name="description"
-            value={data.description}
-            onChange={handleInput}
-            className="basis-5/6 p-1 rounded h-28"
-            required
-          />
-        </div>
-
-        <div className="flex ml-36 mr-36">
-          <label className="basis-1/6 font-bold text-white mr-3">
-            Price:{' '}
-          </label>
-          <input
-            type="number"
-            placeholder="Price"
-            name="price"
-            value={data.price}
-            onChange={handleInput}
-            className="w-auto basis-5/6 p-1 rounded"
-            required
-          />
-        </div>
-
-        {errors.price && (
-          <div className="bg-red-600 w-96 m-auto p-1 rounded">
-            <p className="text-center text-white font-bold capitalize">
-              {errors.price}
-            </p>
-          </div>
-        )}
-
-        <div className="flex ml-36 mr-36">
-          <label className="basis-1/6 font-bold text-white mr-3">
-            Condition:{' '}
-          </label>
-          <select
-            className="w-auto basis-5/6 p-1 rounded mb-8"
-            name="condition"
-            defaultValue="default"
-            onChange={handleInput}
-            required
-          >
-            <option value="default" disabled>
-              Select a condition
-            </option>
-
-            <option value="New" className="w-auto basis-5/6 p-1 rounded">
-              New
-            </option>
-            <option value="Used" className="w-auto basis-5/6 p-1 rounded">
-              Used
-            </option>
-          </select>
-        </div>
-
-        {errors.condition && (
-          <div className="bg-red-600 w-96 m-auto p-1 rounded">
-            <p className="text-center text-white font-bold capitalize">
-              {errors.condition}
-            </p>
-          </div>
-        )}
-
-        <div className="flex ml-36 mr-36">
-          <label className="basis-1/6 font-bold text-white mr-3">
-            Pay method:{' '}
-          </label>
-          <select
-            className="w-auto basis-5/6 p-1 rounded mb-8"
-            onChange={modifyMethod}
-            required
-          >
-            <option selected disabled>Select a payment method</option>
-            <option value="Effective" className="w-auto basis-5/6 p-1 rounded">Effective</option>
-            <option value="Debit card" className="w-auto basis-5/6 p-1 rounded">Debit card</option>
-            <option value="Credit card" className="w-auto basis-5/6 p-1 rounded">Credit card</option>
-            <option value="Swap" className="w-auto basis-5/6 p-1 rounded">Swap</option>
-          </select>
-          <p>Selected methods</p>
-          {method.map((value, index) => 
-          <div>
-            <p>{value}</p>
-            <button type='button' onClick={() => deleteMethod(value, index)}>X</button>
-          </div>
-          )}
-        </div>
-
-        <div className="flex ml-36 mr-36">
-          <label className="basis-1/6 font-bold text-white mr-3">
-            Shipment:{' '}
-          </label>
-          <select
-            className="w-auto basis-5/6 p-1 rounded mb-8"
-            onChange={handleInput}
-            name='shipment'
-            required
-          >
-            <option selected disabled>Does this product include shipping?</option>
-            <option value="Yes" className="w-auto basis-5/6 p-1 rounded">Yes</option>
-            <option value="No" className="w-auto basis-5/6 p-1 rounded">No</option>
-          </select>
-        </div>
-
-
-        <button
-          className="block mx-auto bg-white hover:bg-zinc-600 px-8 py-2 rounded"
-          type="submit"
-          disabled={
-            !data.title || !data.price || !data.categoryId || !data.condition
-          }
-        >
-          <p className="font-bold hover:text-white">Submit</p>
-        </button>
-      </form>
-    </div>
-      }
+      )}
     </div>
   );
 };
