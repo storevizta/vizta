@@ -18,7 +18,11 @@ import swal from 'sweetalert';
 
 export const Post = () => {
 
-  const { user } = useAuth0();
+  const { user, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
 
   const navigate = useNavigate();
 
@@ -146,8 +150,6 @@ export const Post = () => {
         swal('Successful created!');
     }
   };
-
-  console.log(data.shipment);
 
   return (
     <div>
