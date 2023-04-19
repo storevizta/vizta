@@ -6,7 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { setTitle } from '../features/slices/FilterSlice';
 
-import { Profile } from '../components/Profile';
+import { ProfileButton } from '../components/ProfileButton';
 
 import { LogOutButton } from '../components/LogOutButton';
 
@@ -18,8 +18,6 @@ export const Navbar = () => {
   const dispatch = useDispatch();
 
   const { id } = useParams();
-
-  console.log(id);
 
   const location = useLocation();
 
@@ -45,7 +43,7 @@ export const Navbar = () => {
         {searchProfile && searchLanding && searchDetail && (
           <form>
             <input
-              className="w-96 px-5 py-1 rounded-full outline-none bg-zinc-700"
+              className="w-96 px-5 py-1 rounded-full"
               type="text"
               placeholder="Search..."
               onChange={handlerChange}
@@ -57,9 +55,9 @@ export const Navbar = () => {
           {isAuthenticated ? (
             <>
               <Link to="/post">
-                <img className="w-5 " src={post} alt="" />
+                +{/* <img className="w-5 " src={post} alt="post" /> */}
               </Link>
-              <Profile />
+              <ProfileButton />
               <LogOutButton />
             </>
           ) : (

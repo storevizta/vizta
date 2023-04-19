@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { useCreateUserMutation } from '../features/query/UserQuery';
 
-export const Profile = () => {
+export const ProfileButton = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   const [createUser] = useCreateUserMutation();
@@ -31,10 +31,7 @@ export const Profile = () => {
     isAuthenticated && (
       <>
         <Link to="/profile">
-          <div className="p-2 flex gap-2 hover:bg-zinc-700">
-            <img className="w-5" src={user.picture} alt={user.name} />
-            <div className="text-slate-50">{user.name}</div>
-          </div>
+          <div>{user.name}</div>
         </Link>
       </>
     )

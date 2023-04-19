@@ -6,10 +6,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: white;
-  /* outline: 1px solid black; */
+  /* color: white; */
+  outline: 1px solid black;
 }
 
 body {
-  background: #18181b;
+  /* background: #18181b; */
 }

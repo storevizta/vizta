@@ -1,16 +1,22 @@
-import styled from 'styled-components';
-
 import { useRouteError } from 'react-router-dom';
 
 export const NotFound = () => {
   const error = useRouteError();
+
   console.log(error);
 
   return (
-    <div>
-      <h1>404</h1>
-      <p>Page not found</p>
-      <p>{error.statusText || error.message}</p>
-    </div>
+    <>
+      <div className="flex flex-grow">
+        <div className="flex w-1/4">
+          <Sidebar />
+        </div>
+        <div className="flex flex-col w-3/4">
+          <Featured />
+          <Pagination items={ads.length} />
+          {ads.length ? <AdList ads={ads} /> : <p>No results found.</p>}
+        </div>
+      </div>
+    </>
   );
 };

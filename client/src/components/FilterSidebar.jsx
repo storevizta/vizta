@@ -2,10 +2,6 @@ import { useDispatch } from 'react-redux';
 
 import { useGetCategoryQuery } from '../features/query/categoryQuery';
 
-import { Loading } from './Loading';
-
-import { Error } from './Error';
-
 import {
   setCategory,
   setMinPrice,
@@ -21,13 +17,9 @@ export const Sidebar = () => {
 
   const { data, error, isLoading } = useGetCategoryQuery();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  if (isLoading) return <div>Loading...</div>;
 
-  if (error) {
-    return <div>Error...</div>;
-  }
+  if (error) return <div>Error...</div>;
 
   const handlerCategory = (id) => {
     dispatch(setCategory(id));
@@ -61,36 +53,30 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="w-64 max-w-64 p-5 bg-zinc-700 flex flex-col gap-5">
+      <aside>
         <div>
-          <div className="text-lg font-bold flex">Categories</div>
-          <div className="cursor-pointer">
+          <div>Categories</div>
+          <div>
             {data &&
               data?.map((el) => (
-                <div
-                  className="px-2 rounded hover:bg-zinc-600"
-                  key={el.id}
-                  onClick={() => handlerCategory(el.id)}
-                >
+                <div key={el.id} onClick={() => handlerCategory(el.id)}>
                   {el.name}
                 </div>
               ))}
           </div>
         </div>
         <div>
-          <div className="text-lg font-bold flex">Filters</div>
+          <div>Filters</div>
           <div>
             <div>Price:</div>
             <div>
-              <form className="flex gap-5">
+              <form>
                 <input
-                  className="w-24 rounded outline-none"
                   type="text"
                   placeholder="Min."
                   onChange={handlerMinPrice}
                 />
                 <input
-                  className="w-24 rounded outline-none"
                   type="text"
                   placeholder="Max."
                   onChange={handlerMaxPrice}
@@ -100,27 +86,14 @@ export const Sidebar = () => {
           </div>
           <div>
             <div>Sort:</div>
-            <div className="cursor-pointer">
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerSort('asc')}
-              >
-                Ascending
-              </div>
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerSort('desc')}
-              >
-                Descending
-              </div>
+            <div>
+              <div onClick={() => handlerSort('asc')}>Ascending</div>
+              <div onClick={() => handlerSort('desc')}>Descending</div>
             </div>
           </div>
           <div>
-            <div className="">Discount:</div>
-            <select
-              className="w-52 px-2 rounded outline-none"
-              onChange={(e) => handlerDiscount(e)}
-            >
+            <div>Discount:</div>
+            <select onChange={(e) => handlerDiscount(e)}>
               <option value="">All</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -136,32 +109,15 @@ export const Sidebar = () => {
           </div>
           <div>
             <div>Condition:</div>
-            <div className="cursor-pointer">
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerCondition('new')}
-              >
-                New
-              </div>
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerCondition('used')}
-              >
-                Used
-              </div>
+            <div>
+              <div onClick={() => handlerCondition('new')}>New</div>
+              <div onClick={() => handlerCondition('used')}>Used</div>
             </div>
           </div>
         </div>
-
-        <div className="flex justify-center">
-          <div
-            className="px-2 rounded bg-gray-600 hover:bg-red-600 cursor-pointer"
-            onClick={handlerReset}
-          >
-            Reset
-          </div>
+        <div>
+          <div onClick={handlerReset}>Reset</div>
         </div>
-        <h4 className="">Vizta Copyrigth ©</h4>
       </aside>
     </>
   );
