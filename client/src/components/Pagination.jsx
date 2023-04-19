@@ -19,7 +19,7 @@ export const Pagination = ({ items }) => {
     dispatch(setPage(+1));
   };
 
-  const totalPages = Math.ceil(items / 10);
+  const totalPages = Math.ceil(items / 12);
 
   return (
     <>
