@@ -45,9 +45,9 @@ export const Navbar = () => {
         {searchProfile && searchLanding && searchDetail && (
           <form>
             <input
-              className="w-96 px-5 py-1 rounded-full outline-none bg-zinc-700"
+              className="w-80 px-2.5  py-1 rounded-full outline-none bg-zinc-700"
               type="text"
-              placeholder="Search..."
+              placeholder="Search.."
               onChange={handlerChange}
             />
           </form>
