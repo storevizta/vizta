@@ -155,14 +155,14 @@ export const Post = () => {
       {!user ? (
         <p className="text-white">Loading...</p>
       ) : (
-        <div className="bg-zinc-700 basis-2/4 w-1/2 m-auto">
+        <div className="bg-zinc-800 basis-2/4 w-1/2 m-auto">
           <div>
             <h1 className="text-center text-white pt-5 text-3xl">
               Create your post
             </h1>
           </div>
           <form className="space-y-3 mt-5 pb-10" onSubmit={handleSubmit}>
-            <div className="flex ml-36 mr-36">
+            <div className="flex ml-52">
               <label className="basis-1/6 font-bold text-white mr-3">
                 Title:{' '}
               </label>
@@ -172,7 +172,7 @@ export const Post = () => {
                 name="title"
                 value={data.title}
                 onChange={handleInput}
-                className="w-auto basis-5/6 p-1 rounded"
+                className="input w-full max-w-xs"
                 required
               />
             </div>
@@ -185,12 +185,12 @@ export const Post = () => {
               </div>
             )}
 
-            <div className="flex ml-36 mr-36">
+            <div className="flex ml-52">
               <label className="basis-1/6 font-bold text-white mr-3">
                 Category:{' '}
               </label>
               <select
-                className="w-auto basis-5/6 p-1 rounded"
+                className="select w-full max-w-xs"
                 name="categoryId"
                 defaultValue="default"
                 onChange={handleInput}
@@ -221,28 +221,23 @@ export const Post = () => {
               </div>
             )}
 
-            <div className="flex ml-36 mr-36">
+            <div className="flex ml-52">
               <label className="basis-1/6 font-bold text-white mr-3">
                 Image:{' '}
               </label>
-              <input
-                type="file"
-                name="image"
-                onChange={(e) => setImageUpload(e.target.files)}
-                className="w-auto basis-5/6 p-1 rounded"
-                multiple
-                required
-              />
-              <button onClick={uploadImage}>Upload Image</button>
+              <input type="file" name='image' className="file-input w-full max-w-xs" onChange={(e) => setImageUpload(e.target.files)} multiple required/>
+              <button onClick={uploadImage} className="btn ml-10">Upload Image</button>
             </div>
 
-            {image ? (
-              image.map((value) => <img src={value}></img>)
-            ) : (
-              <p>No funciona</p>
-            )}
-
-            <div className="flex ml-36 mr-36">
+            <div className='flex gap-10 justify-center'>
+              {image ? (
+                image.map((value) => <img className='w-40 h-40 object-cover' src={value}></img>)
+              ) : (
+                <p>No funciona</p>
+              )}
+            </div>
+            
+            <div className="flex ml-52">
               <label className="basis-1/6 font-bold text-white mr-3">
                 Description:{' '}
               </label>
@@ -252,12 +247,12 @@ export const Post = () => {
                 name="description"
                 value={data.description}
                 onChange={handleInput}
-                className="basis-5/6 p-1 rounded h-28"
+                className="input w-full max-w-xs"
                 required
               />
             </div>
 
-            <div className="flex ml-36 mr-36">
+            <div className="flex ml-52">
               <label className="basis-1/6 font-bold text-white mr-3">
                 Price:{' '}
               </label>
@@ -267,7 +262,7 @@ export const Post = () => {
                 name="price"
                 value={data.price}
                 onChange={handleInput}
-                className="w-auto basis-5/6 p-1 rounded"
+                className="input w-full max-w-xs"
                 required
               />
             </div>
@@ -280,12 +275,12 @@ export const Post = () => {
               </div>
             )}
 
-            <div className="flex ml-36 mr-36">
+            <div className="flex ml-52">
               <label className="basis-1/6 font-bold text-white mr-3">
                 Condition:{' '}
               </label>
               <select
-                className="w-auto basis-5/6 p-1 rounded mb-8"
+                className="select w-full max-w-xs"
                 name="condition"
                 defaultValue="default"
                 onChange={handleInput}
@@ -312,12 +307,12 @@ export const Post = () => {
               </div>
             )}
 
-            <div className="flex ml-36 mr-36">
+            <div className="flex ml-52">
               <label className="basis-1/6 font-bold text-white mr-3">
                 Pay method:{' '}
               </label>
               <select
-                className="w-auto basis-5/6 p-1 rounded mb-8"
+                className="select w-full max-w-xs"
                 onChange={modifyMethod}
                 required
               >
@@ -346,26 +341,28 @@ export const Post = () => {
                   Swap
                 </option>
               </select>
-              <p>Selected methods</p>
-              {method.map((value, index) => (
-                <div>
-                  <p>{value}</p>
-                  <button
-                    type="button"
-                    onClick={() => deleteMethod(value, index)}
-                  >
-                    X
-                  </button>
-                </div>
-              ))}
             </div>
+              <div className='flex ml-52 items-center gap-10' >
+                {method.map((value, index) => (
+                  <div className='flex items-center gap-5'>
+                    <p>{value}</p>
+                    <button
+                      className="btn"
+                      type="button"
+                      onClick={() => deleteMethod(value, index)}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
+              </div>
 
-            <div className="flex ml-36 mr-36">
+            <div className="flex ml-52">
               <label className="basis-1/6 font-bold text-white mr-3">
                 Shipment:{' '}
               </label>
               <select
-                className="w-auto basis-5/6 p-1 rounded mb-8"
+                className="select w-full max-w-xs"
                 onChange={handleInput}
                 name="shipment"
                 required
@@ -381,19 +378,20 @@ export const Post = () => {
                 </option>
               </select>
             </div>
-
-            <button
-              className="block mx-auto bg-white hover:bg-zinc-600 px-8 py-2 rounded"
-              type="submit"
-              disabled={
-                !data.title ||
-                !data.price ||
-                !data.categoryId ||
-                !data.condition
-              }
-            >
-              <p className="font-bold hover:text-white">Submit</p>
-            </button>
+            <div className='flex flex-col items-center'>
+              <button
+                className="btn "
+                type="submit"
+                disabled={
+                  !data.title ||
+                  !data.price ||
+                  !data.categoryId ||
+                  !data.condition
+                }
+              >
+                <p className="font-bold hover:text-white">Submit</p>
+              </button>
+            </div>
           </form>
         </div>
       )}
