@@ -14,6 +14,9 @@ import imageError from '../assets/imageError.svg';
 
 import atras from '../assets/row-left.svg';
 
+const FakeIMG = 'https://picsum.photos/200/300';
+// Cambie image por FakeIMG para Mokup 
+
 export const Detail = () => {
   const { id } = useParams();
 
@@ -55,7 +58,7 @@ export const Detail = () => {
 
       <div className="flex items-stretch w-4/5 m-auto" key={id}>
         <img
-          src={image || imageError}
+          src={FakeIMG || imageError}
           className="basis-2/3 rounded-md"
           alt="image not found"
         />

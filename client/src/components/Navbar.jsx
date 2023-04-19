@@ -13,6 +13,7 @@ import { LogOutButton } from '../components/LogOutButton';
 import { LoginButton } from '../components/LoginButton';
 
 import post from '../assets/post.svg';
+import Logo from '../assets/LogoVizta.png';
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -40,12 +41,15 @@ export const Navbar = () => {
     <nav className="max-h-16 h-16 flex">
       <div className="w-full p-5 flex justify-between items-center">
         <Link to="/home">
-          <div className="text-xl">VIZTA</div>
+          {/* <div className="text-xl">{Logo}</div> */}
+          <div>
+            <img src={Logo} className="h-8"></img>
+          </div>
         </Link>
         {searchProfile && searchLanding && searchDetail && (
           <form>
             <input
-              className="w-80 px-2.5  py-1 rounded-full outline-none bg-zinc-700"
+              className="w-80 px-2.5  py-1 rounded-full outline-none bg-zinc-700 hover:bg-zinc-600"
               type="text"
               placeholder="Search.."
               onChange={handlerChange}
