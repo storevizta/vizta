@@ -30,11 +30,11 @@ export const UserDetail = (userId) => {
   const created = createdAt.slice(0, 10);
 
   return (
-    <>
-      <p className="font-bold mt-10 pl-5">Seller: </p>
-      <p className="text-sm pl-8">{name}</p>
-      <p className="text-sm pl-8">{address}</p>
-      <p className="text-sm pl-8">{created}</p>
-    </>
+    <div className="bg-white pb-4 pt-0.5">
+      <p className="font-bold mt-10 pl-5 text-black">Seller: </p>
+      <p className="text-sm pl-8 text-black">{name}</p>
+      <p className="text-sm pl-8 text-black">{address}</p>
+      <p className="text-sm pl-8 text-black">Joined Vizta {created}</p>
+    </div>
   );
 };

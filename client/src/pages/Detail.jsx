@@ -53,6 +53,8 @@ export const Detail = () => {
     discount,
     condition,
     state,
+    method,
+    shipment,
     UserId,
   } = data;
 
@@ -113,19 +115,39 @@ export const Detail = () => {
             <p className="pl-5 text-white">$ {price}</p>
           </div>
 
-          <div>
+          <div className="pb-4 pr-5">
             <p className="pl-5 text-white font-bold pt-5">Description: </p>
             <p className="pl-8 text-white pb-3">{description}</p>
           </div>
 
-          <div>
+          <div className="pb-4">
             <p className="font-bold text-white pl-5 inline">Condition: </p>
             <p className="inline text-white"> {condition}</p>
           </div>
 
-          <div>
+          <div className="pb-4">
             <p className="inline text-white font-bold pl-5">State: </p>
-            <p className="inline text-white pb-15">{state}</p>
+            <p className="inline text-white">{state}</p>
+          </div>
+
+          <div className="pb-4">
+            <p className="inline text-white font-bold pl-5">
+              Payment Methods:{' '}
+            </p>
+            <ul>
+              {method?.map((method) => {
+                return (
+                  <li className="inline text-white pb-15 pl-5">{method}</li>
+                );
+              })}
+            </ul>
+          </div>
+
+          <div className="pb-4">
+            <p className="inline text-white font-bold pl-5">
+              Make home deliveries:{' '}
+            </p>
+            <p className="inline text-white pb-15">{shipment}</p>
           </div>
 
           <div className="block text-white mt-15">
