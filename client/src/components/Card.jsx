@@ -5,18 +5,17 @@ export const Card = ({ info }) => {
 
   return (
     <>
-      <div className="">
+      <div>
         {!image ? (
-          <img className="w-48" src={imageError} alt="image" />
+          <img className="w-60 h-60 rounded-3xl" src={imageError} alt="image" />
         ) : (
           <img
-            className="w-48"
+            className="w-60 h-60 rounded-3xl"
             src={image[0]}
             alt="image"
             onError={(e) => (e.target.src = `${imageError}`)}
           />
         )}
-
         <div>{title}</div>
         <div>${price}</div>
       </div>

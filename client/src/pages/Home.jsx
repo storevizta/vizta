@@ -46,7 +46,7 @@ export const Home = () => {
           <Sidebar />
           <div className="w-full">
             <Featured />
-            <Pagination items={ads.length} />
+            <Pagination items={data.count} />
             {ads.length ? <Cards ads={ads} /> : <p>No results found.</p>}
           </div>
         </div>

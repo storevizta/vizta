@@ -19,38 +19,14 @@ export const Pagination = ({ items }) => {
     dispatch(setPage(page + 1));
   };
 
-  const totalPages = Math.ceil(items / 10);
-
-  const canGoPrev = page > 0;
-
-  const canGoNext = page < totalPages - 1;
-
   return (
     <>
       <div className="flex gap-5">
-        <button
-          className={`w-5 h-5 rounded-full ${
-            canGoPrev
-              ? 'hover:bg-zinc-600 cursor-pointer'
-              : 'opacity-50 cursor-default'
-          }`}
-          disabled={!canGoPrev}
-          onClick={handlerPrevPage}
-        >
+        <button onClick={handlerPrevPage}>
           <img className="w-5" src={rowLeft} alt="row-left" />
         </button>
-        <span>
-          {page + 1} of {totalPages}
-        </span>
-        <button
-          className={`w-5 h-5 rounded-full ${
-            canGoNext
-              ? 'hover:bg-zinc-600 cursor-pointer'
-              : 'opacity-50 cursor-default'
-          }`}
-          disabled={!canGoNext}
-          onClick={handlerNextPage}
-        >
+        <span>{page}</span>
+        <button onClick={handlerNextPage}>
           <img className="w-5" src={rowRight} alt="row-right" />
         </button>
       </div>

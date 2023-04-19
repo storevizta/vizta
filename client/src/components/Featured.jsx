@@ -1,7 +1,7 @@
 export const Featured = () => {
   return (
     <>
-      <div>Featured</div>
+      <div className="h-64">Featured</div>
     </>
   );
 };
