@@ -12,6 +12,8 @@ import { Error } from '../components/Error';
 
 import { UserDetail } from '../components/UserDetail';
 
+import { CreateMessage } from '../components/CreateMessage';
+
 import imageError from '../assets/imageError.svg';
 
 import rowLeft from '../assets/row-left.svg';
@@ -74,8 +76,8 @@ export const Detail = () => {
         <img src={rowLeft} alt="atras" className="pl-5 w-12" />
       </Link>
 
-      <div className="flex justify-center w-4/5 m-auto" key={id}>
-        <div className="flex items-stretch">
+      <div className="flex flex-row content-stretch w-2/3 m-auto" key={id}>
+        <div className="flex items-stretch basis-2/3">
           <img
             className="w-12"
             src={rowLeft}
@@ -89,12 +91,7 @@ export const Detail = () => {
               return (
                 <div key={index}>
                   {currentImage === index && (
-                    <img
-                      className="w-screen h-screen"
-                      src={image}
-                      key={index}
-                      alt="image"
-                    />
+                    <img src={image} key={index} alt="image" />
                   )}
                 </div>
               );
@@ -155,6 +152,8 @@ export const Detail = () => {
           </div>
         </div>
       </div>
+
+      <CreateMessage userId={UserId} adId={id} />
     </div>
   );
 };

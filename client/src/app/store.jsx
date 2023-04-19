@@ -6,6 +6,8 @@ import { Category } from '../features/query/categoryQuery';
 
 import { User } from '../features/query/UserQuery';
 
+import { Message } from '../features/query/MessagesQuery';
+
 import FilterSlice from '../features/slices/filterSlice';
 
 export const store = configureStore({
@@ -13,12 +15,14 @@ export const store = configureStore({
     [Ads.reducerPath]: Ads.reducer,
     [Category.reducerPath]: Category.reducer,
     [User.reducerPath]: User.reducer,
+    [Message.reducerPath]: Message.reducer,
     filter: FilterSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       Ads.middleware,
       Category.middleware,
-      User.middleware
+      User.middleware,
+      Message.middleware
     ),
 });
