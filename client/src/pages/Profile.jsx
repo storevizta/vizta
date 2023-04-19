@@ -1,10 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import { useGetUserIdQuery } from '../features/query/UserQuery.jsx';
-import { GeneralConfiguration } from '../components/GeneralConfiguration.jsx'
-import { Advertisements } from '../components/Advertisements.jsx'
-import { Subscription } from '../components/Subscription.jsx'
-import { Reputation } from '../components/Reputation.jsx'
 
 export const Profile = () => {
   const { user, isLoading } = useAuth0();
