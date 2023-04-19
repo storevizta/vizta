@@ -53,13 +53,17 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="w-96 flex flex-col gap-5">
+      <aside className="w-64 p-5 flex flex-col gap-5">
         <div>
           <div className="flex flex-col gap-2">
             <div>Categories</div>
             {data &&
               data?.map((el) => (
-                <div key={el.id} onClick={() => handlerCategory(el.id)}>
+                <div
+                  key={el.id}
+                  className="p-1 rounded bg-slate-600"
+                  onClick={() => handlerCategory(el.id)}
+                >
                   {el.name}
                 </div>
               ))}
@@ -70,15 +74,15 @@ export const Sidebar = () => {
           <div>Price</div>
           <form className="flex justify-center items-center gap-5">
             <input
-              className="w-24"
               type="text"
               placeholder="Min."
+              className="w-24 p-1 rounded bg-slate-600"
               onChange={handlerMinPrice}
             />
             <input
-              className="w-24"
               type="text"
               placeholder="Max."
+              className="w-24 p-1 rounded bg-slate-600"
               onChange={handlerMaxPrice}
             />
           </form>
@@ -86,13 +90,26 @@ export const Sidebar = () => {
         <div className="flex flex-col gap-2">
           <div>Sort</div>
           <div className="flex flex-col gap-2">
-            <div onClick={() => handlerSort('asc')}>Ascending</div>
-            <div onClick={() => handlerSort('desc')}>Descending</div>
+            <div
+              className="p-1 rounded bg-slate-600"
+              onClick={() => handlerSort('asc')}
+            >
+              Ascending
+            </div>
+            <div
+              className="p-1 rounded bg-slate-600"
+              onClick={() => handlerSort('desc')}
+            >
+              Descending
+            </div>
           </div>
         </div>
         <div className="flex flex-col gap-2">
           <div>Discount</div>
-          <select onChange={(e) => handlerDiscount(e)}>
+          <select
+            className="p-1 rounded bg-slate-600"
+            onChange={(e) => handlerDiscount(e)}
+          >
             <option value="">All</option>
             <option value="10">10%</option>
             <option value="20">20%</option>
@@ -109,12 +126,24 @@ export const Sidebar = () => {
         <div className="flex flex-col gap-2">
           <div>Condition</div>
           <div className="flex flex-col gap-2">
-            <div onClick={() => handlerCondition('new')}>New</div>
-            <div onClick={() => handlerCondition('used')}>Used</div>
+            <div
+              className="p-1 rounded bg-slate-600"
+              onClick={() => handlerCondition('new')}
+            >
+              New
+            </div>
+            <div
+              className="p-1 rounded bg-slate-600"
+              onClick={() => handlerCondition('used')}
+            >
+              Used
+            </div>
           </div>
         </div>
         <div>
-          <div onClick={handlerReset}>Reset</div>
+          <div className="p-1 rounded bg-slate-600" onClick={handlerReset}>
+            Reset
+          </div>
         </div>
       </aside>
     </>

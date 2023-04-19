@@ -30,9 +30,7 @@ export const ProfileButton = () => {
   return (
     isAuthenticated && (
       <>
-        <Link to="/profile">
-          <div>{user.name}</div>
-        </Link>
+        <Link to="/profile">Profile</Link>
       </>
     )
   );

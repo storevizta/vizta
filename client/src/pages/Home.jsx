@@ -41,12 +41,21 @@ export const Home = () => {
 
   return (
     <>
-      <div className="h-full flex flex-col">
+      {/* <div className="h-full flex flex-col">
         <div className="flex flex-grow  ">
           <Sidebar />
           <div className="w-full">
             <Featured />
             <Pagination items={data.count} />
+            {ads.length ? <Cards ads={ads} /> : <p>No results found.</p>}
+          </div>
+        </div>
+      </div> */}
+      <div className="h-full flex bg-base-200">
+        <div className="w-full flex">
+          <Sidebar />
+          <div className="w-full">
+            <Pagination />
             {ads.length ? <Cards ads={ads} /> : <p>No results found.</p>}
           </div>
         </div>
