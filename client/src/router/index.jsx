@@ -41,6 +41,26 @@ export const router = createBrowserRouter([
         path: '/post',
         element: <Post />,
       },
+      {
+        path: '/generalconfig',
+        element: <GeneralConfiguration />,
+      },
+      {
+        path: '/advertisements',
+        element: <Advertisements />,
+      },
+      {
+        path: '/favorites',
+        element: <Favorites />,
+      },
+      {
+        path: '/subscription',
+        element: <Subscription />,
+      },
+      {
+        path: '/reputation',
+        element: <Reputation />,
+      }
     ],
   },
 ]);

@@ -12,7 +12,7 @@ import { storage } from '../firebase/config';
 
 import { v4 } from 'uuid';
 
-import { useCreateAdMutation } from '../features/query/adsQuery';
+import { useCreateAdMutation } from '../features/query/AdsQuery.jsx';
 
 import swal from 'sweetalert';
 
