@@ -5,12 +5,12 @@ export const Card = ({ info }) => {
 
   return (
     <>
-      <div>
+      <div className="flex flex-col gap-1">
         {!image ? (
-          <img className="w-60 h-60 rounded-3xl" src={imageError} alt="image" />
+          <img className="w-48 h-48 rounded-3xl" src={imageError} alt="image" />
         ) : (
           <img
-            className="w-60 h-60 rounded-3xl"
+            className="w-48 h-48 rounded-3xl"
             src={image[0]}
             alt="image"
             onError={(e) => (e.target.src = `${imageError}`)}
