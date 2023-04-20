@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 import { useCreateUserMutation } from '../features/query/UserQuery';
 
+import imageError from '../assets/imageError.svg';
+
 export const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
@@ -34,7 +36,12 @@ export const Profile = () => {
       <>
         <Link to="/profile">
           <div className="p-2 flex gap-2 hover:bg-zinc-700">
-            <img className="w-5" src={user.picture} alt={user.name} />
+            <img
+              className="w-56 h-56 rounded"
+              src={user.picture}
+              alt="image"
+              onError={(e) => (e.target.src = `${imageError}`)}
+            />
             <div className="text-slate-50">{user.name}</div>
           </div>
         </Link>
