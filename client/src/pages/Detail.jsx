@@ -10,6 +10,8 @@ import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
 
+import { Cards } from '../components/Cards';
+
 import { UserDetail } from '../components/UserDetail';
 
 import { Messages } from '../components/Messages';
@@ -158,6 +160,15 @@ export const Detail = () => {
         </div>
       </div>
       <Messages adId={id} userId={UserId} />
+      <div className="w-2/3 m-auto mt-5 mb-5">
+        <div className="bg-slate-400 pt-3 pb-3 text-lg">
+          <h2 className="font-bold text-center">
+            Other publications from this Seller
+          </h2>
+        </div>
+
+        <Cards userId={UserId} />
+      </div>
     </div>
   );
 };
