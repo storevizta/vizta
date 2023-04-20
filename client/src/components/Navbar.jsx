@@ -38,33 +38,81 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="max-h-16 h-16 flex">
-      <div className="w-full p-5 flex justify-between items-center">
-        <Link to="/home">
-          {/* <div className="text-xl">{Logo}</div> */}
-          <div>
-            <img src={Logo} className="h-8"></img>
-          </div>
-        </Link>
-        {searchProfile && searchLanding && searchDetail && (
-          <form>
-            <input
-              className="w-80 px-2.5  py-1 rounded-full outline-none bg-zinc-700 hover:bg-zinc-600"
-              type="text"
-              placeholder="Search.."
-              onChange={handlerChange}
-            />
-          </form>
-        )}
+    // <nav className="max-h-16 h-16 flex">
+    //   <div className="w-full p-5 flex justify-between items-center">
+    //     <Link to="/home">
+    //       {/* <div className="text-xl">{Logo}</div> */}
+    //       <div>
+    //         <img src={Logo} className="h-8"></img>
+    //       </div>
+    //     </Link>
+    //     {searchProfile && searchLanding && searchDetail && (
+    //       <form>
+    //         <input
+    //           className="w-80 px-2.5  py-1 rounded-full outline-none bg-zinc-700 hover:bg-zinc-600"
+    //           type="text"
+    //           placeholder="Search.."
+    //           onChange={handlerChange}
+    //         />
+    //       </form>
+    //     )}
 
-        <div className="flex items-center gap-5">
+    //     <div className="flex items-center gap-5">
+    //       {isAuthenticated ? (
+    //         <>
+    //           <Link to="/post">
+    //             <img className="w-5 " src={post} alt="" />
+    //           </Link>
+    //           <Profile />
+    //           <LogOutButton />
+    //         </>
+    //       ) : (
+    //         <>
+    //           <LoginButton />
+    //         </>
+    //       )}
+    //     </div>
+    //   </div>
+    // </nav>
+    <>
+      <div className="navbar bg-base-100">
+        <div className="flex-1">
+          <a className="btn btn-ghost normal-case text-xl">VIZTA</a>
+        </div>
+        <div className="flex-none gap-2">
+          <div className="form-control">
+            <input
+              type="text"
+              placeholder="Search"
+              className="input input-bordered"
+            />
+          </div>
           {isAuthenticated ? (
             <>
-              <Link to="/post">
-                <img className="w-5 " src={post} alt="" />
-              </Link>
-              <Profile />
-              <LogOutButton />
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <a className="justify-between">
+                      Profile
+                      <span className="badge">New</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a>Settings</a>
+                  </li>
+                  <li>
+                    <a>Logout</a>
+                  </li>
+                </ul>
+              </div>
             </>
           ) : (
             <>
@@ -73,6 +121,6 @@ export const Navbar = () => {
           )}
         </div>
       </div>
-    </nav>
+    </>
   );
 };
