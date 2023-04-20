@@ -12,7 +12,7 @@ import { LogOutButton } from '../components/LogOutButton';
 
 import { LoginButton } from '../components/LoginButton';
 
-import post from '../assets/post.svg';
+import imageError from '../assets/imageError.svg';
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -93,7 +93,12 @@ export const Navbar = () => {
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
-                    <img src={user.picture} />
+                    <img
+                      className="w-56 h-56 rounded"
+                      src={user.picture}
+                      alt="image"
+                      onError={(e) => (e.target.src = `${imageError}`)}
+                    />
                   </div>
                 </label>
                 <ul
