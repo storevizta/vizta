@@ -23,13 +23,11 @@ export const Cards = ({ userId }) => {
     size: 2000,
   });
 
-  const userAds = data.ads.filter((ads) => ads.UserId === userId).slice(0, 4);
-
-  console.log(userAds);
-
   if (isLoading) return <Loading />;
 
   if (error) return <Error />;
+
+  const userAds = data.ads.filter((ads) => ads.UserId === userId).slice(0, 4);
 
   return (
     <div>
@@ -40,7 +38,7 @@ export const Cards = ({ userId }) => {
           {data &&
             userAds.map((el) => (
               <Link to={`/detail/${el.id}`} key={el.id}>
-                <Card info={el} />
+                <Card key={el.id} info={el} />
               </Link>
             ))}
         </div>
