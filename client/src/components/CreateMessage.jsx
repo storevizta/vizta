@@ -49,15 +49,20 @@ export const CreateMessage = (props) => {
   return (
     <div>
       {activeMessage === true ? (
-        <div>
-          <button onClick={handleClose}>X</button>
+        <div className="border-slate-400 border-2 pb-5">
+          <button
+            className="bg-red-600 mt-3 ml-3 py-1 px-2 rounded text-white"
+            onClick={handleClose}
+          >
+            X
+          </button>
           <form
-            className="flex flex-col w-2/3 m-auto items-center mt-5"
+            className="flex flex-col m-auto items-center mt-5 "
             onSubmit={handleSubmit}
           >
-            <label>Message: </label>
+            <label className="font-bold text-lg">Message: </label>
             <textarea
-              className="text-black w-full mb-5 mt-5"
+              className="text-black w-full mb-5 mt-5 border-slate-400 border-2 rounded w-5/6 h-24 p-3"
               value={data.message}
               onChange={handleInput}
               placeholder="Message..."
@@ -71,7 +76,12 @@ export const CreateMessage = (props) => {
           </form>
         </div>
       ) : (
-        <button onClick={handleActiveMessage}>To send a message</button>
+        <button
+          className="bg-zinc-700 text-white w-40 p-3 rounded m-auto block mt-5"
+          onClick={handleActiveMessage}
+        >
+          To send a message
+        </button>
       )}
     </div>
   );
