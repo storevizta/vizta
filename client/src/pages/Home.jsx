@@ -55,7 +55,7 @@ export const Home = () => {
           <div className="grid grid-cols-5">
             {data &&
               data.ads.map((el) => (
-                <Link to={`/detail/${el.id}`} key={el.id}>
+                <Link className='m-3' to={`/detail/${el.id}`} key={el.id}>
                   <Card info={el} />
                 </Link>
               ))}
