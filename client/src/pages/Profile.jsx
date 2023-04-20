@@ -6,9 +6,10 @@ import { useState } from 'react';
 export const Profile = () => {
   const { user, isLoading } = useAuth0();
   const [activePanel, setActivePanel] = useState(null);
+  const showDefaultPanel = activePanel === null;
 
-  const handlePanelClick = (panelName) => {
-    setActivePanel(panelName);
+  const handlePanelClick = (panel) => {
+    setActivePanel(activePanel === panel ? null : panel);
   };
 
 
@@ -42,16 +43,17 @@ export const Profile = () => {
         <h4 className="">Vizta Copyrigth ©</h4>
       </aside>
 
-      <div className="p-2 flex flex-col gap-2 hover:bg-zinc-700">
-        <img className="w-5" src={data.picture} alt={data.name} />
-        <p className="text-slate-50">Name:{data.name}</p>
-        <p>Nickname:{data.nickname}</p>
-        <p>Email:{data.email}</p>
-        <p>Address:{data.address}</p>
-        <p>Phone:{data.phone}</p>
-        <p>Joined Vizta:{data.createdAt}</p>
-      </div>
-
+      {showDefaultPanel && (
+        <div className="p-2 flex flex-col gap-2 hover:bg-zinc-700">
+          <img className="w-5" src={data.picture} alt={data.name} />
+          <p className="text-slate-50">Name:{data.name}</p>
+          <p>Nickname:{data.nickname}</p>
+          <p>Email:{data.email}</p>
+          <p>Address:{data.address}</p>
+          <p>Phone:{data.phone}</p>
+          <p>Joined Vizta:{data.createdAt}</p>
+        </div>
+      )}
       <div className="panel-container">
         {activePanel === 'General Configuration' && (
           <div className="panel">
