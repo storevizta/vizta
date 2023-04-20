@@ -12,9 +12,7 @@ import { Error } from '../components/Error';
 
 import { UserDetail } from '../components/UserDetail';
 
-import { CreateMessage } from '../components/CreateMessage';
-
-import imageError from '../assets/imageError.svg';
+import { Messages } from '../components/Messages';
 
 import rowLeft from '../assets/row-left.svg';
 
@@ -152,8 +150,7 @@ export const Detail = () => {
           </div>
         </div>
       </div>
-
-      <CreateMessage userId={UserId} adId={id} />
+      <Messages adId={id} userId={UserId} />
     </div>
   );
 };

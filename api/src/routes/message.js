@@ -3,13 +3,13 @@ const router = require('express').Router();
 const {
   ask,
   response,
-  searchMessageAd,
-  searchMessageUser,
+  getMessages,
+  getMessageById
 } = require('../controller/messageController.js');
 
-router.get('/user', searchMessageUser);
+router.get("/", getMessages);
 
-router.get('/ad', searchMessageAd);
+router.get("/:id", getMessageById);
 
 router.post('/', ask);
 
