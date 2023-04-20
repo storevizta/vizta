@@ -19,8 +19,6 @@ export const Navbar = () => {
 
   const { id } = useParams();
 
-  console.log(id);
-
   const location = useLocation();
 
   const searchLanding = location.pathname !== `/`;
@@ -85,6 +83,7 @@ export const Navbar = () => {
               <input
                 type="text"
                 placeholder="Search"
+                onChange={handlerChange}
                 className="input input-bordered"
               />
             </div>
