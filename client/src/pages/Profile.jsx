@@ -130,7 +130,7 @@ export const Profile = () => {
       <h3>Your Ratings:</h3>
       
         <div>
-          <p>Rating Description:{rating.description}</p>
+          <p>Rating Description:</p>
           <p>Rating:</p>
         </div>
       
