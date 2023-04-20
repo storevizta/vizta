@@ -13,7 +13,6 @@ import { LogOutButton } from '../components/LogOutButton';
 import { LoginButton } from '../components/LoginButton';
 
 import post from '../assets/post.svg';
-import Logo from '../assets/LogoVizta.png';
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -30,7 +29,7 @@ export const Navbar = () => {
 
   const searchProfile = location.pathname !== `/profile`;
 
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   const handlerChange = (e) => {
     const newTitle = e.target.value;
@@ -56,7 +55,6 @@ export const Navbar = () => {
     //         />
     //       </form>
     //     )}
-
     //     <div className="flex items-center gap-5">
     //       {isAuthenticated ? (
     //         <>
@@ -77,22 +75,26 @@ export const Navbar = () => {
     <>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">VIZTA</a>
+          <Link className="btn btn-ghost normal-case text-xl" to="/home">
+            VIZTA
+          </Link>
         </div>
         <div className="flex-none gap-2">
-          <div className="form-control">
-            <input
-              type="text"
-              placeholder="Search"
-              className="input input-bordered"
-            />
-          </div>
+          {searchProfile && searchLanding && searchDetail && (
+            <div className="form-control">
+              <input
+                type="text"
+                placeholder="Search"
+                className="input input-bordered"
+              />
+            </div>
+          )}
           {isAuthenticated ? (
             <>
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
-                    <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                    <img src={user.picture} />
                   </div>
                 </label>
                 <ul
@@ -100,16 +102,15 @@ export const Navbar = () => {
                   className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <a className="justify-between">
+                    <Link className="justify-between" to="/profile">
                       Profile
-                      <span className="badge">New</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a>Settings</a>
+                    <Link to="/post">Sell</Link>
                   </li>
                   <li>
-                    <a>Logout</a>
+                    <LogOutButton />
                   </li>
                 </ul>
               </div>
