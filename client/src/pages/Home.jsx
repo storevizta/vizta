@@ -17,21 +17,16 @@ import { Pagination } from '../components/Pagination';
 import { Card } from '../components/Card';
 
 export const Home = () => {
-  const page = useSelector((state) => state.filter.page);
-
-  const title = useSelector((state) => state.filter.title);
-
-  const category = useSelector((state) => state.filter.category);
-
-  const minPrice = useSelector((state) => state.filter.minPrice);
-
-  const maxPrice = useSelector((state) => state.filter.maxPrice);
-
-  const sort = useSelector((state) => state.filter.sort);
-
-  const discount = useSelector((state) => state.filter.discount);
-
-  const condition = useSelector((state) => state.filter.condition);
+  const {
+    page,
+    title,
+    category,
+    minPrice,
+    maxPrice,
+    sort,
+    discount,
+    condition,
+  } = useSelector((state) => state.filter);
 
   const { data, error, isLoading } = useGetAdsQuery({
     page,
@@ -44,31 +39,20 @@ export const Home = () => {
     condition,
   });
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <Loading />
-      </div>
-    );
-  }
+  if (isLoading) return <Loading />;
 
-  if (error) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <Error />
-      </div>
-    );
-  }
+  if (error) return <Error />;
 
   return (
     <div className="h-full flex flex-grow bg-sky-900">
       <Sidebar />
       <div className="w-full p-5">
         <Featured />
+        <Pagination items={data.length} />
         {data && data.ads.length === 0 ? (
           <p>No results found.</p>
         ) : (
-          <div className="ml-64 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 ">
+          <div className="grid grid-cols-5 gap-5">
             {data &&
               data.ads.map((el) => (
                 <Link to={`/detail/${el.id}`} key={el.id}>
@@ -77,7 +61,6 @@ export const Home = () => {
               ))}
           </div>
         )}
-        <Pagination items={data.length} />
       </div>
     </div>
   );
