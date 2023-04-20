@@ -6,12 +6,12 @@ export const Card = ({ info }) => {
   const { image, title, price } = info;
 
   return (
-    <div className="">
+    <div className="flex flex-col gap-1">
       {!image ? (
-        <img className="" src={image} alt="image" />
+        <img className="w-56 h-56 rounded" src={image} alt="image" />
       ) : (
         <img
-          className=""
+          className="w-56 h-56 rounded"
           src={image[0]}
           alt="image"
           onError={(e) => (e.target.src = `${FakeIMG}`)}
