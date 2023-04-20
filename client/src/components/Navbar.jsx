@@ -12,6 +12,7 @@ import { LogOutButton } from '../components/LogOutButton';
 
 import { LoginButton } from '../components/LoginButton';
 
+
 import post from '../assets/post.svg';
 
 export const Navbar = () => {
@@ -103,6 +104,11 @@ export const Navbar = () => {
                   <li>
                     <Link className="justify-between" to="/profile">
                       Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/favorite"  >
+                      Favorites
                     </Link>
                   </li>
                   <li>
