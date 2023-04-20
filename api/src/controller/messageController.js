@@ -20,7 +20,7 @@ const ask = async (req, res) => {
     res.status(200).json(newMessage);
   } catch (error) {
     console.log(error.message);
-    res.status(400).json(error);
+    res.status(400).json(error.message);
   }
 };
 
@@ -38,37 +38,35 @@ const response = async (req, res) => {
   }
 };
 
-const searchMessageAd = async (req, res) => {
+const getMessages = async (req,res) => {
   try {
-    const { adId } = req.body;
-    const ad = await Ad.findOne({
-      where: { id: adId },
-      include: { model: Message },
-    });
-    res.json(ad.Messages);
+    const messages = await Message.findAll();
+    res.status(200).send(messages)
   } catch (error) {
-    console.log(error.message);
-    res.status(400).json(error);
+    res.status(400).send(error.message);
   }
-};
+}
 
-const searchMessageUser = async (req, res) => {
-  try {
-    const { userId } = req.body;
-    const user = await User.findOne({
-      where: { id: userId },
-      include: { model: Message },
-    });
-    res.json(user.Messages);
-  } catch (error) {
-    console.log(error.message);
-    res.status(400).json(error);
+const getMessageById = async (req,res) => {
+  const {id} = req.params;
+
+  if(!id){
+    res.status(404).send("Error: Id is required");
   }
-};
+  try {
+    const message = await Message.findByPk(id);
+    if(!message){
+      res.status(404).send("Error: There is no message with the entered ID")
+    }
+    res.status(200).json(message);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+}
 
 module.exports = {
   ask,
   response,
-  searchMessageAd,
-  searchMessageUser,
+  getMessages,
+  getMessageById
 };

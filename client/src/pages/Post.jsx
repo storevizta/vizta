@@ -73,20 +73,22 @@ export const Post = () => {
     return errors;
   }
 
-  const uploadImage = (e) => {
+  const uploadImage = async (e) => {
     e.preventDefault();
     if (imageUpload === null) return;
     let newImage = [];
     for (let i = 0; i < imageUpload.length; i++) {
       const imageRef = ref(storage, `posts/${imageUpload[i].name + v4()}`);
-      uploadBytes(imageRef, imageUpload[i]).then((snaphsot) => {
-        getDownloadURL(snaphsot.ref).then((url) => {
+      await uploadBytes(imageRef, imageUpload[i]).then(async (snaphsot) => {
+        await getDownloadURL(snaphsot.ref).then((url) => {
           newImage.push(url);
-          setImage(newImage);
+          console.log(newImage);
         });
       });
     }
+    setImage(newImage);
   };
+  console.log(image);
   /*
   const handleInputImage = async (e) => {
     const file = e.target.files[0];
