@@ -75,7 +75,7 @@ export const Detail = () => {
       </Link>
 
       <div className="flex flex-row content-stretch w-2/3 m-auto" key={id}>
-        <div className="flex items-stretch basis-2/3">
+        <div className="flex items-stretch basis-2/3 h-full">
           <img
             className="w-12"
             src={rowLeft}
@@ -89,7 +89,12 @@ export const Detail = () => {
               return (
                 <div key={index}>
                   {currentImage === index && (
-                    <img src={image} key={index} alt="image" />
+                    <img
+                      className="w-max"
+                      src={image}
+                      key={index}
+                      alt="image"
+                    />
                   )}
                 </div>
               );
@@ -104,7 +109,9 @@ export const Detail = () => {
         </div>
 
         <div className="basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md">
-          <h1 className="font-bold text-white pl-5 text-3xl pt-3">{title}</h1>
+          <h1 className="font-bold text-white pl-5 text-3xl pt-3 pr-3">
+            {title}
+          </h1>
 
           <div>
             <p className="pl-5 text-white">$ {price}</p>
