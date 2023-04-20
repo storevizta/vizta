@@ -72,38 +72,38 @@ export const Detail = () => {
 
   return (
     <div>
-      <Link to="/home">
-        <img src={rowLeft} alt="atras" className="pl-5 w-12" />
-      </Link>
-
       <div className="flex flex-row content-stretch w-2/3 m-auto" key={id}>
-        <div className="flex items-stretch basis-2/3 h-full">
+        <div className="flex justify-center items-center">
           <img
-            className="w-12"
+            className="w-16"
             src={rowLeft}
             alt="row-left"
             onClick={handlerNextImage}
           />
           {!image ? (
-            <img src={FakeIMG} alt="image" />
+            <div className='object-cover h-100 w-150'>
+              <img className="w-full h-full" src={FakeIMG} alt="image" />
+            </div>
           ) : (
             image.map((image, index) => {
               return (
                 <div key={index}>
                   {currentImage === index && (
-                    <img
-                      className="w-max"
-                      src={image}
-                      key={index}
-                      alt="image"
-                    />
+                    <div className='object-cover h-100 w-150'>
+                      <img
+                        className="w-full h-full"
+                        src={image}
+                        key={index}
+                        alt="image"
+                      />
+                    </div>
                   )}
                 </div>
               );
             })
           )}
           <img
-            className="w-12"
+            className="w-16"
             src={rowRight}
             alt="row-right"
             onClick={handlerPreviousImage}

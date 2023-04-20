@@ -23,13 +23,11 @@ export const Cards = ({ userId }) => {
     size: 2000,
   });
 
-  const userAds = data.ads.filter((ads) => ads.UserId === userId).slice(0, 4);
-
-  console.log(userAds);
-
   if (isLoading) return <Loading />;
 
   if (error) return <Error />;
+
+  const userAds = data.ads.filter((ads) => ads.UserId === userId).slice(0, 4);
 
   return (
     <div>
@@ -39,8 +37,8 @@ export const Cards = ({ userId }) => {
         <div className="grid pl-16 mt-5">
           {data &&
             userAds.map((el) => (
-              <Link className='m-10' to={`/detail/${el.id}`} key={el.id}>
-                <Card className='m-10' info={el} />
+              <Link to={`/detail/${el.id}`} key={el.id}>
+                <Card key={el.id} info={el} />
               </Link>
             ))}
         </div>
