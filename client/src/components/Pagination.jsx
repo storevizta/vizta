@@ -21,7 +21,7 @@ export const Pagination = ({ items }) => {
 
   return (
     <>
-      <div className="flex gap-5">
+      <div className="flex justify-center items-center gap-5">
         <div
           className="w-5 rounded-full hover:bg-zinc-600"
           onClick={handlerPrevPage}

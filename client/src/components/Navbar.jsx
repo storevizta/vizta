@@ -13,14 +13,11 @@ import { LogOutButton } from '../components/LogOutButton';
 import { LoginButton } from '../components/LoginButton';
 
 import post from '../assets/post.svg';
-import Logo from '../assets/LogoVizta.png';
 
 export const Navbar = () => {
   const dispatch = useDispatch();
 
   const { id } = useParams();
-
-  console.log(id);
 
   const location = useLocation();
 
@@ -30,7 +27,7 @@ export const Navbar = () => {
 
   const searchProfile = location.pathname !== `/profile`;
 
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   const handlerChange = (e) => {
     const newTitle = e.target.value;
@@ -38,33 +35,84 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="max-h-16 h-16 flex">
-      <div className="w-full p-5 flex justify-between items-center">
-        <Link to="/home">
-          {/* <div className="text-xl">{Logo}</div> */}
-          <div>
-            <img src={Logo} className="h-8"></img>
-          </div>
-        </Link>
-        {searchProfile && searchLanding && searchDetail && (
-          <form>
-            <input
-              className="w-80 px-2.5  py-1 rounded-full outline-none bg-zinc-700 hover:bg-zinc-600"
-              type="text"
-              placeholder="Search.."
-              onChange={handlerChange}
-            />
-          </form>
-        )}
-
-        <div className="flex items-center gap-5">
+    // <nav className="max-h-16 h-16 flex">
+    //   <div className="w-full p-5 flex justify-between items-center">
+    //     <Link to="/home">
+    //       {/* <div className="text-xl">{Logo}</div> */}
+    //       <div>
+    //         <img src={Logo} className="h-8"></img>
+    //       </div>
+    //     </Link>
+    //     {searchProfile && searchLanding && searchDetail && (
+    //       <form>
+    //         <input
+    //           className="w-80 px-2.5  py-1 rounded-full outline-none bg-zinc-700 hover:bg-zinc-600"
+    //           type="text"
+    //           placeholder="Search.."
+    //           onChange={handlerChange}
+    //         />
+    //       </form>
+    //     )}
+    //     <div className="flex items-center gap-5">
+    //       {isAuthenticated ? (
+    //         <>
+    //           <Link to="/post">
+    //             <img className="w-5 " src={post} alt="" />
+    //           </Link>
+    //           <Profile />
+    //           <LogOutButton />
+    //         </>
+    //       ) : (
+    //         <>
+    //           <LoginButton />
+    //         </>
+    //       )}
+    //     </div>
+    //   </div>
+    // </nav>
+    <>
+      <div className="navbar bg-base-100">
+        <div className="flex-1">
+          <Link className="btn btn-ghost normal-case text-xl" to="/home">
+            VIZTA
+          </Link>
+        </div>
+        <div className="flex-none gap-2">
+          {searchProfile && searchLanding && searchDetail && (
+            <div className="form-control">
+              <input
+                type="text"
+                placeholder="Search"
+                onChange={handlerChange}
+                className="input input-bordered"
+              />
+            </div>
+          )}
           {isAuthenticated ? (
             <>
-              <Link to="/post">
-                <img className="w-5 " src={post} alt="" />
-              </Link>
-              <Profile />
-              <LogOutButton />
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src={user.picture} />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <Link className="justify-between" to="/profile">
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/post">Sell</Link>
+                  </li>
+                  <li>
+                    <LogOutButton />
+                  </li>
+                </ul>
+              </div>
             </>
           ) : (
             <>
@@ -73,6 +121,6 @@ export const Navbar = () => {
           )}
         </div>
       </div>
-    </nav>
+    </>
   );
 };
