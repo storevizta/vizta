@@ -44,7 +44,7 @@ export const Home = () => {
   if (error) return <Error />;
 
   return (
-    <div className="h-full flex flex-grow bg-sky-900">
+    <div className="h-full flex flex-grow">
       <Sidebar />
       <div className="w-full p-5">
         <Featured />
@@ -52,7 +52,7 @@ export const Home = () => {
         {data && data.ads.length === 0 ? (
           <p>No results found.</p>
         ) : (
-          <div className="grid grid-cols-5 gap-5">
+          <div className="grid grid-cols-5">
             {data &&
               data.ads.map((el) => (
                 <Link to={`/detail/${el.id}`} key={el.id}>
