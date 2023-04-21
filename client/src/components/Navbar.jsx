@@ -116,6 +116,7 @@ export const Navbar = () => {
                     <Link to="/favorite"  >
                       Favorites ({wishlistsItems?.length})
                     </Link>
+                    <Link to="/subscribe">Subscribe</Link>
                   </li>
                   <li>
                     <Link to="/post">Sell</Link>

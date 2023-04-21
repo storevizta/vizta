@@ -18,6 +18,6 @@ router.get('/:id', getReportById);
 
 router.get('/:userId', getUserReports);
 
-router.get('/:addId', getAdReports);
+router.get('/ad/:adId', getAdReports);
 
 module.exports = router;

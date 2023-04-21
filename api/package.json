@@ -23,6 +23,7 @@
     "express": "^4.18.2",
     "googleapis": "^114.0.0",
     "jsonwebtoken": "^9.0.0",
+    "mercadopago": "^1.5.15",
     "nodemailer": "^6.9.1",
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",

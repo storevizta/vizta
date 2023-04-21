@@ -55,16 +55,15 @@ const getRatingById = async (req, res) => {
 
 const getRatingByUser = async (req, res) => {
   const { userId } = req.body;
-  console.log(userId);
-  if (!userId) {
-    return res.status(400).json('Missing User Id');
-  }
   try {
-    const user = await User.findOne({
-      where: { id: userId },
-      include: { model: Rating },
+    console.log('USERID', userId);
+    if (!userId) {
+      return res.status(400).json('Missing User Id');
+    }
+    const user1 = await Rating.findAll({
+      where: { UserId: userId },
     });
-    res.status(200).json(user.Rating);
+    res.status(200).json(user1);
   } catch (error) {
     res.status(400).json(error.message);
   }
