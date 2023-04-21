@@ -14,7 +14,18 @@ export const User = createApi({
         body: data,
       }),
     }),
+    getUserAds: builder.query({
+      query: (id) => `/users/userads/${id}`,
+    }),
+    getUserMessages: builder.query({
+      query: (id) => `users/usermessages/${id}`,
+    }),
   }),
 });
 
-export const { useGetUserIdQuery, useCreateUserMutation } = User;
+export const {
+  useGetUserIdQuery,
+  useCreateUserMutation,
+  useGetUserAdsQuery,
+  useGetUserMessagesQuery,
+} = User;
