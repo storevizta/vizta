@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { useState } from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 import { useGetAdByIdQuery } from '../features/query/adsQuery';
 
@@ -24,6 +24,8 @@ import { useDispatch } from 'react-redux';
 
 import { addToWishList } from '../features/slices/FavSlices';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 const FakeIMG = 'https://picsum.photos/200/300';
 // Cambie image por FakeIMG para Mokup
 
@@ -36,6 +38,8 @@ export const Detail = () => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const { data, error, isLoading } = useGetAdByIdQuery(id);
+
+  const { isAuthenticated } = useAuth0();
 
   if (isLoading) {
     return (
@@ -81,7 +85,7 @@ export const Detail = () => {
 
   const addToWishHandler = (data) => {
     dispatch(addToWishList(data))
-    navigate('/favorite');
+    // navigate('/favorite');
 }
 
   return (
@@ -124,9 +128,11 @@ export const Detail = () => {
           />
         </div>
         <div className="basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md">
-        <button onClick={() => addToWishHandler(data)} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full">
+          {
+            isAuthenticated && <button onClick={() => addToWishHandler(data)} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full">
         Add Favorite
-        </button>
+        </button> 
+         }
           <h1 className="font-bold text-white pl-5 text-3xl pt-3 pr-3">
             {title}
           </h1>
