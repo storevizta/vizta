@@ -10,9 +10,11 @@ const rating = require('./rating.js');
 
 const report = require('./report.js');
 
-const users = require('./users.js');
-
 const message = require('./message.js');
+
+const stripe = require('./stripe.js');
+
+const users = require('./users.js');
 
 router.use('/admin', admin);
 
@@ -25,6 +27,8 @@ router.use('/rating', rating);
 router.use('/report', report);
 
 router.use('/message', message);
+
+router.use('/stripe', stripe);
 
 router.use('/users', users);
 
