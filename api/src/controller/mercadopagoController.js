@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const mercadopago = require('mercadopago');
+
 const {
   Ad,
   Category,
@@ -12,6 +14,11 @@ const {
 
 const { transporter } = require('../middleware/nodemailer.js');
 
+mercadopago.configure({
+  access_token:
+    'APP_USR-4871149183520475-042020-19ad63e6a5e3586b247ec9a7ca6903a3-182007561',
+});
+
 const createPreferenc = async (req, res) => {
   let preference = {
     items: [
@@ -22,9 +29,9 @@ const createPreferenc = async (req, res) => {
       },
     ],
     back_urls: {
-      success: 'http://localhost:8080/feedback',
-      failure: 'http://localhost:8080/feedback',
-      pending: 'http://localhost:8080/feedback',
+      success: 'http://localhost:3001/feedback',
+      failure: 'http://localhost:3001/feedback',
+      pending: 'http://localhost:3001/feedback',
     },
     auto_return: 'approved',
   };

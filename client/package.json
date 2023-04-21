@@ -13,6 +13,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.0.1",
     "@fontsource/roboto": "^4.5.8",
+    "@mercadopago/sdk-react": "^0.0.8",
     "@reduxjs/toolkit": "^1.9.3",
     "@splinetool/react-spline": "^2.2.6",
     "@splinetool/runtime": "^0.9.282",
@@ -23,6 +24,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
+    "spinners-react": "^1.0.7",
     "styled-components": "^5.3.9",
     "sweetalert": "^2.1.2",
     "uuid": "^9.0.0"
@@ -32,6 +34,7 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.14",
+    "classnames": "^2.3.2",
     "eslint": "^8.37.0",
     "eslint-plugin-react": "^7.32.2",
     "postcss": "^8.4.21",
