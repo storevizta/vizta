@@ -62,23 +62,81 @@ export const Profile = () => {
           </div>
         )}
         {activePanel === 'Advertisements' && (
-          <div className="panel">
-            <h2>Advertisements</h2>
-            <p>Here's some information about Advertisements.</p>
-          </div>
-        )}
+  <div className="panel">
+    <h2>Advertisements</h2>
+    <div className="active-ads">
+      <h3>Active Advertisements</h3>
+      <ul>
+        <li>Ad Title 1</li>
+        <li>Ad Title 2</li>
+        <li>Ad Title 3</li>
+        <li>Ad Title 4</li>
+        <li>Ad Title 5</li>
+      </ul>
+    </div>
+    <div className="paused-ads">
+      <h3>Paused Advertisements</h3>
+      <ul>
+        <li>Ad Title 6</li>
+        <li>Ad Title 7</li>
+        <li>Ad Title 8</li>
+        <li>Ad Title 9</li>
+        <li>Ad Title 10</li>
+      </ul>
+    </div>
+  </div>
+)}
         {activePanel === 'Subscription' && (
-          <div className="panel">
-            <h2>Subscription</h2>
-            <p>Here's some information about Subscription.</p>
-          </div>
-        )}
+  <div className="panel">
+    <h2>Subscription</h2>
+    <div className="subscription-details">
+      <div className="subscription-item">
+        <h3>Current Plan:</h3>
+        <p>Basic Plan</p>
+      </div>
+      <div className="subscription-item">
+        <h3>Next Billing Date:</h3>
+        <p>May 12th, 2023</p>
+      </div>
+      <div className="subscription-item">
+        <h3>Payment Method:</h3>
+        <p>Credit Card ending in 1234</p>
+      </div>
+      <div className="subscription-item">
+        <h3>Billing History:</h3>
+        <ul>
+          <li>April 12th, 2023 - $9.99</li>
+          <li>March 12th, 2023 - $9.99</li>
+          <li>February 12th, 2023 - $9.99</li>
+        </ul>
+      </div>
+      <div className="subscription-item">
+        <h3>Upgrade Plan:</h3>
+        <p>
+          <a href="#">Upgrade to Premium</a>
+        </p>
+      </div>
+    </div>
+  </div>
+)}
         {activePanel === 'Reputation' && (
-          <div className="panel">
-            <h2>Reputation</h2>
-            <p>Here's some information about Reputation.</p>
-          </div>
-        )}
+  <div className="panel">
+    <h2>Reputation</h2>
+    <div>
+      <p>Rating Average:</p>
+      <p>Number of Ratings:</p>
+    </div>
+    <div>
+      <h3>Your Ratings:</h3>
+      
+        <div>
+          <p>Rating Description:{rating.description}</p>
+          <p>Rating:</p>
+        </div>
+      
+    </div>
+  </div>
+)}
       </div>
     </div>
   );

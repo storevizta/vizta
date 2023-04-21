@@ -2,7 +2,12 @@
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        100: '30rem',
+        150: '50rem',
+      },
+    },
   },
   plugins: [require('daisyui')],
 };
