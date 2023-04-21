@@ -16,6 +16,8 @@ import { Post } from '../pages/Post';
 
 import { Favorite } from '../pages/Favorite';
 
+import { Subscribe } from '../pages/Subcribe';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -46,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: '/favorite',
         element: <Favorite />,
+      },
+      {
+        path: '/subscribe',
+        element: <Subscribe />,
       },
     ],
   },
