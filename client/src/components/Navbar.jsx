@@ -111,6 +111,11 @@ export const Navbar = () => {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/favorite"  >
+                      Favorites
+                    </Link>
+                  </li>
+                  <li>
                     <Link to="/post">Sell</Link>
                   </li>
                   <li>

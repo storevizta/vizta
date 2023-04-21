@@ -11,7 +11,7 @@ export const Card = ({ info }) => {
         <img className="w-56 h-56 rounded" src={image} alt="image" />
       ) : (
         <img
-          className="w-56 h-56 rounded"
+          className="w-full h-56 rounded"
           src={image[0]}
           alt="image"
           onError={(e) => (e.target.src = `${imageError}`)}
