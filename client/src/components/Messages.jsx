@@ -37,8 +37,11 @@ export const Messages = ({ adId, userId }) => {
         <h2 className="font-bold text-center">Messages to the seller</h2>
       </div>
       {messages?.map((message) => (
-        <div className="border-b-4 border-slate-400 pt-3 pb-3 pr-4 pl-4">
-          <div className="flex justify-between" key={message.id}>
+        <div
+          className="border-b-4 border-slate-400 pt-3 pb-3 pr-4 pl-4"
+          key={message.id}
+        >
+          <div className="flex justify-between">
             <p className="inline">
               {message.createdAt
                 .slice(0, 10)
@@ -52,11 +55,21 @@ export const Messages = ({ adId, userId }) => {
 
             <p className="inline">Denunciar</p>
           </div>
-          <Response
-            id={message.id}
-            response={message.response}
-            updatedAt={message.updatedAt}
-          />
+          {message.response ? (
+            <div className="flex justify-between">
+              <p className="inline">
+                {message.updatedAt
+                  .slice(0, 10)
+                  .replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1')}
+              </p>
+
+              <p className="inline pl-3">{message.response}</p>
+
+              <p className="inline">Denunciar</p>
+            </div>
+          ) : (
+            <p className="text-center">No answer now</p>
+          )}
         </div>
       ))}
       <CreateMessage userId={userId} adId={adId} />

@@ -81,7 +81,7 @@ export const Detail = () => {
             onClick={handlerNextImage}
           />
           {!image ? (
-            <div className='object-cover h-100 w-150'>
+            <div className="object-cover h-100 w-150">
               <img className="w-full h-full" src={FakeIMG} alt="image" />
             </div>
           ) : (
@@ -89,7 +89,7 @@ export const Detail = () => {
               return (
                 <div key={index}>
                   {currentImage === index && (
-                    <div className='object-cover h-100 w-150'>
+                    <div className="object-cover h-100 w-150">
                       <img
                         className="w-full h-full"
                         src={image}
