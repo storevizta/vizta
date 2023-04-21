@@ -6,6 +6,8 @@ const ads = require('./ads.js');
 
 const category = require('./category.js');
 
+const mercadopago = require('./mercadopago.js');
+
 const rating = require('./rating.js');
 
 const report = require('./report.js');
@@ -19,6 +21,8 @@ router.use('/admin', admin);
 router.use('/ads', ads);
 
 router.use('/category', category);
+
+router.use('/mercadopago', mercadopago);
 
 router.use('/rating', rating);
 

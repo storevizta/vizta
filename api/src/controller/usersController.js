@@ -29,7 +29,22 @@ const getUser = async (req, res) => {
   }
 };
 
-const getUserAds = async (req, res) => {};
+const getUserAds = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const userAds = await Ad.findAll({ where: { UserId: id } });
+
+    if (!userAds) {
+      return res.status(400).json({ message: 'User not found' });
+    }
+
+    return res.status(200).json(userAds);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Error' });
+  }
+};
 
 const getUserFavorites = async (req, res) => {};
 
