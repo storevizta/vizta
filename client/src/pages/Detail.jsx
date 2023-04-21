@@ -2,9 +2,9 @@ import { useParams } from 'react-router-dom';
 
 import { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { useGetAdByIdQuery } from '../features/query/AdsQuery';
+import { useGetAdByIdQuery } from '../features/query/adsQuery';
 
 import { Loading } from '../components/Loading';
 
@@ -20,11 +20,18 @@ import rowLeft from '../assets/row-left.svg';
 
 import rowRight from '../assets/row-right.svg';
 
+import { useDispatch } from 'react-redux';
+
+import { addToWishList } from '../features/slices/FavSlices';
+
 const FakeIMG = 'https://picsum.photos/200/300';
 // Cambie image por FakeIMG para Mokup
 
 export const Detail = () => {
   const { id } = useParams();
+
+  const dispatch = useDispatch()
+  // const navigate = useNavigate()
 
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -70,6 +77,13 @@ export const Detail = () => {
     setCurrentImage(currentImage === 0 ? numberImage - 1 : currentImage - 1);
   };
 
+
+
+  const addToWishHandler = (data) => {
+    dispatch(addToWishList(data))
+    navigate('/favorite');
+}
+
   return (
     <div>
       <div className="flex flex-row content-stretch w-2/3 m-auto" key={id}>
@@ -109,8 +123,10 @@ export const Detail = () => {
             onClick={handlerPreviousImage}
           />
         </div>
-
         <div className="basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md">
+        <button onClick={() => addToWishHandler(data)} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full">
+        Add Favorite
+        </button>
           <h1 className="font-bold text-white pl-5 text-3xl pt-3 pr-3">
             {title}
           </h1>
@@ -168,6 +184,7 @@ export const Detail = () => {
         </div>
 
         <Cards userId={UserId} />
+
       </div>
     </div>
   );

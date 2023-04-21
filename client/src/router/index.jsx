@@ -14,7 +14,7 @@ import { Detail } from '../pages/Detail';
 
 import { Post } from '../pages/Post';
 
-import { Favorite } from '../pages/Favorite';
+import {Favorites} from '../pages/Favorites'
 
 export const router = createBrowserRouter([
   {
@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/favorite',
-        element: <Favorite />,
+        element: <Favorites />,
       },
     ],
   },

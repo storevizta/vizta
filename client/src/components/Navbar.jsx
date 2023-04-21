@@ -1,6 +1,6 @@
 import { Link, useParams, useLocation } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -20,6 +20,8 @@ export const Navbar = () => {
   const { id } = useParams();
 
   const location = useLocation();
+
+  const { wishlistsItems } = useSelector((state) => state?.wishlists);
 
   const searchLanding = location.pathname !== `/`;
 
@@ -112,7 +114,7 @@ export const Navbar = () => {
                   </li>
                   <li>
                     <Link to="/favorite"  >
-                      Favorites
+                      Favorites ({wishlistsItems?.length})
                     </Link>
                   </li>
                   <li>
