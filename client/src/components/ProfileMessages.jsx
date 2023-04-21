@@ -33,6 +33,8 @@ export const ProfileMessages = ({ userId }) => {
 
   const messages = data.filter((message) => message.UserId === userId);
 
+  console.log(messages);
+
   const mensajesSinResponder = messages?.filter(
     (message) => message.response === null
   );
@@ -41,27 +43,34 @@ export const ProfileMessages = ({ userId }) => {
 
   return (
     <div>
-      {mensajesSinResponder.map((message) => {
-        <div
-          className="border-b-4 border-slate-400 pt-3 pb-3 pr-4 pl-4"
-          key={message.id}
-        >
-          <div className="flex justify-between">
-            <p className="inline pr-20">
-              {message.createdAt
-                .slice(0, 10)
-                .replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1')}
-            </p>
+      {mensajesSinResponder.length ? (
+        mensajesSinResponder.map((message) => (
+          <div
+            className="border-b-4 border-slate-400 pt-3 pb-3 pr-4 pl-4"
+            key={message.id}
+          >
+            <div className="flex justify-between">
+              <p className="inline pr-20">
+                {message.createdAt
+                  .slice(0, 10)
+                  .replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1')}
+              </p>
 
-            <div className="flex flex-column">
-              <img className="w-5 inline" src={question} alt="icon question" />
-              <p className="inline pl-3">{message.message}</p>
+              <div className="flex flex-column">
+                <img
+                  className="w-5 inline"
+                  src={question}
+                  alt="icon question"
+                />
+                <p className="inline pl-3">{message.message}</p>
+              </div>
             </div>
+            <Response id={message.id} />
           </div>
-        </div>;
-      })}
-
-      <Response id={messages[0].id} />
+        ))
+      ) : (
+        <p>You have no messages to reply to</p>
+      )}
     </div>
   );
 };
