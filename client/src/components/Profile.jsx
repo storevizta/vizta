@@ -34,7 +34,7 @@ export const Profile = () => {
   return (
     isAuthenticated && (
       <>
-        <Link to="/profile">{user.name}</Link>
+        <div>{user.name}</div>
       </>
     )
   );
