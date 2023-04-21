@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useGetUserIdQuery } from '../features/query/UserQuery.jsx';
 import { LogOutButton } from '../components/LogOutButton';
+import { ProfileMessages } from '../components/ProfileMessages.jsx';
 import { useState } from 'react';
 
 export const Profile = () => {
@@ -12,7 +13,6 @@ export const Profile = () => {
     setActivePanel(activePanel === panel ? null : panel);
   };
 
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -21,7 +21,6 @@ export const Profile = () => {
   if (is) {
     return <div>Loading...</div>;
   }
-
 
   return (
     <div className="flex">
@@ -33,6 +32,7 @@ export const Profile = () => {
         <button onClick={() => handlePanelClick('Advertisements')}>
           Advertisements
         </button>
+        <button onClick={() => handlePanelClick('Messages')}>Messages</button>
         <button onClick={() => handlePanelClick('Subscription')}>
           Subscription
         </button>
@@ -62,81 +62,87 @@ export const Profile = () => {
           </div>
         )}
         {activePanel === 'Advertisements' && (
-  <div className="panel">
-    <h2>Advertisements</h2>
-    <div className="active-ads">
-      <h3>Active Advertisements</h3>
-      <ul>
-        <li>Ad Title 1</li>
-        <li>Ad Title 2</li>
-        <li>Ad Title 3</li>
-        <li>Ad Title 4</li>
-        <li>Ad Title 5</li>
-      </ul>
-    </div>
-    <div className="paused-ads">
-      <h3>Paused Advertisements</h3>
-      <ul>
-        <li>Ad Title 6</li>
-        <li>Ad Title 7</li>
-        <li>Ad Title 8</li>
-        <li>Ad Title 9</li>
-        <li>Ad Title 10</li>
-      </ul>
-    </div>
-  </div>
-)}
+          <div className="panel">
+            <h2>Advertisements</h2>
+            <div className="active-ads">
+              <h3>Active Advertisements</h3>
+              <ul>
+                <li>Ad Title 1</li>
+                <li>Ad Title 2</li>
+                <li>Ad Title 3</li>
+                <li>Ad Title 4</li>
+                <li>Ad Title 5</li>
+              </ul>
+            </div>
+            <div className="paused-ads">
+              <h3>Paused Advertisements</h3>
+              <ul>
+                <li>Ad Title 6</li>
+                <li>Ad Title 7</li>
+                <li>Ad Title 8</li>
+                <li>Ad Title 9</li>
+                <li>Ad Title 10</li>
+              </ul>
+            </div>
+          </div>
+        )}
         {activePanel === 'Subscription' && (
-  <div className="panel">
-    <h2>Subscription</h2>
-    <div className="subscription-details">
-      <div className="subscription-item">
-        <h3>Current Plan:</h3>
-        <p>Basic Plan</p>
-      </div>
-      <div className="subscription-item">
-        <h3>Next Billing Date:</h3>
-        <p>May 12th, 2023</p>
-      </div>
-      <div className="subscription-item">
-        <h3>Payment Method:</h3>
-        <p>Credit Card ending in 1234</p>
-      </div>
-      <div className="subscription-item">
-        <h3>Billing History:</h3>
-        <ul>
-          <li>April 12th, 2023 - $9.99</li>
-          <li>March 12th, 2023 - $9.99</li>
-          <li>February 12th, 2023 - $9.99</li>
-        </ul>
-      </div>
-      <div className="subscription-item">
-        <h3>Upgrade Plan:</h3>
-        <p>
-          <a href="#">Upgrade to Premium</a>
-        </p>
-      </div>
-    </div>
-  </div>
-)}
+          <div className="panel">
+            <h2>Subscription</h2>
+            <div className="subscription-details">
+              <div className="subscription-item">
+                <h3>Current Plan:</h3>
+                <p>Basic Plan</p>
+              </div>
+              <div className="subscription-item">
+                <h3>Next Billing Date:</h3>
+                <p>May 12th, 2023</p>
+              </div>
+              <div className="subscription-item">
+                <h3>Payment Method:</h3>
+                <p>Credit Card ending in 1234</p>
+              </div>
+              <div className="subscription-item">
+                <h3>Billing History:</h3>
+                <ul>
+                  <li>April 12th, 2023 - $9.99</li>
+                  <li>March 12th, 2023 - $9.99</li>
+                  <li>February 12th, 2023 - $9.99</li>
+                </ul>
+              </div>
+              <div className="subscription-item">
+                <h3>Upgrade Plan:</h3>
+                <p>
+                  <a href="#">Upgrade to Premium</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
         {activePanel === 'Reputation' && (
-  <div className="panel">
-    <h2>Reputation</h2>
-    <div>
-      <p>Rating Average:</p>
-      <p>Number of Ratings:</p>
-    </div>
-    <div>
-      <h3>Your Ratings:</h3>
-      
-        <div>
-          <p>Rating Description:</p>
-          <p>Rating:</p>
-        </div>
-      
-    </div>
-  </div>
-)}
+          <div className="panel">
+            <h2>Reputation</h2>
+            <div>
+              <p>Rating Average:</p>
+              <p>Number of Ratings:</p>
+            </div>
+            <div>
+              <h3>Your Ratings:</h3>
+
+              <div>
+                <p>Rating Description:</p>
+                <p>Rating:</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activePanel === 'Messages' && (
+          <div>
+            <h2>Messages</h2>
+            <ProfileMessages userId={user.sub} />
+          </div>
+        )}
       </div>
     </div>
   );
