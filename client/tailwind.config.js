@@ -7,6 +7,9 @@ export default {
         100: '30rem',
         150: '50rem',
       },
+      colors: {
+        myBlue: '#36404D',
+      },
     },
   },
   plugins: [require('daisyui')],
