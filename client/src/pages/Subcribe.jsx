@@ -62,11 +62,9 @@ export const Subscribe = () => {
       <InternalProvider
         context={{ preferenceId, isLoading, orderData, setOrderData }}
       >
-        <main>
-          {renderSpinner()}
-          <Checkout onClick={handleClick} description />
-          <Payment />
-        </main>
+        {renderSpinner()}
+        <Checkout onClick={handleClick} description />
+        <Payment />
       </InternalProvider>
     </>
   );
