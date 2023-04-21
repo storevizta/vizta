@@ -11,6 +11,7 @@ const {
   updateUser,
   deleteUser,
   deleteFavorite,
+  getUserMessages,
 } = require('../controller/usersController.js');
 
 router.get('/:id', getUser);
@@ -18,6 +19,8 @@ router.get('/:id', getUser);
 router.get('/userads/:id', getUserAds);
 
 router.get('/:id/favorites', getUserFavorites);
+
+router.get("/usermessages/:id", getUserMessages);
 
 router.get('/:id/ratings');
 

@@ -1,4 +1,4 @@
-import { useGetMessageQuery } from '../features/query/MessagesQuery';
+import { useGetUserMessagesQuery } from '../features/query/UserQuery';
 
 import { CreateMessage } from './CreateMessage';
 
@@ -11,7 +11,7 @@ import { Error } from '../components/Error';
 import question from '../assets/question.svg';
 
 export const Messages = ({ adId, userId }) => {
-  const { data, error, isLoading } = useGetMessageQuery();
+  const { data, error, isLoading } = useGetUserMessagesQuery(userId);
 
   if (isLoading) {
     return (
@@ -29,14 +29,14 @@ export const Messages = ({ adId, userId }) => {
     );
   }
 
-  const messages = data.filter((message) => message.AdId === adId);
+  console.log(data);
 
   return (
     <div className="w-2/3 m-auto">
       <div className="bg-slate-400 pt-3 pb-3 text-lg">
         <h2 className="font-bold text-center">Messages to the seller</h2>
       </div>
-      {messages?.map((message) => (
+      {data?.map((message) => (
         <div className="border-b-4 border-slate-400 pt-3 pb-3 pr-4 pl-4">
           <div className="flex justify-between" key={message.id}>
             <p className="inline">

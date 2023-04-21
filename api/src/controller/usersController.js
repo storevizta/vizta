@@ -48,6 +48,23 @@ const getUserAds = async (req, res) => {
 
 const getUserFavorites = async (req, res) => {};
 
+const getUserMessages = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const userMessages = await Message.findAll({ where: { UserId: id } });
+
+    if (!userMessages) {
+      return res.status(400).json({ message: 'User not found' });
+    }
+
+    return res.status(200).json(userMessages);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Error' });
+  }
+};
+
 const createUser = async (req, res) => {
   try {
     const { id, name, nickname, email, picture } = req.body;
@@ -127,4 +144,5 @@ module.exports = {
   updateUser,
   deleteUser,
   deleteFavorite,
+  getUserMessages
 };

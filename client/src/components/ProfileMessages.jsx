@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useGetMessageQuery } from '../features/query/MessagesQuery';
+import { useGetUserMessagesQuery } from '../features/query/UserQuery';
 
 import { Loading } from './Loading';
 
@@ -11,7 +11,9 @@ import question from '../assets/question.svg';
 import { Response } from './Response';
 
 export const ProfileMessages = ({ userId }) => {
-  const { data, error, isLoading } = useGetMessageQuery();
+  const { data, error, isLoading } = useGetUserMessagesQuery(userId);
+
+  console.log(data);
 
   if (isLoading) {
     return (
@@ -29,17 +31,9 @@ export const ProfileMessages = ({ userId }) => {
     );
   }
 
-  console.log(userId);
-
-  const messages = data.filter((message) => message.UserId === userId);
-
-  console.log(messages);
-
-  const mensajesSinResponder = messages?.filter(
+  const mensajesSinResponder = data?.filter(
     (message) => message.response === null
   );
-
-  console.log(mensajesSinResponder);
 
   return (
     <div>

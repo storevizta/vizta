@@ -6,39 +6,35 @@ import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
 
-import { useGetAdsQuery } from '../features/query/AdsQuery';
+import { useGetUserAdsQuery } from '../features/query/UserQuery';
 
 import { Card } from '../components/Card';
 
 export const Cards = ({ userId }) => {
-  const { data, error, isLoading } = useGetAdsQuery({
-    page: 0,
-    title: '',
-    category: '',
-    minPrice: '',
-    maxPrice: '',
-    sort: '',
-    discount: '',
-    condition: '',
-    size: 2000,
-  });
+  const { data, error, isLoading } = useGetUserAdsQuery(userId);
 
   if (isLoading) return <Loading />;
 
   if (error) return <Error />;
 
-  const userAds = data.ads.filter((ads) => ads.UserId === userId).slice(0, 4);
+  let userAds = data;
+
+  if (userAds.length > 4) {
+    userAds = data.slice(0, 4);
+  }
 
   return (
     <div>
-      {data && data.ads.length === 0 ? (
+      {data && data.length === 0 ? (
         <p>No results found.</p>
       ) : (
         <div className="grid pl-16 mt-5">
           {data &&
             userAds.map((el) => (
               <Link to={`/detail/${el.id}`} key={el.id}>
-                <Card key={el.id} info={el} />
+                <div className="grid grid-cols-4">
+                  <Card key={el.id} info={el} />
+                </div>
               </Link>
             ))}
         </div>
