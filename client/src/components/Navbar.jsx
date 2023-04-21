@@ -109,7 +109,7 @@ export const Navbar = () => {
                 >
                   <li>
                     <Link className="justify-between" to="/profile">
-                      Profile
+                      <Profile />
                     </Link>
                   </li>
                   <li>

@@ -34,17 +34,7 @@ export const Profile = () => {
   return (
     isAuthenticated && (
       <>
-        <Link to="/profile">
-          <div className="p-2 flex gap-2 hover:bg-zinc-700">
-            <img
-              className="w-56 h-56 rounded"
-              src={user.picture}
-              alt="image"
-              onError={(e) => (e.target.src = `${imageError}`)}
-            />
-            <div className="text-slate-50">{user.name}</div>
-          </div>
-        </Link>
+        <Link to="/profile">{user.name}</Link>
       </>
     )
   );
