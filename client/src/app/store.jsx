@@ -10,6 +10,8 @@ import { Message } from '../features/query/MessagesQuery';
 
 import FilterSlice from '../features/slices/filterSlice';
 
+import  wishlistsSlice from '../features/slices/FavSlices';
+
 export const store = configureStore({
   reducer: {
     [Ads.reducerPath]: Ads.reducer,
@@ -17,6 +19,7 @@ export const store = configureStore({
     [User.reducerPath]: User.reducer,
     [Message.reducerPath]: Message.reducer,
     filter: FilterSlice,
+    wishlists: wishlistsSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
