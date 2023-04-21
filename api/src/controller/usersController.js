@@ -50,7 +50,7 @@ const getUserFavorites = async (req, res) => {};
 
 const createUser = async (req, res) => {
   try {
-    const { id, name, lastname, nickname, email, picture } = req.body;
+    const { id, name, nickname, email, picture } = req.body;
 
     const existingUser = await User.findOne({ where: { id } });
 
