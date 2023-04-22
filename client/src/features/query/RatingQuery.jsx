@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query';
-import {  } from '@reduxjs/toolkit/query/react';
+
 
 export const Rating = createApi({
     reducerPath: 'rating',
@@ -11,13 +11,9 @@ export const Rating = createApi({
       getRatingById: builder.query({
         query: (id) => `/rating/${id}`,
       }),
-      getRatingByUserId: builder.mutation({
-        query: (data) => ({
-            url: `/rating`,
-            method: 'GET',
-            body: data,
-          }),
-        }),
+      getRatingByUserId: builder.query({
+        query: (userId) => `/rating/user/${userId}`,
+      }),
       createRating: builder.mutation({
         query: (data) => ({
           url: `/rating`,
@@ -26,11 +22,11 @@ export const Rating = createApi({
         }),
       }),
     }),
-})
+});
 
 export const {
-    usecreateRatingMutation,
+    useCreateRatingMutation,
     useGetRatingQuery,
-    useGetRatingByUserIdMutation,
-    useGetRatingByIdQuery,
+    useGetRatingByUserIdQuery,
+    useGetRatingByIdQuery
   } = Rating;
