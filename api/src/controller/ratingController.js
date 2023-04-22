@@ -54,7 +54,7 @@ const getRatingById = async (req, res) => {
 };
 
 const getRatingByUser = async (req, res) => {
-  const { userId } = req.body;
+  const { userId } = req.params;
   try {
     console.log('USERID', userId);
     if (!userId) {
