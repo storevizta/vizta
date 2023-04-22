@@ -84,6 +84,10 @@ export const Detail = () => {
     // navigate('/favorite');
   };
 
+  const whatsapp = () => {
+    window.location.href = `https://wa.me/${phone}`
+  }
+
   return (
     <div>
       <div className="flex flex-row content-stretch w-2/3 m-auto" key={id}>
@@ -95,17 +99,17 @@ export const Detail = () => {
             onClick={handlerNextImage}
           />
           {!image ? (
-            <div className="object-cover h-100 w-150">
-              <img className="w-full h-full" src={FakeIMG} alt="image" />
+            <div className="h-100 w-150">
+              <img className="object-cover w-full h-full" src={FakeIMG} alt="image" />
             </div>
           ) : (
             image.map((image, index) => {
               return (
                 <div key={index}>
                   {currentImage === index && (
-                    <div className="object-cover h-100 w-150">
+                    <div className="h-100 w-150">
                       <img
-                        className="w-full h-full"
+                        className="object-contain w-full h-full"
                         src={image}
                         key={index}
                         alt="image"
@@ -123,15 +127,7 @@ export const Detail = () => {
             onClick={handlerPreviousImage}
           />
         </div>
-        <div className="basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md">
-          {isAuthenticated && (
-            <button
-              onClick={() => addToWishHandler(data)}
-              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full"
-            >
-              Add Favorite
-            </button>
-          )}
+        <div className="w-100 h-120 break-words basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md">
           <h1 className="font-bold text-white pl-5 text-3xl pt-3 pr-3">
             {title}
           </h1>
@@ -177,6 +173,21 @@ export const Detail = () => {
             <p className="inline text-white pb-15">{shipment}</p>
           </div>
 
+          <div className='flex justify-center'>
+            <div className='bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center'>
+              <img className='h-6' src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/479px-WhatsApp_icon.png'/>
+              <button onClick={() => whatsapp()}>Whatsapp</button>
+            </div>
+
+              {isAuthenticated ? 
+              <div className='bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center'>
+              <img className='h-3' src='https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png'/>
+                <button onClick={() => addToWishHandler(data)}>Add favorite</button>
+              </div>
+                : null
+              }
+          </div>
+
           <div className="block text-white mt-15">
             <UserDetail id={UserId} />
           </div>
@@ -184,7 +195,7 @@ export const Detail = () => {
       </div>
       <Messages adId={id} userId={UserId} />
       <div className="w-2/3 m-auto mt-5 mb-5">
-        <div className="bg-slate-400 pt-3 pb-3 text-lg">
+        <div className="bg-slate-700 pt-3 pb-3 text-lg">
           <h2 className="font-bold text-center">
             Other publications from this Seller
           </h2>

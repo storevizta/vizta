@@ -92,14 +92,43 @@ if(errorRating3) {
       </aside>
 
       {showDefaultPanel && (
-        <div className="p-2 flex flex-col gap-2 hover:bg-zinc-700">
-          <img className="w-5" src={data.picture} alt={data.name} />
-          <p className="text-slate-50">Name: {data.name}</p>
-          <p>Nickname: {data.nickname}</p>
-          <p>Email: {data.email}</p>
-          <p>Address: {data.address}</p>
-          <p>Phone: {data.phone}</p>
-          <p>Joined Vizta: {data.createdAt}</p>
+        <div className="p-2 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
+          <div className='flex gap-2 items-center mt-5'>
+            <label className="swap swap-flip text-9xl">
+              <input type="checkbox" />
+    
+              <div className="swap-on"><p className='text-6xl'>😈</p></div>
+              <div className="swap-off"><img className="w-16 h-16 object-cover rounded-full" src={data.picture} alt={data.name} /></div>
+            </label>
+              <p className="text-slate-50 text-5xl">{data.name}</p>
+          </div>
+
+          <div>
+            <div className='flex w-150 mt-7'>
+              <label className='ml-5'>Nickname</label>
+              <p className='w-full text-right mr-5'>{data.nickname ? data.nickname : "You have not defined a Nickname"}</p>
+            </div>
+            <div className="divider"></div> 
+            <div className='flex w-150'>
+              <label className='ml-5'>Email</label>
+              <p className='w-full text-right mr-5'>{data.email}</p>
+            </div>
+            <div className="divider"></div> 
+            <div className='flex w-150'>
+              <label className='ml-5'>Address</label>
+              <p className='w-full text-right mr-5'>{data.address ? data.address : "You have not defined an address"}</p>
+            </div>
+            <div className="divider"></div> 
+            <div className='flex w-150'>
+              <label className='ml-5'>Phone</label>
+              <p className='w-full text-right mr-5'>{data.phone ? data.phone : "You have not defined a phone number"}</p>
+            </div>
+            <div className="divider"></div> 
+            <div className='flex w-150'>
+              <label className='ml-5 w-full'>Joined Vizta</label>
+              <p className='w-full text-right mr-5'>{data.createdAt}</p>
+            </div>
+          </div>
         </div>
       )}
       <div className="panel-container">
