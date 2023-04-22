@@ -31,35 +31,35 @@ export const Profile = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
-  const {
-    data: dataReport,
-    error: errorReport,
-    isLoading: isReport,
-  } = useGetReportByIdQuery();
+  // const {
+  //   data: dataReport,
+  //   error: errorReport,
+  //   isLoading: isReport,
+  // } = useGetReportByIdQuery();
 
-  const {
-    data: dataReport1,
-    error: errorReport1,
-    isLoading: isReport1,
-  } = useGetReportByUserIdQuery();
+  // const {
+  //   data: dataReport1,
+  //   error: errorReport1,
+  //   isLoading: isReport1,
+  // } = useGetReportByUserIdQuery();
 
-  const {
-    data: dataReport2,
-    error: errorReport2,
-    isLoading: isReport2,
-  } = useGetReportAdAdIdQuery();
+  // const {
+  //   data: dataReport2,
+  //   error: errorReport2,
+  //   isLoading: isReport2,
+  // } = useGetReportAdAdIdQuery();
 
-  const {
-    data: dataRating,
-    error: errorRating,
-    isLoading: isRating,
-  } = useGetRatingQuery();
+  // const {
+  //   data: dataRating,
+  //   error: errorRating,
+  //   isLoading: isRating,
+  // } = useGetRatingQuery();
 
-  const {
-    data: dataRating1,
-    error: errorRating1,
-    isLoading: isRating1,
-  } = useGetRatingByIdQuery();
+  // const {
+  //   data: dataRating1,
+  //   error: errorRating1,
+  //   isLoading: isRating1,
+  // } = useGetRatingByIdQuery();
 
   const {
     data: dataRating3,
@@ -172,34 +172,34 @@ export const Profile = () => {
               <div className="swap-off">
                 <img
                   className="w-16 h-16 object-cover rounded-full"
-                  src={data.picture}
-                  alt={data.name}
+                  src={dataUserId.picture}
+                  alt={dataUserId.name}
                 />
               </div>
             </label>
-            <p className="text-slate-50 text-5xl">{data.name}</p>
+            <p className="text-slate-50 text-5xl">{dataUserId.name}</p>
           </div>
 
           <div>
             <div className="flex w-150 mt-7">
               <label className="ml-5">Nickname</label>
               <p className="w-full text-right mr-5">
-                {data.nickname
-                  ? data.nickname
+                {dataUserId.nickname
+                  ? dataUserId.nickname
                   : 'You have not defined a Nickname'}
               </p>
             </div>
             <div className="divider"></div>
             <div className="flex w-150">
               <label className="ml-5">Email</label>
-              <p className="w-full text-right mr-5">{data.email}</p>
+              <p className="w-full text-right mr-5">{dataUserId.email}</p>
             </div>
             <div className="divider"></div>
             <div className="flex w-150">
               <label className="ml-5">Address</label>
               <p className="w-full text-right mr-5">
-                {data.address
-                  ? data.address
+                {dataUserId.address
+                  ? dataUserId.address
                   : 'You have not defined an address'}
               </p>
             </div>
@@ -207,15 +207,15 @@ export const Profile = () => {
             <div className="flex w-150">
               <label className="ml-5">Phone</label>
               <p className="w-full text-right mr-5">
-                {data.phone
-                  ? data.phone
+                {dataUserId.phone
+                  ? dataUserId.phone
                   : 'You have not defined a phone number'}
               </p>
             </div>
             <div className="divider"></div>
             <div className="flex w-150">
               <label className="ml-5 w-full">Joined Vizta</label>
-              <p className="w-full text-right mr-5">{data.createdAt}</p>
+              <p className="w-full text-right mr-5">{dataUserId.createdAt}</p>
             </div>
           </div>
         </div>
@@ -293,8 +293,8 @@ export const Profile = () => {
               <p>Number of Ratings:</p>
             </div>
             <div>
-              <h3>Your Ratings: {dataRating3}</h3>
-
+              <h3>Your Ratings: </h3>
+              {/* {dataRating3.userId} */}
               <div>
                 <p>Rating Description:</p>
                 <p>Rating:</p>
