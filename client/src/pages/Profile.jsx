@@ -86,7 +86,7 @@ export const Profile = () => {
               <input type="checkbox" />
     
               <div className="swap-on"><p className='text-6xl'>😈</p></div>
-              <div className="swap-off"><img className="w-16 object-cover rounded-full" src={data.picture} alt={data.name} /></div>
+              <div className="swap-off"><img className="w-16 h-16 object-cover rounded-full" src={data.picture} alt={data.name} /></div>
             </label>
               <p className="text-slate-50 text-5xl">{data.name}</p>
           </div>
