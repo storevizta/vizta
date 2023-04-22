@@ -28,8 +28,6 @@ export const ProfileAdvertisements = ({ userId }) => {
   const soldAds = data.filter((ad) => ad.state === 'Sold');
   const pausedAds = data.filter((ad) => ad.state === 'Paused');
 
-  console.log(data);
-
   return (
     <div>
       <div className="pl-7 pt-5">
