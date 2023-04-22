@@ -29,9 +29,9 @@ const createPreferenc = async (req, res) => {
       },
     ],
     back_urls: {
-      success: 'http://localhost:3001/feedback',
-      failure: 'http://localhost:3001/feedback',
-      pending: 'http://localhost:3001/feedback',
+      success: 'http://localhost:3000/feedback',
+      failure: 'http://localhost:3000/feedback',
+      pending: 'http://localhost:3000/feedback',
     },
     auto_return: 'approved',
   };

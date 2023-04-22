@@ -2,9 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { useState } from 'react';
 
-// import { useNavigate } from 'react-router-dom';
-
-import { useGetAdByIdQuery } from '../features/query/adsQuery';
+import { useGetAdByIdQuery } from '../features/query/AdsQuery';
 
 import { Loading } from '../components/Loading';
 
@@ -32,7 +30,7 @@ const FakeIMG = 'https://picsum.photos/200/300';
 export const Detail = () => {
   const { id } = useParams();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // const navigate = useNavigate()
 
   const [currentImage, setCurrentImage] = useState(0);
@@ -81,12 +79,10 @@ export const Detail = () => {
     setCurrentImage(currentImage === 0 ? numberImage - 1 : currentImage - 1);
   };
 
-
-
   const addToWishHandler = (data) => {
-    dispatch(addToWishList(data))
+    dispatch(addToWishList(data));
     // navigate('/favorite');
-}
+  };
 
   return (
     <div>
@@ -99,7 +95,7 @@ export const Detail = () => {
             onClick={handlerNextImage}
           />
           {!image ? (
-            <div className='object-cover h-100 w-150'>
+            <div className="object-cover h-100 w-150">
               <img className="w-full h-full" src={FakeIMG} alt="image" />
             </div>
           ) : (
@@ -107,7 +103,7 @@ export const Detail = () => {
               return (
                 <div key={index}>
                   {currentImage === index && (
-                    <div className='object-cover h-100 w-150'>
+                    <div className="object-cover h-100 w-150">
                       <img
                         className="w-full h-full"
                         src={image}
@@ -128,11 +124,14 @@ export const Detail = () => {
           />
         </div>
         <div className="basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md">
-          {
-            isAuthenticated && <button onClick={() => addToWishHandler(data)} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full">
-        Add Favorite
-        </button> 
-         }
+          {isAuthenticated && (
+            <button
+              onClick={() => addToWishHandler(data)}
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full"
+            >
+              Add Favorite
+            </button>
+          )}
           <h1 className="font-bold text-white pl-5 text-3xl pt-3 pr-3">
             {title}
           </h1>
@@ -190,7 +189,6 @@ export const Detail = () => {
         </div>
 
         <Cards userId={UserId} />
-
       </div>
     </div>
   );

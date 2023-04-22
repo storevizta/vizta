@@ -14,9 +14,9 @@ import { Detail } from '../pages/Detail';
 
 import { Post } from '../pages/Post';
 
-import {Favorites} from '../pages/Favorites'
+import { Favorites } from '../pages/Favorites';
 
-import { Subscribe } from '../pages/Subcribe';
+import { Subscribe } from '../pages/Subscribe';
 
 export const router = createBrowserRouter([
   {
