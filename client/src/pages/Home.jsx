@@ -23,7 +23,8 @@ export const Home = () => {
     category,
     minPrice,
     maxPrice,
-    sort,
+    sortPrice,
+    sortTitle,
     discount,
     condition,
   } = useSelector((state) => state.filter);
@@ -34,7 +35,8 @@ export const Home = () => {
     category,
     minPrice,
     maxPrice,
-    sort,
+    sortPrice,
+    sortTitle,
     discount,
     condition,
   });
@@ -42,8 +44,6 @@ export const Home = () => {
   if (isLoading) return <Loading />;
 
   if (error) return <Error />;
-
-  console.log(data);
 
   return (
     <div className="h-full flex flex-grow">

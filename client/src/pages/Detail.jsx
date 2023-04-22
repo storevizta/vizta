@@ -160,9 +160,11 @@ export const Detail = () => {
               Payment Methods:{' '}
             </p>
             <ul>
-              {method?.map((method) => {
+              {method?.map((method, index) => {
                 return (
-                  <li className="inline text-white pb-15 pl-5">{method}</li>
+                  <li key={index} className="inline text-white pb-15 pl-5">
+                    {method}
+                  </li>
                 );
               })}
             </ul>

@@ -9,17 +9,25 @@ export const FilterSlice = createSlice({
     category: '',
     minPrice: '',
     maxPrice: '',
-    sort: '',
+    sortPrice: '',
+    sortTitle: '',
     discount: '',
     condition: '',
   },
 
   reducers: {
     setPage: (state, action) => {
-      const newPage = state.page + action.payload;
+      const newPage = action.payload;
       state.page = newPage >= 0 ? newPage : 0;
     },
     setTitle: (state, action) => {
+      state.category = '';
+      state.minPrice = '';
+      state.maxPrice = '';
+      state.sortPrice = '';
+      state.sortTitle = '';
+      state.discount = '';
+      state.condition = '';
       state.title = action.payload;
     },
     setCategory: (state, action) => {
@@ -31,8 +39,11 @@ export const FilterSlice = createSlice({
     setMaxPrice: (state, action) => {
       state.maxPrice = action.payload;
     },
-    setSort: (state, action) => {
-      state.sort = action.payload;
+    setSortPrice: (state, action) => {
+      state.sortPrice = action.payload;
+    },
+    setSortTitle: (state, action) => {
+      state.sortTitle = action.payload;
     },
     setDiscount: (state, action) => {
       state.discount = action.payload;
@@ -45,7 +56,8 @@ export const FilterSlice = createSlice({
       state.category = '';
       state.minPrice = '';
       state.maxPrice = '';
-      state.sort = '';
+      state.sortPrice = '';
+      state.sortTitle = '';
       state.discount = '';
       state.condition = '';
     },
@@ -58,7 +70,8 @@ export const {
   setCategory,
   setMinPrice,
   setMaxPrice,
-  setSort,
+  setSortPrice,
+  setSortTitle,
   setDiscount,
   setCondition,
   resetFilters,
