@@ -6,10 +6,12 @@ export default {
       spacing: {
         85: '22rem',
         100: '30rem',
+        120: '37rem',
         150: '50rem',
       },
       colors: {
         myBlue: '#36404D',
+        whatsapp: '#25D366',
       },
     },
   },
