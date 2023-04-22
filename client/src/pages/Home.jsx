@@ -43,6 +43,8 @@ export const Home = () => {
 
   if (error) return <Error />;
 
+  console.log(data);
+
   return (
     <div className="h-full flex flex-grow">
       <Sidebar />
@@ -55,7 +57,7 @@ export const Home = () => {
           <div className="grid grid-cols-5">
             {data &&
               data.ads.map((el) => (
-                <Link className='m-3' to={`/detail/${el.id}`} key={el.id}>
+                <Link className="m-3" to={`/detail/${el.id}`} key={el.id}>
                   <Card info={el} />
                 </Link>
               ))}

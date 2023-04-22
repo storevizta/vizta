@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       spacing: {
+        85: '22rem',
         100: '30rem',
         150: '50rem',
       },
@@ -13,4 +14,14 @@ export default {
     },
   },
   plugins: [require('daisyui')],
+  daisyui: {
+    styled: true,
+    themes: true,
+    base: true,
+    utils: true,
+    logs: true,
+    rtl: false,
+    prefix: '',
+    darkTheme: 'dark',
+  },
 };

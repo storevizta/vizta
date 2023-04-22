@@ -28,7 +28,7 @@ export const Pagination = ({ items }) => {
         >
           <img className="w-5" src={rowLeft} alt="row-left" />
         </div>
-        <div>{page}</div>
+        <div>{page + 1}</div>
         <div
           className="w-5 rounded-full hover:bg-zinc-600"
           onClick={handlerNextPage}
