@@ -240,13 +240,16 @@ export const Profile = () => {
             <h2>Advertisements</h2>
             <div className="active-ads">
               <h3>Active Advertisements</h3>
-              <ul>
-                <li>Ad Title 1</li>
-                <li>Ad Title 2</li>
-                <li>Ad Title 3</li>
-                <li>Ad Title 4</li>
-                <li>Ad Title 5</li>
-              </ul>
+              {dataAd.map((userads) => (
+    <div key={userads.userId}>
+      <div>{userads.image}</div>
+      <div>Title{userads.title}</div>
+      <div>Price:{userads.price}</div>
+      <div>Condition:{userads.condition}</div>
+      <div>Method:{userads.method}</div>
+      <div>Shipment:{userads.shipment}</div>
+    </div>
+  ))}
             </div>
             <div className="paused-ads">
               <h3>Paused Advertisements</h3>
