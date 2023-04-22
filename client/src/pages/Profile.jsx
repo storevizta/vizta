@@ -2,6 +2,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { useGetUserIdQuery } from '../features/query/UserQuery';
 
+import { useGetUserAdsQuery } from '../features/query/UserQuery';
+
 import {
   useGetReportByIdQuery,
   useGetReportByUserIdQuery,
@@ -62,14 +64,22 @@ export const Profile = () => {
   // } = useGetRatingByIdQuery();
 
   const {
+    data: dataAd,
+    error: errorAd,
+    isLoading: isAd,
+  } = useGetUserAdsQuery(user.sub)
+
+  console.log("SOY GET AD USER", dataAd)
+
+  const {
     data: dataRating3,
     error: errorRating3,
     isLoading: isRating3,
   } = useGetRatingByUserIdQuery(user.sub);
-
+// console.log("SOY DATA", dataRating3)
  
   const { data:dataUserId, error:errorUserId, isLoading: isLoadingUserId } = useGetUserIdQuery(user.sub);
-
+// console.log("SOYUSERDATAID", dataUserId)
   if (isLoadingUserId) return <div>Loading...</div>
 
 
@@ -284,22 +294,21 @@ export const Profile = () => {
           </div>
         )}
         {activePanel === 'Reputation' && (
-          <div className="panel">
-            <h2>Reputation</h2>
-            <div>
-              <p>Rating Average:</p>
-              <p>Number of Ratings:</p>
-            </div>
-            <div>
-              <h3>Your Ratings: </h3>
-              {/* {dataRating3.userId} */}
-              <div>
-                <p>Rating Description:</p>
-                <p>Rating:</p>
-              </div>
-            </div>
-          </div>
-        )}
+  <div className="panel">
+    <h2>Reputation</h2>
+    <div>
+      <p>Rating Average:</p>
+      <p>Number of Ratings:</p>
+    </div>
+    {dataRating3.map((rating) => (
+    <div key={rating.id}>
+      <div>Comment: {rating.comment}</div>
+      <div>Rating: {rating.rating}</div>
+      <div>Comment date:{rating.createdAt}</div>
+    </div>
+  ))}
+  </div>
+)}
 
         {activePanel === 'Messages' && (
           <div>
