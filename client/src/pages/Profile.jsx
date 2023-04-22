@@ -1,51 +1,82 @@
 import { useAuth0 } from '@auth0/auth0-react';
+
 import { useGetUserIdQuery } from '../features/query/UserQuery';
-// import { useGetReportByIdQuery, useGetReportByUserIdQuery, useReportAdAdIdQuery } from '../features/query/ReportQuery';
+
+import {
+  useGetReportByIdQuery,
+  useGetReportByUserIdQuery,
+  useGetReportAdAdIdQuery,
+  useCreateReportMutation,
+} from '../features/query/ReportQuery';
+
 import {
   useGetRatingQuery,
   useGetRatingByIdQuery,
   useGetRatingByUserIdQuery,
+  useCreateRatingMutation,
 } from '../features/query/RatingQuery';
+
 import { LogOutButton } from '../components/LogOutButton';
+
 import { ProfileMessages } from '../components/ProfileMessages';
+
 import { useEffect, useState } from 'react';
 
 export const Profile = () => {
   const { user, isLoading } = useAuth0();
-  const [activePanel, setActivePanel] = useState(null);
-  const showDefaultPanel = activePanel === null;
-  // const { data: dataReport, error: errorReport, isLoading: isReport} = useGetReportByIdQuery();
-  // const { data: dataReport1, error: errorReport1, isLoading: isReport1} = useGetReportByUserIdQuery();
-  // const { data: dataReport2, error: errorReport2, isLoading: isReport2} = useReportAdAdIdQuery();
 
-  // const { data: dataRating, error: errorRating, isLoading: isRating} = useGetRatingQuery();
-  // const { data: dataRating1, error: errorRating1, isLoading: isRating1} = useGetRatingByIdQuery();
+  const [activePanel, setActivePanel] = useState(null);
+
+  const showDefaultPanel = activePanel === null;
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const {
+    data: dataReport,
+    error: errorReport,
+    isLoading: isReport,
+  } = useGetReportByIdQuery();
+
+  const {
+    data: dataReport1,
+    error: errorReport1,
+    isLoading: isReport1,
+  } = useGetReportByUserIdQuery();
+
+  const {
+    data: dataReport2,
+    error: errorReport2,
+    isLoading: isReport2,
+  } = useGetReportAdAdIdQuery();
+
+  const {
+    data: dataRating,
+    error: errorRating,
+    isLoading: isRating,
+  } = useGetRatingQuery();
+
+  const {
+    data: dataRating1,
+    error: errorRating1,
+    isLoading: isRating1,
+  } = useGetRatingByIdQuery();
+
   const {
     data: dataRating3,
     error: errorRating3,
     isLoading: isRating3,
   } = useGetRatingByUserIdQuery(user.sub);
 
-  if (isRating3) {
-    return <div>Loading...</div>;
+ 
   }
+  const { data:dataUserId, error:errorUserId, isLoading: isLoadingUserId } = useGetUserIdQuery(user.sub);
 
-  if (errorRating3) {
-    return <div>Error...</div>;
-  }
+  if (isLoadingUserId) return <div>Loading...</div>
+
 
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
   };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  const { data, error, isLoading: is } = useGetUserIdQuery(user.sub);
-
-  if (is) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="flex m-5">

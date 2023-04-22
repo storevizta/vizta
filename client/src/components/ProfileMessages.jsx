@@ -6,8 +6,6 @@ import { Loading } from './Loading';
 
 import { Error } from './Error';
 
-import question from '../assets/question.svg';
-
 import { Response } from './Response';
 
 import { DetailsAdvertisement } from './DetailsAdvertisement';
@@ -43,8 +41,8 @@ export const ProfileMessages = ({ userId }) => {
         mensajesSinResponder.map((message) => (
           <div className="bg-gray-600 rounded-2xl p-10">
             <DetailsAdvertisement adId={message.AdId} />
-            <p className="pt-3 text-lg">Messages: </p>
-            <div className="flex pt-3">
+            <p className="pt-2 text-lg border-t-2 mt-4">Messages: </p>
+            <div className="flex pt-2">
               <p className="inline pr-20 text-lg">
                 {message.createdAt
                   .slice(0, 10)
