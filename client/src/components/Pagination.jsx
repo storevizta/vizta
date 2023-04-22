@@ -25,8 +25,6 @@ export const Pagination = ({ items }) => {
     dispatch(setPage(page + 1));
   };
 
-  console.log(page);
-
   return (
     <>
       <div className="flex justify-center items-center gap-5">

@@ -22,6 +22,10 @@ import { LogOutButton } from '../components/LogOutButton';
 
 import { ProfileMessages } from '../components/ProfileMessages';
 
+import { ProfileAdvertisements } from '../components/ProfileAdvertisements';
+
+import { ProfileGeneralConfiguration } from '../components/ProfileGeneralConfiguration';
+
 import { useEffect, useState } from 'react';
 
 export const Profile = () => {
@@ -76,12 +80,15 @@ export const Profile = () => {
     error: errorRating3,
     isLoading: isRating3,
   } = useGetRatingByUserIdQuery(user.sub);
+
 // console.log("SOY DATA", dataRating3)
  
   const { data:dataUserId, error:errorUserId, isLoading: isLoadingUserId } = useGetUserIdQuery(user.sub);
 // console.log("SOYUSERDATAID", dataUserId)
   if (isLoadingUserId) return <div>Loading...</div>
 
+
+  if (isLoadingUserId) return <div>Loading...</div>;
 
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
@@ -232,31 +239,14 @@ export const Profile = () => {
         {activePanel === 'General Configuration' && (
           <div className="panel">
             <h2>General Configuration</h2>
-            <p>Here's some information about General Configuration.</p>
+            <ProfileGeneralConfiguration />
           </div>
         )}
         {activePanel === 'Advertisements' && (
           <div className="panel">
-            <h2>Advertisements</h2>
-            <div className="active-ads">
-              <h3>Active Advertisements</h3>
-              <ul>
-                <li>Ad Title 1</li>
-                <li>Ad Title 2</li>
-                <li>Ad Title 3</li>
-                <li>Ad Title 4</li>
-                <li>Ad Title 5</li>
-              </ul>
-            </div>
-            <div className="paused-ads">
-              <h3>Paused Advertisements</h3>
-              <ul>
-                <li>Ad Title 6</li>
-                <li>Ad Title 7</li>
-                <li>Ad Title 8</li>
-                <li>Ad Title 9</li>
-                <li>Ad Title 10</li>
-              </ul>
+            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
+              <h2 className="text-4xl">Advertisements</h2>
+              <ProfileAdvertisements userId={user.sub} />
             </div>
           </div>
         )}
@@ -311,9 +301,11 @@ export const Profile = () => {
 )}
 
         {activePanel === 'Messages' && (
-          <div>
-            <h2>Messages</h2>
-            <ProfileMessages userId={user.sub} />
+          <div className="panel">
+            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
+              <h2 className="text-4xl">Messages</h2>
+              <ProfileMessages userId={user.sub} />
+            </div>
           </div>
         )}
       </div>
