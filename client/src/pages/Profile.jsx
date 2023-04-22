@@ -17,7 +17,6 @@ export const Profile = () => {
   // const { data: dataRating, error: errorRating, isLoading: isRating} = useGetRatingQuery();
   // const { data: dataRating1, error: errorRating1, isLoading: isRating1} = useGetRatingByIdQuery();
 
-
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
   };
@@ -34,105 +33,157 @@ export const Profile = () => {
   return (
     <div className="flex m-5">
       <aside className="h-screen rounded-xl w-80 bg-zinc-700 flex flex-col text-left gap-10">
-        <h1 className='text-center mt-5 text-3xl'>Profile</h1>
-        <div className='flex flex-col'>
-
-          <div className='bg-gray-600 m-2 rounded-2xl flex items-center gap-2 p-2 gap-3 hover:bg-slate-700'>  
-            <img className='brightness-0 invert h-5' src='https://www.svgrepo.com/show/377056/settings-cog.svg'></img>
-            <button className='text-left' onClick={() => handlePanelClick('General Configuration')}>
+        <h1 className="text-center mt-5 text-3xl">Profile</h1>
+        <div className="flex flex-col">
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center gap-2 p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/377056/settings-cog.svg"
+            ></img>
+            <button
+              className="text-left"
+              onClick={() => handlePanelClick('General Configuration')}
+            >
               General Configuration
             </button>
           </div>
 
-          <div className='bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700'>
-            <img className='brightness-0 invert h-5' src='https://www.svgrepo.com/show/376891/folder.svg'></img>
-            <button className='text-left' onClick={() => handlePanelClick('Advertisements')}>
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/376891/folder.svg"
+            ></img>
+            <button
+              className="text-left"
+              onClick={() => handlePanelClick('Advertisements')}
+            >
               Advertisements
             </button>
           </div>
 
-          <div className='bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700'>
-          <img className='brightness-0 invert h-5' src='https://www.svgrepo.com/show/376813/chats-2.svg'></img>
-            <button className='text-left' onClick={() => handlePanelClick('Messages')}>Messages</button>
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/376813/chats-2.svg"
+            ></img>
+            <button
+              className="text-left"
+              onClick={() => handlePanelClick('Messages')}
+            >
+              Messages
+            </button>
           </div>
 
-          <div className='bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700'>
-          <img className='brightness-0 invert h-5' src='https://www.svgrepo.com/show/376856/creditcard-hand.svg'></img>
-            <button className='text-left' onClick={() => handlePanelClick('Subscription')}>
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/376856/creditcard-hand.svg"
+            ></img>
+            <button
+              className="text-left"
+              onClick={() => handlePanelClick('Subscription')}
+            >
               Subscription
             </button>
           </div>
 
-          <div className='bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700'>
-          <img className='brightness-0 invert h-5' src='https://www.svgrepo.com/show/377112/users.svg'></img>
-            <button className='text-left' onClick={() => handlePanelClick('Reputation')}>
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/377112/users.svg"
+            ></img>
+            <button
+              className="text-left"
+              onClick={() => handlePanelClick('Reputation')}
+            >
               Reputation
             </button>
           </div>
 
-          <div className='bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700'>
-            <img className='brightness-0 invert h-5' src='https://www.svgrepo.com/show/376950/logout.svg'></img>
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/376950/logout.svg"
+            ></img>
             <LogOutButton />
           </div>
-
         </div>
         <h4 className="absolute bottom-3 ml-5">Vizta Copyrigth ©</h4>
       </aside>
 
       {showDefaultPanel && (
         <div className="p-2 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
-          <div className='flex gap-2 items-center mt-5'>
+          <div className="flex gap-2 items-center mt-5">
             <label className="swap swap-flip text-9xl">
               <input type="checkbox" />
-    
-              <div className="swap-on"><p className='text-6xl'>😈</p></div>
-              <div className="swap-off"><img className="w-16 object-cover rounded-full" src={data.picture} alt={data.name} /></div>
+
+              <div className="swap-on">
+                <p className="text-6xl">😈</p>
+              </div>
+              <div className="swap-off">
+                <img
+                  className="w-16 object-cover rounded-full"
+                  src={data.picture}
+                  alt={data.name}
+                />
+              </div>
             </label>
-              <p className="text-slate-50 text-5xl">{data.name}</p>
+            <p className="text-slate-50 text-5xl">{data.name}</p>
           </div>
 
           <div>
-            <div className='flex w-150 mt-7'>
-              <label className='ml-5'>Nickname</label>
-              <p className='w-full text-right mr-5'>{data.nickname ? data.nickname : "You have not defined a Nickname"}</p>
+            <div className="flex w-150 mt-7">
+              <label className="ml-5">Nickname</label>
+              <p className="w-full text-right mr-5">
+                {data.nickname
+                  ? data.nickname
+                  : 'You have not defined a Nickname'}
+              </p>
             </div>
-            <div className="divider"></div> 
-            <div className='flex w-150'>
-              <label className='ml-5'>Email</label>
-              <p className='w-full text-right mr-5'>{data.email}</p>
+            <div className="divider"></div>
+            <div className="flex w-150">
+              <label className="ml-5">Email</label>
+              <p className="w-full text-right mr-5">{data.email}</p>
             </div>
-            <div className="divider"></div> 
-            <div className='flex w-150'>
-              <label className='ml-5'>Address</label>
-              <p className='w-full text-right mr-5'>{data.address ? data.address : "You have not defined an address"}</p>
+            <div className="divider"></div>
+            <div className="flex w-150">
+              <label className="ml-5">Address</label>
+              <p className="w-full text-right mr-5">
+                {data.address
+                  ? data.address
+                  : 'You have not defined an address'}
+              </p>
             </div>
-            <div className="divider"></div> 
-            <div className='flex w-150'>
-              <label className='ml-5'>Phone</label>
-              <p className='w-full text-right mr-5'>{data.phone ? data.phone : "You have not defined a phone number"}</p>
+            <div className="divider"></div>
+            <div className="flex w-150">
+              <label className="ml-5">Phone</label>
+              <p className="w-full text-right mr-5">
+                {data.phone
+                  ? data.phone
+                  : 'You have not defined a phone number'}
+              </p>
             </div>
-            <div className="divider"></div> 
-            <div className='flex w-150'>
-              <label className='ml-5 w-full'>Joined Vizta</label>
-              <p className='w-full text-right mr-5'>{data.createdAt}</p>
+            <div className="divider"></div>
+            <div className="flex w-150">
+              <label className="ml-5 w-full">Joined Vizta</label>
+              <p className="w-full text-right mr-5">{data.createdAt}</p>
             </div>
           </div>
-          
         </div>
       )}
       <div className="panel-container">
         {activePanel === 'General Configuration' && (
           <div className="panel">
-            <div className='h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3'>
-              <h2 className='text-2xl'>General Configuration</h2>
+            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
+              <h2 className="text-2xl">General Configuration</h2>
               <p>Here's some information about General Configuration.</p>
             </div>
           </div>
         )}
         {activePanel === 'Advertisements' && (
           <div className="panel">
-            <div className='h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3'>
-            <h2>Advertisements</h2>
+            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
+              <h2>Advertisements</h2>
               <div className="active-ads">
                 <h3>Active Advertisements</h3>
                 <ul>
@@ -158,8 +209,8 @@ export const Profile = () => {
         )}
         {activePanel === 'Subscription' && (
           <div className="panel">
-            <div className='h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3'>
-              <h2 className='text-4xl'>Subscription</h2>
+            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
+              <h2 className="text-4xl">Subscription</h2>
               <div className="subscription-details">
                 <div className="subscription-item">
                   <h3>Current Plan:</h3>
@@ -193,7 +244,7 @@ export const Profile = () => {
         )}
         {activePanel === 'Reputation' && (
           <div className="panel">
-            <div className='h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3'>
+            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
               <h2>Reputation</h2>
               <div>
                 <p>Rating Average:</p>
@@ -213,12 +264,8 @@ export const Profile = () => {
         {activePanel === 'Favorites' && (
           <div className="panel">
             <h2>Favorites</h2>
-            
-            <div>
-             
 
-              
-            </div>
+            <div></div>
           </div>
         )}
 

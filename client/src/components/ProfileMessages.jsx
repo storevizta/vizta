@@ -10,10 +10,10 @@ import question from '../assets/question.svg';
 
 import { Response } from './Response';
 
+import { DetailsAdvertisement } from './DetailsAdvertisement';
+
 export const ProfileMessages = ({ userId }) => {
   const { data, error, isLoading } = useGetUserMessagesQuery(userId);
-
-  console.log(data);
 
   if (isLoading) {
     return (
@@ -31,20 +31,21 @@ export const ProfileMessages = ({ userId }) => {
     );
   }
 
+  console.log(data);
+
   const mensajesSinResponder = data?.filter(
     (message) => message.response === null
   );
 
   return (
-    <div>
+    <div className="p-2 flex flex-col gap-2 bg-zinc-700 rounded-2xl ml-3 w-150">
       {mensajesSinResponder.length ? (
         mensajesSinResponder.map((message) => (
-          <div
-            className="border-b-4 border-slate-400 pt-3 pb-3 pr-4 pl-4"
-            key={message.id}
-          >
-            <div className="flex justify-between">
-              <p className="inline pr-20">
+          <div className="bg-gray-600 rounded-2xl p-10">
+            <DetailsAdvertisement adId={message.AdId} />
+            <p className="pt-3 text-lg">Messages: </p>
+            <div className="flex pt-3">
+              <p className="inline pr-20 text-lg">
                 {message.createdAt
                   .slice(0, 10)
                   .replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1')}
@@ -52,11 +53,10 @@ export const ProfileMessages = ({ userId }) => {
 
               <div className="flex flex-column">
                 <img
-                  className="w-5 inline"
-                  src={question}
-                  alt="icon question"
-                />
-                <p className="inline pl-3">{message.message}</p>
+                  className="brightness-0 invert h-5"
+                  src="https://www.svgrepo.com/show/376813/chats-2.svg"
+                ></img>
+                <p className="inline pl-3 text-lg">{message.message}</p>
               </div>
             </div>
             <Response id={message.id} />
