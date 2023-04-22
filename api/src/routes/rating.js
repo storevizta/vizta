@@ -14,7 +14,7 @@ router.post('/', createRating);
 
 router.get('/:id', getRatingById);
 
-router.get('/', getRatingByUser);
+router.get('/user/:userId', getRatingByUser);
 
 router.delete('/:id', deleteRating);
 

@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query';
-import {  } from '@reduxjs/toolkit/query/react';
 
 export const Report = createApi({
-    reducerPath: "report",
+    reducerPath: 'report',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/'}),
-    endPoints: (builder) => ({
+    endpoints: (builder) => ({
         getReportById: builder.query({
             query: (id) => `/report/${id}`,
           }),
@@ -16,17 +15,12 @@ export const Report = createApi({
           }),
         createReport: builder.mutation({
             query: (data) => ({
-              url: `/report`,
+              url: '/report',
               method: 'POST',
               body: data,
             }),
           }),
     }),
-})
+});
 
-export const {
-    useCreateReportMutation,
-    useGetReportByIdQuery,
-    useGetReportByUserIdQuery,
-    useReportAdAdIdQuery,
-  } = Rating;
+export const { useCreateReportMutation, useGetReportByIdQuery, useGetReportByUserIdQuery, useGetReportAdAdIdQuery } = Report;
