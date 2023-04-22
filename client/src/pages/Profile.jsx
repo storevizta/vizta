@@ -1,5 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useGetUserIdQuery } from '../features/query/UserQuery.jsx';
+// import { useGetReportByIdQuery, useGetReportByUserIdQuery, useReportAdAdIdQuery } from '../features/query/ReportQuery.jsx';
+// import { useGetRatingQuery, useGetRatingByIdQuery } from '../features/query/RatingQuery.jsx';
 import { LogOutButton } from '../components/LogOutButton';
 import { ProfileMessages } from '../components/ProfileMessages.jsx';
 import { useState } from 'react';
@@ -8,6 +10,13 @@ export const Profile = () => {
   const { user, isLoading } = useAuth0();
   const [activePanel, setActivePanel] = useState(null);
   const showDefaultPanel = activePanel === null;
+  // const { data: dataReport, error: errorReport, isLoading: isReport} = useGetReportByIdQuery();
+  // const { data: dataReport1, error: errorReport1, isLoading: isReport1} = useGetReportByUserIdQuery();
+  // const { data: dataReport2, error: errorReport2, isLoading: isReport2} = useReportAdAdIdQuery();
+
+  // const { data: dataRating, error: errorRating, isLoading: isRating} = useGetRatingQuery();
+  // const { data: dataRating1, error: errorRating1, isLoading: isRating1} = useGetRatingByIdQuery();
+
 
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
@@ -38,6 +47,9 @@ export const Profile = () => {
         </button>
         <button onClick={() => handlePanelClick('Reputation')}>
           Reputation
+        </button>
+        <button onClick={() => handlePanelClick('Reputation')}>
+          Favorites
         </button>
         <LogOutButton />
         <h4 className="">Vizta Copyrigth ©</h4>
@@ -133,6 +145,17 @@ export const Profile = () => {
                 <p>Rating Description:</p>
                 <p>Rating:</p>
               </div>
+            </div>
+          </div>
+        )}
+        {activePanel === 'Favorites' && (
+          <div className="panel">
+            <h2>Favorites</h2>
+            
+            <div>
+             
+
+              
             </div>
           </div>
         )}
