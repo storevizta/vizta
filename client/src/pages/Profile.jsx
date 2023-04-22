@@ -22,6 +22,8 @@ import { ProfileMessages } from '../components/ProfileMessages';
 
 import { ProfileAdvertisements } from '../components/ProfileAdvertisements';
 
+import { ProfileGeneralConfiguration } from '../components/ProfileGeneralConfiguration';
+
 import { useEffect, useState } from 'react';
 
 export const Profile = () => {
@@ -226,7 +228,7 @@ export const Profile = () => {
         {activePanel === 'General Configuration' && (
           <div className="panel">
             <h2>General Configuration</h2>
-            <p>Here's some information about General Configuration.</p>
+            <ProfileGeneralConfiguration />
           </div>
         )}
         {activePanel === 'Advertisements' && (

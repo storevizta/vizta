@@ -4,6 +4,8 @@ import { Loading } from './Loading';
 
 import { Error } from './Error';
 
+import { Link } from 'react-router-dom';
+
 export const DetailsAdvertisement = ({ adId }) => {
   const { data, error, isLoading } = useGetAdByIdQuery(adId);
 
@@ -28,10 +30,10 @@ export const DetailsAdvertisement = ({ adId }) => {
   return (
     <div>
       <p className="text-lg text-bold">Advertisement: </p>
-      <div className="flex mt-5 ">
+      <Link className="flex mt-5" to={`/detail/${data.id}`}>
         <img src={data.image[0]} className="w-24 rounded" />
         <p className="text-lg pl-5 my-auto">{data.title}</p>
-      </div>
+      </Link>
     </div>
   );
 };
