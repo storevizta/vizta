@@ -10,7 +10,8 @@ import {
   setCategory,
   setMinPrice,
   setMaxPrice,
-  setSort,
+  setSortPrice,
+  setSortTitle,
   setDiscount,
   setCondition,
   resetFilters,
@@ -43,8 +44,12 @@ export const Sidebar = () => {
     dispatch(setMaxPrice(newMaxPrice));
   };
 
-  const handlerSort = (e) => {
-    dispatch(setSort(e));
+  const handlerSortPrice = (e) => {
+    dispatch(setSortPrice(e));
+  };
+
+  const handlerSortTitle = (e) => {
+    dispatch(setSortTitle(e));
   };
 
   const handlerDiscount = (e) => {
@@ -99,17 +104,34 @@ export const Sidebar = () => {
             </div>
           </div>
           <div>
-            <div>Sort:</div>
+            <div>Sort Price:</div>
             <div className="cursor-pointer">
               <div
                 className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerSort('asc')}
+                onClick={() => handlerSortPrice('asc')}
               >
                 Ascending
               </div>
               <div
                 className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerSort('desc')}
+                onClick={() => handlerSortPrice('desc')}
+              >
+                Descending
+              </div>
+            </div>
+          </div>
+          <div>
+            <div>Sort Title:</div>
+            <div className="cursor-pointer">
+              <div
+                className="px-2 rounded hover:bg-zinc-600"
+                onClick={() => handlerSortTitle('asc')}
+              >
+                Ascending
+              </div>
+              <div
+                className="px-2 rounded hover:bg-zinc-600"
+                onClick={() => handlerSortTitle('desc')}
               >
                 Descending
               </div>

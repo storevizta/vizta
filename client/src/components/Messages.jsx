@@ -1,8 +1,6 @@
-import { useGetUserMessagesQuery } from '../features/query/UserQuery';
+import { useGetMessageByAdIdQuery } from '../features/query/MessagesQuery';
 
 import { CreateMessage } from './CreateMessage';
-
-import { Response } from './Response';
 
 import { Loading } from '../components/Loading';
 
@@ -11,7 +9,7 @@ import { Error } from '../components/Error';
 import question from '../assets/question.svg';
 
 export const Messages = ({ adId, userId }) => {
-  const { data, error, isLoading } = useGetUserMessagesQuery(userId);
+  const { data, error, isLoading } = useGetMessageByAdIdQuery(adId);
 
   if (isLoading) {
     return (

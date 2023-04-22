@@ -10,6 +10,9 @@ export const Message = createApi({
     getMessageById: builder.query({
       query: (id) => `/message/${id}`,
     }),
+    getMessageByAdId: builder.query({
+      query: (id) => `/users/admessages/${id}`,
+    }),
     responseMessage: builder.mutation({
       query: (data) => ({
         url: '/message',
@@ -32,4 +35,5 @@ export const {
   useGetMessageQuery,
   useResponseMessageMutation,
   useGetMessageByIdQuery,
+  useGetMessageByAdIdQuery,
 } = Message;

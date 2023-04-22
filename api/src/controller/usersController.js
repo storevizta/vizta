@@ -135,6 +135,23 @@ const deleteFavorite = async (req, res) => {
   }
 };
 
+const getUserAdMessages = async (req, res) => {
+  try {
+    const {id} = req.params;
+
+    const adMessages = await Message.findAll({where: {AdId: id}});
+
+    if(!adMessages){
+      return res.status(400).json({message: "Ad not found"});
+    }
+
+    return res.status(200).json(adMessages);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json(error.message);
+  }
+}
+
 module.exports = {
   getUser,
   getUserAds,
@@ -144,5 +161,6 @@ module.exports = {
   updateUser,
   deleteUser,
   deleteFavorite,
-  getUserMessages
+  getUserMessages,
+  getUserAdMessages
 };
