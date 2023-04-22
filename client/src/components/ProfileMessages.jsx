@@ -29,8 +29,6 @@ export const ProfileMessages = ({ userId }) => {
     );
   }
 
-  console.log(data);
-
   const mensajesSinResponder = data?.filter(
     (message) => message.response === null
   );
