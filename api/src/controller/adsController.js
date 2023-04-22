@@ -85,8 +85,10 @@ const getAds = async (req, res) => {
 
     const ads = await Ad.findAll(options);
 
+    const count = await Ad.count(options);
+
     return res.status(200).json({
-      length: ads.length,
+      length: count,
       ads: ads,
     });
   } catch (error) {
