@@ -1,10 +1,14 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { useGetUserIdQuery } from '../features/query/UserQuery.jsx';
-// import { useGetReportByIdQuery, useGetReportByUserIdQuery, useReportAdAdIdQuery } from '../features/query/ReportQuery.jsx';
-// import { useGetRatingQuery, useGetRatingByIdQuery } from '../features/query/RatingQuery.jsx';
+import { useGetUserIdQuery } from '../features/query/UserQuery';
+// import { useGetReportByIdQuery, useGetReportByUserIdQuery, useReportAdAdIdQuery } from '../features/query/ReportQuery';
+import {
+  useGetRatingQuery,
+  useGetRatingByIdQuery,
+  useGetRatingByUserIdQuery,
+} from '../features/query/RatingQuery';
 import { LogOutButton } from '../components/LogOutButton';
-import { ProfileMessages } from '../components/ProfileMessages.jsx';
-import { useState } from 'react';
+import { ProfileMessages } from '../components/ProfileMessages';
+import { useEffect, useState } from 'react';
 
 export const Profile = () => {
   const { user, isLoading } = useAuth0();
@@ -16,6 +20,19 @@ export const Profile = () => {
 
   // const { data: dataRating, error: errorRating, isLoading: isRating} = useGetRatingQuery();
   // const { data: dataRating1, error: errorRating1, isLoading: isRating1} = useGetRatingByIdQuery();
+  const {
+    data: dataRating3,
+    error: errorRating3,
+    isLoading: isRating3,
+  } = useGetRatingByUserIdQuery(user.sub);
+
+  if (isRating3) {
+    return <div>Loading...</div>;
+  }
+
+  if (errorRating3) {
+    return <div>Error...</div>;
+  }
 
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
@@ -122,7 +139,7 @@ export const Profile = () => {
               </div>
               <div className="swap-off">
                 <img
-                  className="w-16 object-cover rounded-full"
+                  className="w-16 h-16 object-cover rounded-full"
                   src={data.picture}
                   alt={data.name}
                 />
@@ -174,98 +191,83 @@ export const Profile = () => {
       <div className="panel-container">
         {activePanel === 'General Configuration' && (
           <div className="panel">
-            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
-              <h2 className="text-2xl">General Configuration</h2>
-              <p>Here's some information about General Configuration.</p>
-            </div>
+            <h2>General Configuration</h2>
+            <p>Here's some information about General Configuration.</p>
           </div>
         )}
         {activePanel === 'Advertisements' && (
           <div className="panel">
-            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
-              <h2>Advertisements</h2>
-              <div className="active-ads">
-                <h3>Active Advertisements</h3>
-                <ul>
-                  <li>Ad Title 1</li>
-                  <li>Ad Title 2</li>
-                  <li>Ad Title 3</li>
-                  <li>Ad Title 4</li>
-                  <li>Ad Title 5</li>
-                </ul>
-              </div>
-              <div className="paused-ads">
-                <h3>Paused Advertisements</h3>
-                <ul>
-                  <li>Ad Title 6</li>
-                  <li>Ad Title 7</li>
-                  <li>Ad Title 8</li>
-                  <li>Ad Title 9</li>
-                  <li>Ad Title 10</li>
-                </ul>
-              </div>
+            <h2>Advertisements</h2>
+            <div className="active-ads">
+              <h3>Active Advertisements</h3>
+              <ul>
+                <li>Ad Title 1</li>
+                <li>Ad Title 2</li>
+                <li>Ad Title 3</li>
+                <li>Ad Title 4</li>
+                <li>Ad Title 5</li>
+              </ul>
+            </div>
+            <div className="paused-ads">
+              <h3>Paused Advertisements</h3>
+              <ul>
+                <li>Ad Title 6</li>
+                <li>Ad Title 7</li>
+                <li>Ad Title 8</li>
+                <li>Ad Title 9</li>
+                <li>Ad Title 10</li>
+              </ul>
             </div>
           </div>
         )}
         {activePanel === 'Subscription' && (
           <div className="panel">
-            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
-              <h2 className="text-4xl">Subscription</h2>
-              <div className="subscription-details">
-                <div className="subscription-item">
-                  <h3>Current Plan:</h3>
-                  <p>Basic Plan</p>
-                </div>
-                <div className="subscription-item">
-                  <h3>Next Billing Date:</h3>
-                  <p>May 12th, 2023</p>
-                </div>
-                <div className="subscription-item">
-                  <h3>Payment Method:</h3>
-                  <p>Credit Card ending in 1234</p>
-                </div>
-                <div className="subscription-item">
-                  <h3>Billing History:</h3>
-                  <ul>
-                    <li>April 12th, 2023 - $9.99</li>
-                    <li>March 12th, 2023 - $9.99</li>
-                    <li>February 12th, 2023 - $9.99</li>
-                  </ul>
-                </div>
-                <div className="subscription-item">
-                  <h3>Upgrade Plan:</h3>
-                  <p>
-                    <a href="#">Upgrade to Premium</a>
-                  </p>
-                </div>
+            <h2>Subscription</h2>
+            <div className="subscription-details">
+              <div className="subscription-item">
+                <h3>Current Plan:</h3>
+                <p>Basic Plan</p>
+              </div>
+              <div className="subscription-item">
+                <h3>Next Billing Date:</h3>
+                <p>May 12th, 2023</p>
+              </div>
+              <div className="subscription-item">
+                <h3>Payment Method:</h3>
+                <p>Credit Card ending in 1234</p>
+              </div>
+              <div className="subscription-item">
+                <h3>Billing History:</h3>
+                <ul>
+                  <li>April 12th, 2023 - $9.99</li>
+                  <li>March 12th, 2023 - $9.99</li>
+                  <li>February 12th, 2023 - $9.99</li>
+                </ul>
+              </div>
+              <div className="subscription-item">
+                <h3>Upgrade Plan:</h3>
+                <p>
+                  <a href="#">Upgrade to Premium</a>
+                </p>
               </div>
             </div>
           </div>
         )}
         {activePanel === 'Reputation' && (
           <div className="panel">
-            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
-              <h2>Reputation</h2>
-              <div>
-                <p>Rating Average:</p>
-                <p>Number of Ratings:</p>
-              </div>
-              <div>
-                <h3>Your Ratings:</h3>
+            <h2>Reputation</h2>
+            <div>
+              <p>Rating Average:</p>
+              <p>Number of Ratings:</p>
+            </div>
+            <div>
+              <h3>Your Ratings: {dataRating3}</h3>
 
-                <div>
-                  <p>Rating Description:</p>
-                  <p>Rating:</p>
-                </div>
+              <div>
+                <p>Rating Description:</p>
+                <p>Rating:</p>
               </div>
             </div>
-          </div>
-        )}
-        {activePanel === 'Favorites' && (
-          <div className="panel">
-            <h2>Favorites</h2>
-
-            <div></div>
           </div>
         )}
 
