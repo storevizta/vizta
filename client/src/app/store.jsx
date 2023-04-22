@@ -14,7 +14,7 @@ import { Report } from '../features/query/ReportQuery';
 
 import FilterSlice from '../features/slices/filterSlice';
 
-import  wishlistsSlice from '../features/slices/FavSlices';
+import wishlistsSlice from '../features/slices/FavSlices';
 
 export const store = configureStore({
   reducer: {
@@ -33,7 +33,7 @@ export const store = configureStore({
       Category.middleware,
       User.middleware,
       Message.middleware,
-      Report.middleware,
-      Rating.middleware
+      Rating.middleware,
+      Report.middleware
     ),
 });
