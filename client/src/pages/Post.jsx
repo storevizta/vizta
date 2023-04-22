@@ -24,6 +24,8 @@ export const Post = () => {
     return <div>Loading ...</div>;
   }
 
+  console.log(user);
+
   const navigate = useNavigate();
 
   const [data, setData] = useState({
@@ -88,7 +90,6 @@ export const Post = () => {
     }
     setImage(newImage);
   };
-  console.log(image);
   /*
   const handleInputImage = async (e) => {
     const file = e.target.files[0];
@@ -176,6 +177,7 @@ export const Post = () => {
                 onChange={handleInput}
                 className="input w-full max-w-xs"
                 required
+                maxLength={70}
               />
             </div>
 
