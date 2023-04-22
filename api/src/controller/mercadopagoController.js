@@ -16,7 +16,7 @@ const { transporter } = require('../middleware/nodemailer.js');
 
 mercadopago.configure({
   access_token:
-    'APP_USR-4871149183520475-042020-19ad63e6a5e3586b247ec9a7ca6903a3-182007561',
+    'APP_USR-6692975538978394-042219-d37b80b1c2522d0df0522dc6cc4d64e4-1174786288',
 });
 
 const createPreferenc = async (req, res) => {

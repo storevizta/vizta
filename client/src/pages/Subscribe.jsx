@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { Wallet } from '@mercadopago/sdk-react';
 import { SpinnerCircular } from 'spinners-react';
 
-initMercadoPago('APP_USR-fd5b1a5b-bbcd-4bb4-891e-cee395c7fa36');
+initMercadoPago('APP_USR-8c230a5f-f7e1-4a20-9da4-1d3d45c1c226');
 
 export const Subscribe = () => {
   const [preferenceId, setPreferenceId] = useState(null);
