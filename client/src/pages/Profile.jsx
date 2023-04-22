@@ -67,12 +67,13 @@ export const Profile = () => {
     isLoading: isRating3,
   } = useGetRatingByUserIdQuery(user.sub);
 
- 
-  }
-  const { data:dataUserId, error:errorUserId, isLoading: isLoadingUserId } = useGetUserIdQuery(user.sub);
+  const {
+    data: dataUserId,
+    error: errorUserId,
+    isLoading: isLoadingUserId,
+  } = useGetUserIdQuery(user.sub);
 
-  if (isLoadingUserId) return <div>Loading...</div>
-
+  if (isLoadingUserId) return <div>Loading...</div>;
 
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
