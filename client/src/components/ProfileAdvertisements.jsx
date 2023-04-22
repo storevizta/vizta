@@ -1,5 +1,9 @@
 import { useGetUserAdsQuery } from '../features/query/UserQuery';
 import { Card } from './Card';
+import { Link } from 'react-router-dom';
+import { Loading } from '../components/Loading';
+
+import { Error } from '../components/Error';
 
 export const ProfileAdvertisements = ({ userId }) => {
   const { data, error, isLoading } = useGetUserAdsQuery(userId);
@@ -33,9 +37,9 @@ export const ProfileAdvertisements = ({ userId }) => {
         <div className="grid grid-cols-5 gap-5">
           {activeAds.length ? (
             activeAds.map((ad) => (
-              <div>
+              <Link to={`/detail/${ad.id}`}>
                 <Card info={ad} />
-              </div>
+              </Link>
             ))
           ) : (
             <p>You have no active advertisement </p>
@@ -48,9 +52,9 @@ export const ProfileAdvertisements = ({ userId }) => {
         <div className="grid grid-cols-5 gap-5">
           {pausedAds.length ? (
             pausedAds.map((ad) => (
-              <div>
+              <Link to={`/detail/${ad.id}`}>
                 <Card info={ad} />
-              </div>
+              </Link>
             ))
           ) : (
             <p>You have no paused advertisement </p>
@@ -63,9 +67,9 @@ export const ProfileAdvertisements = ({ userId }) => {
         <div className="grid grid-cols-5 gap-5">
           {soldAds.length ? (
             soldAds.map((ad) => (
-              <div>
+              <Link to={`/detail/${ad.id}`}>
                 <Card info={ad} />
-              </div>
+              </Link>
             ))
           ) : (
             <p>You have no sold advertisement </p>
