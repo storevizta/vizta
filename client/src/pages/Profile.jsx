@@ -5,7 +5,8 @@ import { useGetUserIdQuery } from '../features/query/UserQuery';
 import {
   useGetReportByIdQuery,
   useGetReportByUserIdQuery,
-  useReportAdAdIdQuery,
+  useGetReportAdAdIdQuery,
+  useCreateReportMutation,
 } from '../features/query/ReportQuery';
 
 import {
@@ -28,6 +29,8 @@ export const Profile = () => {
 
   const showDefaultPanel = activePanel === null;
 
+  if (isLoading) return <div>Loading...</div>;
+
   const {
     data: dataReport,
     error: errorReport,
@@ -44,7 +47,7 @@ export const Profile = () => {
     data: dataReport2,
     error: errorReport2,
     isLoading: isReport2,
-  } = useReportAdAdIdQuery();
+  } = useGetReportAdAdIdQuery();
 
   const {
     data: dataRating,
@@ -64,22 +67,12 @@ export const Profile = () => {
     isLoading: isRating3,
   } = useGetRatingByUserIdQuery(user.sub);
 
-  if (isRating3) {
-    return <div>Loading...</div>;
+ 
   }
+  const { data:dataUserId, error:errorUserId, isLoading: isLoadingUserId } = useGetUserIdQuery(user.sub);
 
-  if (errorRating3) {
-    return <div>Error...</div>;
-  }
+  if (isLoadingUserId) return <div>Loading...</div>
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  const { data, error, isLoading: is } = useGetUserIdQuery(user.sub);
-
-  if (is) {
-    return <div>Loading...</div>;
-  }
 
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
