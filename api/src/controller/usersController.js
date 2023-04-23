@@ -110,7 +110,25 @@ const createFavorite = async (req, res) => {
   }
 };
 
-const updateUser = async (req, res) => {};
+const updateUser = async (req, res) => {
+  const { id, name, nickname, email, picture, address, phone } = req.body;
+  try {
+    const actualUser = await User.findByPk(id);
+    await actualUser.update({
+      name: name,
+      nickname: nickname,
+      email: email,
+      picture: picture,
+      address: address,
+      phone: phone,
+    });
+
+    res.status(200).json('All fine!');
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json(error);
+  }
+};
 
 const deleteUser = async (req, res) => {};
 
@@ -137,12 +155,12 @@ const deleteFavorite = async (req, res) => {
 
 const getUserAdMessages = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
 
-    const adMessages = await Message.findAll({where: {AdId: id}});
+    const adMessages = await Message.findAll({ where: { AdId: id } });
 
-    if(!adMessages){
-      return res.status(400).json({message: "Ad not found"});
+    if (!adMessages) {
+      return res.status(400).json({ message: 'Ad not found' });
     }
 
     return res.status(200).json(adMessages);
@@ -150,7 +168,7 @@ const getUserAdMessages = async (req, res) => {
     console.log(error);
     return res.status(400).json(error.message);
   }
-}
+};
 
 module.exports = {
   getUser,
@@ -162,5 +180,5 @@ module.exports = {
   deleteUser,
   deleteFavorite,
   getUserMessages,
-  getUserAdMessages
+  getUserAdMessages,
 };
