@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { initMercadoPago } from '@mercadopago/sdk-react';
 import classnames from 'classnames';
 import { Wallet } from '@mercadopago/sdk-react';
@@ -16,6 +16,10 @@ export const Subscribe = () => {
     description: 'Blue',
   });
   const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    handleClick();
+  }, []);
 
   const handleOnReady = () => {
     setIsReady(true);
@@ -61,39 +65,29 @@ export const Subscribe = () => {
 
   const renderSpinner = () => {
     if (isLoading) {
-      return (
-        <div className="spinner-wrapper">
-          <SpinnerCircular />
-        </div>
-      );
+      return <SpinnerCircular />;
     }
   };
 
   return (
-    <div>
+    <div className="h-full flex flex-col justify-center items-center">
       {renderSpinner()}
       <div className="checkout">
         <div className="container_checkout">
           <div className="block-heading">
             <h2>Blue</h2>
-            <p>Anuncios destacados</p>
+            <p>Featured Announcements</p>
           </div>
           <div className="form-checkout">
-            <div className="form-group">
+            <div className="flex">
               <label>Price:</label>
               <p>{orderData.price}</p>
             </div>
-            <button className="btn btn-primary" onClick={handleClick}>
-              Generate Preference
-            </button>
           </div>
         </div>
       </div>
       <div className={paymentClass}>
         <div className="container_payment">
-          <div className="block-heading">
-            <h2>Checkout Payment</h2>
-          </div>
           {renderCheckoutButton(preferenceId)}
         </div>
       </div>
