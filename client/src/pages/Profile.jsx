@@ -4,6 +4,7 @@ import { useGetUserIdQuery } from '../features/query/UserQuery.jsx';
 // import { useGetRatingQuery, useGetRatingByIdQuery } from '../features/query/RatingQuery.jsx';
 import { LogOutButton } from '../components/LogOutButton';
 import { ProfileMessages } from '../components/ProfileMessages.jsx';
+import { Configuration } from '../components/generalConfiguration.jsx';
 import { useState } from 'react';
 
 export const Profile = () => {
@@ -125,7 +126,7 @@ export const Profile = () => {
           <div className="panel">
             <div className='h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3'>
               <h2 className='text-2xl'>General Configuration</h2>
-              <p>Here's some information about General Configuration.</p>
+              <Configuration info={user}/>
             </div>
           </div>
         )}
@@ -194,16 +195,29 @@ export const Profile = () => {
         {activePanel === 'Reputation' && (
           <div className="panel">
             <div className='h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3'>
-              <h2>Reputation</h2>
-              <div>
+              <h2 className='text-3xl mb-9'>Reputation</h2>
+              <div className='flex gap-2 mb-5'>
                 <p>Rating Average:</p>
+                <div className="rating">
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={false} />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={true} />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={false}/>
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={false}/>
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={false}/>
+                </div>
+              </div>
+              <div className='flex items-center gap-2 mb-5'>
                 <p>Number of Ratings:</p>
+                <input type="text" placeholder="Null" className="input w-28 h-8" />
               </div>
               <div>
-                <h3>Your Ratings:</h3>
-
+                <div>
+                  <h3>Your Ratings:</h3>
+                </div>
                 <div>
                   <p>Rating Description:</p>
+                </div>
+                <div>
                   <p>Rating:</p>
                 </div>
               </div>
@@ -215,8 +229,6 @@ export const Profile = () => {
             <h2>Favorites</h2>
             
             <div>
-             
-
               
             </div>
           </div>
