@@ -14,6 +14,13 @@ export const User = createApi({
         body: data,
       }),
     }),
+    updateUser: builder.mutation({
+      query: (data) => ({
+        url: `/users`,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
     getUserAds: builder.query({
       query: (id) => `/users/userads/${id}`,
     }),
@@ -26,6 +33,7 @@ export const User = createApi({
 export const {
   useGetUserIdQuery,
   useCreateUserMutation,
+  useUpdateUserMutation,
   useGetUserAdsQuery,
   useGetUserMessagesQuery,
 } = User;

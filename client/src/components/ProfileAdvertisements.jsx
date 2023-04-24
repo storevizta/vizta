@@ -16,6 +16,8 @@ export const ProfileAdvertisements = ({ userId }) => {
     );
   }
 
+  console.log(error);
+
   if (error) {
     return (
       <div className="flex items-center justify-center h-screen">

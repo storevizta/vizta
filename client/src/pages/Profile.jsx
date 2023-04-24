@@ -20,11 +20,11 @@ import {
 
 import { LogOutButton } from '../components/LogOutButton';
 
+import { Configuration } from '../components/generalConfiguration.jsx';
+
 import { ProfileMessages } from '../components/ProfileMessages';
 
 import { ProfileAdvertisements } from '../components/ProfileAdvertisements';
-
-import { ProfileGeneralConfiguration } from '../components/ProfileGeneralConfiguration';
 
 import { useEffect, useState } from 'react';
 
@@ -249,8 +249,10 @@ export const Profile = () => {
       <div className="panel-container">
         {activePanel === 'General Configuration' && (
           <div className="panel">
-            <h2>General Configuration</h2>
-            <ProfileGeneralConfiguration />
+            <div className='h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3'>
+              <h2 className='text-2xl'>General Configuration</h2>
+              <Configuration info={user}/>
+            </div>
           </div>
         )}
         {activePanel === 'Advertisements' && (
@@ -297,10 +299,20 @@ export const Profile = () => {
         {activePanel === 'Reputation' && (
   <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
     <h2>Reputation</h2>
-    <div>
-      <p>Rating Average:</p>
-      <p>Number of Ratings:</p>
-    </div>
+    <div className='flex gap-2 mb-5'>
+                <p>Rating Average:</p>
+                <div className="rating">
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={false} />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={true} />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={false}/>
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={false}/>
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={false}/>
+                </div>
+              </div>
+              <div className='flex items-center gap-2 mb-5'>
+                <p>Number of Ratings:</p>
+                <input type="text" placeholder="Null" className="input w-28 h-8" />
+              </div>
     {dataRating3.map((rating) => (
     <div key={rating.id}>
       <div>Comment: {rating.comment}</div>
