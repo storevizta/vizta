@@ -29,7 +29,7 @@ export const Navbar = () => {
 
   const searchProfile = location.pathname !== `/profile`;
 
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
   const handlerChange = (e) => {
     const newTitle = e.target.value;
@@ -90,6 +90,16 @@ export const Navbar = () => {
               />
             </div>
           )}
+          <div>
+          {isAuthenticated ?
+            <Link to="/favorite">
+              <button>
+              Favorites ({wishlistsItems?.length})
+              </button>
+              </Link> :
+              <button onClick={()=>loginWithRedirect()}>Favorites</button>
+          }
+          </div>
           {isAuthenticated ? (
             <>
               <div className="dropdown dropdown-end">
@@ -113,9 +123,6 @@ export const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/favorite"  >
-                      Favorites ({wishlistsItems?.length})
-                    </Link>
                     <Link to="/subscribe">Subscribe</Link>
                   </li>
                   <li>

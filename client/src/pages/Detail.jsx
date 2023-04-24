@@ -31,13 +31,12 @@ export const Detail = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate()
 
   const [currentImage, setCurrentImage] = useState(0);
 
   const { data, error, isLoading } = useGetAdByIdQuery(id);
 
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   if (isLoading) {
     return (
@@ -81,12 +80,10 @@ export const Detail = () => {
 
   const addToWishHandler = (data) => {
     dispatch(addToWishList(data));
-    // navigate('/favorite');
   };
-
   const whatsapp = () => {
-    window.location.href = `https://wa.me/${phone}`
-  }
+    window.location.href = `https://wa.me/${phone}`;
+  };
 
   return (
     <div>
@@ -100,7 +97,11 @@ export const Detail = () => {
           />
           {!image ? (
             <div className="h-100 w-150">
-              <img className="object-cover w-full h-full" src={FakeIMG} alt="image" />
+              <img
+                className="object-cover w-full h-full"
+                src={FakeIMG}
+                alt="image"
+              />
             </div>
           ) : (
             image.map((image, index) => {
@@ -173,19 +174,36 @@ export const Detail = () => {
             <p className="inline text-white pb-15">{shipment}</p>
           </div>
 
-          <div className='flex justify-center'>
-            <div className='bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center'>
-              <img className='h-6' src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/479px-WhatsApp_icon.png'/>
+          <div className="flex justify-center">
+            <div className="bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
+              <img
+                className="h-6"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/479px-WhatsApp_icon.png"
+              />
               <button onClick={() => whatsapp()}>Whatsapp</button>
             </div>
 
-              {isAuthenticated ? 
-              <div className='bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center'>
-              <img className='h-3' src='https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png'/>
-                <button onClick={() => addToWishHandler(data)}>Add favorite</button>
+            {isAuthenticated ? (
+              <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
+                <img
+                  className="h-3"
+                  src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
+                />
+                <button onClick={() => addToWishHandler(data)}>
+                  Add favorite
+                </button>
               </div>
-                : null
-              }
+            ) : (
+              <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
+                <img
+                  className="h-3"
+                  src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
+                />
+                <button onClick={() => loginWithRedirect()}>
+                  Add favorite
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="block text-white mt-15">
