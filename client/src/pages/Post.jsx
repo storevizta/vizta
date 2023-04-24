@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useGetCategoryQuery } from '../features/query/categoryQuery';
+import { useGetCategoryQuery } from '../features/query/CategoryQuery';
 
 import { uploadBytes, ref, listAll, getDownloadURL } from 'firebase/storage';
 
