@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-import { Ads } from '../features/query/adsQuery';
+import { Ads } from '../features/query/AdsQuery';
 
 import { Category } from '../features/query/categoryQuery';
 
