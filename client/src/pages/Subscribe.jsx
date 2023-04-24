@@ -27,7 +27,7 @@ export const Subscribe = () => {
 
   const handleClick = () => {
     setIsLoading(true);
-    fetch('http://localhost:3001/mercadopago/create_preference', {
+    fetch('https://vizta-0hmx.onrender.com/mercadopago/create_preference', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
