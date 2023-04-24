@@ -16,6 +16,8 @@ export const ProfileAdvertisements = ({ userId }) => {
     );
   }
 
+  console.log(error);
+
   if (error) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -44,7 +46,7 @@ export const ProfileAdvertisements = ({ userId }) => {
           )}
         </div>
       </div>
-
+      <div className="divider"></div> 
       <div className="pl-7 pt-5">
         <h2 className="text-lg text-bold pb-5">Paused Advertisements: </h2>
         <div className="grid grid-cols-5 gap-5">
@@ -59,7 +61,7 @@ export const ProfileAdvertisements = ({ userId }) => {
           )}
         </div>
       </div>
-
+      <div className="divider"></div> 
       <div className="pl-7 pt-5">
         <h2 className="text-lg text-bold pb-5">Sold Advertisements: </h2>
         <div className="grid grid-cols-5 gap-5">
