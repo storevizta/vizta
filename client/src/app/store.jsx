@@ -2,7 +2,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 import { Ads } from '../features/query/AdsQuery';
 
-import { Category } from '../features/query/categoryQuery';
+import { Category } from '../features/query/CategoryQuery';
 
 import { User } from '../features/query/UserQuery';
 
@@ -12,7 +12,7 @@ import { Rating } from '../features/query/RatingQuery';
 
 import { Report } from '../features/query/ReportQuery';
 
-import FilterSlice from '../features/slices/filterSlice';
+import FilterSlice from '../features/slices/FilterSlice';
 
 import wishlistsSlice from '../features/slices/FavSlices';
 
