@@ -183,8 +183,12 @@ export const Detail = () => {
               <div className='bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center'>
               <img className='h-3' src='https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png'/>
                 <button onClick={() => addToWishHandler(data)}>Add favorite</button>
+              </div> :
+              <div className='bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center'>
+              <img className='h-3' src='https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png'/>
+                <button >Add favorite</button>
               </div>
-                : null
+
               }
           </div>
 
