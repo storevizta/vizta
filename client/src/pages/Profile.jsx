@@ -43,11 +43,11 @@ export const Profile = () => {
   //   isLoading: isReport,
   // } = useGetReportByIdQuery();
 
-  // const {
-  //   data: dataReport1,
-  //   error: errorReport1,
-  //   isLoading: isReport1,
-  // } = useGetReportByUserIdQuery();
+  const {
+    data: dataReport1,
+    error: errorReport1,
+    isLoading: isReport1,
+  } = useGetReportByUserIdQuery(user.sub);
 
   // const {
   //   data: dataReport2,
@@ -163,7 +163,18 @@ export const Profile = () => {
               Reputation
             </button>
           </div>
-
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/376813/chats-2.svg"
+            ></img>
+            <button
+              className="text-left"
+              onClick={() => handlePanelClick('Reports')}
+            >
+              Reports
+            </button>
+          </div>
           <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
               className="brightness-0 invert h-5"
@@ -253,7 +264,7 @@ export const Profile = () => {
           </div>
         )}
         {activePanel === 'Subscription' && (
-          <div className="panel">
+          <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
             <h2>Subscription</h2>
             <div className="subscription-details">
               <div className="subscription-item">
@@ -286,8 +297,7 @@ export const Profile = () => {
           </div>
         )}
         {activePanel === 'Reputation' && (
-
-  <div className="panel">
+  <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
     <h2>Reputation</h2>
     <div className='flex gap-2 mb-5'>
                 <p>Rating Average:</p>
@@ -312,7 +322,21 @@ export const Profile = () => {
   ))}
   </div>
 )}
+{activePanel === 'Reports' && (
+  <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
+    <h2>Reports</h2>
+    <div>
+    {dataReport1.map((report) => (
+    <div key={report.id}>
+      <div>Reason: {report.reason}</div>
+      <div>Report Date: {report.createdAt}</div>
+      <div></div>
+    </div>
+  ))}
 
+    </div>
+  </div>
+)}
         {activePanel === 'Messages' && (
           <div className="panel">
             <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">

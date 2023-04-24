@@ -16,7 +16,7 @@ router.delete('/:id', deleteReport);
 
 router.get('/:id', getReportById);
 
-router.get('/:userId', getUserReports);
+router.get('/user/:userId', getUserReports);
 
 router.get('/ad/:adId', getAdReports);
 
