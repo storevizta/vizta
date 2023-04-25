@@ -58,7 +58,19 @@ export const Ads = createApi({
         body: data,
       }),
     }),
+    updateAd: builder.mutation({
+      query: (data) => ({
+        url: `/ads/updateAd`,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useGetAdsQuery, useGetAdByIdQuery, useCreateAdMutation } = Ads;
+export const {
+  useGetAdsQuery,
+  useGetAdByIdQuery,
+  useCreateAdMutation,
+  useUpdateAdMutation,
+} = Ads;
