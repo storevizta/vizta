@@ -44,7 +44,7 @@ export const Card = ({ info }) => {
       <div className="ml-4 text-lg">${price}</div>
 
       {isAuthenticated ? (
-        <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
+        <div className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
           <img
             className="h-3"
             src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
@@ -52,7 +52,7 @@ export const Card = ({ info }) => {
           <button onClick={() => addToWishHandler(info)}>Add favorite</button>
         </div>
       ) : (
-        <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
+        <div className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
           <img
             className="h-3"
             src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
