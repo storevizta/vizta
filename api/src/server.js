@@ -22,7 +22,11 @@ server.use(bodyParser.urlencoded({ extended: false }));
 
 server.use(bodyParser.json());
 
-server.use(cors());
+server.use(
+  cors({
+    origin: '*',
+  })
+);
 
 server.use('/', router);
 
