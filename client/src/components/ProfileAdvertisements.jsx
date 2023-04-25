@@ -1,6 +1,7 @@
 import { useGetUserAdsQuery } from '../features/query/UserQuery';
 import { Card } from './Card';
 import { Link } from 'react-router-dom';
+import { StateAdvertisement } from '../components/StateAdvertisement';
 import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
@@ -35,7 +36,7 @@ export const ProfileAdvertisements = ({ userId }) => {
         <div className="">
           {activeAds.length ? (
             activeAds.map((ad) => (
-              <div className="flex flex-row pb-5">
+              <div className="flex flex-row pb-5 border-b-2 pt-3">
                 <Link className="flex" to={`/detail/${ad.id}`}>
                   <img className="w-24 rounded" src={ad.image[0]} alt="image" />
                 </Link>
@@ -48,6 +49,8 @@ export const ProfileAdvertisements = ({ userId }) => {
                 >
                   <p>Update</p>
                 </Link>
+
+                <StateAdvertisement ad={ad} />
               </div>
             ))
           ) : (
@@ -74,6 +77,8 @@ export const ProfileAdvertisements = ({ userId }) => {
                 >
                   <p>Update</p>
                 </Link>
+
+                <StateAdvertisement ad={ad} />
               </div>
             ))
           ) : (
@@ -100,6 +105,8 @@ export const ProfileAdvertisements = ({ userId }) => {
                 >
                   <p>Update</p>
                 </Link>
+
+                <StateAdvertisement ad={ad} />
               </div>
             ))
           ) : (
