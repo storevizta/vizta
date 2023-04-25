@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { useGetCategoryQuery } from '../features/query/categoryQuery';
+import { useGetCategoryQuery } from '../features/query/CategoryQuery';
 
 import { Loading } from './Loading';
 

@@ -13,6 +13,9 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.0.1",
     "@fontsource/roboto": "^4.5.8",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@mercadopago/sdk-react": "^0.0.8",
     "@reduxjs/toolkit": "^1.9.3",
     "@splinetool/react-spline": "^2.2.6",
