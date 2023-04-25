@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setPage } from '../features/slices/filterSlice';
+import { setPage } from '../features/slices/FilterSlice';
 
 import rowLeft from '../assets/row-left.svg';
 
