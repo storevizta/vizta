@@ -17,7 +17,7 @@ export const Favorite = ({ wishlist }) => {
   };
 
   return (
-    <div class="flex flex-col items-center bg-white rounded-lg shadow md:flex-row md:max-w-xl dark:bg-gray-900 ">
+    <div class="flex flex-col items-center bg-white rounded-lg shadow md:flex-row md:max-w-xl dark:bg-myBlue ">
       <Link to={`/detail/${id}`}>
         <img
           class="object-cover w-full rounded-t-lg h-96 mx-2 my-1 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
