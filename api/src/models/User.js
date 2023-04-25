@@ -13,7 +13,11 @@ module.exports = (sequelize) => {
     picture: { type: DataTypes.TEXT, allowNull: false },
     address: { type: DataTypes.ARRAY(DataTypes.STRING), allowNull: true },
     phone: { type: DataTypes.STRING, allowNull: true },
-    access: { type: DataTypes.ENUM('Banned', 'NotBanned'), allowNull: false },
+    access: {
+      type: DataTypes.ENUM('Banned', 'NotBanned'),
+      allowNull: false,
+      defaultValue: 'NotBanned',
+    },
     subscribe: {
       type: DataTypes.ENUM('NotSubscribed', 'Subscribed'),
       allowNull: false,
