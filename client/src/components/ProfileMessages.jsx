@@ -59,7 +59,7 @@ export const ProfileMessages = ({ userId }) => {
           </div>
         ))
       ) : (
-        <p className='text-center mt-5'>You have no messages to reply to</p>
+        <p className="text-center mt-5">You have no messages to reply to</p>
       )}
     </div>
   );
