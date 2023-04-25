@@ -29,8 +29,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const Report = createApi({
   reducerPath: 'report',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://vizta-0hmx.onrender.com/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
   endpoints: (builder) => ({
+    getAllReports: builder.query({
+      query: () => `/report`,
+    }),
     getReportById: builder.query({
       query: (id) => `/report/${id}`,
     }),
@@ -51,6 +54,7 @@ export const Report = createApi({
 });
 
 export const {
+  useGetAllReportsQuery,
   useGetReportByIdQuery,
   useGetReportByUserIdQuery,
   useGetReportAdAdIdQuery,
