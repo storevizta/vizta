@@ -11,7 +11,10 @@ module.exports = (sequelize) => {
     nickname: { type: DataTypes.STRING, allowNull: false, unique: true },
     email: { type: DataTypes.STRING, allowNull: false, unique: true },
     picture: { type: DataTypes.TEXT, allowNull: false },
-    address: { type: DataTypes.ARRAY(DataTypes.STRING), allowNull: true },
+    address: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
+      allowNull: true,
+    },
     phone: { type: DataTypes.STRING, allowNull: true },
     access: {
       type: DataTypes.ENUM('Banned', 'NotBanned'),
