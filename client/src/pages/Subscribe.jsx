@@ -3,6 +3,7 @@ import { initMercadoPago } from '@mercadopago/sdk-react';
 import classnames from 'classnames';
 import { Wallet } from '@mercadopago/sdk-react';
 import { SpinnerCircular } from 'spinners-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 initMercadoPago('APP_USR-8c230a5f-f7e1-4a20-9da4-1d3d45c1c226');
 
@@ -11,11 +12,15 @@ export const Subscribe = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [orderData, setOrderData] = useState({
     quantity: '1',
-    price: '1',
-    amount: 1,
+    price: '0.5',
+    amount: 0.5,
     description: 'Blue',
   });
   const [isReady, setIsReady] = useState(false);
+
+  const { user, isLoading: loadingAuth } = useAuth0();
+
+  if (loadingAuth) return 'Loading';
 
   useEffect(() => {
     handleClick();
@@ -31,6 +36,7 @@ export const Subscribe = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        userId: `${user.sub}`,
       },
       body: JSON.stringify(orderData),
     })
@@ -46,6 +52,7 @@ export const Subscribe = () => {
       .finally(() => {
         setIsLoading(false);
       });
+    console.log(user.sub);
   };
 
   const paymentClass = classnames('payment-form dark', {

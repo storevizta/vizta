@@ -42,6 +42,12 @@ const createPreferenc = async (req, res) => {
       res.json({
         id: response.body.id,
       });
+
+      if (response.success) {
+        const { userId } = req.headers;
+
+        console.log(userId);
+      }
     })
     .catch(function (error) {
       console.log(error);
