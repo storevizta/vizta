@@ -18,7 +18,7 @@ const message = require('./message.js');
 
 router.use('/admin', admin);
 
-router.use('/ads', ads);
+router.use('/product', ads);
 
 router.use('/category', category);
 
