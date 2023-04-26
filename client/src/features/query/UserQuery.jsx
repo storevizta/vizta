@@ -22,7 +22,7 @@ export const User = createApi({
       }),
     }),
     getUserAds: builder.query({
-      query: (id) => `/users/userads/${id}`,
+      query: (id) => `/users/userproduct/${id}`,
     }),
     getUserMessages: builder.query({
       query: (id) => `users/usermessages/${id}`,
