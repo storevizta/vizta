@@ -15,7 +15,7 @@ const { sequelize } = require('./database.js');
 const server = express();
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: '*',
 };
 
 const port = process.env.PORT || 3001;

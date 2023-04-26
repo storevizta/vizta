@@ -29,9 +29,9 @@ const createPreferenc = async (req, res) => {
       },
     ],
     back_urls: {
-      success: 'http://localhost:3001/mercadopago/feedback',
-      failure: 'http://localhost:3001/mercadopago/feedback',
-      pending: 'http://localhost:3001/mercadopago/feedback',
+      success: 'http://localhost:3000/home',
+      failure: 'http://localhost:3000/home',
+      pending: 'http://localhost:3000/home',
     },
     auto_return: 'approved',
   };

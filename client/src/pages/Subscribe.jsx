@@ -11,8 +11,8 @@ export const Subscribe = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [orderData, setOrderData] = useState({
     quantity: '1',
-    price: '10',
-    amount: 10,
+    price: '1',
+    amount: 1,
     description: 'Blue',
   });
   const [isReady, setIsReady] = useState(false);
