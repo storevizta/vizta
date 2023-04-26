@@ -17,7 +17,7 @@ export const Ads = createApi({
         discount = null,
         condition = null,
       }) => {
-        let url = '/ads';
+        let url = '/product';
 
         if (
           page ||
