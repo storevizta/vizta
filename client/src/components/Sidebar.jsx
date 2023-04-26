@@ -10,8 +10,7 @@ import {
   setCategory,
   setMinPrice,
   setMaxPrice,
-  setSortPrice,
-  setSortTitle,
+  setSort,
   setDiscount,
   setCondition,
   resetFilters,
@@ -44,12 +43,9 @@ export const Sidebar = () => {
     dispatch(setMaxPrice(newMaxPrice));
   };
 
-  const handlerSortPrice = (e) => {
-    dispatch(setSortPrice(e));
-  };
-
-  const handlerSortTitle = (e) => {
-    dispatch(setSortTitle(e));
+  const handlerSort = (e) => {
+    const sortValue = e.target.value;
+    dispatch(setSort(sortValue));
   };
 
   const handlerDiscount = (e) => {
@@ -104,39 +100,15 @@ export const Sidebar = () => {
             </div>
           </div>
           <div>
-            <div>Sort Price:</div>
-            <div className="cursor-pointer">
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerSortPrice('asc')}
-              >
-                Ascending
-              </div>
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerSortPrice('desc')}
-              >
-                Descending
-              </div>
-            </div>
+            <div>Sort: </div>
+            <select onChange={(e) => handlerSort(e)}>
+              <option value="priceAsc">Price Ascendente</option>
+              <option value="priceDesc">Price Descendente</option>
+              <option value="titleAsc">Title Ascendente</option>
+              <option value="titleDesc">Title Descendente</option>
+            </select>
           </div>
-          <div>
-            <div>Sort Title:</div>
-            <div className="cursor-pointer">
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerSortTitle('asc')}
-              >
-                Ascending
-              </div>
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerSortTitle('desc')}
-              >
-                Descending
-              </div>
-            </div>
-          </div>
+
           <div>
             <div className="">Discount:</div>
             <select
