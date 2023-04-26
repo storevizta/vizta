@@ -23,8 +23,7 @@ const getAds = async (req, res) => {
       category,
       minPrice,
       maxPrice,
-      sortPrice,
-      sortTitle,
+      sort,
       discount,
       condition,
     } = req.query;
@@ -32,7 +31,7 @@ const getAds = async (req, res) => {
     const options = {
       limit: +size,
       offset: +page * +size,
-      where: {},
+      where: {state: "Active"},
       order: [['createdAt', 'DESC']],
     };
 
@@ -66,15 +65,13 @@ const getAds = async (req, res) => {
       };
     }
 
-    if(sortPrice === "asc") {
+    if(sort === "priceAsc") {
       options.order = [["price", "ASC"]];
-    } else if (sortPrice === "desc"){
+    } else if (sort === "priceDesc"){
       options.order = [["price", "DESC"]];
-    }
-
-    if (sortTitle === 'asc') {
+    } else if (sort === "titleAsc"){
       options.order = [['title', 'ASC']];
-    } else if (sortTitle === 'desc') {
+    } else if(sort === "titleDesc"){
       options.order = [['title', 'DESC']];
     }
 

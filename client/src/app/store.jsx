@@ -2,7 +2,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 import { Ads } from '../features/query/AdsQuery';
 
-import { Category } from '../features/query/categoryQuery';
+import { Category } from '../features/query/CategoryQuery';
 
 import { User } from '../features/query/UserQuery';
 
@@ -14,6 +14,8 @@ import { Report } from '../features/query/ReportQuery';
 
 import FilterSlice from '../features/slices/FilterSlice';
 
+import { Admin } from '../features/query/AdminQuery';
+
 import wishlistsSlice from '../features/slices/FavSlices';
 
 export const store = configureStore({
@@ -24,6 +26,7 @@ export const store = configureStore({
     [Message.reducerPath]: Message.reducer,
     [Rating.reducerPath]: Rating.reducer,
     [Report.reducerPath]: Report.reducer,
+    [Admin.reducerPath]: Admin.reducer,
     filter: FilterSlice,
     wishlists: wishlistsSlice,
   },
@@ -34,6 +37,7 @@ export const store = configureStore({
       User.middleware,
       Message.middleware,
       Rating.middleware,
-      Report.middleware
+      Report.middleware,
+      Admin.middleware
     ),
 });
