@@ -4,6 +4,8 @@ import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
 
+import { Link } from 'react-router-dom';
+
 export const UserDetail = (userId) => {
   const { id } = userId;
 
@@ -35,6 +37,12 @@ export const UserDetail = (userId) => {
       <p className="text-sm pl-8 text-black">{name}</p>
       <p className="text-sm pl-8 text-black">{address}</p>
       <p className="text-sm pl-8 text-black">Joined Vizta {created}</p>
+
+      <Link to={`/reportUser/${id}`}>
+        <p className="font-bold border mt-2 p-1 rounded w-fit bg-black text-sm text-right">
+          Report User
+        </p>
+      </Link>
     </div>
   );
 };
