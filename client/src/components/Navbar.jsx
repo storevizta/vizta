@@ -12,7 +12,10 @@ import { LogOutButton } from '../components/LogOutButton';
 
 import { LoginButton } from '../components/LoginButton';
 
+import {useGetUserIdQuery} from "../features/query/UserQuery"
+
 import imageError from '../assets/imageError.svg';
+import { useEffect, useState } from 'react';
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -35,6 +38,11 @@ export const Navbar = () => {
     const newTitle = e.target.value;
     dispatch(setTitle(newTitle));
   };
+
+  const idUser = localStorage.getItem("id")
+  const userData = useGetUserIdQuery(idUser)
+
+  console.log(idUser);
 
   return (
     // <nav className="max-h-16 h-16 flex">
@@ -107,7 +115,7 @@ export const Navbar = () => {
                   <div className="w-10 rounded-full">
                     <img
                       className="w-56 h-56 rounded"
-                      src={user.picture}
+                      src={userData?.data?.picture}
                       alt="image"
                       onError={(e) => (e.target.src = `${imageError}`)}
                     />
