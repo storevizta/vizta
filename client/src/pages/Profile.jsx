@@ -22,6 +22,8 @@ import { LogOutButton } from '../components/LogOutButton';
 
 import { Configuration } from '../components/generalConfiguration.jsx';
 
+import { Admin } from '../components/ProfileAdmin';
+
 import { ProfileMessages } from '../components/ProfileMessages';
 
 import { ProfileAdvertisements } from '../components/ProfileAdvertisements';
@@ -173,6 +175,18 @@ export const Profile = () => {
               onClick={() => handlePanelClick('Reports')}
             >
               Reports
+            </button>
+          </div>
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/376813/chats-2.svg"
+            ></img>
+            <button
+              className="text-left"
+              onClick={() => handlePanelClick('Admin')}
+            >
+              Admin Dashboard
             </button>
           </div>
           <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
@@ -348,6 +362,11 @@ export const Profile = () => {
               <h2 className="text-4xl">Messages</h2>
               <ProfileMessages userId={user.sub} />
             </div>
+          </div>
+        )}
+        {activePanel === "Admin" && (
+          <div>
+            <Admin/>
           </div>
         )}
       </div>

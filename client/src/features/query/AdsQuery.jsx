@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const Ads = createApi({
   reducerPath: 'ads',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://vizta-0hmx.onrender.com/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
   endpoints: (builder) => ({
     getAds: builder.query({
       query: ({
@@ -58,7 +58,19 @@ export const Ads = createApi({
         body: data,
       }),
     }),
+    updateAd: builder.mutation({
+      query: (data) => ({
+        url: `/ads/updateAd`,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useGetAdsQuery, useGetAdByIdQuery, useCreateAdMutation } = Ads;
+export const {
+  useGetAdsQuery,
+  useGetAdByIdQuery,
+  useCreateAdMutation,
+  useUpdateAdMutation,
+} = Ads;
