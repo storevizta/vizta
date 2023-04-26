@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import { useUpdateUserMutation } from "../features/query/UserQuery"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {useGetUserIdQuery} from "../features/query/UserQuery"
 import swal from 'sweetalert';
 import { uploadBytes, ref, listAll, getDownloadURL } from 'firebase/storage';
@@ -14,7 +14,6 @@ export const Configuration = ({info}) => {
     const userData = useGetUserIdQuery(info.sub)
 
     const [image, setImage] = useState(userData.data.picture);
-
     const [data, setData] = useState({
         name: userData.data.name,
         nickname: userData.data.nickname,
@@ -26,6 +25,20 @@ export const Configuration = ({info}) => {
         number: ""
     }])
 
+    useEffect(() => {
+        if(userData?.data?.address?.length !== 0){
+            const addressJSON = userData?.data?.address.map(value => JSON.parse(value))
+            console.log("entre");
+            setAddress(addressJSON)
+        }else{
+            [{
+                street: "",
+                number: ""
+            }]
+        }
+    }, [userData])
+
+    
     const uploadImage = async (e) => {
         e.preventDefault();
         const imageUpload = []
@@ -46,14 +59,14 @@ export const Configuration = ({info}) => {
             number: ""
         }])
     }
-
+    
     const handleInputAddress = (e, index) => {
         const newAddress = {...address[index], [e.target.name]: e.target.value}
         const oldAddress = [...address]
         oldAddress[index] = newAddress
         setAddress(oldAddress)
     }
-
+    
     const handleInputImage = (e) => {
         setImage(e.target.value)
     }
@@ -61,9 +74,9 @@ export const Configuration = ({info}) => {
     const handleInput = (e) => {
         setData({...data, [e.target.name]:e.target.value})
     }
-
+    
     const [updateUser] = useUpdateUserMutation()
-
+    
     const handleSubmit = (e) => {
         e.preventDefault()
         swal("User updated")
@@ -77,8 +90,8 @@ export const Configuration = ({info}) => {
         }))
     }
 
-    console.log(userData.data.address[0]);
-
+    console.log("soy adres", address);
+    
     return (
         <div className="flex flex-col items-center gap-5 w-150" >
             <h3>Here you can change your info</h3>
@@ -102,15 +115,16 @@ export const Configuration = ({info}) => {
                 <label className="w-24">Address</label>
                 {userData.data.address ? userData.data.address.map((value, index) => 
                 <div>
-                    <input className="file-input w-full max-w-xs" type="text" name="street" placeholder={`${userData.data.address[index].street}`} onChange={(e) => modifyAddress(e, index)}></input>
-                    <input className="file-input w-full max-w-xs" type="text" name="number" placeholder={`${userData.data.address[index].number}`} onChange={(e) => modifyAddress(e, index)}></input>
+                    <input className="file-input w-full max-w-xs" type="text" name="street" placeholder={`${JSON.parse(userData?.data.address[index]).street}`} onChange={(e) => handleInputAddress(e, index)}></input>
+                    <input className="file-input w-full max-w-xs" type="text" name="number" placeholder={`${JSON.parse(userData?.data.address[index]).number}`} onChange={(e) => handleInputAddress(e, index)}></input>
                 </div>
                 ): null}
-                {address.map((value, index) => 
+                {address.map((value, index) => {
                 <div>
-                    <input className="file-input w-full max-w-xs" type="text" name="street" onChange={(e) => handleInputAddress(e, index)}></input>
-                    <input className="file-input w-full max-w-xs" type="text" name="number" onChange={(e) => handleInputAddress(e, index)}></input>
+                    <input className="file-input w-full max-w-xs" type="text" name="street" placeholder="Street name" onChange={(e) => handleInputAddress(e, index)}></input>
+                    <input className="file-input w-full max-w-xs" type="text" name="number" placeholder="Street number" onChange={(e) => handleInputAddress(e, index)}></input>
                 </div>
+                }
                 )}
                 <button onClick={addAddress}>Add a new Address</button>
             </div>
