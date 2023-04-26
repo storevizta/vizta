@@ -5,7 +5,7 @@ export const Admin = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://vizta-0hmx.onrender.com' }),
   endpoints: (builder) => ({
     getAllUsers: builder.query({
-      query: () => `admin/users`,
+      query: () => `/admin/users`,
     }),
   }),
 });
