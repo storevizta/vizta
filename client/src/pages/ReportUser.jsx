@@ -45,16 +45,35 @@ export const ReportUser = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <h2>Why do you want to report this User?</h2>
-        <textarea
-          onChange={(e) => handlerChange(e)}
-          value={input}
-          placeholder="Report..."
-        />
-        {errors && <p>{errors}</p>}
-        <button type="submit">Send</button>
+    <div className="bg-zinc-800 basis-2/4 w-1/2 m-auto">
+      <form className="space-y-3 mt-5 pb-10" onSubmit={(e) => handleSubmit(e)}>
+        <h2 className="text-center text-white pt-5 text-3xl">
+          Why do you want to report this User?
+        </h2>
+        <div className="flex pr-5 pt-8">
+          <label className="text-lg basis-1/6 font-bold text-white mr-3 pl-5">
+            Report:{' '}
+          </label>
+          <textarea
+            className="input w-full"
+            onChange={(e) => handlerChange(e)}
+            value={input}
+            placeholder="Report..."
+          />
+        </div>
+
+        {errors && (
+          <div className="bg-red-600 w-96 m-auto p-1 rounded">
+            <p className="text-center text-white font-bold capitalize">
+              {errors}
+            </p>
+          </div>
+        )}
+        <div className="flex items-center pt-5">
+          <button className="btn m-auto" type="submit">
+            Send
+          </button>
+        </div>
       </form>
     </div>
   );
