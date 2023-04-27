@@ -5,12 +5,11 @@ export const ReportsCards = ({info}) => {
     
     const ad  = useGetAdByIdQuery(info.AdId)
     const user = useGetUserIdQuery(info.UserId)
-
     return(
         <div className="w-140 h-44 bg-gray-600 m-5 rounded">
             {info.AdId ? (
                 <div className="flex gap-2 items-center">
-                    <img className="w-44 h-44 p-2 rounded-xl" src={ad?.data?.image[0]} alt="ReportImage"/>
+                    <img className="w-44 h-44 p-2 rounded-xl object-cover" src={ad?.data?.image[0]} alt="ReportImage"/>
                     <div className="w-90">
                         <h3 className="text-2xl pt-1">{ad?.data?.title}</h3>
                         <div className="pt-5">
