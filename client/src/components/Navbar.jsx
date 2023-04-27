@@ -12,7 +12,7 @@ import { LogOutButton } from '../components/LogOutButton';
 
 import { LoginButton } from '../components/LoginButton';
 
-import {useGetUserIdQuery} from "../features/query/UserQuery"
+import { useGetUserIdQuery } from '../features/query/UserQuery';
 
 import imageError from '../assets/imageError.svg';
 import { useEffect, useState } from 'react';
@@ -39,10 +39,8 @@ export const Navbar = () => {
     dispatch(setTitle(newTitle));
   };
 
-  const idUser = localStorage.getItem("id")
-  const userData = useGetUserIdQuery(idUser)
-
-  console.log(idUser);
+  const idUser = localStorage.getItem('id');
+  const userData = useGetUserIdQuery(idUser);
 
   return (
     // <nav className="max-h-16 h-16 flex">
@@ -99,14 +97,13 @@ export const Navbar = () => {
             </div>
           )}
           <div>
-          {isAuthenticated ?
-            <Link to="/favorite">
-              <button>
-              Favorites ({wishlistsItems?.length})
-              </button>
-              </Link> :
-              <button onClick={()=>loginWithRedirect()}>Favorites</button>
-          }
+            {isAuthenticated ? (
+              <Link to="/favorite">
+                <button>Favorites ({wishlistsItems?.length})</button>
+              </Link>
+            ) : (
+              <button onClick={() => loginWithRedirect()}>Favorites</button>
+            )}
           </div>
           {isAuthenticated ? (
             <>
