@@ -71,9 +71,55 @@ const getReportById = async (req, res) => {
   }
 };
 
-const getUserReports = async (req, res) => {};
+const getUserReports = async (req, res) => {
+  try {
+    const { userId } = req.params;
 
-const getAdReports = async (req, res) => {};
+    if (!userId) {
+      return res.status(404).json('Missing ID');
+    }
+
+    const report1 = await Report.findAll({
+      where: { UserId: userId },
+    });
+    if (report1) {
+      res.status(200).json(report1);
+    } else {
+      res.status(404).json('User not found');
+    }
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
+
+const getAdReports = async (req, res) => {
+  try {
+    const { adId } = req.params;
+    if (!adId) {
+      return res.status(404).json('Missing ID');
+    }
+
+    const report2 = await Report.findAll({
+      where: { AdId: adId },
+    });
+    if (report2) {
+      res.status(200).json(report2);
+    } else {
+      res.status(404).json('Ad not found');
+    }
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
+
+const getAllReports = async (req, res) => {
+  try {
+    const allReports = await Report.findAll();
+    res.status(200).json(allReports);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
 
 module.exports = {
   createReport,
@@ -81,4 +127,5 @@ module.exports = {
   getReportById,
   getUserReports,
   getAdReports,
+  getAllReports,
 };

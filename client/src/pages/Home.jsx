@@ -39,6 +39,9 @@ export const Home = () => {
     condition,
   });
 
+  console.log(error);
+  console.log(data);
+
   if (isLoading) return <Loading />;
 
   if (error) return <Error />;
@@ -55,9 +58,9 @@ export const Home = () => {
           <div className="grid grid-cols-5">
             {data &&
               data.ads.map((el) => (
-                <Link className='m-3' to={`/detail/${el.id}`} key={el.id}>
+                <div className="m-3">
                   <Card info={el} />
-                </Link>
+                </div>
               ))}
           </div>
         )}

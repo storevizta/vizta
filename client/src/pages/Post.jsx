@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useGetCategoryQuery } from '../features/query/categoryQuery';
+import { useGetCategoryQuery } from '../features/query/CategoryQuery';
 
 import { uploadBytes, ref, listAll, getDownloadURL } from 'firebase/storage';
 
@@ -17,7 +17,6 @@ import { useCreateAdMutation } from '../features/query/AdsQuery.jsx';
 import swal from 'sweetalert';
 
 export const Post = () => {
-
   const { user, isLoading } = useAuth0();
 
   if (isLoading) {
@@ -76,26 +75,17 @@ export const Post = () => {
   const uploadImage = async (e) => {
     e.preventDefault();
     if (imageUpload === null) return;
-    let newImage = [];
     for (let i = 0; i < imageUpload.length; i++) {
       const imageRef = ref(storage, `posts/${imageUpload[i].name + v4()}`);
       await uploadBytes(imageRef, imageUpload[i]).then(async (snaphsot) => {
         await getDownloadURL(snaphsot.ref).then((url) => {
-          newImage.push(url);
-          console.log(newImage);
+          console.log(url);
+          setImage([...image, url]);
         });
       });
     }
-    setImage(newImage);
   };
-  console.log(image);
-  /*
-  const handleInputImage = async (e) => {
-    const file = e.target.files[0];
-    const url = await uploadFile(file);
-    setData({...data, image: url})
-  }
-  */
+
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
     setErrors(validate({ ...data, [e.target.name]: e.target.value }));
@@ -176,6 +166,7 @@ export const Post = () => {
                 onChange={handleInput}
                 className="input w-full max-w-xs"
                 required
+                maxLength={70}
               />
             </div>
 
@@ -227,18 +218,29 @@ export const Post = () => {
               <label className="basis-1/6 font-bold text-white mr-3">
                 Image:{' '}
               </label>
-              <input type="file" name='image' className="file-input w-full max-w-xs" onChange={(e) => setImageUpload(e.target.files)} multiple required/>
-              <button onClick={uploadImage} className="btn ml-10">Upload Image</button>
+              <input
+                type="file"
+                name="image"
+                className="file-input w-full max-w-xs"
+                onChange={(e) => setImageUpload(e.target.files)}
+                multiple
+                required
+              />
+              <button onClick={uploadImage} className="btn ml-10">
+                Upload Image
+              </button>
             </div>
 
-            <div className='flex gap-10 justify-center'>
+            <div className="flex gap-10 justify-center">
               {image ? (
-                image.map((value) => <img className='w-40 h-40 object-cover' src={value}></img>)
+                image.map((value) => (
+                  <img className="w-40 h-40 object-cover" src={value}></img>
+                ))
               ) : (
                 <p>No funciona</p>
               )}
             </div>
-            
+
             <div className="flex ml-52">
               <label className="basis-1/6 font-bold text-white mr-3">
                 Description:{' '}
@@ -344,20 +346,20 @@ export const Post = () => {
                 </option>
               </select>
             </div>
-              <div className='flex ml-52 items-center gap-10' >
-                {method.map((value, index) => (
-                  <div className='flex items-center gap-5'>
-                    <p>{value}</p>
-                    <button
-                      className="btn"
-                      type="button"
-                      onClick={() => deleteMethod(value, index)}
-                    >
-                      X
-                    </button>
-                  </div>
-                ))}
-              </div>
+            <div className="flex ml-52 items-center gap-10">
+              {method.map((value, index) => (
+                <div className="flex items-center gap-5">
+                  <p>{value}</p>
+                  <button
+                    className="btn"
+                    type="button"
+                    onClick={() => deleteMethod(value, index)}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+            </div>
 
             <div className="flex ml-52">
               <label className="basis-1/6 font-bold text-white mr-3">
@@ -380,7 +382,7 @@ export const Post = () => {
                 </option>
               </select>
             </div>
-            <div className='flex flex-col items-center'>
+            <div className="flex flex-col items-center">
               <button
                 className="btn "
                 type="submit"

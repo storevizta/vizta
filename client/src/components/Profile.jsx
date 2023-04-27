@@ -9,7 +9,12 @@ import { useCreateUserMutation } from '../features/query/UserQuery';
 import imageError from '../assets/imageError.svg';
 
 export const Profile = () => {
+
   const { user, isAuthenticated, isLoading } = useAuth0();
+
+  if(isAuthenticated){
+    localStorage.setItem("id", `${user.sub}`)
+  }
 
   const [createUser] = useCreateUserMutation();
 
@@ -34,17 +39,7 @@ export const Profile = () => {
   return (
     isAuthenticated && (
       <>
-        <Link to="/profile">
-          <div className="p-2 flex gap-2 hover:bg-zinc-700">
-            <img
-              className="w-56 h-56 rounded"
-              src={user.picture}
-              alt="image"
-              onError={(e) => (e.target.src = `${imageError}`)}
-            />
-            <div className="text-slate-50">{user.name}</div>
-          </div>
-        </Link>
+        <div>{user.name}</div>
       </>
     )
   );

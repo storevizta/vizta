@@ -1,576 +1,824 @@
 [
+
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
+    "userId": "google-oauth2|113318948055000672694",
     "categoryId": 1,
-    "image": "https://example.com/image7865.jpg",
-    "title": "Laptop HP",
-    "description": "Potente laptop HP con procesador Intel Core i7, pantalla Full HD y 16GB de RAM.",
-    "price": 1000,
-    "discount": 17
-  },
-
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 3,
-    "image": "https://example.com/image1234.jpg",
-    "title": "Camiseta Nike",
-    "description": "Camiseta Nike de alta calidad, transpirable y resistente al sudor.",
-    "price": 30,
-    "discount": 14
-  },
-
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 2,
-    "image": "https://example.com/image9988.jpg",
-    "title": "Gafas de sol Ray-Ban",
-    "description": "Gafas de sol Ray-Ban con lentes polarizadas y montura de acetato resistente.",
+    "image": [
+      "https://www.cafedecolombia.com/archivos/noticias/contenido/700x400-cafe-especialidad.jpg",
+      "https://www.cafedecolombia.com/archivos/noticias/contenido/700x400-cafe-especialidad.jpg",
+      "https://www.cafedecolombia.com/archivos/noticias/contenido/700x400-cafe-especialidad.jpg"
+    ],
+    "title": "Café especial de Colombia",
+    "description": "Café especial de las montañas de Colombia con notas de chocolate y caramelo, tostado al punto perfecto para un sabor inigualable.",
     "price": 150,
-    "discount": 12
-  },
-
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 4,
-    "image": "https://example.com/image4444.jpg",
-    "title": "Pelota de tenis",
-    "description": "Pelota de tenis profesional con alta durabilidad y buen agarre.",
-    "stock": 20,
-    "price": 5,
-    "discount": 28
-  },
-
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 1,
-    "image": "https://example.com/image5555.jpg",
-    "title": "Tablet Samsung",
-    "description": "Tablet Samsung de 10 pulgadas con batería de larga duración y procesador octa-core.",
-    "stock": 3,
-    "price": 400,
-
-    "discount": 11
+    "discount": 0,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "Yes"
   },
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 5,
-    "image": "https://example.com/tools.jpg",
-    "title": "Kit de herramientas",
-    "description": "Kit de herramientas de alta calidad, nuevas en su caja original.",
-    "stock": 3,
-    "price": 200,
-
-    "discount": 20
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 4,
-    "image": "https://example.com/furniture.jpg",
-    "title": "Sofá de cuero",
-    "description": "Sofá de cuero en perfecto estado.",
-    "stock": 1,
-    "price": 800,
-
-    "discount": 20
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 6,
-    "image": "https://example.com/pet.jpg",
-    "title": "Cachorro Golden Retriever",
-    "description": "Cachorro Golden Retriever de 2 meses de edad.",
-    "stock": 1,
-    "price": 1000,
-
-    "discount": 17
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 3,
-    "image": "https://example.com/clothes.jpg",
-    "title": "Chaqueta de cuero",
-    "description": "Chaqueta de cuero en excelente estado.",
-    "stock": 1,
-    "price": 150,
-
-    "discount": 25
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
+    "userId": "google-oauth2|113318948055000672694",
     "categoryId": 2,
-    "image": "https://example.com/phone.jpg",
-    "title": "Samsung Galaxy S21",
-    "description": "Nuevo Samsung Galaxy S21, en su caja original.",
-    "price": 800,
-
-    "discount": 11
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 1,
-    "image": "https://example.com/bike.jpg",
-    "title": "Bicicleta de montaña",
-    "description": "Bicicleta de montaña en excelentes condiciones",
-    "stock": 1,
+    "image": [
+      "https://cdn.theculturetrip.com/wp-content/uploads/2017/10/3-day-urban-guide-to-the-art-scene-in-bogota-colombia-art-culture-600x400.jpg",
+      "https://cdn.theculturetrip.com/wp-content/uploads/2017/10/3-day-urban-guide-to-the-art-scene-in-bogota-colombia-art-culture-600x400.jpg",
+      "https://cdn.theculturetrip.com/wp-content/uploads/2017/10/3-day-urban-guide-to-the-art-scene-in-bogota-colombia-art-culture-600x400.jpg"
+    ],
+    "title": "Tour de arte urbano en Bogotá",
+    "description": "Paseo guiado por las calles de Bogotá para conocer el arte urbano de la ciudad, visitando los murales más representativos y aprendiendo sobre la cultura local.",
     "price": 500,
-
-    "discount": 28
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 3,
-    "image": "https://example.com/image432.jpg",
-    "title": "Reloj de pulsera",
-    "description": "Elegante reloj de pulsera para hombre",
-    "price": 120,
-
-    "discount": 20
+    "discount": 0,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "No"
   },
 
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 7,
-    "image": "https://example.com/image988.jpg",
-    "title": "Gafas de sol",
-    "description": "Gafas de sol polarizadas con protección UV400",
-    "price": 25,
-    "discount": 16.6
-  },
+  "userId": "google-oauth2|113318948055000672694",
+  "categoryId": 3,
+  "image": [
+    "https://media-cdn.tripadvisor.com/media/photo-s/17/57/98/0b/la-piscina-del-hotel.jpg",
+    "https://media-cdn.tripadvisor.com/media/photo-s/17/57/98/0b/la-piscina-del-hotel.jpg",
+    "https://media-cdn.tripadvisor.com/media/photo-s/17/57/98/0b/la-piscina-del-hotel.jpg",
+    "https://media-cdn.tripadvisor.com/media/photo-s/17/57/98/0b/la-piscina-del-hotel.jpg"
+  ],
+  "title": "Hospedaje con piscina en la costa",
+  "description": "Hospedaje en una casa con piscina en la costa de Colombia, con acceso a la playa y hermosas vistas al mar.",
+  "price": 2000,
+  "discount": 0,
+  "method": [
+    "Efectivo",
+    "Tarjeta de crédito"
+  ],
+  "shipment": "No"
+},
+
 
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
+    "userId": "google-oauth2|113318948055000672694",
     "categoryId": 1,
-    "image": "https://example.com/image543.jpg",
-    "title": "Mesa de comedor",
-    "description": "Mesa de comedor moderna con superficie de vidrio",
-    "stock": 4,
-    "price": 300,
-
-    "discount": 25
-  },
-
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 2,
-    "image": "https://example.com/image872.jpg",
-    "title": "Silla de oficina",
-    "description": "Silla de oficina ergonómica con soporte lumbar ajustable",
-    "stock": 10,
-    "price": 150,
-
-    "discount": 25
-  },
-
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 6,
-    "image": "https://example.com/image765.jpg",
-    "title": "Auriculares inalámbricos",
-    "description": "Auriculares inalámbricos con cancelación de ruido y micrófono",
-    "stock": 20,
-    "price": 80,
-
-    "discount": 20
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 5,
-    "image": "https://example.com/image98.jpg",
-    "title": "Bicicleta de montaña",
-    "description": "Explora la naturaleza con esta bicicleta de montaña resistente.",
-    "price": 500,
-
-    "discount": 16.7
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 4,
-    "image": "https://example.com/image67.jpg",
-    "title": "Raqueta de tenis",
-    "description": "Mejora tu juego con esta raqueta de tenis de alta calidad.",
-    "price": 150,
-
-    "discount": 25
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 3,
-    "image": "https://example.com/image501.jpg",
-    "title": "Smartphone",
-    "description": "Mantente conectado con este smartphone de última generación.",
-    "price": 600,
-
-    "discount": 14
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 2,
-    "image": "https://example.com/image34.jpg",
-    "title": "Laptop",
-    "description": "Trabaja y estudia desde cualquier lugar con esta potente laptop.",
-    "stock": 10,
-    "price": 1200,
-
-    "discount": 14
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 1,
-    "image": "https://example.com/image987.jpg",
-    "title": "Cámara fotográfica",
-    "description": "Captura los momentos más importantes con esta cámara profesional.",
-    "price": 800,
-
-    "discount": 20
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 9,
-    "image": "https://example.com/image19.jpg",
-    "title": "Guitarra eléctrica Gibson Les Paul",
-    "description": "Guitarra eléctrica de alta calidad con cuerpo de caoba y pastillas humbucker.",
-    "price": 1799,
-
-    "discount": 10
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 7,
-    "image": "https://example.com/image55.jpg",
-    "title": "Bicicleta de montaña",
-    "description": "Bicicleta con marco de aluminio y suspensión delantera para terrenos difíciles.",
-    "stock": 3,
-    "price": 699,
-
-    "discount": 13
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 1,
-    "image": "https://example.com/image47.jpg",
-    "title": "Silla de oficina ergonómica",
-    "description": "Silla con diseño ergonómico y ajustable para mayor comodidad en el trabajo.",
-    "stock": 10,
-    "price": 249,
-
-    "discount": 17
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 2,
-    "image": "https://example.com/image29.jpg",
-    "title": "Computadora de escritorio HP Pavilion",
-    "description": "Equipo de cómputo potente con procesador Intel Core i7 y tarjeta gráfica Nvidia.",
-    "price": 999,
-    "discount": 16
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 3,
-    "image": "https://example.com/image31.jpg",
-    "title": "Teléfono celular Samsung Galaxy S21",
-    "description": "Teléfono inteligente de última generación con cámara de alta resolución y pantalla AMOLED.",
-    "price": 799,
-    "discount": 11
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 2,
-    "image": "https://example.com/image31.jpg",
-    "title": "Mesa de comedor",
-    "description": "Mesa de comedor extensible en madera maciza, perfecta para reuniones familiares.",
-    "price": 300,
-    "discount": 14
-  },
-
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 3,
-    "image": "https://example.com/image12.jpg",
-    "title": "Smart TV Samsung",
-    "description": "Televisor Samsung Smart de 55 pulgadas con resolución 4K y sistema operativo Tizen.",
-    "price": 700,
-    "discount": 12.5
-  },
-
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 1,
-    "image": "https://example.com/image4.jpg",
-    "title": "Bicicleta de montaña",
-    "description": "Bicicleta de montaña con cuadro de aluminio, frenos de disco hidráulicos y suspensión delantera.",
-    "stock": 3,
-    "price": 500,
-
-    "discount": 9
-  },
-
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 4,
-    "image": "https://example.com/image2.jpg",
-    "title": "Balón de baloncesto",
-    "description": "Balón de baloncesto oficial de la NBA, con diseño y materiales de alta calidad.",
-    "stock": 10,
-    "price": 50,
-    "discount": 16.7
-  },
-
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 2,
-    "image": "https://example.com/image18.jpg",
-    "title": "Sillas de oficina",
-    "description": "Pack de dos sillas de oficina ergonómicas con respaldo y reposabrazos ajustables.",
-    "price": 150,
-
-    "discount": 11.8
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 1,
-    "image": "https://example.com/image4456.jpg",
-    "title": "Departamento en alquiler",
-    "description": "Departamento de 2 ambientes en alquiler, ubicado en pleno centro.",
-    "stock": 1,
-    "price": 800,
-
-    "discount": 0
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 5,
-    "image": "https://example.com/image9871.jpg",
-    "title": "Teclado mecánico gaming",
-    "description": "Teclado mecánico para gaming, con iluminación RGB y teclas programables.",
-    "price": 60,
-    "discount": 25
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 3,
-    "image": "https://example.com/image1452.jpg",
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg"
+    ],
     "title": "Zapatillas Nike Air Max",
-    "description": "Zapatillas Nike Air Max, color negro y gris. Talle 41.",
-    "price": 80,
-
-    "discount": 20
+    "description": "Zapatillas deportivas de alta calidad con diseño moderno, disponibles en varios colores y tallas.",
+    "price": 15000,
+    "discount": 10,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Yes"
   },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 7,
-    "image": "https://example.com/image2234.jpg",
-    "title": "Mesa de escritorio",
-    "description": "Mesa de escritorio con cajones y espacio para guardar libros y papeles.",
-    "price": 120,
 
-    "discount": 20
-  },
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
+    "userId": "google-oauth2|113318948055000672694",
     "categoryId": 2,
-    "image": "https://example.com/image9483.jpg",
-    "title": "iPhone X 64GB",
-    "description": "Excelente estado, usado con protector y funda desde el primer día.",
-    "stock": 1,
-    "price": 350,
-
-    "discount": 30
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg"
+    ],
+    "title": "Bicicleta de montaña",
+    "description": "Bicicleta de montaña de alta gama con cuadro de aluminio, suspensión delantera y frenos de disco hidráulicos.",
+    "price": 45000,
+    "discount": 15,
+    "condition": "Used",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito",
+      "MercadoPago"
+    ],
+    "shipment": "Yes"
   },
+
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
+    "userId": "google-oauth2|113318948055000672694",
     "categoryId": 4,
-    "image": "https://example.com/image1213.jpg",
-    "title": "Balón de fútbol",
-    "description": "Disfruta del fútbol con este balón de alta calidad y diseño.",
-    "stock": 12,
-    "price": 40,
-    "discount": 0
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg",
+      "https://example.com/image4.jpg"
+    ],
+    "title": "Laptop Dell XPS 13",
+    "description": "Laptop Dell XPS 13 con procesador Intel Core i7, memoria RAM de 16 GB y disco SSD de 512 GB. Pantalla de 13 pulgadas Full HD.",
+    "price": 80000,
+    "discount": 5,
+    "condition": "New",
+    "method": [
+      "Tarjeta de crédito",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Yes"
   },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 7,
-    "image": "https://example.com/image1011.jpg",
-    "title": "Camiseta de algodón",
-    "description": "Viste con estilo y comodidad con esta camiseta de alta calidad para hombre.",
-    "stock": 20,
-    "price": 25,
 
-    "discount": 10
-  },
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 3,
-    "image": "https://example.com/image789.jpg",
-    "title": "Juego de sábanas",
-    "description": "Viste tu cama con estilo y comodidad con este juego de sábanas de alta calidad.",
-    "price": 60,
-
-    "discount": 15
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 2,
-    "image": "https://example.com/image456.jpg",
-    "title": "Auriculares inalámbricos",
-    "description": "Escucha tu música favorita sin cables y con gran calidad de sonido.",
-    "price": 50,
-
-    "discount": 20
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 8,
-    "image": "https://example.com/image123.jpg",
-    "title": "Crema hidratante",
-    "description": "Hidrata tu piel en profundidad con esta crema de alta calidad.",
-    "stock": 10,
-    "price": 30,
-    "discount": 0
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 4,
-    "image": "https://example.com/wooden-coffee-table.jpg",
-    "title": "Mesa de Centro de Madera Maciza con Patas de Metal Negro",
-    "description": "La mesa de centro de madera maciza tiene un diseño elegante y moderno, con una superficie de madera de roble y patas de metal negro. Es perfecta para una sala de estar contemporánea.",
-    "price": 349,
-
-    "discount": 13
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 3,
-    "image": "https://example.com/gas-grill.jpg",
-    "title": "Parrilla de Gas de Acero Inoxidable con Quemadores Independientes",
-    "description": "La parrilla de gas de acero inoxidable cuenta con cuatro quemadores independientes y una superficie de cocción de 580 pulgadas cuadradas, lo que la hace ideal para preparar comidas para grupos grandes.",
-    "stock": 3,
-    "price": 599,
-
-    "discount": 14
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 2,
-    "image": "https://example.com/kids-mountain-bike.jpg",
-    "title": "Bicicleta de Montaña para Niños (24 pulgadas)",
-    "description": "La bicicleta de montaña para niños cuenta con un cuadro de aluminio ligero, frenos de disco mecánicos y una suspensión delantera para una mayor comodidad en los terrenos irregulares.",
-    "price": 299,
-
-    "discount": 14
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
+    "userId": "google-oauth2|113318948055000672694",
     "categoryId": 1,
-    "image": "https://example.com/samsung-galaxy-s21-ultra.jpg",
-    "title": "Samsung Galaxy S21 Ultra (256GB, Negro)",
-    "description": "El Samsung Galaxy S21 Ultra es un teléfono inteligente de alta gama con una pantalla AMOLED de 6.8 pulgadas, una cámara trasera de 108MP y una cámara frontal de 40MP.",
-    "stock": 10,
-    "price": 1199,
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg"
+    ],
+    "title": "Silla de oficina",
+    "description": "Silla de oficina ergonómica con respaldo ajustable y soporte lumbar.",
+    "price": 2500,
+    "discount": 10,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Transferencia bancaria"
+    ],
+    "shipment": "No"
+  },
 
-    "discount": 14
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 5,
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg",
+      "https://example.com/image4.jpg"
+    ],
+    "title": "Paquete de ropa para bebé",
+    "description": "Paquete de ropa para bebé de 6 a 12 meses, incluye 3 mamelucos, 2 pares de calcetines y un gorro.",
+    "price": 1200,
+    "discount": 20,
+    "condition": "Used",
+    "method": [
+      "Tarjeta de crédito",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Yes"
   },
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
+    "userId": "google-oauth2|113318948055000672694",
     "categoryId": 4,
-    "image": "https://example.com/image1213.jpg",
-    "title": "Balón de fútbol",
-    "description": "Disfruta del fútbol con este balón de alta calidad y diseño.",
-    "stock": 12,
-    "price": 40,
-    "discount": 0
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg"
+    ],
+    "title": "Reloj inteligente",
+    "description": "Reloj inteligente con monitor de actividad, notificaciones de redes sociales y GPS integrado.",
+    "price": 4500,
+    "discount": 15,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de débito"
+    ],
+    "shipment": "Yes"
   },
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 7,
-    "image": "https://example.com/image1011.jpg",
-    "title": "Camiseta de algodón",
-    "description": "Viste con estilo y comodidad con esta camiseta de alta calidad para hombre.",
-    "stock": 20,
-    "price": 25,
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 5,
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg"
+    ],
+    "title": "Mesa de comedor de madera maciza",
+    "description": "Hermosa mesa de comedor hecha de madera maciza, diseñada para durar toda la vida.",
+    "price": 12000,
+    "discount": 10,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Transferencia bancaria"
+    ],
+    "shipment": "No"
+  },
 
-    "discount": 10
-  },
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
+    "userId": "google-oauth2|113318948055000672694",
     "categoryId": 3,
-    "image": "https://example.com/image789.jpg",
-    "title": "Juego de sábanas",
-    "description": "Viste tu cama con estilo y comodidad con este juego de sábanas de alta calidad.",
-    "price": 60,
-
-    "discount": 15
+    "image": [
+      "https://my.alfred.edu/zoom/_images/foster-lake.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Agua y Cafe",
+    "description": "Nuevo smartphone Samsung Galaxy S21 con pantalla OLED de 6.2 pulgadas, cámara trasera de 64 MP y batería de 4000 mAh.",
+    "price": 7000,
+    "discount": 0,
+    "condition": "Used",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "Yes"
   },
+
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
+    "userId": "google-oauth2|113318948055000672694",
     "categoryId": 2,
-    "image": "https://example.com/image456.jpg",
-    "title": "Auriculares inalámbricos",
-    "description": "Escucha tu música favorita sin cables y con gran calidad de sonido.",
-    "price": 50,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Camisa de mezclilla",
+    "description": "Camisa de mezclilla azul claro para caballero talla L.",
+    "price": 500,
+    "discount": 0,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "No"
+  },
 
-    "discount": 20
-  },
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 8,
-    "image": "https://example.com/image123.jpg",
-    "title": "Crema hidratante",
-    "description": "Hidrata tu piel en profundidad con esta crema de alta calidad.",
-    "stock": 10,
-    "price": 30,
-    "discount": 0
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 5,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Nintendo Switch Lite",
+    "description": "Consola portátil Nintendo Switch Lite amarilla con 32GB de almacenamiento interno.",
+    "price": 4000,
+    "discount": 0,
+    "condition": "Used",
+    "method": [
+      "Efectivo"
+    ],
+    "shipment": "Yes"
   },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 4,
-    "image": "https://example.com/wooden-coffee-table.jpg",
-    "title": "Mesa de Centro de Madera Maciza con Patas de Metal Negro",
-    "description": "La mesa de centro de madera maciza tiene un diseño elegante y moderno, con una superficie de madera de roble y patas de metal negro. Es perfecta para una sala de estar contemporánea.",
-    "price": 349,
 
-    "discount": 13
-  },
   {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 3,
-    "image": "https://example.com/gas-grill.jpg",
-    "title": "Parrilla de Gas de Acero Inoxidable con Quemadores Independientes",
-    "description": "La parrilla de gas de acero inoxidable cuenta con cuatro quemadores independientes y una superficie de cocción de 580 pulgadas cuadradas, lo que la hace ideal para preparar comidas para grupos grandes.",
-    "stock": 3,
-    "price": 599,
-
-    "discount": 14
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 3,
-    "image": "https://example.com/gas-grill.jpg",
-    "title": "Parrilla de Gas de Acero Inoxidable con Quemadores Independientes",
-    "description": "La parrilla de gas de acero inoxidable cuenta con cuatro quemadores independientes y una superficie de cocción de 580 pulgadas cuadradas, lo que la hace ideal para preparar comidas para grupos grandes.",
-    "stock": 3,
-    "price": 599,
-
-    "discount": 14
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
-    "categoryId": 2,
-    "image": "https://example.com/kids-mountain-bike.jpg",
-    "title": "Bicicleta de Montaña para Niños (24 pulgadas)",
-    "description": "La bicicleta de montaña para niños cuenta con un cuadro de aluminio ligero, frenos de disco mecánicos y una suspensión delantera para una mayor comodidad en los terrenos irregulares.",
-    "price": 299,
-
-    "discount": 14
-  },
-  {
-    "userId": "8be363c5-10b1-4071-80a5-17ac69683568",
+    "userId": "google-oauth2|113318948055000672694",
     "categoryId": 1,
-    "image": "https://example.com/samsung-galaxy-s21-ultra.jpg",
-    "title": "Samsung Galaxy S21 Ultra (256GB, Negro)",
-    "description": "El Samsung Galaxy S21 Ultra es un teléfono inteligente de alta gama con una pantalla AMOLED de 6.8 pulgadas, una cámara trasera de 108MP y una cámara frontal de 40MP.",
-    "stock": 10,
-    "price": 1199,
-    "discount": 14
+    "image": [
+      "https://example.com/image.jpg"
+    ],
+    "title": "iPhone X",
+    "description": "iPhone X en excelente estado, color gris espacial con 64GB de almacenamiento interno.",
+    "price": 8000,
+    "discount": 10,
+    "condition": "Used",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 1,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Laptop Dell Inspiron 15",
+    "description": "Laptop Dell Inspiron 15, 15.6 pulgadas, procesador Intel Core i5, memoria RAM de 8 GB, disco duro de 512 GB SSD, color gris",
+    "price": 15000,
+    "discount": 10,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 4,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Guitarra eléctrica Fender Stratocaster",
+    "description": "Guitarra eléctrica Fender Stratocaster, cuerpo de aliso, mástil de arce, diapasón de palisandro, 3 pastillas de bobina simple, color negro",
+    "price": 20000,
+    "discount": 5,
+    "condition": "Used",
+    "method": [
+      "Efectivo"
+    ],
+    "shipment": "No"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 2,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Reloj Apple Watch Series 6",
+    "description": "Reloj inteligente Apple Watch Series 6, color dorado, pantalla retina siempre encendida, GPS integrado, frecuencia cardíaca, electrocardiograma, oxígeno en sangre",
+    "price": 12000,
+    "discount": 0,
+    "condition": "New",
+    "method": [
+      "Tarjeta de crédito",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 5,
+    "image": [
+      "https://example.com/image.jpg"
+    ],
+    "title": "Aspiradora Robot Roomba",
+    "description": "Aspiradora Robot Roomba, sistema de limpieza de 3 fases, navegación inteligente, programable desde la app, compatible con Alexa, color negro",
+    "price": 8000,
+    "discount": 20,
+    "condition": "Used",
+    "method": [
+      "Efectivo",
+      "Tarjeta de débito"
+    ],
+    "shipment": "Yes"
+  },
+  
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 2,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Zapatillas deportivas",
+    "description": "Zapatillas deportivas nuevas sin estrenar, talla 42.",
+    "price": 500,
+    "discount": 10,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "No"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 4,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Mesa de comedor",
+    "description": "Mesa de comedor con capacidad para 6 personas, hecha de madera maciza y en perfecto estado.",
+    "price": 2000,
+    "discount": 0,
+    "condition": "Used",
+    "method": [
+      "Efectivo"
+    ],
+    "shipment": "No"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 1,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Smart TV",
+    "description": "Televisor inteligente de 50 pulgadas, 4K Ultra HD, con aplicaciones de streaming integradas.",
+    "price": 8000,
+    "discount": 20,
+    "condition": "New",
+    "method": [
+      "Tarjeta de crédito",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Sí"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 3,
+    "image": [
+      "https://example.com/image.jpg"
+    ],
+    "title": "Mochila",
+    "description": "Mochila para laptop de 15 pulgadas, con múltiples compartimentos y acolchado en la espalda.",
+    "price": 500,
+    "discount": 0,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "Sí"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 5,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Juego de sábanas",
+    "description": "Juego de sábanas de algodón egipcio, color blanco, para cama de 2 plazas.",
+    "price": 1500,
+    "discount": 0,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Sí"
+  },
+  
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 2,
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg"
+    ],
+    "title": "Silla de oficina",
+    "description": "Silla de oficina ergonómica con respaldo alto y apoyabrazos ajustables.",
+    "price": 2500,
+    "discount": 10,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 5,
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg",
+      "https://example.com/image4.jpg"
+    ],
+    "title": "Máquina de coser Singer",
+    "description": "Máquina de coser electrónica Singer con 50 puntadas incorporadas y función de enhebrado automático.",
+    "price": 6000,
+    "discount": 15,
+    "condition": "Used",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 1,
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg"
+    ],
+    "title": "Lámpara de pie",
+    "description": "Lámpara de pie moderna con base de acero y pantalla de tela blanca.",
+    "price": 1500,
+    "discount": 0,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito",
+      "PayPal"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 3,
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg",
+      "https://example.com/image4.jpg",
+      "https://example.com/image5.jpg"
+    ],
+    "title": "Lentes de sol Ray-Ban",
+    "description": "Lentes de sol Ray-Ban con armazón de acetato y lentes polarizadas.",
+    "price": 3000,
+    "discount": 20,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 7,
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg"
+    ],
+    "title": "Mueble para TV",
+    "description": "Mueble de madera para TV de hasta 60 pulgadas, con 4 cajones y 2 estantes",
+    "price": 4500,
+    "discount": 10,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 12,
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg"
+    ],
+    "title": "Juego de llantas",
+    "description": "Juego de llantas deportivas para carro, medida 18 pulgadas",
+    "price": 12000,
+    "discount": 5,
+    "condition": "Used",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "No"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 5,
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg",
+      "https://example.com/image4.jpg"
+    ],
+    "title": "Zapatos deportivos",
+    "description": "Zapatos deportivos para correr de marca Nike, talla 9.5 US",
+    "price": 3500,
+    "discount": 0,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito",
+      "Débito"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 2,
+    "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg"
+    ],
+    "title": "Sofá de dos plazas",
+    "description": "Sofá de dos plazas en tela color gris claro, en excelente estado",
+    "price": 6500,
+    "discount": 15,
+    "condition": "Used",
+    "method": [
+      "Efectivo"
+    ],
+    "shipment": "No"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 2,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Cama doble",
+    "description": "Cama doble en excelente estado, incluye colchón ortopédico.",
+    "price": 3500,
+    "discount": 10,
+    "condition": "Used",
+    "method": [
+      "Efectivo",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 4,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Juego de comedor",
+    "description": "Juego de comedor de madera maciza, incluye mesa y 6 sillas tapizadas.",
+    "price": 8000,
+    "discount": 0,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de débito"
+    ],
+    "shipment": "No"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 5,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Laptop Lenovo",
+    "description": "Laptop Lenovo en excelente estado, procesador i5, 8GB RAM y 256GB SSD.",
+    "price": 6500,
+    "discount": 5,
+    "condition": "Used",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 6,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Set de herramientas",
+    "description": "Set de herramientas de alta calidad, incluye destornilladores, llaves, alicates, entre otros.",
+    "price": 4000,
+    "discount": 15,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Transferencia bancaria"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 3,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Reloj Michael Kors",
+    "description": "Reloj Michael Kors para mujer, dorado con cristales Swarovski, en excelente estado.",
+    "price": 5000,
+    "discount": 20,
+    "condition": "Used",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 4,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Laptop Dell Inspiron 15",
+    "description": "Laptop de 15.6 pulgadas con procesador Intel Core i5, 8GB de RAM y disco duro de 512GB SSD.",
+    "price": 12000,
+    "discount": 10,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 5,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Chaqueta de cuero",
+    "description": "Chaqueta de cuero genuino para mujer, disponible en varios colores y tallas.",
+    "price": 8000,
+    "discount": 20,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 6,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Bicicleta de montaña",
+    "description": "Bicicleta de montaña para hombre, con cuadro de aluminio, suspensión delantera y frenos de disco.",
+    "price": 15000,
+    "discount": 5,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 7,
+    "image": [
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg",
+      "https://example.com/image.jpg"
+    ],
+    "title": "Set de maquillaje",
+    "description": "Set de maquillaje profesional de 20 piezas, incluye sombras, rubores, brillos labiales y más.",
+    "price": 5000,
+    "discount": 15,
+    "condition": "New",
+    "method": [
+      "Efectivo",
+      "Tarjeta de crédito"
+    ],
+    "shipment": "Yes"
+  },
+
+  {
+    "userId": "google-oauth2|113318948055000672694",
+    "categoryId": 2,
+    "image": [
+      "https://example.com/image.jpg"
+    ],
+    "title": "Zapatillas Adidas",
+    "description": "Zapatillas Adidas originales, talla 42, en perfecto estado.",
+    "price": 5000,
+    "discount": 10,
+    "condition": "Used",
+    "method": [
+      "Efectivo"
+    ],
+    "shipment": "Yes"
   }
+
+
+  
+  
+  
 ]

@@ -31,7 +31,7 @@ const getAds = async (req, res) => {
     const options = {
       limit: +size,
       offset: +page * +size,
-      where: {},
+      where: {state: "Active"},
       order: [['createdAt', 'DESC']],
     };
 
@@ -65,9 +65,13 @@ const getAds = async (req, res) => {
       };
     }
 
-    if (sort === 'asc') {
+    if(sort === "priceAsc") {
+      options.order = [["price", "ASC"]];
+    } else if (sort === "priceDesc"){
+      options.order = [["price", "DESC"]];
+    } else if (sort === "titleAsc"){
       options.order = [['title', 'ASC']];
-    } else if (sort === 'desc') {
+    } else if(sort === "titleDesc"){
       options.order = [['title', 'DESC']];
     }
 
@@ -85,8 +89,10 @@ const getAds = async (req, res) => {
 
     const ads = await Ad.findAll(options);
 
+    const count = await Ad.count(options);
+
     return res.status(200).json({
-      length: ads.length,
+      length: count,
       ads: ads,
     });
   } catch (error) {
@@ -161,6 +167,39 @@ const createAd = async (req, res) => {
   }
 };
 
+const updateAd = async (req, res) => {
+  try {
+    const {adId, image, title, description, price, discount, condition, method, shipment, state} = req.body;
+
+    if(!adId){
+      return res.status(404).json("Missing ID");
+    }
+
+    const ad = await Ad.findByPk(adId);
+
+    if(!ad) {
+      return res.status(404).send({ error: "Advertisment not found"})
+    }
+
+    const updateAd = await ad.update({
+      image: image, 
+      title: title, 
+      description: description, 
+      price: price, 
+      discount: discount, 
+      condition: condition, 
+      method: method, 
+      shipment: shipment, 
+      state: state
+    });
+
+    res.status(200).json(updateAd);
+
+  } catch (error) {
+    res.status(404).json(error.message);
+  }
+}
+
 const setStatusAd = async () => {
   try {
     const { status, adId } = req.body;
@@ -179,4 +218,5 @@ module.exports = {
   getAdById,
   createAd,
   setStatusAd,
+  updateAd
 };

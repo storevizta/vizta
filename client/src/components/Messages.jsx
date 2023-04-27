@@ -1,8 +1,6 @@
-import { useGetMessageQuery } from '../features/query/MessagesQuery';
+import { useGetMessageByAdIdQuery } from '../features/query/MessagesQuery';
 
 import { CreateMessage } from './CreateMessage';
-
-import { Response } from './Response';
 
 import { Loading } from '../components/Loading';
 
@@ -11,7 +9,7 @@ import { Error } from '../components/Error';
 import question from '../assets/question.svg';
 
 export const Messages = ({ adId, userId }) => {
-  const { data, error, isLoading } = useGetMessageQuery();
+  const { data, error, isLoading } = useGetMessageByAdIdQuery(adId);
 
   if (isLoading) {
     return (
@@ -29,14 +27,14 @@ export const Messages = ({ adId, userId }) => {
     );
   }
 
-  const messages = data.filter((message) => message.AdId === adId);
+  console.log(data);
 
   return (
-    <div className="w-2/3 m-auto">
-      <div className="bg-slate-400 pt-3 pb-3 text-lg">
+    <div className="mt-5">
+      <div className="bg-slate-700 pt-3 pb-3 text-lg">
         <h2 className="font-bold text-center">Messages to the seller</h2>
       </div>
-      {messages?.map((message) => (
+      {data?.map((message) => (
         <div className="border-b-4 border-slate-400 pt-3 pb-3 pr-4 pl-4">
           <div className="flex justify-between" key={message.id}>
             <p className="inline">
@@ -52,11 +50,21 @@ export const Messages = ({ adId, userId }) => {
 
             <p className="inline">Denunciar</p>
           </div>
-          <Response
-            id={message.id}
-            response={message.response}
-            updatedAt={message.updatedAt}
-          />
+          {message.response ? (
+            <div className="flex justify-between">
+              <p className="inline">
+                {message.updatedAt
+                  .slice(0, 10)
+                  .replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1')}
+              </p>
+
+              <p className="inline pl-3">{message.response}</p>
+
+              <p className="inline">Denunciar</p>
+            </div>
+          ) : (
+            <p className="text-center">No answer now</p>
+          )}
         </div>
       ))}
       <CreateMessage userId={userId} adId={adId} />

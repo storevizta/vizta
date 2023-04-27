@@ -5,10 +5,11 @@ export const LogOutButton = () => {
 
   return (
     <button
-      onClick={() =>
-        logout({ logoutParams: { returnTo: window.location.origin } })
-      }
-    >
+      className='text-left'
+      onClick={() => {
+        localStorage.clear()
+        return logout({ logoutParams: { returnTo: window.location.origin } }) 
+      }}>
       Log Out
     </button>
   );

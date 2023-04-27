@@ -29,13 +29,45 @@ const getUser = async (req, res) => {
   }
 };
 
-const getUserAds = async (req, res) => {};
+const getUserAds = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const userAds = await Ad.findAll({ where: { UserId: id } });
+
+    if (!userAds) {
+      return res.status(400).json({ message: 'User not found' });
+    }
+
+    return res.status(200).json(userAds);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Error' });
+  }
+};
 
 const getUserFavorites = async (req, res) => {};
 
+const getUserMessages = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const userMessages = await Message.findAll({ where: { UserId: id } });
+
+    if (!userMessages) {
+      return res.status(400).json({ message: 'User not found' });
+    }
+
+    return res.status(200).json(userMessages);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Error' });
+  }
+};
+
 const createUser = async (req, res) => {
   try {
-    const { id, name, lastname, nickname, email, picture } = req.body;
+    const { id, name, nickname, email, picture } = req.body;
 
     const existingUser = await User.findOne({ where: { id } });
 
@@ -78,7 +110,25 @@ const createFavorite = async (req, res) => {
   }
 };
 
-const updateUser = async (req, res) => {};
+const updateUser = async (req, res) => {
+  const { id, name, nickname, email, picture, address, phone } = req.body;
+  try {
+    const actualUser = await User.findByPk(id);
+    await actualUser.update({
+      name: name,
+      nickname: nickname,
+      email: email,
+      picture: picture,
+      address: address,
+      phone: phone,
+    });
+
+    res.status(200).json('All fine!');
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json(error);
+  }
+};
 
 const deleteUser = async (req, res) => {};
 
@@ -103,6 +153,23 @@ const deleteFavorite = async (req, res) => {
   }
 };
 
+const getUserAdMessages = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const adMessages = await Message.findAll({ where: { AdId: id } });
+
+    if (!adMessages) {
+      return res.status(400).json({ message: 'Ad not found' });
+    }
+
+    return res.status(200).json(adMessages);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json(error.message);
+  }
+};
+
 module.exports = {
   getUser,
   getUserAds,
@@ -112,4 +179,6 @@ module.exports = {
   updateUser,
   deleteUser,
   deleteFavorite,
+  getUserMessages,
+  getUserAdMessages,
 };

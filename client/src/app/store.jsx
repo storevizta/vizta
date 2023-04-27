@@ -1,14 +1,22 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-import { Ads } from '../features/query/adsQuery';
+import { Ads } from '../features/query/AdsQuery';
 
-import { Category } from '../features/query/categoryQuery';
+import { Category } from '../features/query/CategoryQuery';
 
 import { User } from '../features/query/UserQuery';
 
 import { Message } from '../features/query/MessagesQuery';
 
-import FilterSlice from '../features/slices/filterSlice';
+import { Rating } from '../features/query/RatingQuery';
+
+import { Report } from '../features/query/ReportQuery';
+
+import FilterSlice from '../features/slices/FilterSlice';
+
+import { Admin } from '../features/query/AdminQuery';
+
+import wishlistsSlice from '../features/slices/FavSlices';
 
 export const store = configureStore({
   reducer: {
@@ -16,13 +24,20 @@ export const store = configureStore({
     [Category.reducerPath]: Category.reducer,
     [User.reducerPath]: User.reducer,
     [Message.reducerPath]: Message.reducer,
+    [Rating.reducerPath]: Rating.reducer,
+    [Report.reducerPath]: Report.reducer,
+    [Admin.reducerPath]: Admin.reducer,
     filter: FilterSlice,
+    wishlists: wishlistsSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       Ads.middleware,
       Category.middleware,
       User.middleware,
-      Message.middleware
+      Message.middleware,
+      Rating.middleware,
+      Report.middleware,
+      Admin.middleware
     ),
 });

@@ -4,6 +4,8 @@ import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
 
+import { Link } from 'react-router-dom';
+
 export const UserDetail = (userId) => {
   const { id } = userId;
 
@@ -30,11 +32,17 @@ export const UserDetail = (userId) => {
   const created = createdAt.slice(0, 10);
 
   return (
-    <div className="bg-white pb-4 pt-0.5">
-      <p className="font-bold mt-10 pl-5 text-black">Seller: </p>
+    <div className="bg-white p-4">
+      <p className="font-bold text-black">Seller: </p>
       <p className="text-sm pl-8 text-black">{name}</p>
       <p className="text-sm pl-8 text-black">{address}</p>
       <p className="text-sm pl-8 text-black">Joined Vizta {created}</p>
+
+      <Link to={`/reportUser/${id}`}>
+        <p className="font-bold border mt-2 p-1 rounded w-fit bg-black text-sm text-right">
+          Report User
+        </p>
+      </Link>
     </div>
   );
 };

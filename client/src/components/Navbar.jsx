@@ -1,6 +1,6 @@
 import { Link, useParams, useLocation } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -12,7 +12,10 @@ import { LogOutButton } from '../components/LogOutButton';
 
 import { LoginButton } from '../components/LoginButton';
 
+import {useGetUserIdQuery} from "../features/query/UserQuery"
+
 import imageError from '../assets/imageError.svg';
+import { useEffect, useState } from 'react';
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -21,18 +24,25 @@ export const Navbar = () => {
 
   const location = useLocation();
 
+  const { wishlistsItems } = useSelector((state) => state?.wishlists);
+
   const searchLanding = location.pathname !== `/`;
 
   const searchDetail = location.pathname !== `/detail/${id}`;
 
   const searchProfile = location.pathname !== `/profile`;
 
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
   const handlerChange = (e) => {
     const newTitle = e.target.value;
     dispatch(setTitle(newTitle));
   };
+
+  const idUser = localStorage.getItem("id")
+  const userData = useGetUserIdQuery(idUser)
+
+  console.log(idUser);
 
   return (
     // <nav className="max-h-16 h-16 flex">
@@ -88,6 +98,16 @@ export const Navbar = () => {
               />
             </div>
           )}
+          <div>
+          {isAuthenticated ?
+            <Link to="/favorite">
+              <button>
+              Favorites ({wishlistsItems?.length})
+              </button>
+              </Link> :
+              <button onClick={()=>loginWithRedirect()}>Favorites</button>
+          }
+          </div>
           {isAuthenticated ? (
             <>
               <div className="dropdown dropdown-end">
@@ -95,7 +115,7 @@ export const Navbar = () => {
                   <div className="w-10 rounded-full">
                     <img
                       className="w-56 h-56 rounded"
-                      src={user.picture}
+                      src={userData?.data?.picture}
                       alt="image"
                       onError={(e) => (e.target.src = `${imageError}`)}
                     />
@@ -107,13 +127,11 @@ export const Navbar = () => {
                 >
                   <li>
                     <Link className="justify-between" to="/profile">
-                      Profile
+                      <Profile />
                     </Link>
                   </li>
                   <li>
-                    <Link to="/favorite"  >
-                      Favorites
-                    </Link>
+                    <Link to="/subscribe">Subscribe</Link>
                   </li>
                   <li>
                     <Link to="/post">Sell</Link>

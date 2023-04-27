@@ -16,10 +16,16 @@ export const FilterSlice = createSlice({
 
   reducers: {
     setPage: (state, action) => {
-      const newPage = state.page + action.payload;
+      const newPage = action.payload;
       state.page = newPage >= 0 ? newPage : 0;
     },
     setTitle: (state, action) => {
+      state.category = '';
+      state.minPrice = '';
+      state.maxPrice = '';
+      state.sort = '';
+      state.discount = '';
+      state.condition = '';
       state.title = action.payload;
     },
     setCategory: (state, action) => {

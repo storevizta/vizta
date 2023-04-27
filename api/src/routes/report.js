@@ -8,6 +8,7 @@ const {
   getReportById,
   getUserReports,
   getAdReports,
+  getAllReports,
 } = require('../controller/reportController.js');
 
 router.post('/', createReport);
@@ -16,8 +17,10 @@ router.delete('/:id', deleteReport);
 
 router.get('/:id', getReportById);
 
-router.get('/:userId', getUserReports);
+router.get('/user/:userId', getUserReports);
 
-router.get('/:addId', getAdReports);
+router.get('/ad/:adId', getAdReports);
+
+router.get('/', getAllReports);
 
 module.exports = router;

@@ -14,6 +14,10 @@ const { sequelize } = require('./database.js');
 
 const server = express();
 
+const corsOptions = {
+  origin: '*',
+};
+
 const port = process.env.PORT || 3001;
 
 server.use(cookieParser());
@@ -22,7 +26,7 @@ server.use(bodyParser.urlencoded({ extended: false }));
 
 server.use(bodyParser.json());
 
-server.use(cors());
+server.use(cors(corsOptions));
 
 server.use('/', router);
 
