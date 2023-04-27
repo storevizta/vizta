@@ -140,6 +140,39 @@ const deleteAd = async (req, res) => {
   }
 };
 
+const getMetrics = async (req, res) => {
+  try {
+    const allUsers = await User.findAll();
+    const usersAmount = allUsers.length;
+
+    const newDate = Date.now();
+    const defineDate = new Date(newDate);
+    const compareDate = parseInt(defineDate.getTime()) / 86400000;
+
+    const newUsers = allUsers.filter(
+      (value) =>
+        parseInt(value.createdAt.getTime()) / 86400000 < compareDate + 604800000
+    );
+
+    const subscribed = allUsers.filter(
+      (value) => value.subscribe === 'Subscribed'
+    );
+
+    const reportsAmount = await Report.findAll();
+
+    const metrics = {
+      usersAmount: usersAmount,
+      newUsers: newUsers.length,
+      subscribedAmount: subscribed.length,
+      reportsAmount: reportsAmount.length,
+    };
+
+    res.json(metrics);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
 const createCategory = async () => {};
 
 module.exports = {
@@ -152,4 +185,5 @@ module.exports = {
   updateAd,
   deleteAd,
   createCategory,
+  getMetrics,
 };
