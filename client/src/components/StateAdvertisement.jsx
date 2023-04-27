@@ -27,7 +27,6 @@ export const StateAdvertisement = ({ ad }) => {
       });
 
     swal('Successful updated!');
-    window.location.reload();
   };
 
   return (

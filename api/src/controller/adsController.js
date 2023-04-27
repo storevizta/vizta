@@ -23,8 +23,7 @@ const getAds = async (req, res) => {
       category,
       minPrice,
       maxPrice,
-      sortPrice,
-      sortTitle,
+      sort,
       discount,
       condition,
     } = req.query;
@@ -32,7 +31,7 @@ const getAds = async (req, res) => {
     const options = {
       limit: +size,
       offset: +page * +size,
-      where: {},
+      where: {state: "Active"},
       order: [['createdAt', 'DESC']],
     };
 
@@ -66,15 +65,13 @@ const getAds = async (req, res) => {
       };
     }
 
-    if(sortPrice === "asc") {
+    if(sort === "priceAsc") {
       options.order = [["price", "ASC"]];
-    } else if (sortPrice === "desc"){
+    } else if (sort === "priceDesc"){
       options.order = [["price", "DESC"]];
-    }
-
-    if (sortTitle === 'asc') {
+    } else if (sort === "titleAsc"){
       options.order = [['title', 'ASC']];
-    } else if (sortTitle === 'desc') {
+    } else if(sort === "titleDesc"){
       options.order = [['title', 'DESC']];
     }
 
@@ -216,10 +213,33 @@ const setStatusAd = async () => {
   }
 };
 
+const deleteAd = async (req, res) => {
+  try {
+    const {id} = req.params
+
+    if(!id){
+      return res.status(400).json("Missing ID")
+    }
+
+    const ad = await Ad.findByPk(id);
+
+    if(!ad){
+      return res.status(400).json("An ad with that ID was not found");
+    } else {
+      await ad.destroy();
+      res.status(200).json("This ad was successfuly deleted")
+    }
+  } catch (error) {
+    console.log(error.message);
+   return res.status(400).json(error.message) 
+  }
+}
+
 module.exports = {
   getAds,
   getAdById,
   createAd,
   setStatusAd,
-  updateAd
+  updateAd,
+  deleteAd
 };
