@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const Ads = createApi({
   reducerPath: 'ads',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://vizta-0hmx.onrender.com' }),
   endpoints: (builder) => ({
     getAds: builder.query({
       query: ({
@@ -12,12 +12,11 @@ export const Ads = createApi({
         category = null,
         minPrice = null,
         maxPrice = null,
-        sortPrice = null,
-        sortTitle = null,
+        sort = null,
         discount = null,
         condition = null,
       }) => {
-        let url = '/ads';
+        let url = '/product';
 
         if (
           page ||
@@ -26,8 +25,7 @@ export const Ads = createApi({
           category ||
           minPrice ||
           maxPrice ||
-          sortPrice ||
-          sortTitle ||
+          sort ||
           discount ||
           condition
         ) {
@@ -38,8 +36,7 @@ export const Ads = createApi({
           if (title) url += `title=${title}&`;
           if (minPrice) url += `minPrice=${minPrice}&`;
           if (maxPrice) url += `maxPrice=${maxPrice}&`;
-          if (sortPrice) url += `sortPrice=${sortPrice}&`;
-          if (sortTitle) url += `sortTitle=${sortTitle}&`;
+          if (sort) url += `sort=${sort}&`;
           if (discount) url += `discount=${discount}&`;
           if (condition) url += `condition=${condition}&`;
           url = url.slice(0, -1);
@@ -49,18 +46,18 @@ export const Ads = createApi({
       },
     }),
     getAdById: builder.query({
-      query: (id) => `/ads/${id}`,
+      query: (id) => `/product/${id}`,
     }),
     createAd: builder.mutation({
       query: (data) => ({
-        url: `/ads`,
+        url: `/product`,
         method: 'POST',
         body: data,
       }),
     }),
     updateAd: builder.mutation({
       query: (data) => ({
-        url: `/ads/updateAd`,
+        url: `/product/updateAd`,
         method: 'PUT',
         body: data,
       }),

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { useState } from 'react';
 
@@ -86,133 +86,141 @@ export const Detail = () => {
   };
 
   return (
-    <div>
-      <div className="flex flex-row content-stretch w-2/3 m-auto" key={id}>
-        <div className="flex justify-center items-center">
-          <img
-            className="w-16"
-            src={rowLeft}
-            alt="row-left"
-            onClick={handlerNextImage}
-          />
-          {!image ? (
-            <div className="h-100 w-150">
-              <img
-                className="object-cover w-full h-full"
-                src={FakeIMG}
-                alt="image"
-              />
-            </div>
-          ) : (
-            image.map((image, index) => {
-              return (
-                <div key={index}>
-                  {currentImage === index && (
-                    <div className="h-100 w-150">
-                      <img
-                        className="object-contain w-full h-full"
-                        src={image}
-                        key={index}
-                        alt="image"
-                      />
-                    </div>
-                  )}
-                </div>
-              );
-            })
-          )}
-          <img
-            className="w-16"
-            src={rowRight}
-            alt="row-right"
-            onClick={handlerPreviousImage}
-          />
-        </div>
-        <div className="w-100 h-120 break-words basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md">
-          <h1 className="font-bold text-white pl-5 text-3xl pt-3 pr-3">
-            {title}
-          </h1>
-
-          <div>
-            <p className="pl-5 text-white">$ {price}</p>
-          </div>
-
-          <div className="pb-4 pr-5">
-            <p className="pl-5 text-white font-bold pt-5">Description: </p>
-            <p className="pl-8 text-white pb-3">{description}</p>
-          </div>
-
-          <div className="pb-4">
-            <p className="font-bold text-white pl-5 inline">Condition: </p>
-            <p className="inline text-white"> {condition}</p>
-          </div>
-
-          <div className="pb-4">
-            <p className="inline text-white font-bold pl-5">State: </p>
-            <p className="inline text-white">{state}</p>
-          </div>
-
-          <div className="pb-4">
-            <p className="inline text-white font-bold pl-5">
-              Payment Methods:{' '}
-            </p>
-            <ul>
-              {method?.map((method, index) => {
-                return (
-                  <li key={index} className="inline text-white pb-15 pl-5">
-                    {method}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          <div className="pb-4">
-            <p className="inline text-white font-bold pl-5">
-              Make home deliveries:{' '}
-            </p>
-            <p className="inline text-white pb-15">{shipment}</p>
-          </div>
-
-          <div className="flex justify-center">
-            <div className="bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
-              <img
-                className="h-6"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/479px-WhatsApp_icon.png"
-              />
-              <button onClick={() => whatsapp()}>Whatsapp</button>
-            </div>
-
-            {isAuthenticated ? (
-              <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
+    <div className="w-2/3 m-auto">
+      <div>
+        <div className="flex flex-row content-stretch" key={id}>
+          <div className="flex justify-center items-center">
+            <img
+              className="w-16"
+              src={rowLeft}
+              alt="row-left"
+              onClick={handlerNextImage}
+            />
+            {!image ? (
+              <div className="h-100 w-150">
                 <img
-                  className="h-3"
-                  src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
+                  className="object-cover w-full h-full"
+                  src={FakeIMG}
+                  alt="image"
                 />
-                <button onClick={() => addToWishHandler(data)}>
-                  Add favorite
-                </button>
               </div>
             ) : (
-              <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
-                <img
-                  className="h-3"
-                  src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
-                />
-                <button onClick={() => loginWithRedirect()}>
-                  Add favorite
-                </button>
-              </div>
+              image.map((image, index) => {
+                return (
+                  <div key={index}>
+                    {currentImage === index && (
+                      <div className="h-100 w-150">
+                        <img
+                          className="object-contain w-full h-full"
+                          src={image}
+                          key={index}
+                          alt="image"
+                        />
+                      </div>
+                    )}
+                  </div>
+                );
+              })
             )}
+            <img
+              className="w-16"
+              src={rowRight}
+              alt="row-right"
+              onClick={handlerPreviousImage}
+            />
           </div>
+          <div className="w-100 h-120 break-words basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md">
+            <h1 className="font-bold text-white pl-5 text-3xl pt-3 pr-3">
+              {title}
+            </h1>
 
-          <div className="block text-white mt-15">
-            <UserDetail id={UserId} />
+            <div>
+              <p className="pl-5 text-white">$ {price}</p>
+            </div>
+
+            <div className="pb-4 pr-5">
+              <p className="pl-5 text-white font-bold pt-5">Description: </p>
+              <p className="pl-8 text-white pb-3">{description}</p>
+            </div>
+
+            <div className="pb-4">
+              <p className="font-bold text-white pl-5 inline">Condition: </p>
+              <p className="inline text-white"> {condition}</p>
+            </div>
+
+            <div className="pb-4">
+              <p className="inline text-white font-bold pl-5">State: </p>
+              <p className="inline text-white">{state}</p>
+            </div>
+
+            <div className="pb-4">
+              <p className="inline text-white font-bold pl-5">
+                Payment Methods:{' '}
+              </p>
+              <ul>
+                {method?.map((method, index) => {
+                  return (
+                    <li key={index} className="inline text-white pb-15 pl-5">
+                      {method}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            <div className="pb-4">
+              <p className="inline text-white font-bold pl-5">
+                Make home deliveries:{' '}
+              </p>
+              <p className="inline text-white pb-15">{shipment}</p>
+            </div>
+
+            <div className="flex justify-center">
+              <div className="bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
+                <img
+                  className="h-6"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/479px-WhatsApp_icon.png"
+                />
+                <button onClick={() => whatsapp()}>Whatsapp</button>
+              </div>
+
+              {isAuthenticated ? (
+                <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
+                  <img
+                    className="h-3"
+                    src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
+                  />
+                  <button onClick={() => addToWishHandler(data)}>
+                    Add favorite
+                  </button>
+                </div>
+              ) : (
+                <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
+                  <img
+                    className="h-3"
+                    src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
+                  />
+                  <button onClick={() => loginWithRedirect()}>
+                    Add favorite
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <div className="block text-white mt-15">
+              <UserDetail id={UserId} />
+            </div>
           </div>
         </div>
+        <Link to={`/reportAd/${id}`}>
+          <p className="font-bold border p-2 rounded w-fit">
+            Report Advertisement
+          </p>
+        </Link>
       </div>
+
       <Messages adId={id} userId={UserId} />
-      <div className="w-2/3 m-auto mt-5 mb-5">
+      <div className="mt-5 mb-5">
         <div className="bg-slate-700 pt-3 pb-3 text-lg">
           <h2 className="font-bold text-center">
             Other publications from this Seller

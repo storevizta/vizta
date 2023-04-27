@@ -9,7 +9,12 @@ import { useCreateUserMutation } from '../features/query/UserQuery';
 import imageError from '../assets/imageError.svg';
 
 export const Profile = () => {
+
   const { user, isAuthenticated, isLoading } = useAuth0();
+
+  if(isAuthenticated){
+    localStorage.setItem("id", `${user.sub}`)
+  }
 
   const [createUser] = useCreateUserMutation();
 

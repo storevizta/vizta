@@ -17,7 +17,7 @@ const {
 
 router.get('/:id', getUser);
 
-router.get('/userads/:id', getUserAds);
+router.get('/userproduct/:id', getUserAds);
 
 router.get('/:id/favorites', getUserFavorites);
 

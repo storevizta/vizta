@@ -9,8 +9,7 @@ export const FilterSlice = createSlice({
     category: '',
     minPrice: '',
     maxPrice: '',
-    sortPrice: '',
-    sortTitle: '',
+    sort: '',
     discount: '',
     condition: '',
   },
@@ -24,8 +23,7 @@ export const FilterSlice = createSlice({
       state.category = '';
       state.minPrice = '';
       state.maxPrice = '';
-      state.sortPrice = '';
-      state.sortTitle = '';
+      state.sort = '';
       state.discount = '';
       state.condition = '';
       state.title = action.payload;
@@ -39,11 +37,8 @@ export const FilterSlice = createSlice({
     setMaxPrice: (state, action) => {
       state.maxPrice = action.payload;
     },
-    setSortPrice: (state, action) => {
-      state.sortPrice = action.payload;
-    },
-    setSortTitle: (state, action) => {
-      state.sortTitle = action.payload;
+    setSort: (state, action) => {
+      state.sort = action.payload;
     },
     setDiscount: (state, action) => {
       state.discount = action.payload;
@@ -56,8 +51,7 @@ export const FilterSlice = createSlice({
       state.category = '';
       state.minPrice = '';
       state.maxPrice = '';
-      state.sortPrice = '';
-      state.sortTitle = '';
+      state.sort = '';
       state.discount = '';
       state.condition = '';
     },
@@ -70,8 +64,7 @@ export const {
   setCategory,
   setMinPrice,
   setMaxPrice,
-  setSortPrice,
-  setSortTitle,
+  setSort,
   setDiscount,
   setCondition,
   resetFilters,
