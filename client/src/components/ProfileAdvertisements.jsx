@@ -1,7 +1,9 @@
 import { useGetUserAdsQuery } from '../features/query/UserQuery';
 import { Card } from './Card';
 import { Link } from 'react-router-dom';
+import { StateAdvertisement } from '../components/StateAdvertisement';
 import { Loading } from '../components/Loading';
+import { AdsReports } from './AdsReports';
 
 import { Error } from '../components/Error';
 
@@ -15,8 +17,6 @@ export const ProfileAdvertisements = ({ userId }) => {
       </div>
     );
   }
-
-  console.log(error);
 
   if (error) {
     return (
@@ -34,42 +34,88 @@ export const ProfileAdvertisements = ({ userId }) => {
     <div>
       <div className="pl-7 pt-5">
         <h2 className="text-lg text-bold pb-5">Active Advertisements: </h2>
-        <div className="grid grid-cols-5 gap-5">
+        <div className="">
           {activeAds.length ? (
             activeAds.map((ad) => (
-              <Link to={`/detail/${ad.id}`}>
-                <Card info={ad} />
-              </Link>
+              <div className="border-b-2 pb-5">
+                <div className="flex flex-row pb-5 pt-3">
+                  <Link className="flex" to={`/detail/${ad.id}`}>
+                    <img
+                      className="w-24 rounded"
+                      src={ad.image[0]}
+                      alt="image"
+                    />
+                  </Link>
+
+                  <p className="font-bold pl-5 my-auto pr-14">{ad.title}</p>
+
+                  <Link
+                    className="my-auto p-3 rounded bg-gray-600 text-white"
+                    to={`/update/${ad.id}`}
+                  >
+                    <p>Update</p>
+                  </Link>
+
+                  <StateAdvertisement ad={ad} />
+                </div>
+                <AdsReports adId={ad.id} />
+              </div>
             ))
           ) : (
             <p>You have no active advertisement </p>
           )}
         </div>
       </div>
-      <div className="divider"></div> 
+      <div className="divider"></div>
       <div className="pl-7 pt-5">
         <h2 className="text-lg text-bold pb-5">Paused Advertisements: </h2>
-        <div className="grid grid-cols-5 gap-5">
+        <div className="">
           {pausedAds.length ? (
             pausedAds.map((ad) => (
-              <Link to={`/detail/${ad.id}`}>
-                <Card info={ad} />
-              </Link>
+              <div className="flex flex-row justify-between pb-5">
+                <Link className="flex" to={`/detail/${ad.id}`}>
+                  <img className="w-24 rounded" src={ad.image[0]} alt="image" />
+                </Link>
+
+                <p className="font-bold pl-5 my-auto pr-14">{ad.title}</p>
+
+                <Link
+                  className="my-auto p-3 rounded bg-gray-600 text-white"
+                  to={`/update/${ad.id}`}
+                >
+                  <p>Update</p>
+                </Link>
+
+                <StateAdvertisement ad={ad} />
+              </div>
             ))
           ) : (
             <p>You have no paused advertisement </p>
           )}
         </div>
       </div>
-      <div className="divider"></div> 
+      <div className="divider"></div>
       <div className="pl-7 pt-5">
         <h2 className="text-lg text-bold pb-5">Sold Advertisements: </h2>
-        <div className="grid grid-cols-5 gap-5">
+        <div className="">
           {soldAds.length ? (
             soldAds.map((ad) => (
-              <Link to={`/detail/${ad.id}`}>
-                <Card info={ad} />
-              </Link>
+              <div className="flex flex-row pb-5">
+                <Link className="flex" to={`/detail/${ad.id}`}>
+                  <img className="w-24 rounded" src={ad.image[0]} alt="image" />
+                </Link>
+
+                <p className="font-bold pl-5 my-auto pr-14">{ad.title}</p>
+
+                <Link
+                  className="my-auto p-3 rounded bg-gray-600 text-white"
+                  to={`/update/${ad.id}`}
+                >
+                  <p>Update</p>
+                </Link>
+
+                <StateAdvertisement ad={ad} />
+              </div>
             ))
           ) : (
             <p>You have no sold advertisement </p>

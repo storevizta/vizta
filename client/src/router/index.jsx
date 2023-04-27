@@ -18,6 +18,12 @@ import { Favorites } from '../pages/Favorites';
 
 import { Subscribe } from '../pages/Subscribe';
 
+import { Updata } from '../pages/Update';
+
+import { ReportAd } from '../pages/ReportAd';
+
+import { ReportUser } from '../pages/ReportUser';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -52,6 +58,18 @@ export const router = createBrowserRouter([
       {
         path: '/subscribe',
         element: <Subscribe />,
+      },
+      {
+        path: '/update/:id',
+        element: <Updata />,
+      },
+      {
+        path: 'reportAd/:id',
+        element: <ReportAd />,
+      },
+      {
+        path: 'reportUser/:id',
+        element: <ReportUser />,
       },
     ],
   },

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const User = createApi({
   reducerPath: 'user',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://vizta-0hmx.onrender.com/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://vizta-0hmx.onrender.com' }),
   endpoints: (builder) => ({
     getUserId: builder.query({
       query: (id) => `/users/${id}`,
@@ -22,7 +22,7 @@ export const User = createApi({
       }),
     }),
     getUserAds: builder.query({
-      query: (id) => `/users/userads/${id}`,
+      query: (id) => `/users/userproduct/${id}`,
     }),
     getUserMessages: builder.query({
       query: (id) => `users/usermessages/${id}`,

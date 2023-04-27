@@ -23,8 +23,7 @@ export const Home = () => {
     category,
     minPrice,
     maxPrice,
-    sortPrice,
-    sortTitle,
+    sort,
     discount,
     condition,
   } = useSelector((state) => state.filter);
@@ -35,11 +34,13 @@ export const Home = () => {
     category,
     minPrice,
     maxPrice,
-    sortPrice,
-    sortTitle,
+    sort,
     discount,
     condition,
   });
+
+  console.log(error);
+  console.log(data);
 
   if (isLoading) return <Loading />;
 

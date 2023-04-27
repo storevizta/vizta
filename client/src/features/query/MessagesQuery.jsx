@@ -2,7 +2,7 @@ import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react';
 
 export const Message = createApi({
   reducerPath: 'messages',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://vizta-0hmx.onrender.com/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://vizta-0hmx.onrender.com' }),
   endpoints: (builder) => ({
     getMessage: builder.query({
       query: () => '/message',

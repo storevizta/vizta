@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useGetCategoryQuery } from '../features/query/categoryQuery';
+import { useGetCategoryQuery } from '../features/query/CategoryQuery';
 
 import { uploadBytes, ref, listAll, getDownloadURL } from 'firebase/storage';
 
@@ -79,6 +79,7 @@ export const Post = () => {
       const imageRef = ref(storage, `posts/${imageUpload[i].name + v4()}`);
       await uploadBytes(imageRef, imageUpload[i]).then(async (snaphsot) => {
         await getDownloadURL(snaphsot.ref).then((url) => {
+          console.log(url);
           setImage([...image, url]);
         });
       });
