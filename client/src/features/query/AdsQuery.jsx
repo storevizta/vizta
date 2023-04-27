@@ -62,6 +62,12 @@ export const Ads = createApi({
         body: data,
       }),
     }),
+    deleteAd: builder.mutation({
+      query: (id) => ({
+        url: `product/${id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
@@ -70,4 +76,5 @@ export const {
   useGetAdByIdQuery,
   useCreateAdMutation,
   useUpdateAdMutation,
+  useDeleteAdMutation,
 } = Ads;

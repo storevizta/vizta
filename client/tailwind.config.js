@@ -10,6 +10,7 @@ export default {
         120: '37rem',
         140: '45rem',
         150: '50rem',
+        170: '55rem',
         200: '100rem',
       },
       colors: {

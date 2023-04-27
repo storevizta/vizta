@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import { useUpdateUserMutation } from "../features/query/UserQuery"
-import { useEffect, useState } from "react"
+import { useEffect ,useState } from "react"
 import {useGetUserIdQuery} from "../features/query/UserQuery"
 import swal from 'sweetalert';
 import { uploadBytes, ref, listAll, getDownloadURL } from 'firebase/storage';
@@ -20,23 +20,16 @@ export const Configuration = ({info}) => {
         phone: userData.data.phone
     })
 
-    const [address, setAddress] = useState([{
-        street: "",
-        number: ""
-    }])
+    const [oldAddress, setOldAddress] = useState([])
+
+    const [address, setAddress] = useState([])
 
     useEffect(() => {
-        if(userData?.data?.address?.length !== 0){
-            const addressJSON = userData?.data?.address.map(value => JSON.parse(value))
-            console.log("entre");
-            setAddress(addressJSON)
-        }else{
-            [{
-                street: "",
-                number: ""
-            }]
+        if(userData.data.address){
+            const JSONstring = userData.data.address.map(value => JSON.parse(value))
+            setOldAddress(JSONstring)
         }
-    }, [userData])
+    }, [])
 
     
     const uploadImage = async (e) => {
@@ -59,12 +52,19 @@ export const Configuration = ({info}) => {
             number: ""
         }])
     }
-    
+
+    const modifyAddress = (e, index) => {
+        const newAddress = {...oldAddress[index], [e.target.name]: e.target.value}
+        const addresOld = [...oldAddress]
+        addresOld[index] = newAddress
+        setOldAddress(addresOld)
+    }
+
     const handleInputAddress = (e, index) => {
         const newAddress = {...address[index], [e.target.name]: e.target.value}
-        const oldAddress = [...address]
-        oldAddress[index] = newAddress
-        setAddress(oldAddress)
+        const addresOld = [...address]
+        addresOld[index] = newAddress
+        setAddress(addresOld)
     }
     
     const handleInputImage = (e) => {
@@ -80,55 +80,57 @@ export const Configuration = ({info}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         swal("User updated")
+        const totalAddress = oldAddress.concat(address)
         dispatch(updateUser({
             id: info.sub,
             name: data.name,
             nickname: data.nickname,
             picture: image,
-            address: address,
+            address: totalAddress,
             phone: data.phone
         }))
     }
-
-    console.log("soy adres", address);
     
     return (
-        <div className="flex flex-col items-center gap-5 w-150" >
+        <div className="flex flex-col items-center gap-5 w-170 overflow-auto p-5" >
             <h3>Here you can change your info</h3>
-            <div className="flex items-center w-150 gap-5">
+            <div className="flex items-center w-150 gap-5 bg-gray-600 p-10 rounded-xl">
                 <label className="w-24">Name</label>
                 <input className="input w-full" name="name" value={data.name} onChange={handleInput} placeholder={`${info.name}`}></input>
             </div>
-            <div className="flex items-center w-150 gap-5">
+            <div className="flex items-center w-150 gap-5 bg-gray-600 p-10 rounded-xl">
                 <label className="w-24">Nickname</label>
                 <input className="input w-full" name="nickname" value={data.nickname} onChange={handleInput} placeholder={`${info.nickname}`}></input>
             </div>
-            <div className="flex items-center w-150 gap-5">
-                <label className="w-24">Picture</label>
-                <input className="input w-full flex m-auto" name="picture" value={image} onChange={handleInputImage} placeholder={`Image link`}></input>
+            <div className="w-150 bg-gray-600 p-10 rounded-xl flex flex-col gap-5">
+                <div className="flex items-center w-full gap-5">
+                    <label className="w-24">Picture</label>
+                    <input className="input w-full flex m-auto" name="picture" value={image} onChange={handleInputImage} placeholder={`Image link`}></input>
+                </div>
+                <div className="flex flex-col items-center gap-5">
+                    <input className="file-input w-full max-w-xs" type="file" name="picture" onChange={uploadImage} placeholder={`${info.picture}`}></input>
+                    <img src={`${image}`} alt="Profile photo" />
+                </div>
             </div>
-            <div className="flex flex-col items-center gap-5">
-                <input className="file-input w-full max-w-xs" type="file" name="picture" onChange={uploadImage} placeholder={`${info.picture}`}></input>
-                <img src={`${image}`} alt="Profile photo" />
-            </div>
-            <div className="flex items-center w-150 gap-5">
+            <div className="flex items-center w-150 gap-5 bg-gray-600 p-10 rounded-xl">
                 <label className="w-24">Address</label>
-                {userData.data.address ? userData.data.address.map((value, index) => 
-                <div>
-                    <input className="file-input w-full max-w-xs" type="text" name="street" placeholder={`${JSON.parse(userData?.data.address[index]).street}`} onChange={(e) => handleInputAddress(e, index)}></input>
-                    <input className="file-input w-full max-w-xs" type="text" name="number" placeholder={`${JSON.parse(userData?.data.address[index]).number}`} onChange={(e) => handleInputAddress(e, index)}></input>
+                <div className="flex flex-col gap-5 w-150">
+                {oldAddress.length > 0 ? oldAddress.map((value, index) => 
+                <div className="flex flex-col gap-2">
+                    <input className="file-input w-full" type="text" name="street" placeholder={`${oldAddress[index].street}`} onChange={(e) => modifyAddress(e, index)}></input>
+                    <input className="file-input w-full" type="text" name="number" placeholder={`${oldAddress[index].number}`} onChange={(e) => modifyAddress(e, index)}></input>
                 </div>
                 ): null}
-                {address.map((value, index) => {
-                <div>
-                    <input className="file-input w-full max-w-xs" type="text" name="street" placeholder="Street name" onChange={(e) => handleInputAddress(e, index)}></input>
-                    <input className="file-input w-full max-w-xs" type="text" name="number" placeholder="Street number" onChange={(e) => handleInputAddress(e, index)}></input>
-                </div>
-                }
+                {address.map((value, index) => 
+                    <div className="flex flex-col gap-2">
+                        <input className="file-input w-full" type="text" name="street" placeholder="Street name" onChange={(e) => handleInputAddress(e, index)}></input>
+                        <input className="file-input w-full" type="text" name="number" placeholder="Street number" onChange={(e) => handleInputAddress(e, index)}></input>
+                    </div>
                 )}
-                <button onClick={addAddress}>Add a new Address</button>
+                <button onClick={addAddress}>Add address</button>
+                </div>
             </div>
-            <div className="flex items-center w-150 gap-5">
+            <div className="flex items-center w-150 gap-5 bg-gray-600 p-10 rounded-xl">
                 <label className="w-24">Phone</label>
                 <input className="input w-full" name="phone" value={data.phone} onChange={handleInput} placeholder={`${info.phone}`}></input>
             </div>

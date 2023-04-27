@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { StateAdvertisement } from '../components/StateAdvertisement';
 import { Loading } from '../components/Loading';
 import { AdsReports } from './AdsReports';
+import { DeleteAdvertisement } from './DeleteAdvertisement';
 
 import { Error } from '../components/Error';
 
@@ -38,7 +39,7 @@ export const ProfileAdvertisements = ({ userId }) => {
           {activeAds.length ? (
             activeAds.map((ad) => (
               <div className="border-b-2 pb-5">
-                <div className="flex flex-row pb-5 pt-3">
+                <div className="flex flex-row pt-3">
                   <Link className="flex" to={`/detail/${ad.id}`}>
                     <img
                       className="w-24 rounded"
@@ -58,6 +59,7 @@ export const ProfileAdvertisements = ({ userId }) => {
 
                   <StateAdvertisement ad={ad} />
                 </div>
+                <DeleteAdvertisement adId={ad.id} />
                 <AdsReports adId={ad.id} />
               </div>
             ))
