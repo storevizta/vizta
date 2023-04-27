@@ -11,11 +11,14 @@ const {
   getAdById,
   updateAd,
   deleteAd,
+  getMetrics,
 } = require('../controller/adminController.js');
 
 router.get('/users', getUsers);
 
 router.get('/users/:id', getUserById);
+
+router.get('/', getMetrics);
 
 router.put('/users/:id', updateUser);
 
