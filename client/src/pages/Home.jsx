@@ -41,9 +41,6 @@ export const Home = () => {
     condition,
   });
 
-  console.log(error);
-  console.log(data);
-
   if (isLoading) return <Loading />;
 
   if (error) return <Error />;

@@ -44,9 +44,9 @@ const createPreferenc = async (req, res) => {
       });
 
       if (response.success) {
-        const { userId } = req.headers;
+        const user = User.findByPk(req.body.userId);
 
-        console.log(userId);
+        console.log(user);
       }
     })
     .catch(function (error) {
