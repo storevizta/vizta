@@ -40,6 +40,7 @@ export const Navbar = () => {
   };
 
   const idUser = localStorage.getItem('id');
+  console.log(idUser)
   const userData = useGetUserIdQuery(idUser);
 
   return (
