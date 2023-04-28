@@ -24,6 +24,8 @@ import { ProfileAdvertisements } from '../components/ProfileAdvertisements';
 import { useEffect, useState } from 'react';
 import { ProfileReports } from '../components/ProfileReports';
 
+import { Link } from 'react-router-dom';
+
 export const Profile = () => {
   const { user, isLoading } = useAuth0();
 
