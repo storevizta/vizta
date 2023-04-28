@@ -36,17 +36,14 @@ export const UserDetail = (userId) => {
   return (
     <div className="bg-white p-4">
       <p className="font-bold text-black">Seller: </p>
-      <p className="text-sm pl-8 text-black">{name}</p>
+      <Link to={`/userProfile/${id}`}>
+        <p className="text-sm pl-8 text-black">{name}</p>
+      </Link>
+
       <p className="text-sm pl-8 text-black">
         {address[0].street} {address[0].number}
       </p>
       <p className="text-sm pl-8 text-black">Joined Vizta {created}</p>
-
-      <Link to={`/reportUser/${id}`}>
-        <p className="font-bold border mt-2 p-1 rounded w-fit bg-black text-sm text-right">
-          Report User
-        </p>
-      </Link>
     </div>
   );
 };

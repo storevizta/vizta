@@ -26,6 +26,9 @@ import { ReportUser } from '../pages/ReportUser';
 
 import { Admin } from '../components/ProfileAdmin';
 
+import { UserProfile } from '../pages/UserProfile';
+import { Rating } from '../pages/Rating';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -76,7 +79,15 @@ export const router = createBrowserRouter([
       {
         path: '/admin',
         element: <Admin />,
-      }
+      },
+      {
+        path: '/userProfile/:id',
+        element: <UserProfile />,
+      },
+      {
+        path: '/rating/:id',
+        element: <Rating />,
+      },
     ],
   },
 ]);
