@@ -20,7 +20,7 @@ export const Admin = () => {
   }
 
     return(
-        <div className='w-200 h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3'>
+        <div className='w-200 h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl m-auto'>
             <div className="stats shadow bg-gray-600">
               <div className="stat">
                 <div className="stat-figure text-secondary">
