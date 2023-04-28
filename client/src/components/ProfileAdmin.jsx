@@ -49,6 +49,8 @@ export const Admin = () => {
   if(isError1){
     <Error/>
   }
+  console.log(metrics);
+
 
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
@@ -128,11 +130,12 @@ export const Admin = () => {
         <div className="p-2 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
           <div className="flex gap-2 items-center mt-5">
             <div className="stat">
+
                 <div className="stat-figure text-secondary">
                   <img src="https://www.svgrepo.com/show/376754/analytics.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Users</div>
-                <div className="stat-value">{metrics.data.usersAmount}</div>
+                <div className="stat-value">{metrics?.data.usersAmount}</div>
               </div>
   
               <div className="stat">
@@ -140,7 +143,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376751/analytics-plus.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">New Users</div>
-                <div className="stat-value">{metrics.data.newUsers}</div>
+                <div className="stat-value">{metrics?.data.newUsers}</div>
               </div>
     
               <div className="stat">
@@ -148,7 +151,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376871/dollar-circle.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Suscribed</div>
-                <div className="stat-value">{metrics.data.subscribedAmount}</div>
+                <div className="stat-value">{metrics?.data.subscribedAmount}</div>
               </div>
 
               <div className="stat">
@@ -156,7 +159,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376830/clipboard.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Reports</div>
-                <div className="stat-value">{metrics.data.reportsAmount}</div>
+                <div className="stat-value">{metrics?.data.reportsAmount}</div>
               </div>
           
           </div>
