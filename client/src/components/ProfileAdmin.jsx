@@ -18,16 +18,17 @@ export const Admin = () => {
   if(isError){
     <Error/>
   }
+  console.log(metrics);
 
     return(
-        <div className='w-200 h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3'>
+        <div className='w-200 h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl m-auto'>
             <div className="stats shadow bg-gray-600">
               <div className="stat">
                 <div className="stat-figure text-secondary">
                   <img src="https://www.svgrepo.com/show/376754/analytics.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Users</div>
-                <div className="stat-value">{metrics.data.usersAmount}</div>
+                <div className="stat-value">{metrics?.data.usersAmount}</div>
               </div>
   
               <div className="stat">
@@ -35,7 +36,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376751/analytics-plus.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">New Users</div>
-                <div className="stat-value">{metrics.data.newUsers}</div>
+                <div className="stat-value">{metrics?.data.newUsers}</div>
               </div>
     
               <div className="stat">
@@ -43,7 +44,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376871/dollar-circle.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Suscribed</div>
-                <div className="stat-value">{metrics.data.subscribedAmount}</div>
+                <div className="stat-value">{metrics?.data.subscribedAmount}</div>
               </div>
 
               <div className="stat">
@@ -51,7 +52,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376830/clipboard.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Reports</div>
-                <div className="stat-value">{metrics.data.reportsAmount}</div>
+                <div className="stat-value">{metrics?.data.reportsAmount}</div>
               </div>
             </div>
             <div className="flex items-center h-150 w-200 gap-2 justify-center">
