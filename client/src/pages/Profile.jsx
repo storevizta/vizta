@@ -118,26 +118,25 @@ export const Profile = () => {
               Reputation
             </button>
           </div>
-          { dataUserId.role === 'admin'?
+          {dataUserId.role === 'admin' ? (
             <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
               <img
                 className="brightness-0 invert h-5"
                 src="https://www.svgrepo.com/show/376813/chats-2.svg"
               ></img>
               <button>
-              <Link to="/admin">Admin</Link>
+                <Link to="/admin">Admin</Link>
               </button>
             </div>
-            : null
-            }
-            <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+          ) : null}
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
               className="brightness-0 invert h-5"
               src="https://www.svgrepo.com/show/376950/logout.svg"
             ></img>
             <LogOutButton />
           </div>
-          </div>
+        </div>
         <h4 className="absolute bottom-3 ml-5">Vizta Copyrigth ©</h4>
       </aside>
 
@@ -178,7 +177,15 @@ export const Profile = () => {
             <div className="divider"></div>
             <div className="flex w-150">
               <label className="ml-5">Address</label>
-              
+              <p className="w-full text-right mr-5">
+                {dataUserId.address
+                  ? dataUserId.address.map((address) => (
+                      <p>
+                        {address.street} {address.number}
+                      </p>
+                    ))
+                  : 'You have not defined an address'}
+              </p>
             </div>
             <div className="divider"></div>
             <div className="flex w-150">
@@ -192,7 +199,11 @@ export const Profile = () => {
             <div className="divider"></div>
             <div className="flex w-150">
               <label className="ml-5 w-full">Joined Vizta</label>
-              <p className="w-full text-right mr-5">{dataUserId.createdAt}</p>
+              <p className="w-full text-right mr-5">
+                {dataUserId.createdAt
+                  .slice(0, 10)
+                  .replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1')}
+              </p>
             </div>
           </div>
         </div>
@@ -319,9 +330,6 @@ export const Profile = () => {
             </div>
           </div>
         )}
-        
-          
-        
       </div>
     </div>
   );
