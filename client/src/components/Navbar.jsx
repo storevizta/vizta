@@ -51,8 +51,8 @@ export const Navbar = () => {
             class="text-white text-3xl font-bold uppercase tracking-widest"
             style={{
               fontFamily:
-                "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif",
-              letterSpacing: "2px",
+                '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif',
+              letterSpacing: '2px',
             }}
           >
             VIZTA
@@ -138,5 +138,5 @@ export const Navbar = () => {
         </div>
       </nav>
     </div>
-);
+  );
 };
