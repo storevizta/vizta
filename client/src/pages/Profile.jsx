@@ -116,32 +116,26 @@ export const Profile = () => {
               Reputation
             </button>
           </div>
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
-            <img
-              className="brightness-0 invert h-5"
-              src="https://www.svgrepo.com/show/376813/chats-2.svg"
-            ></img>
-            <button
-              className="text-left"
-              onClick={() => handlePanelClick('Admin')}
-            >
-              Admin Dashboard
-            </button>
-          </div>
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+          { dataUserId.role === 'admin'?
+            <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+              <img
+                className="brightness-0 invert h-5"
+                src="https://www.svgrepo.com/show/376813/chats-2.svg"
+              ></img>
+              <button>
+              <Link to="/admin">Admin</Link>
+              </button>
+            </div>
+            : null
+            }
+            <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
               className="brightness-0 invert h-5"
               src="https://www.svgrepo.com/show/376950/logout.svg"
             ></img>
             <LogOutButton />
           </div>
-         { dataUserId.role === 'admin'?
-            <button>
-            <Link to="/admin">Admin</Link>
-            </button>
-            : null
-            }
-        </div>
+          </div>
         <h4 className="absolute bottom-3 ml-5">Vizta Copyrigth ©</h4>
       </aside>
 
