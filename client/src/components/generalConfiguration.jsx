@@ -127,7 +127,7 @@ export const Configuration = ({info}) => {
                         <input className="file-input w-full" type="text" name="number" placeholder="Street number" onChange={(e) => handleInputAddress(e, index)}></input>
                     </div>
                 )}
-                <button onClick={addAddress}>Add address</button>
+                <button className="btn btn-info" onClick={addAddress}>Add address</button>
                 </div>
             </div>
             <div className="flex items-center w-150 gap-5 bg-gray-600 p-10 rounded-xl">

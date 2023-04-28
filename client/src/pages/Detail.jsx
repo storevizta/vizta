@@ -30,10 +30,11 @@ const FakeIMG = 'https://picsum.photos/200/300';
 export const Detail = () => {
   const { id } = useParams();
 
+  
   const dispatch = useDispatch();
-
+  
   const [currentImage, setCurrentImage] = useState(0);
-
+  
   const { data, error, isLoading } = useGetAdByIdQuery(id);
 
   const { isAuthenticated, loginWithRedirect } = useAuth0();
