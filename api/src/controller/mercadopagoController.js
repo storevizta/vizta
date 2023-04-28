@@ -27,6 +27,8 @@ const createPreference = async (req, res) => {
 
     if (user) {
       user.subscribe = 'Subscribed';
+
+      user.save();
     }
   }
 
