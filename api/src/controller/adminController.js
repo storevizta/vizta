@@ -39,16 +39,14 @@ const getUserById = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { name, email, password, address } = req.body;
+  const { name, email, address } = req.body;
   try {
     if (id) {
       const user = await User.findByPk(id);
 
-      const hashedPassword = await bcrypt.hash(password, 10);
       const modifyUser = await user.update({
         name: name,
         email: email,
-        password: hashedPassword,
         address: address,
       });
 
