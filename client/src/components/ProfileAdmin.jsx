@@ -36,7 +36,18 @@ export const Admin = () => {
 
   if (isLoadingUserId) return <div>Loading...</div>;
   
-  const metrics = useGetMetricsQuery()
+  const {data: data2, isError: isError2, isLoading:isLoading2} = useGetMetricsQuery()
+
+  
+  if(isLoading2){
+    return(
+      <p>Loading...</p>
+    )
+  }
+
+  if(isError2){
+    <Error/>
+  }
 
   const {data: data1, isError: isError1, isLoading:isLoading1}  = useGetAllReportsQuery()
 
@@ -132,7 +143,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376754/analytics.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Users</div>
-                <div className="stat-value">{metrics.data.usersAmount}</div>
+                <div className="stat-value">{data2.usersAmount}</div>
               </div>
   
               <div className="stat">
@@ -140,7 +151,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376751/analytics-plus.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">New Users</div>
-                <div className="stat-value">{metrics.data.newUsers}</div>
+                <div className="stat-value">{data2.newUsers}</div>
               </div>
     
               <div className="stat">
@@ -148,7 +159,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376871/dollar-circle.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Suscribed</div>
-                <div className="stat-value">{metrics.data.subscribedAmount}</div>
+                <div className="stat-value">{data2.subscribedAmount}</div>
               </div>
 
               <div className="stat">
@@ -156,7 +167,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376830/clipboard.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Reports</div>
-                <div className="stat-value">{metrics.data.reportsAmount}</div>
+                <div className="stat-value">{data2.reportsAmount}</div>
               </div>
           
           </div>
