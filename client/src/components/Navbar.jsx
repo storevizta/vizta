@@ -32,6 +32,8 @@ export const Navbar = () => {
 
   const searchProfile = location.pathname !== `/profile`;
 
+  const favoriteLanding = location.pathname !== `/`;
+
   const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
   const handlerChange = (e) => {
@@ -51,44 +53,46 @@ export const Navbar = () => {
             class="text-white text-3xl font-bold uppercase tracking-widest"
             style={{
               fontFamily:
-                "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif",
-              letterSpacing: "2px",
+                '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif',
+              letterSpacing: '2px',
             }}
           >
             VIZTA
           </h1>
         </Link>
 
-          {searchProfile && searchLanding && searchDetail && (
-            <div>
-              <input
-                class="bg-zinc-700 px-3 py-2 rounded-full w-140 transition-all duration-500 hover:bg-white hover:border-white"
-                type="text"
-                name="search"
-                id="search"
-                placeholder="Search..."
-              />
-            </div>
-          )}
+        {searchProfile && searchLanding && searchDetail && (
+          <div>
+            <input
+              class="bg-zinc-700 px-3 py-2 rounded-full w-140 transition-all duration-500 hover:bg-white hover:border-white"
+              type="text"
+              name="search"
+              id="search"
+              placeholder="Search..."
+            />
+          </div>
+        )}
 
         <div class="flex">
           <ul class="flex items-center">
-            <li class="font-semibold text-white mr-4 ">
-              {isAuthenticated ? (
-                <Link to="/favorite">
-                  <button class="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans">
-                    Favorites ({wishlistsItems?.length})
+            {favoriteLanding && (
+              <li class="font-semibold text-white mr-4 ">
+                {isAuthenticated ? (
+                  <Link to="/favorite">
+                    <button class="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans">
+                      Favorites ({wishlistsItems?.length})
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    class="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans"
+                    onClick={() => loginWithRedirect()}
+                  >
+                    Favorites
                   </button>
-                </Link>
-              ) : (
-                <button
-                  class="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans"
-                  onClick={() => loginWithRedirect()}
-                >
-                  Favorites
-                </button>
-              )}
-            </li>
+                )}
+              </li>
+            )}
 
             {isAuthenticated ? (
               <>
@@ -138,5 +142,5 @@ export const Navbar = () => {
         </div>
       </nav>
     </div>
-);
+  );
 };
