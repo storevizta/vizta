@@ -165,9 +165,9 @@ const getMetrics = async (req, res) => {
       reportsAmount: reportsAmount.length,
     };
 
-    res.json(metrics);
+    res.status(200).json(metrics);
   } catch (error) {
-    res.json(error);
+    res.status(400).json(error);
   }
 };
 

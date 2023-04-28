@@ -59,9 +59,8 @@ export const Navbar = () => {
           </h1>
         </Link>
 
-        <div class="flex items-center">
           {searchProfile && searchLanding && searchDetail && (
-            <div class="flex items-center mr-4">
+            <div>
               <input
                 class="bg-zinc-700 px-3 py-2 rounded-full w-140 transition-all duration-500 hover:bg-white hover:border-white"
                 type="text"
@@ -72,6 +71,7 @@ export const Navbar = () => {
             </div>
           )}
 
+        <div class="flex">
           <ul class="flex items-center">
             <li class="font-semibold text-white mr-4 ">
               {isAuthenticated ? (

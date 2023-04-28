@@ -49,4 +49,4 @@ export const Admin = createApi({
 });
 
 
-export const { useGetAllUsersQuery } = Admin;
+export const { useGetAllUsersQuery, useGetMetricsQuery } = Admin;
