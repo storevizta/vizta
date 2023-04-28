@@ -49,6 +49,7 @@ export const Admin = createApi({
 });
 
 
+
 export const { useGetAllUsersQuery,
 useGetIdUsersQuery,
 useGetMetricsQuery,
@@ -59,3 +60,4 @@ useGetIdAdsQuery,
 useUpdatedAdsMutation,
 useDeletedAdsMutation,
 } = Admin;
+
