@@ -135,12 +135,11 @@ export const Profile = () => {
             ></img>
             <LogOutButton />
           </div>
-         { dataUserId.role === 'admin'?
+          {dataUserId.role === 'admin' ? (
             <button>
-            <Link to="/admin">Admin</Link>
+              <Link to="/admin">Admin</Link>
             </button>
-            : null
-            }
+          ) : null}
         </div>
         <h4 className="absolute bottom-3 ml-5">Vizta Copyrigth ©</h4>
       </aside>
@@ -184,7 +183,11 @@ export const Profile = () => {
               <label className="ml-5">Address</label>
               <p className="w-full text-right mr-5">
                 {dataUserId.address
-                  ? dataUserId.address
+                  ? dataUserId.address.map((address) => (
+                      <p>
+                        {address.street} {address.number}
+                      </p>
+                    ))
                   : 'You have not defined an address'}
               </p>
             </div>
@@ -200,7 +203,11 @@ export const Profile = () => {
             <div className="divider"></div>
             <div className="flex w-150">
               <label className="ml-5 w-full">Joined Vizta</label>
-              <p className="w-full text-right mr-5">{dataUserId.createdAt}</p>
+              <p className="w-full text-right mr-5">
+                {dataUserId.createdAt
+                  .slice(0, 10)
+                  .replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1')}
+              </p>
             </div>
           </div>
         </div>
@@ -327,9 +334,6 @@ export const Profile = () => {
             </div>
           </div>
         )}
-        
-          
-        
       </div>
     </div>
   );

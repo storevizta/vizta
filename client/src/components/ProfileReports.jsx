@@ -7,11 +7,9 @@ export const ProfileReports = ({ userId }) => {
     <p>Is Loading...</p>;
   }
 
-  console.log(data);
-
   return (
     <div>
-      {data.length > 0 ? (
+      {data && data.length > 0 ? (
         data.map((report) => (
           <div className="w-140 p-2 mt-5 flex flex-col gap-2 bg-gray-600 rounded-2xl ml-3">
             <p className="text-lg text-bold text-white">

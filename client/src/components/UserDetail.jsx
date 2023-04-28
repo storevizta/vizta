@@ -35,7 +35,9 @@ export const UserDetail = (userId) => {
     <div className="bg-white p-4">
       <p className="font-bold text-black">Seller: </p>
       <p className="text-sm pl-8 text-black">{name}</p>
-      <p className="text-sm pl-8 text-black">{address}</p>
+      <p className="text-sm pl-8 text-black">
+        {address[0].street} {address[0].number}
+      </p>
       <p className="text-sm pl-8 text-black">Joined Vizta {created}</p>
 
       <Link to={`/reportUser/${id}`}>
