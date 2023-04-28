@@ -25,9 +25,9 @@ export const Configuration = ({info}) => {
     const [address, setAddress] = useState([])
 
     useEffect(() => {
-        if(userData.data.address){
-            const JSONstring = userData.data.address.map(value => JSON.parse(value))
-            setOldAddress(JSONstring)
+        if(userData?.data.address){
+            console.log(userData?.data.address);
+            setOldAddress(userData?.data.address)
         }
     }, [])
 

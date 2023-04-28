@@ -23,7 +23,11 @@ export const Admin = () => {
   const { user, isLoading } = useAuth0();
 
   const [activePanel, setActivePanel] = useState(null);
+  
+  const {data: data1, isError: isError1, isLoading:isLoading1}  = useGetAllReportsQuery()
 
+  const metric = useGetMetricsQuery()
+  
   const showDefaultPanel = activePanel === null;
 
   if (isLoading) return <div>Loading...</div>;
@@ -36,9 +40,18 @@ export const Admin = () => {
 
   if (isLoadingUserId) return <div>Loading...</div>;
   
-  const metrics = useGetMetricsQuery()
 
-  const {data: data1, isError: isError1, isLoading:isLoading1}  = useGetAllReportsQuery()
+  
+  if(metric.isLoading){
+    return(
+      <p>Loading...</p>
+    )
+  }
+
+  if(metric.isError){
+    <Error/>
+  }
+
 
   if(isLoading1){
     return(
@@ -49,7 +62,6 @@ export const Admin = () => {
   if(isError1){
     <Error/>
   }
-  console.log(metrics);
 
 
   const handlePanelClick = (panel) => {
@@ -139,7 +151,7 @@ export const Admin = () => {
                   <div className="stat-figure text-secondary">
                     <img src="https://www.svgrepo.com/show/376754/analytics.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                   </div>
-                  <div className="stat-value">{metrics?.data.usersAmount}</div>
+                  <div className="stat-value">{metric.data.usersAmount}</div>
                 </div>
               </div>
   
@@ -148,7 +160,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376751/analytics-plus.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">New Users</div>
-                <div className="stat-value">{metrics?.data.newUsers}</div>
+                <div className="stat-value">{metric.data.newUsers}</div>
               </div>
     
               <div className="stat">
@@ -156,7 +168,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376871/dollar-circle.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Suscribed</div>
-                <div className="stat-value">{metrics?.data.subscribedAmount}</div>
+                <div className="stat-value">{metric.data.subscribedAmount}</div>
               </div>
 
               <div className="stat">
@@ -164,7 +176,7 @@ export const Admin = () => {
                   <img src="https://www.svgrepo.com/show/376830/clipboard.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Reports</div>
-                <div className="stat-value">{metrics?.data.reportsAmount}</div>
+                <div className="stat-value">{metric.data.reportsAmount}</div>
               </div>
           
           </div>
