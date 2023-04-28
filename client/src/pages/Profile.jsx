@@ -133,7 +133,7 @@ export const Profile = () => {
             ></img>
             <LogOutButton />
           </div>
-         { data.role === 'admin'?
+         { dataUserId.role === 'admin'?
             <button>
             <Link to="/admin">Admin</Link>
             </button>
@@ -304,13 +304,13 @@ export const Profile = () => {
                 className="input w-28 h-8"
               />
             </div>
-            {/*dataRating3.map((rating) => (
+            {dataRating3.map((rating) => (
               <div key={rating.id}>
                 <div>Comment: {rating.comment}</div>
                 <div>Rating: {rating.rating}</div>
                 <div>Comment date:{rating.createdAt}</div>
               </div>
-            ))*/}
+            ))}
           </div>
         )}
         {activePanel === 'Messages' && (
