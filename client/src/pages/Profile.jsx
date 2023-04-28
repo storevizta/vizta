@@ -128,13 +128,6 @@ export const Profile = () => {
               Admin Dashboard
             </button>
           </div>
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
-            <img
-              className="brightness-0 invert h-5"
-              src="https://www.svgrepo.com/show/376950/logout.svg"
-            ></img>
-            <LogOutButton />
-          </div>
           { dataUserId.role === 'admin'?
             <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
               <img
@@ -147,6 +140,13 @@ export const Profile = () => {
             </div>
             : null
             }
+            <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/376950/logout.svg"
+            ></img>
+            <LogOutButton />
+          </div>
           </div>
         <h4 className="absolute bottom-3 ml-5">Vizta Copyrigth ©</h4>
       </aside>
