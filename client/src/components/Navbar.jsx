@@ -40,113 +40,103 @@ export const Navbar = () => {
   };
 
   const idUser = localStorage.getItem('id');
-  console.log(idUser)
+  console.log(idUser);
   const userData = useGetUserIdQuery(idUser);
 
   return (
-    // <nav className="max-h-16 h-16 flex">
-    //   <div className="w-full p-5 flex justify-between items-center">
-    //     <Link to="/home">
-    //       {/* <div className="text-xl">{Logo}</div> */}
-    //       <div>
-    //         <img src={Logo} className="h-8"></img>
-    //       </div>
-    //     </Link>
-    //     {searchProfile && searchLanding && searchDetail && (
-    //       <form>
-    //         <input
-    //           className="w-80 px-2.5  py-1 rounded-full outline-none bg-zinc-700 hover:bg-zinc-600"
-    //           type="text"
-    //           placeholder="Search.."
-    //           onChange={handlerChange}
-    //         />
-    //       </form>
-    //     )}
-    //     <div className="flex items-center gap-5">
-    //       {isAuthenticated ? (
-    //         <>
-    //           <Link to="/post">
-    //             <img className="w-5 " src={post} alt="" />
-    //           </Link>
-    //           <Profile />
-    //           <LogOutButton />
-    //         </>
-    //       ) : (
-    //         <>
-    //           <LoginButton />
-    //         </>
-    //       )}
-    //     </div>
-    //   </div>
-    // </nav>
-    <>
-      <div className="navbar bg-base-100">
-        <div className="flex-1">
-          <Link className="btn btn-ghost normal-case text-xl" to="/home">
+    <div className="bg-base-100">
+      <nav class="flex justify-between px-10 py-5 items-center">
+        <Link to="/home">
+          <h1
+            class="text-white text-3xl font-bold uppercase tracking-widest"
+            style={{
+              fontFamily:
+                "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif",
+              letterSpacing: "2px",
+            }}
+          >
             VIZTA
-          </Link>
-        </div>
-        <div className="flex-none gap-2">
+          </h1>
+        </Link>
+
+        <div class="flex items-center">
           {searchProfile && searchLanding && searchDetail && (
-            <div className="form-control">
+            <div class="flex items-center mr-4">
               <input
+                class="bg-zinc-700 px-3 py-2 rounded-full w-140 transition-all duration-500 hover:bg-white hover:border-white"
                 type="text"
-                placeholder="Search"
-                onChange={handlerChange}
-                className="input input-bordered"
+                name="search"
+                id="search"
+                placeholder="Search..."
               />
             </div>
           )}
-          <div>
-            {isAuthenticated ? (
-              <Link to="/favorite">
-                <button>Favorites ({wishlistsItems?.length})</button>
-              </Link>
-            ) : (
-              <button onClick={() => loginWithRedirect()}>Favorites</button>
-            )}
-          </div>
-          {isAuthenticated ? (
-            <>
-              <div className="dropdown dropdown-end">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full">
-                    <img
-                      className="w-56 h-56 rounded"
-                      src={userData?.data?.picture}
-                      alt="image"
-                      onError={(e) => (e.target.src = `${imageError}`)}
-                    />
-                  </div>
-                </label>
-                <ul
-                  tabIndex={0}
-                  className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+
+          <ul class="flex items-center">
+            <li class="font-semibold text-white mr-4 ">
+              {isAuthenticated ? (
+                <Link to="/favorite">
+                  <button class="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans">
+                    Favorites ({wishlistsItems?.length})
+                  </button>
+                </Link>
+              ) : (
+                <button
+                  class="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans"
+                  onClick={() => loginWithRedirect()}
                 >
-                  <li>
-                    <Link className="justify-between" to="/profile">
-                      <Profile />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/subscribe">Subscribe</Link>
-                  </li>
-                  <li>
-                    <Link to="/post">Sell</Link>
-                  </li>
-                  <li>
-                    <LogOutButton />
-                  </li>
-                </ul>
-              </div>
-            </>
-          ) : (
-            <>
-              <LoginButton />
-            </>
-          )}
+                  Favorites
+                </button>
+              )}
+            </li>
+
+            {isAuthenticated ? (
+              <>
+                <div className="dropdown dropdown-end">
+                  <label
+                    tabIndex={0}
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10 rounded-full">
+                      <img
+                        className="w-56 h-56 rounded"
+                        src={userData?.data?.picture}
+                        alt="image"
+                        onError={(e) => (e.target.src = `${imageError}`)}
+                      />
+                    </div>
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                  >
+                    <li>
+                      <Link className="justify-between" to="/profile">
+                        <Profile />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/subscribe">Subscribe</Link>
+                    </li>
+                    <li>
+                      <Link to="/post">Sell</Link>
+                    </li>
+                    <li class="font-semibold text-white ml-4">
+                      <LogOutButton />
+                    </li>
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <>
+                <li class="font-semibold text-white ml-4">
+                  <LoginButton />
+                </li>
+              </>
+            )}
+          </ul>
         </div>
-      </div>
-    </>
-  );
+      </nav>
+    </div>
+);
 };
