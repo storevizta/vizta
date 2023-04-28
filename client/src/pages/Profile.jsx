@@ -116,18 +116,17 @@ export const Profile = () => {
               Reputation
             </button>
           </div>
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
-            <img
-              className="brightness-0 invert h-5"
-              src="https://www.svgrepo.com/show/376813/chats-2.svg"
-            ></img>
-            <button
-              className="text-left"
-              onClick={() => handlePanelClick('Admin')}
-            >
-              Admin Dashboard
-            </button>
-          </div>
+          {dataUserId.role === 'admin' ? (
+            <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+              <img
+                className="brightness-0 invert h-5"
+                src="https://www.svgrepo.com/show/376813/chats-2.svg"
+              ></img>
+              <button>
+                <Link to="/admin">Admin</Link>
+              </button>
+            </div>
+          ) : null}
           <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
               className="brightness-0 invert h-5"
@@ -135,12 +134,6 @@ export const Profile = () => {
             ></img>
             <LogOutButton />
           </div>
-         { dataUserId.role === 'admin'?
-            <button>
-            <Link to="/admin">Admin</Link>
-            </button>
-            : null
-            }
         </div>
         <h4 className="absolute bottom-3 ml-5">Vizta Copyrigth ©</h4>
       </aside>
@@ -184,7 +177,11 @@ export const Profile = () => {
               <label className="ml-5">Address</label>
               <p className="w-full text-right mr-5">
                 {dataUserId.address
-                  ? dataUserId.address
+                  ? dataUserId.address.map((address) => (
+                      <p>
+                        {address.street} {address.number}
+                      </p>
+                    ))
                   : 'You have not defined an address'}
               </p>
             </div>
@@ -200,7 +197,11 @@ export const Profile = () => {
             <div className="divider"></div>
             <div className="flex w-150">
               <label className="ml-5 w-full">Joined Vizta</label>
-              <p className="w-full text-right mr-5">{dataUserId.createdAt}</p>
+              <p className="w-full text-right mr-5">
+                {dataUserId.createdAt
+                  .slice(0, 10)
+                  .replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1')}
+              </p>
             </div>
           </div>
         </div>
@@ -327,9 +328,6 @@ export const Profile = () => {
             </div>
           </div>
         )}
-        
-          
-        
       </div>
     </div>
   );

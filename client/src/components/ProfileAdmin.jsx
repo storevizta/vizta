@@ -60,6 +60,8 @@ export const Admin = () => {
   if(isError1){
     <Error/>
   }
+  console.log(metrics);
+
 
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
@@ -139,6 +141,7 @@ export const Admin = () => {
         <div className="p-2 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
           <div className="flex gap-2 items-center mt-5">
             <div className="stat">
+
                 <div className="stat-figure text-secondary">
                   <img src="https://www.svgrepo.com/show/376754/analytics.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
