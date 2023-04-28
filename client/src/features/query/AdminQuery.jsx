@@ -32,14 +32,14 @@ export const Admin = createApi({
     getIdAds: builder.query({
       query: (id) => `/admin/ads/${id}`,
     }),
-    updateAds: builder.mutation({
+    updatedAds: builder.mutation({
       query: (id) => ({
        url: `admin/ads/${id}`,
        method: 'PUT',
        body: data,
        }),
        }),
-    deleteAds: builder.mutation({
+    deletedAds: builder.mutation({
       query: (id) => ({
         url: `admin/ads/${id}`,
         method: 'DELETE',
@@ -49,4 +49,15 @@ export const Admin = createApi({
 });
 
 
-export const { useGetAllUsersQuery, useGetMetricsQuery } = Admin;
+
+export const { useGetAllUsersQuery,
+useGetIdUsersQuery,
+useGetMetricsQuery,
+useDeleteUserMutation,
+useUpdateUserMutation,
+useGetAllAdsQuery,
+useGetIdAdsQuery,
+useUpdatedAdsMutation,
+useDeletedAdsMutation,
+} = Admin;
+
