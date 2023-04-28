@@ -141,47 +141,45 @@ export const Admin = () => {
       {showDefaultPanel && (
         <div className="p-2 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
           <div className="flex gap-2 items-center mt-5">
-            <div className="stat">
 
-                <div className="stat-figure text-secondary">
-                  <img src="https://www.svgrepo.com/show/376754/analytics.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
-                </div>
-                <div className="stat-title">Users</div>
-                <div className="flex">
-                  <div className="stat-figure text-secondary">
-                    <img src="https://www.svgrepo.com/show/376754/analytics.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
-                  </div>
-                  <div className="stat-value">{metric.data.usersAmount}</div>
-                </div>
-              </div>
+          <div className="stats shadow">
   
-              <div className="stat">
-                <div className="stat-figure text-secondary">
-                  <img src="https://www.svgrepo.com/show/376751/analytics-plus.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
-                </div>
-                <div className="stat-title">New Users</div>
-                <div className="stat-value">{metric.data.newUsers}</div>
+            <div className="stat">
+              <div className="stat-figure text-secondary">
+              <img src="https://www.svgrepo.com/show/376754/analytics.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
               </div>
-    
-              <div className="stat">
-                <div className="stat-figure text-secondary">
-                  <img src="https://www.svgrepo.com/show/376871/dollar-circle.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
-                </div>
-                <div className="stat-title">Suscribed</div>
-                <div className="stat-value">{metric.data.subscribedAmount}</div>
+              <div className="stat-title">Downloads</div>
+              <div className="stat-value">{metric.data.usersAmount}</div>
+              <div className="stat-desc">Jan 1st - Feb 1st</div>
+            </div>
+            
+            <div className="stat">
+              <div className="stat-figure text-secondary">
+              <img src="https://www.svgrepo.com/show/376751/analytics-plus.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
               </div>
+              <div className="stat-title">New Users</div>
+              <div className="stat-value">{metric.data.newUsers}</div>
+              <div className="stat-desc">↗︎ 400 (22%)</div>
+            </div>
+            
+            <div className="stat">
+              <div className="stat-figure text-secondary">
+              <img src="https://www.svgrepo.com/show/376871/dollar-circle.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
+              </div>
+              <div className="stat-title">Subscribed</div>
+              <div className="stat-value">{metric.data.subscribedAmount}</div>
+              <div className="stat-desc">↘︎ 90 (14%)</div>
+            </div>
 
-              <div className="stat">
+            <div className="stat">
                 <div className="stat-figure text-secondary">
                   <img src="https://www.svgrepo.com/show/376830/clipboard.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
                 </div>
                 <div className="stat-title">Reports</div>
                 <div className="stat-value">{metric.data.reportsAmount}</div>
               </div>
-          
+            </div>
           </div>
-
-          
         </div>
       )}
 
