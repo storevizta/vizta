@@ -24,6 +24,8 @@ import { ReportAd } from '../pages/ReportAd';
 
 import { ReportUser } from '../pages/ReportUser';
 
+import { Admin } from '../components/ProfileAdmin';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -71,6 +73,10 @@ export const router = createBrowserRouter([
         path: 'reportUser/:id',
         element: <ReportUser />,
       },
+      {
+        path: '/admin',
+        element: <Admin />,
+      }
     ],
   },
 ]);

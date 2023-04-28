@@ -133,6 +133,12 @@ export const Profile = () => {
             ></img>
             <LogOutButton />
           </div>
+         { data.role === 'admin'?
+            <button>
+            <Link to="/admin">Admin</Link>
+            </button>
+            : null
+            }
         </div>
         <h4 className="absolute bottom-3 ml-5">Vizta Copyrigth ©</h4>
       </aside>
@@ -319,11 +325,9 @@ export const Profile = () => {
             </div>
           </div>
         )}
-        {activePanel === 'Admin' && (
-          <div>
-            <Admin />
-          </div>
-        )}
+        
+          
+        
       </div>
     </div>
   );
