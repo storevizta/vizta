@@ -24,11 +24,13 @@ export const Admin = () => {
         <div className='w-200 h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl m-auto'>
             <div className="stats shadow bg-gray-600">
               <div className="stat">
-                <div className="stat-figure text-secondary">
-                  <img src="https://www.svgrepo.com/show/376754/analytics.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
-                </div>
                 <div className="stat-title">Users</div>
-                <div className="stat-value">{metrics?.data.usersAmount}</div>
+                <div className="flex">
+                  <div className="stat-figure text-secondary">
+                    <img src="https://www.svgrepo.com/show/376754/analytics.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
+                  </div>
+                  <div className="stat-value">{metrics?.data.usersAmount}</div>
+                </div>
               </div>
   
               <div className="stat">

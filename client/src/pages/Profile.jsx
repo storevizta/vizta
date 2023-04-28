@@ -47,6 +47,8 @@ export const Profile = () => {
     setActivePanel(activePanel === panel ? null : panel);
   };
 
+  console.log(dataUserId);
+
   return (
     <div className="flex m-5">
       <aside className="h-screen rounded-xl w-80 bg-zinc-700 flex flex-col text-left gap-10">
@@ -176,11 +178,7 @@ export const Profile = () => {
             <div className="divider"></div>
             <div className="flex w-150">
               <label className="ml-5">Address</label>
-              <p className="w-full text-right mr-5">
-                {dataUserId.address
-                  ? dataUserId.address
-                  : 'You have not defined an address'}
-              </p>
+              
             </div>
             <div className="divider"></div>
             <div className="flex w-150">
