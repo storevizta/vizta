@@ -17,8 +17,6 @@ import { Error } from "./Error"
 import { useEffect, useState } from 'react';
 
 
-
-
 export const Admin = () => {
   const { user, isLoading } = useAuth0();
 
@@ -62,6 +60,7 @@ export const Admin = () => {
   }
   console.log(metrics);
 
+  
 
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
@@ -99,20 +98,6 @@ export const Admin = () => {
               Reports
             </button>
           </div>
-
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
-            <img
-              className="brightness-0 invert h-5"
-              src="https://www.svgrepo.com/show/376856/creditcard-hand.svg"
-            ></img>
-            <button
-              className="text-left"
-              onClick={() => handlePanelClick('Subscription')}
-            >
-              Subscription
-            </button>
-          </div>
-
           <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
               className="brightness-0 invert h-5"
@@ -120,9 +105,21 @@ export const Admin = () => {
             ></img>
             <button
               className="text-left"
-              onClick={() => handlePanelClick('Admin Action')}
+              onClick={() => handlePanelClick('Category')}
             >
-              Admin Action
+              Category
+            </button>
+          </div>
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/377112/users.svg"
+            ></img>
+            <button
+              className="text-left"
+              onClick={() => handlePanelClick('Users')}
+            >
+              Users
             </button>
           </div>
           
@@ -185,18 +182,14 @@ export const Admin = () => {
             <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
               <h2 className="text-4xl">Advertisements</h2>
               <ProfileAdvertisements userId={user.sub} />
+      
             </div>
           </div>
         )}
-        {activePanel === 'Subscription' && (
-          <div className="h-screen p-2 flex flex-col gap-2 bg-zinc-700 rounded-2xl ml-3">
-            <h2 className="text-center mb-10 mt-5">Subscription</h2>
-            
-          </div>
-        )}
-        {activePanel === 'Admin Action' && (
+        
+        {activePanel === 'Users' && (
           <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
-            <h2>Admin Action</h2>
+            <h2>Users</h2>
             <div className="flex gap-2 mb-5">
               <div className="m-5">
                       <h3 className="text-center">Ban a user by Id</h3>
@@ -239,7 +232,14 @@ export const Admin = () => {
                 }
           </div>
         )}
-        
+        {activePanel === 'Category' && (
+          <div className="panel">
+            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
+              <h2 className="text-4xl">Category</h2>
+              
+            </div>
+          </div>
+        )}
           
         
       </div>
