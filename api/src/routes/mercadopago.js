@@ -3,11 +3,11 @@ require('dotenv').config();
 const router = require('express').Router();
 
 const {
-  createPreferenc,
+  createPreference,
   feedback,
 } = require('../controller/mercadopagoController.js');
 
-router.post('/create_preference', createPreferenc);
+router.post('/create_preference', createPreference);
 
 router.get('/feedback', feedback);
 
