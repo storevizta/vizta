@@ -8,36 +8,14 @@ import { addToWishList } from '../features/slices/FavSlices';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { useGetUserIdQuery } from '../features/query/UserQuery';
-
-import { useDeleteUserMutation } from '../features/query/AdminQuery';
-
 // Cambie imageError por FakeIMG
 
 export const Card = ({ info }) => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
-  const [deleteUser] = useDeleteUserMutation();
-
   const dispatch = useDispatch();
 
-  const {
-    data: dataUserId,
-    error: errorUserId,
-    isLoading: isLoadingUserId,
-  } = useGetUserIdQuery(isAuthenticated.sub);
-
   const { image, title, price } = info;
-
-  const deleteCardHandler = async (id) => {
-  try {
-    await deleteUser(id);
-    // Aquí podrías actualizar tu lista de cards eliminando la que acaba de ser eliminada
-  } catch (error) {
-    console.error(error);
-    // Manejo de errores aquí
-  }
-};
 
   const addToWishHandler = (info) => {
     dispatch(addToWishList(info));
@@ -82,12 +60,6 @@ export const Card = ({ info }) => {
           <button onClick={() => loginWithRedirect()}>Add favorite</button>
         </div>
       )}
-
-{dataUserId.role === 'admin' ? (
-  <div className="bg-red-500 text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
-    <button onClick={() => deleteCardHandler(info.id)}>X</button>
-  </div>
-   ) : null}
     </div>
   );
 };
