@@ -15,6 +15,7 @@ import { LoginButton } from '../components/LoginButton';
 import { useGetUserIdQuery } from '../features/query/UserQuery';
 
 import imageError from '../assets/imageError.svg';
+
 import { useEffect, useState } from 'react';
 
 export const Navbar = () => {
@@ -42,15 +43,19 @@ export const Navbar = () => {
   };
 
   const idUser = localStorage.getItem('id');
-  console.log(idUser);
-  const userData = useGetUserIdQuery(idUser);
+
+  const { data, error, isLoading } = useGetUserIdQuery(idUser);
+
+  if (isLoading) return <div>Loading...</div>;
+
+  if (error) return <div>Error...</div>;
 
   return (
     <div className="bg-base-100">
-      <nav class="flex justify-between px-10 py-5 items-center">
+      <nav className="flex justify-between px-10 py-5 items-center">
         <Link to="/home">
           <h1
-            class="text-white text-3xl font-bold uppercase tracking-widest"
+            className="text-white text-3xl font-bold uppercase tracking-widest"
             style={{
               fontFamily:
                 '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif',
@@ -64,28 +69,29 @@ export const Navbar = () => {
         {searchProfile && searchLanding && searchDetail && (
           <div>
             <input
-              class="bg-zinc-700 px-3 py-2 rounded-full w-140 transition-all duration-500 hover:bg-white hover:border-white"
+              className="bg-zinc-700 px-3 py-2 rounded-full w-140 transition-all duration-500 outline-none hover:bg-white hover:border-white"
               type="text"
               name="search"
               id="search"
               placeholder="Search..."
+              onChange={handlerChange}
             />
           </div>
         )}
 
-        <div class="flex">
-          <ul class="flex items-center">
+        <div className="flex">
+          <ul className="flex items-center">
             {favoriteLanding && (
-              <li class="font-semibold text-white mr-4 ">
+              <li className="font-semibold text-white mr-4 ">
                 {isAuthenticated ? (
                   <Link to="/favorite">
-                    <button class="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans">
+                    <button className="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans">
                       Favorites ({wishlistsItems?.length})
                     </button>
                   </Link>
                 ) : (
                   <button
-                    class="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans"
+                    className="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans"
                     onClick={() => loginWithRedirect()}
                   >
                     Favorites
@@ -104,7 +110,7 @@ export const Navbar = () => {
                     <div className="w-10 rounded-full">
                       <img
                         className="w-56 h-56 rounded"
-                        src={userData?.data?.picture}
+                        src={data?.picture}
                         alt="image"
                         onError={(e) => (e.target.src = `${imageError}`)}
                       />
@@ -119,13 +125,17 @@ export const Navbar = () => {
                         <Profile />
                       </Link>
                     </li>
-                    <li>
-                      <Link to="/subscribe">Subscribe</Link>
-                    </li>
+
+                    {data && data.subscribe === 'NotSubscribed' && (
+                      <li>
+                        <Link to="/subscribe">Subscribe</Link>
+                      </li>
+                    )}
+
                     <li>
                       <Link to="/post">Sell</Link>
                     </li>
-                    <li class="font-semibold text-white ml-4">
+                    <li className="font-semibold text-white ml-4">
                       <LogOutButton />
                     </li>
                   </ul>
@@ -133,7 +143,7 @@ export const Navbar = () => {
               </>
             ) : (
               <>
-                <li class="font-semibold text-white ml-4">
+                <li className="font-semibold text-white ml-4">
                   <LoginButton />
                 </li>
               </>

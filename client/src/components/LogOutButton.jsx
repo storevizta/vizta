@@ -5,7 +5,7 @@ export const LogOutButton = () => {
 
   return (
     <button
-      class="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold"
+      className="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold"
       onClick={() => {
         localStorage.clear();
         return logout({ logoutParams: { returnTo: window.location.origin } });

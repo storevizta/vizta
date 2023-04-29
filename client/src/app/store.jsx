@@ -18,6 +18,8 @@ import { Admin } from '../features/query/AdminQuery';
 
 import wishlistsSlice from '../features/slices/FavSlices';
 
+import { MercadoPago } from '../features/query/MercadoPagoQuery';
+
 export const store = configureStore({
   reducer: {
     [Ads.reducerPath]: Ads.reducer,
@@ -27,6 +29,7 @@ export const store = configureStore({
     [Rating.reducerPath]: Rating.reducer,
     [Report.reducerPath]: Report.reducer,
     [Admin.reducerPath]: Admin.reducer,
+    [MercadoPago.reducerPath]: MercadoPago.reducer,
     filter: FilterSlice,
     wishlists: wishlistsSlice,
   },
@@ -38,6 +41,7 @@ export const store = configureStore({
       Message.middleware,
       Rating.middleware,
       Report.middleware,
-      Admin.middleware
+      Admin.middleware,
+      MercadoPago.middleware
     ),
 });

@@ -55,7 +55,7 @@ export const Home = () => {
           <div className="grid grid-cols-5">
             {data &&
               data.ads.map((el) => (
-                <div className="m-3">
+                <div key={el.id} className="m-3">
                   <Card info={el} />
                 </div>
               ))}
