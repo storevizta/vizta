@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const mercadopago = require('mercadopago');
 
+const { Op } = require('sequelize');
+
 const {
   Ad,
   Category,
@@ -18,6 +20,24 @@ mercadopago.configure({
   access_token:
     'APP_USR-6692975538978394-042219-d37b80b1c2522d0df0522dc6cc4d64e4-1174786288',
 });
+
+const getSubscribeUserAds = async (req, res) => {
+  try {
+    const subscribedUsers = await User.findAll({
+      where: { subscribe: 'Subscribed' },
+      attributes: ['id'],
+    });
+
+    const subscribedAds = await Ad.findAll({
+      where: { UserId: { [Op.in]: subscribedUsers.map((user) => user.id) } },
+    });
+
+    return res.status(200).json(subscribedAds);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Error' });
+  }
+};
 
 const createPreference = async (req, res) => {
   const { description, price, quantity, userId } = req.body;
@@ -68,4 +88,4 @@ const feedback = async (req, res) => {
   });
 };
 
-module.exports = { createPreference, feedback };
+module.exports = { getSubscribeUserAds, createPreference, feedback };

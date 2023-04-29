@@ -5,7 +5,6 @@ const router = require('express').Router();
 const {
   getAds,
   getAdById,
-  getSubscribeUserAds,
   createAd,
   setStatusAd,
   updateAd,
@@ -15,8 +14,6 @@ const {
 router.get('/', getAds);
 
 router.get('/:id', getAdById);
-
-router.get('/subscribeads', getSubscribeUserAds);
 
 router.post('/', createAd);
 

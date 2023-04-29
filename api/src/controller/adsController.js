@@ -120,24 +120,6 @@ const getAdById = async (req, res) => {
   }
 };
 
-const getSubscribeUserAds = async (req, res) => {
-  try {
-    const subscribedUsers = await User.findAll({
-      where: { subscribe: 'Subscribed' },
-      attributes: ['id'],
-    });
-
-    const subscribedAds = await Ad.findAll({
-      where: { UserId: { [Op.in]: subscribedUsers.map((user) => user.id) } },
-    });
-
-    return res.status(200).json(subscribedAds);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: 'Error' });
-  }
-};
-
 const createAd = async (req, res) => {
   try {
     const {
@@ -266,7 +248,6 @@ const deleteAd = async (req, res) => {
 module.exports = {
   getAds,
   getAdById,
-  getSubscribeUserAds,
   createAd,
   setStatusAd,
   updateAd,
