@@ -128,7 +128,7 @@ const getSubscribeUserAds = async (req, res) => {
     });
 
     const subscribedAds = await Ad.findAll({
-      where: { UserId: subscribedUsers },
+      where: { UserId: { [Op.in]: subscribedUsers.map((user) => user.id) } },
     });
 
     return res.status(200).json(subscribedAds);
