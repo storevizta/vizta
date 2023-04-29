@@ -31,7 +31,7 @@ const getAds = async (req, res) => {
     const options = {
       limit: +size,
       offset: +page * +size,
-      where: {state: "Active"},
+      where: { state: 'Active' },
       order: [['createdAt', 'DESC']],
     };
 
@@ -65,13 +65,13 @@ const getAds = async (req, res) => {
       };
     }
 
-    if(sort === "priceAsc") {
-      options.order = [["price", "ASC"]];
-    } else if (sort === "priceDesc"){
-      options.order = [["price", "DESC"]];
-    } else if (sort === "titleAsc"){
+    if (sort === 'priceAsc') {
+      options.order = [['price', 'ASC']];
+    } else if (sort === 'priceDesc') {
+      options.order = [['price', 'DESC']];
+    } else if (sort === 'titleAsc') {
       options.order = [['title', 'ASC']];
-    } else if(sort === "titleDesc"){
+    } else if (sort === 'titleDesc') {
       options.order = [['title', 'DESC']];
     }
 
@@ -117,6 +117,22 @@ const getAdById = async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(400).json({ message: 'Failed to retrieve the data' });
+  }
+};
+
+const getSubscribeUserAds = async (req, res) => {
+  try {
+    const subscribedUsers = await User.findAll({
+      where: { subscribe: 'Subscribed' },
+      attributes: ['id'],
+    });
+
+    const subscribedAds = await Ad.findAll({ where: subscribedUsers });
+
+    return res.status(200).json(subscribedAds);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Error' });
   }
 };
 
@@ -169,36 +185,46 @@ const createAd = async (req, res) => {
 
 const updateAd = async (req, res) => {
   try {
-    const {adId, image, title, description, price, discount, condition, method, shipment, state} = req.body;
+    const {
+      adId,
+      image,
+      title,
+      description,
+      price,
+      discount,
+      condition,
+      method,
+      shipment,
+      state,
+    } = req.body;
 
-    if(!adId){
-      return res.status(404).json("Missing ID");
+    if (!adId) {
+      return res.status(404).json('Missing ID');
     }
 
     const ad = await Ad.findByPk(adId);
 
-    if(!ad) {
-      return res.status(404).send({ error: "Advertisment not found"})
+    if (!ad) {
+      return res.status(404).send({ error: 'Advertisment not found' });
     }
 
     const updateAd = await ad.update({
-      image: image, 
-      title: title, 
-      description: description, 
-      price: price, 
-      discount: discount, 
-      condition: condition, 
-      method: method, 
-      shipment: shipment, 
-      state: state
+      image: image,
+      title: title,
+      description: description,
+      price: price,
+      discount: discount,
+      condition: condition,
+      method: method,
+      shipment: shipment,
+      state: state,
     });
 
     res.status(200).json(updateAd);
-
   } catch (error) {
     res.status(404).json(error.message);
   }
-}
+};
 
 const setStatusAd = async () => {
   try {
@@ -215,31 +241,32 @@ const setStatusAd = async () => {
 
 const deleteAd = async (req, res) => {
   try {
-    const {id} = req.params
+    const { id } = req.params;
 
-    if(!id){
-      return res.status(400).json("Missing ID")
+    if (!id) {
+      return res.status(400).json('Missing ID');
     }
 
     const ad = await Ad.findByPk(id);
 
-    if(!ad){
-      return res.status(400).json("An ad with that ID was not found");
+    if (!ad) {
+      return res.status(400).json('An ad with that ID was not found');
     } else {
       await ad.destroy();
-      res.status(200).json("This ad was successfuly deleted")
+      res.status(200).json('This ad was successfuly deleted');
     }
   } catch (error) {
     console.log(error.message);
-   return res.status(400).json(error.message) 
+    return res.status(400).json(error.message);
   }
-}
+};
 
 module.exports = {
   getAds,
   getAdById,
+  getSubscribeUserAds,
   createAd,
   setStatusAd,
   updateAd,
-  deleteAd
+  deleteAd,
 };
