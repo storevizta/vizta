@@ -79,7 +79,6 @@ export const Post = () => {
       const imageRef = ref(storage, `posts/${imageUpload[i].name + v4()}`);
       await uploadBytes(imageRef, imageUpload[i]).then(async (snaphsot) => {
         await getDownloadURL(snaphsot.ref).then((url) => {
-          console.log(url);
           setImage([...image, url]);
         });
       });

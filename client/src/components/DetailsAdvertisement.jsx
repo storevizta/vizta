@@ -25,6 +25,8 @@ export const DetailsAdvertisement = ({ adId }) => {
     );
   }
 
+  console.log(data);
+
   return (
     <div>
       <p className="text-lg text-bold">Advertisement: </p>

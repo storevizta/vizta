@@ -120,7 +120,33 @@ export const Admin = () => {
               className="text-left"
               onClick={() => handlePanelClick('Users')}
             >
-              Users
+              Users Actions
+            </button>
+          </div>
+
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/377112/users.svg"
+            ></img>
+            <button
+              className="text-left"
+              onClick={() => handlePanelClick('Ads')}
+            >
+              Advertisement Actions
+            </button>
+          </div>
+
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/377112/users.svg"
+            ></img>
+            <button
+              className="text-left"
+              onClick={() => handlePanelClick('CategoryADM')}
+            >
+              Category Actions
             </button>
           </div>
           
@@ -193,8 +219,8 @@ export const Admin = () => {
         
         {activePanel === 'Users' && (
           <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
-            <h2>Users</h2>
-            <div className="flex gap-2 mb-5">
+            <h2>Users Actions</h2>
+            <div className="gap-2 mb-5">
               <div className="m-5">
                       <h3 className="text-center">Ban a user by Id</h3>
                       <form className="flex flex-col w-100 items-center gap-4">
@@ -203,29 +229,42 @@ export const Admin = () => {
                         <button className="btn btn-error w-52">Ban</button>
                       </form>
                     </div>
-                    <div className="m-5">
-                      <h3 className="text-center">Delete an ad by Id</h3>
-                      <form className="flex flex-col w-100 items-center gap-4">
-                        <input type="text" placeholder="Ad Id" className="input w-full" />
-                        <input type="text" placeholder="Reason" className="input w-full" />
-                        <button className="btn btn-error w-52">Ban</button>
-                      </form>
-                    </div>
-                    <div className="m-5">
-                      <h3 className="text-center">Unban user</h3>
-                      <form className="flex flex-col w-100 items-center gap-4">
-                        <input type="text" placeholder="User Id" className="input w-full" />
-                        <input type="text" placeholder="Reason" className="input w-full" />
-                        <button className="btn btn-success w-52">Unban</button>
-                      </form>
-                    </div>
-                    <div className="w-100 flex flex-col items-center gap-4 m-5">
-                      <h3>Create Category</h3>
-                      <input type="text" placeholder="Category name" className="input w-full" />
-                      <button className="btn btn-info w-52">Unban</button>
-                    </div>
             </div>
+            <div className="m-5">
+          <h3 className="text-center">Unban user</h3>
+          <form className="flex flex-col w-100 items-center gap-4">
+            <input type="text" placeholder="User Id" className="input w-full" />
+            <input type="text" placeholder="Reason" className="input w-full" />
+            <button className="btn btn-success w-52">Unban</button>
+          </form>
+        </div>
           </div>
+        )}
+        {activePanel === "Ads" && (
+          <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
+          <div className="m-5">
+          <h3 className="text-center">Delete an ad by Id</h3>
+          <form className="flex flex-col w-100 items-center gap-4">
+            <input type="text" placeholder="Ad Id" className="input w-full" />
+            <input type="text" placeholder="Reason" className="input w-full" />
+            <button className="btn btn-error w-52">Delete</button>
+          </form>
+        </div>
+        </div>
+        )}
+        {activePanel === "CategoryADM" && (
+        <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
+          <div className="w-100 flex flex-col items-center gap-4 m-5">
+            <h3>Create Category</h3>
+            <input type="text" placeholder="Category name" className="input w-full" />
+            <button className="btn btn-info w-52">Create</button>
+          </div>
+          <div className="w-100 flex flex-col items-center gap-4 m-5">
+            <h3>Delete Category</h3>
+            <input type="text" placeholder="Category name" className="input w-full" />
+            <button className="btn btn-error w-52">Delete</button>
+          </div>
+        </div>
         )}
         {activePanel === 'Reports' && (
           <div className="panel">
