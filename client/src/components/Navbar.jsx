@@ -131,8 +131,7 @@ export const Navbar = () => {
                         <Profile />
                       </Link>
                     </li>
-
-                    {data && data.subscribe === 'NotSubscribed' && (
+                    {data && data.subscribe !== 'Subscribed' && (
                       <li>
                         <Link to="/subscribe">Subscribe</Link>
                       </li>
