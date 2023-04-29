@@ -41,7 +41,7 @@ export const UserDetail = (userId) => {
       </Link>
 
       <p className="text-sm pl-8 text-black">
-        {address[0].street} {address[0].number}
+        {address ? <div><p>{address[0].street}</p><p>{address[0].number}</p></div> : <p>Address is undefined</p>}
       </p>
       <p className="text-sm pl-8 text-black">Joined Vizta {created}</p>
     </div>

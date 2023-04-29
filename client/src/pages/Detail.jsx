@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import { useGetAdByIdQuery } from '../features/query/AdsQuery';
 
+import { useGetUserIdQuery } from "../features/query/UserQuery"
+
 import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
@@ -29,13 +31,14 @@ const FakeIMG = 'https://picsum.photos/200/300';
 
 export const Detail = () => {
   const { id } = useParams();
-
   
   const dispatch = useDispatch();
   
   const [currentImage, setCurrentImage] = useState(0);
   
   const { data, error, isLoading } = useGetAdByIdQuery(id);
+  
+  const user = useGetUserIdQuery(data?.UserId)
 
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
@@ -48,6 +51,22 @@ export const Detail = () => {
   }
 
   if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Error />
+      </div>
+    );
+  }
+
+  if (user.isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loading />
+      </div>
+    );
+  }
+
+  if (user.isError) {
     return (
       <div className="flex items-center justify-center h-screen">
         <Error />
@@ -82,8 +101,10 @@ export const Detail = () => {
   const addToWishHandler = (data) => {
     dispatch(addToWishList(data));
   };
+
+  
   const whatsapp = () => {
-    window.location.href = `https://wa.me/${phone}`;
+    window.location.href = `https://wa.me/${user.data.phone}`;
   };
 
   return (
@@ -177,6 +198,7 @@ export const Detail = () => {
             </div>
 
             <div className="flex justify-center">
+            {user?.data?.phone ?
               <div className="bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
                 <img
                   className="h-6"
@@ -184,6 +206,7 @@ export const Detail = () => {
                 />
                 <button onClick={() => whatsapp()}>Whatsapp</button>
               </div>
+            : null}
 
               {isAuthenticated ? (
                 <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
