@@ -222,9 +222,9 @@ export const Admin = () => {
             <h2>Users Actions</h2>
             <div className="gap-2 mb-5">
               <div className="m-5">
-                      <h3 className="text-center">Ban a user by Id</h3>
+                      <h3 className="text-center">Ban a user by email</h3>
                       <form className="flex flex-col w-100 items-center gap-4">
-                        <input type="text" placeholder="User id" className="input w-full" />
+                        <input type="text" placeholder="User email" className="input w-full" />
                         <input type="text" placeholder="Reason" className="input w-full" />
                         <button className="btn btn-error w-52">Ban</button>
                       </form>
@@ -233,7 +233,7 @@ export const Admin = () => {
             <div className="m-5">
           <h3 className="text-center">Unban user</h3>
           <form className="flex flex-col w-100 items-center gap-4">
-            <input type="text" placeholder="User Id" className="input w-full" />
+            <input type="text" placeholder="User email" className="input w-full" />
             <input type="text" placeholder="Reason" className="input w-full" />
             <button className="btn btn-success w-52">Unban</button>
           </form>
@@ -286,7 +286,6 @@ export const Admin = () => {
           
         
       </div>
- 
     </div>
   );
 };

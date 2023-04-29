@@ -30,7 +30,6 @@ export const Configuration = ({info}) => {
             setOldAddress(userData?.data.address)
         }
     }, [])
-
     
     const uploadImage = async (e) => {
         e.preventDefault();
@@ -51,6 +50,18 @@ export const Configuration = ({info}) => {
             street: "",
             number: ""
         }])
+    }
+
+    const deleteAddress = (e, index) => {
+        const oldAddress = [...address]
+        oldAddress.splice(index, 1)
+        setAddress(oldAddress)
+    }
+
+    const deleteOldAddress = (e, index) => {
+        const addressCopy = [...oldAddress]
+        addressCopy.splice(index, 1)
+        setOldAddress(addressCopy)
     }
 
     const modifyAddress = (e, index) => {
@@ -74,6 +85,16 @@ export const Configuration = ({info}) => {
     const handleInput = (e) => {
         setData({...data, [e.target.name]:e.target.value})
     }
+
+    const setPrincipal = (index) => {
+        const copyAddress = [...oldAddress]
+        const newAddress = []
+        newAddress.push(copyAddress[index])
+        copyAddress.splice(index, 1)
+        copyAddress.map(value => newAddress.push(value))
+        setOldAddress(newAddress)
+    } 
+    console.log(oldAddress);
     
     const [updateUser] = useUpdateUserMutation()
     
@@ -116,15 +137,28 @@ export const Configuration = ({info}) => {
                 <label className="w-24">Address</label>
                 <div className="flex flex-col gap-5 w-150">
                 {oldAddress.length > 0 ? oldAddress.map((value, index) => 
-                <div className="flex flex-col gap-2">
-                    <input className="file-input w-full" type="text" name="street" placeholder={`${oldAddress[index].street}`} onChange={(e) => modifyAddress(e, index)}></input>
-                    <input className="file-input w-full" type="text" name="number" placeholder={`${oldAddress[index].number}`} onChange={(e) => modifyAddress(e, index)}></input>
+                <div className="flex items-center gap-2">
+                    <div className="flex flex-col gap-2 w-100">
+                        <input className="file-input w-full" type="text" name="country" placeholder={`${oldAddress[index].country}`} onChange={(e) => modifyAddress(e, index)}></input>
+                        <input className="file-input w-full" type="text" name="province" placeholder={`${oldAddress[index].province}`} onChange={(e) => modifyAddress(e, index)}></input>
+                        <input className="file-input w-full" type="text" name="municipality" placeholder={`${oldAddress[index].municipality}`} onChange={(e) => modifyAddress(e, index)}></input>
+                        <input className="file-input w-full" type="text" name="street" placeholder={`${oldAddress[index].street}`} onChange={(e) => modifyAddress(e, index)}></input>
+                        <input className="file-input w-full" type="text" name="number" placeholder={`${oldAddress[index].number}`} onChange={(e) => modifyAddress(e, index)}></input>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <button className="btn btn-error" onClick={(e) => deleteOldAddress(e, index)}>X</button>
+                        <button className="btn btn-info" onClick={() => setPrincipal(index)}>Set principal Address</button>
+                    </div>
                 </div>
                 ): null}
                 {address.map((value, index) => 
                     <div className="flex flex-col gap-2">
+                        <input className="file-input w-full" type="text" name="country" placeholder="Country" onChange={(e) => handleInputAddress(e, index)}></input>
+                        <input className="file-input w-full" type="text" name="province" placeholder="Province" onChange={(e) => handleInputAddress(e, index)}></input>
+                        <input className="file-input w-full" type="text" name="municipality" placeholder="Municipality" onChange={(e) => handleInputAddress(e, index)}></input>
                         <input className="file-input w-full" type="text" name="street" placeholder="Street name" onChange={(e) => handleInputAddress(e, index)}></input>
                         <input className="file-input w-full" type="text" name="number" placeholder="Street number" onChange={(e) => handleInputAddress(e, index)}></input>
+                        <button className="btn btn-error" onClick={(e) => deleteAddress(e, index)}>X</button>
                     </div>
                 )}
                 <button className="btn btn-info" onClick={addAddress}>Add address</button>
