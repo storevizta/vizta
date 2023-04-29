@@ -33,7 +33,13 @@ export const Navbar = () => {
 
   const searchProfile = location.pathname !== `/profile`;
 
+  const searchPost = location.pathname !== '/post';
+
   const favoriteLanding = location.pathname !== `/`;
+
+  const favoriteProfile = location.pathname !== '/profile';
+
+  const favoritePost = location.pathname !== '/post';
 
   const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
@@ -66,7 +72,7 @@ export const Navbar = () => {
           </h1>
         </Link>
 
-        {searchProfile && searchLanding && searchDetail && (
+        {searchProfile && searchLanding && searchDetail && searchPost && (
           <div>
             <input
               className="bg-zinc-700 px-3 py-2 rounded-full w-140 transition-all duration-500 outline-none hover:bg-white hover:border-white"
@@ -81,7 +87,7 @@ export const Navbar = () => {
 
         <div className="flex">
           <ul className="flex items-center">
-            {favoriteLanding && (
+            {favoriteLanding && favoriteProfile && favoritePost && (
               <li className="font-semibold text-white mr-4 ">
                 {isAuthenticated ? (
                   <Link to="/favorite">
