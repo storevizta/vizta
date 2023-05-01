@@ -37,4 +37,44 @@ const getCategory = async (req, res) => {
   }
 };
 
-module.exports = { getCategory };
+const createCategory = async (req, res) => {
+    try {
+      const { name
+      } = req.body;
+  
+      const existingCategory = await Category.findOne({ where: { name } });
+  
+      if (!existingCategory) {
+        const category = await Category.create({name});
+  
+        return res.status(201).json({ message: 'Category created' });
+      }
+  
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: 'Error creating category', error });
+    }
+};
+
+const deleteCategory = async (req, res) => {
+  try {
+    const { name } = req.params;
+
+    const category1 = await Category.findOne({ where: { name: name } });
+
+    if (!category1) {
+      return res.status(404).json('Category ID invalid');
+    }
+
+    await category1.destroy();
+
+    return res
+      .status(200)
+      .json({ message: 'The category was successfully deleted' });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Error creating category' });
+  }
+};
+
+module.exports = { getCategory, createCategory, deleteCategory };
