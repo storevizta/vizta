@@ -4,7 +4,7 @@ import { useGetUserIdQuery } from '../features/query/UserQuery';
 
 import { useGetAllReportsQuery } from "../features/query/ReportQuery"
 
-import { useGetMetricsQuery } from "../features/query/AdminQuery"
+import { useGetMetricsQuery, useControlleBanMutation, useCreateCategoryMutation } from "../features/query/AdminQuery"
 
 import { LogOutButton } from '../components/LogOutButton';
 
@@ -28,13 +28,16 @@ export const Admin = () => {
   
   const showDefaultPanel = activePanel === null;
 
-  if (isLoading) return <div>Loading...</div>;
+  const [controlleBan] = useControlleBanMutation()
+  const [newCategory] = useCreateCategoryMutation()
 
   const {
     data: dataUserId,
     error: errorUserId,
     isLoading: isLoadingUserId,
-  } = useGetUserIdQuery(user.sub);
+  } = useGetUserIdQuery(user?.sub);
+
+  if (isLoading) return <div>Loading...</div>;
 
   if (isLoadingUserId) return <div>Loading...</div>;
   
@@ -61,7 +64,37 @@ export const Admin = () => {
     <Error/>
   }
 
-  
+  const [banControll, setBanControll] = useState({
+    status: "",
+    email: "",
+    reason: ""
+  })
+
+  const [categoryInfo, setCategoryInfo] = useState({
+    name: ""
+  })
+
+  const handleInputBan = (e) => {
+    setBanControll({...banControll, [e.target.name]: e.target.value})
+  }
+
+  const onSubmitBan = () => {
+    banControll.status = "Banned"
+    controlleBan(banControll)
+  }
+
+  const onSubmitUnBan = () => {
+    banControll.status = "NotBanned"
+    controlleBan(banControll)
+  }
+
+  const handleCategory = (e) => {
+    setCategoryInfo({...categoryInfo, [e.name.target]: e.target.value})
+  }
+
+  const createCategory = () => {
+    newCategory(categoryInfo)
+  }
 
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
@@ -171,7 +204,7 @@ export const Admin = () => {
               <div className="stat-figure text-secondary">
               <img src="https://www.svgrepo.com/show/376754/analytics.svg" className="inline-block w-8 h-8 stroke-current brightness-0 invert"></img>
               </div>
-              <div className="stat-title">Downloads</div>
+              <div className="stat-title">Total Users</div>
               <div className="stat-value">{metric.data.usersAmount}</div>
               <div className="stat-desc">Jan 1st - Feb 1st</div>
             </div>
@@ -223,18 +256,18 @@ export const Admin = () => {
             <div className="gap-2 mb-5">
               <div className="m-5">
                       <h3 className="text-center">Ban a user by email</h3>
-                      <form className="flex flex-col w-100 items-center gap-4">
-                        <input type="text" placeholder="User email" className="input w-full" />
-                        <input type="text" placeholder="Reason" className="input w-full" />
+                      <form className="flex flex-col w-100 items-center gap-4" onSubmit={onSubmitBan}>
+                        <input type="text" placeholder="User email" name='email' onChange={handleInputBan} className="input w-full" />
+                        <input type="text" placeholder="Reason" name='reason' onChange={handleInputBan} className="input w-full" />
                         <button className="btn btn-error w-52">Ban</button>
                       </form>
                     </div>
             </div>
             <div className="m-5">
           <h3 className="text-center">Unban user</h3>
-          <form className="flex flex-col w-100 items-center gap-4">
-            <input type="text" placeholder="User email" className="input w-full" />
-            <input type="text" placeholder="Reason" className="input w-full" />
+          <form className="flex flex-col w-100 items-center gap-4" onSubmit={onSubmitUnBan}>
+            <input type="text" placeholder="User email" name='email' onChange={handleInputBan} className="input w-full" />
+            <input type="text" placeholder="Reason" name='reason' onChange={handleInputBan} className="input w-full" />
             <button className="btn btn-success w-52">Unban</button>
           </form>
         </div>
@@ -256,8 +289,10 @@ export const Admin = () => {
         <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
           <div className="w-100 flex flex-col items-center gap-4 m-5">
             <h3>Create Category</h3>
-            <input type="text" placeholder="Category name" className="input w-full" />
-            <button className="btn btn-info w-52">Create</button>
+            <form onSubmit={createCategory}>
+              <input type="text" placeholder="Category name" name='name' onChange={handleCategory} className="input w-full" />
+              <button className="btn btn-info w-52">Create</button>
+            </form>
           </div>
           <div className="w-100 flex flex-col items-center gap-4 m-5">
             <h3>Delete Category</h3>

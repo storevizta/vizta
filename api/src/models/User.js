@@ -21,6 +21,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: 'NotBanned',
     },
+    banReason: {
+      type: DataTypes.STRING(70),
+      allowNull: true,
+    },
     subscribe: {
       type: DataTypes.ENUM('NotSubscribed', 'Subscribed'),
       allowNull: false,
