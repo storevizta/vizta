@@ -10,6 +10,13 @@ export const Admin = createApi({
     getIdUsers: builder.query({
       query: (id) => `/admin/users/${id}`,
     }),
+    controlleBan: builder.mutation({
+      query: (data) => ({
+        url: `admin/users/`,
+        method: 'PUT',
+        body: data,
+      }),
+      }),
     getMetrics: builder.query({
       query: () => `/admin`,
     }),
@@ -45,6 +52,13 @@ export const Admin = createApi({
         method: 'DELETE',
       }),
       }),
+    createCategory: builder.mutation({
+      query: (name) => ({
+        url: `category`,
+        method: 'POST',
+        body: name
+      }),
+      }),
 })
 });
 
@@ -52,6 +66,7 @@ export const Admin = createApi({
 
 export const { useGetAllUsersQuery,
 useGetIdUsersQuery,
+useControlleBanMutation,
 useGetMetricsQuery,
 useDeleteUserMutation,
 useUpdateUserMutation,
@@ -59,5 +74,6 @@ useGetAllAdsQuery,
 useGetIdAdsQuery,
 useUpdatedAdsMutation,
 useDeletedAdsMutation,
+useCreateCategoryMutation,
 } = Admin;
 

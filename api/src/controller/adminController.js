@@ -138,6 +138,26 @@ const deleteAd = async (req, res) => {
   }
 };
 
+const controlleBan = async (req, res) => {
+  const { email, status, reason } = req.body;
+  try {
+    if (status !== 'NotBanned' && status !== 'Banned') {
+      throw new Error('Wrong status');
+    }
+    const actualUser = await User.findOne({ where: { email: email } });
+    if (actualUser.role === 'admin' && actualUser.access === 'NotBanned') {
+      throw new Error('You can not ban an admin');
+    }
+    actualUser.update({
+      access: status,
+      banReason: reason,
+    });
+    res.status(200).json(actualUser);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
+
 const getMetrics = async (req, res) => {
   try {
     const allUsers = await User.findAll();
@@ -171,7 +191,21 @@ const getMetrics = async (req, res) => {
   }
 };
 
-const createCategory = async () => {};
+const createCategory = async (req, res) => {
+  const { categoryName } = req.body;
+  try {
+    const searching = await Category.findAll({ where: { name: categoryName } });
+    if (searching) {
+      throw new Error('Category already exist');
+    }
+    const newCategory = await Category.create({
+      name: categoryName,
+    });
+    res.status(200).json(newCategory);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
 
 module.exports = {
   getUsers,
@@ -183,5 +217,6 @@ module.exports = {
   updateAd,
   deleteAd,
   createCategory,
+  controlleBan,
   getMetrics,
 };
