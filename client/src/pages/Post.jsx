@@ -108,6 +108,13 @@ export const Post = () => {
     setMethod(newMethod);
   };
 
+  const deleteImage = (value, index) => {
+    const newImages = image.filter(
+      (element) => image.indexOf(element) !== index
+    );
+    setImage(newImages);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -232,8 +239,17 @@ export const Post = () => {
 
             <div className="flex gap-10 justify-center">
               {image ? (
-                image.map((value) => (
-                  <img className="w-40 h-40 object-cover" src={value}></img>
+                image.map((value, index) => (
+                  <div className="flex flex-row" key={index}>
+                    <img className="w-40 h-40 object-cover" src={value}></img>
+                    <button
+                      className="btn"
+                      type="button"
+                      onClick={() => deleteImage(value, index)}
+                    >
+                      X
+                    </button>
+                  </div>
                 ))
               ) : (
                 <p>No funciona</p>
