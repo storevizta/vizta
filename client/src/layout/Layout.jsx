@@ -7,7 +7,9 @@ export const Layout = () => {
 
   return (
     <div className="h-screen">
-      <div>{/* <Navbar/> */}</div>
+      <div>
+        <Navbar />
+      </div>
       {user?.data?.access === 'Banned' ? (
         <div
           className="alert alert-error shadow-lg h-13 z-10 fixed bottom-2 flex justify-center items-center
