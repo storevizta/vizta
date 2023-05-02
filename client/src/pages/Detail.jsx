@@ -198,7 +198,7 @@ export const Detail = () => {
             </div>
 
             <div className="flex justify-center">
-            {user?.data?.phone && isUserBanned.data.access !== "Banned"?
+            {user?.data?.phone && isUserBanned?.data?.access !== "Banned"?
               <div className="bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
                 <img
                   className="h-6"
