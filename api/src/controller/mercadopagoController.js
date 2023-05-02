@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const mercadopago = require('mercadopago');
 
+const { sequelize } = require('./database.js');
+
 const { Op } = require('sequelize');
 
 const {
@@ -28,8 +30,14 @@ mercadopago.configure({
 //       attributes: ['id'],
 //     });
 
+//     const options = {
+//       limit: 5,
+//       order: [['createdAt', 'DESC']],
+//     };
+
 //     const subscribedAds = await Ad.findAll({
 //       where: { UserId: { [Op.in]: subscribedUsers.map((user) => user.id) } },
+//       ...options,
 //     });
 
 //     return res.status(200).json(subscribedAds);
@@ -48,7 +56,7 @@ const getSubscribeUserAds = async (req, res) => {
 
     const options = {
       limit: 5,
-      order: [['createdAt', 'DESC']],
+      order: sequelize.literal('random()'),
     };
 
     const subscribedAds = await Ad.findAll({
