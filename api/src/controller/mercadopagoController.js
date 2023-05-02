@@ -46,10 +46,14 @@ const getSubscribeUserAds = async (req, res) => {
       attributes: ['id'],
     });
 
+    const options = {
+      limit: 5,
+      order: [['createdAt', 'DESC']],
+    };
+
     const subscribedAds = await Ad.findAll({
       where: { UserId: { [Op.in]: subscribedUsers.map((user) => user.id) } },
-      order: Sequelize.literal('random()'),
-      limit: 5,
+      ...options,
     });
 
     return res.status(200).json(subscribedAds);
