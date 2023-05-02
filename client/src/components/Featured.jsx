@@ -21,8 +21,6 @@ export const Featured = () => {
 
   if (error) return <div>Error...</div>;
 
-  console.log(data);
-
   const addToWishHandler = (info) => {
     dispatch(addToWishList(info));
   };
@@ -30,6 +28,7 @@ export const Featured = () => {
   return (
     <>
       <div className="h-96">
+        <div>Featured</div>
         {data && data === 0 ? (
           <p>No results found.</p>
         ) : (
