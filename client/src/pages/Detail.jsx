@@ -44,6 +44,8 @@ export const Detail = () => {
 
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
+  
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -98,10 +100,6 @@ export const Detail = () => {
 
   const handlerPreviousImage = (e) => {
     setCurrentImage(currentImage === 0 ? numberImage - 1 : currentImage - 1);
-  };
-
-  const addToWishHandler = (data) => {
-    dispatch(addToWishList(data));
   };
 
   
