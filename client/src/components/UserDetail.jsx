@@ -104,7 +104,7 @@ export const UserDetail = (userId) => {
         </div>
 
         <div className="text-sm pl-8 text-black">
-          {address ? (
+          {address && address.length > 0 ? (
             <div>
               <p>{address[0]?.country}</p>
               <p>{address[0]?.province}</p>
