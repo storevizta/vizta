@@ -33,14 +33,13 @@ export const Profile = () => {
 
   const showDefaultPanel = activePanel === null;
 
-  if (isLoading) return <div>Loading...</div>;
-
   const {
     data: dataUserId,
     error: errorUserId,
     isLoading: isLoadingUserId,
-  } = useGetUserIdQuery(user.sub);
+  } = useGetUserIdQuery(user?.sub);
   // console.log("SOYUSERDATAID", dataUserId)
+  if (isLoading) return <div>Loading...</div>;
   if (isLoadingUserId) return <div>Loading...</div>;
 
   const handlePanelClick = (panel) => {
