@@ -16,6 +16,8 @@ import { Error } from "./Error"
 
 import { useEffect, useState } from 'react';
 
+import swal from 'sweetalert';
+
 
 export const Admin = () => {
   const { user, isLoading } = useAuth0();
@@ -81,13 +83,15 @@ export const Admin = () => {
   const onSubmitBan = (e) => {
     e.preventDefault()
     banControll.status = "Banned"
-    controlleBan(banControll)
+    console.log(controlleBan(banControll))
+    swal("User has Banned")
   }
 
   const onSubmitUnBan = (e) => {
     e.preventDefault()
     banControll.status = "NotBanned"
     controlleBan(banControll)
+    swal("User has unbanned")
   }
 
   const handleCategory = (e) => {

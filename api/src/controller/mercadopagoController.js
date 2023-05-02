@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const mercadopago = require('mercadopago');
 
-const { sequelize } = require('./database.js');
+const { sequelize } = require('../database');
 
 const { Op } = require('sequelize');
 
