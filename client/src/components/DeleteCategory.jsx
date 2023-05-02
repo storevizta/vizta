@@ -9,6 +9,7 @@ export const DeleteCategoryForm = () => {
     const handleDelete = async () => {
       if (window.confirm(`Are you sure you want to delete ${name}?`)) {
         await deleteCategory(name);
+        alert('Category deleted!');
       }
     };
   return (
@@ -25,7 +26,6 @@ export const DeleteCategoryForm = () => {
       <button type="submit" disabled={isLoading}>
         {isLoading ? 'Deleting...' : 'Delete Category'}
       </button>
-      {isSuccess && <div>Category deleted!</div>}
       </div>
   );
 };

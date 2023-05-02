@@ -11,6 +11,7 @@ export const CreateCategoryForm = () => {
     if (name.trim() !== '') {
       await createCategory(name);
       setName('');
+      alert('Category created!');
     }
   };
  
@@ -28,7 +29,6 @@ export const CreateCategoryForm = () => {
       <button type="submit" disabled={isLoading}>
         {isLoading ? 'Creating...' : 'Create Category'}
       </button>
-      {isSuccess && <div>Category created!</div>}
     </form>
   );
 };
