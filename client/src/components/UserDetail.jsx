@@ -45,11 +45,11 @@ export const UserDetail = (userId) => {
 
   let inicialValue = 0;
 
-  const sumaRating = dataRating.reduce(
+  const sumaRating = dataRating?.reduce(
     (acumulator, rating) => acumulator + rating.rating,
     inicialValue
   );
-  const promedioRating = Math.round(sumaRating / dataRating.length);
+  const promedioRating = Math.round(sumaRating / dataRating?.length);
 
   const { name, address, createdAt } = data;
 
