@@ -1,24 +1,19 @@
 import { useState } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
 import { useCreateCategoryMutation } from '../features/query/CategoryQuery';
 
 export const CreateCategoryForm = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState(''); 
 
-  const queryClient = useQueryClient();
+  const [createCategory, { isLoading }] = useCreateCategoryMutation();
 
-  const { mutate, isLoading, isSuccess } = useMutation(useCreateCategoryMutation, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('getCategory');
-      setName('');
-    },
-  });
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    mutate({ name });
+    if (name.trim() !== '') {
+      await createCategory(name);
+      setName('');
+    }
   };
-
+ 
   return (
     <form onSubmit={handleSubmit}>
       <div>
