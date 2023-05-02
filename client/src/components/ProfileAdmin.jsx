@@ -14,6 +14,10 @@ import { ReportsCards } from "./reportsCards"
 
 import { Error } from "./Error"
 
+import { CreateCategoryForm } from './CreateCategory';
+
+import { DeleteCategoryForm } from './DeleteCategory';
+
 import { useEffect, useState } from 'react';
 
 import swal from 'sweetalert';
@@ -321,7 +325,8 @@ export const Admin = () => {
           <div className="panel">
             <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
               <h2 className="text-4xl">Category</h2>
-              
+              <CreateCategoryForm/>
+              <DeleteCategoryForm/>
             </div>
           </div>
         )}
