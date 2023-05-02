@@ -106,9 +106,9 @@ export const UserDetail = (userId) => {
         <div className="text-sm pl-8 text-black">
           {address ? (
             <div>
-              <p>{address[0].country}</p>
-              <p>{address[0].province}</p>
-              <p>{address[0].municipality}</p>
+              <p>{address[0]?.country}</p>
+              <p>{address[0]?.province}</p>
+              <p>{address[0]?.municipality}</p>
             </div>
           ) : (
             <p>Address is undefined</p>
