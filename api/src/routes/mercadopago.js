@@ -8,7 +8,7 @@ const {
   feedback,
 } = require('../controller/mercadopagoController.js');
 
-router.get('/subscribeads', getSubscribeUserAds);
+router.get('/subscribeproducts', getSubscribeUserAds);
 
 router.post('/create_preference', createPreference);
 
