@@ -7,12 +7,15 @@ export const DeleteCategoryForm = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading, isSuccess } = useMutation(useDeleteCategoryMutation, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('getCategory');
-      setName('');
-    },
-  });
+  const { mutate, isLoading, isSuccess } = useMutation(
+    useDeleteCategoryMutation,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('getCategory');
+        setName('');
+      },
+    }
+  );
 
   const handleSubmit = (event) => {
     event.preventDefault();
