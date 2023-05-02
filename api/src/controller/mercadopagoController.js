@@ -81,9 +81,9 @@ const createPreference = async (req, res) => {
       },
     ],
     back_urls: {
-      success: 'http://localhost:3000/home',
-      failure: 'http://localhost:3000/home',
-      pending: 'http://localhost:3000/home',
+      success: 'https://viztastore.onrender.com/home',
+      failure: 'https://viztastore.onrender.com/home',
+      pending: 'https://viztastore.onrender.com/home',
     },
     auto_return: 'approved',
   };
