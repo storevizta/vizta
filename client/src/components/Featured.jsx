@@ -10,6 +10,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { useGetSubscribeAdsQuery } from '../features/query/MercadoPagoQuery';
 
+import { useGetUserIdQuery } from '../features/query/UserQuery';
+
 export const Featured = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
@@ -17,11 +19,11 @@ export const Featured = () => {
 
   const { data, error, isLoading } = useGetSubscribeAdsQuery();
 
+  const isUserBanned = useGetUserIdQuery(localStorage.getItem('id'));
+
   if (isLoading) return <div>Loading...</div>;
 
   if (error) return <div>Error...</div>;
-
-  console.log(data);
 
   const addToWishHandler = (info) => {
     dispatch(addToWishList(info));
@@ -30,6 +32,7 @@ export const Featured = () => {
   return (
     <>
       <div className="h-96">
+        <div>Featured</div>
         {data && data === 0 ? (
           <p>No results found.</p>
         ) : (
@@ -60,7 +63,8 @@ export const Featured = () => {
 
                     <div className="ml-4 text-lg">${el.price}</div>
 
-                    {isAuthenticated ? (
+                    {isAuthenticated &&
+                    isUserBanned.data?.access !== 'Banned' ? (
                       <div className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
                         <img
                           className="h-3"
@@ -70,17 +74,7 @@ export const Featured = () => {
                           Add favorite
                         </button>
                       </div>
-                    ) : (
-                      <div className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
-                        <img
-                          className="h-3"
-                          src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
-                        />
-                        <button onClick={() => loginWithRedirect()}>
-                          Add favorite
-                        </button>
-                      </div>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               ))}

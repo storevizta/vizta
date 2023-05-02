@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom';
+
 import { useGetUserIdQuery } from '../features/query/UserQuery';
 
 import { useGetUserAdsQuery } from '../features/query/UserQuery';
+
 import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
@@ -9,6 +11,7 @@ import { Error } from '../components/Error';
 import { Card } from '../components/Card';
 
 import { Link } from 'react-router-dom';
+
 export const UserProfile = () => {
   const { id } = useParams();
 
@@ -88,7 +91,8 @@ export const UserProfile = () => {
             <div className="flex w-150">
               <label className="ml-5 w-full font-bold text-lg">Address:</label>
               <p className="w-full text-rigth mr-5 text-lg">
-                {address[0].street} {address[0].number}
+                {address[0]?.country}, {address[0]?.province},{' '}
+                {address[0]?.municipality}
               </p>
             </div>
           )}

@@ -13,8 +13,6 @@ export const Rating = () => {
 
   const [errors, setErrors] = useState({});
 
-  console.log(errors);
-
   const handlerChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
     if (input.comment === '') {
@@ -27,6 +25,10 @@ export const Rating = () => {
     } else {
       setErrors('');
     }
+  };
+
+  const handleCheck = (e) => {
+    setInput({ ...input, rating: parseInt(e.target.value) });
   };
 
   console.log(input);
@@ -54,22 +56,54 @@ export const Rating = () => {
         <h2 className="text-center text-white pt-5 text-3xl">
           Please rate the user
         </h2>
-        <div className="flex pr-5 pt-8">
-          <label>Rating</label>
-          <input
-            type="number"
-            name="rating"
-            value={input.rating}
-            min="1"
-            max="5"
-            onChange={(e) => handlerChange(e)}
-          ></input>
-          <label className="text-lg basis-1/6 font-bold text-white mr-3 pl-5">
+        <div className="flex flex-col items-center pr-5 pt-5">
+          <div className="pb-5 flex flex-row items-center m-auto">
+            <p className="pr-3 h-auto text-lg font-bold">Rating: </p>
+            <div className="rating rating-lg">
+              <input
+                type="radio"
+                name="rating-8"
+                value={1}
+                className="mask mask-star-2 bg-orange-400"
+                onClick={(e) => handleCheck(e)}
+              />
+              <input
+                type="radio"
+                name="rating-8"
+                value={2}
+                className="mask mask-star-2 bg-orange-400"
+                onClick={(e) => handleCheck(e)}
+              />
+              <input
+                type="radio"
+                name="rating-8"
+                value={3}
+                className="mask mask-star-2 bg-orange-400"
+                onClick={(e) => handleCheck(e)}
+              />
+              <input
+                type="radio"
+                name="rating-8"
+                value={4}
+                className="mask mask-star-2 bg-orange-400"
+                onClick={(e) => handleCheck(e)}
+              />
+              <input
+                type="radio"
+                name="rating-8"
+                value={5}
+                className="mask mask-star-2 bg-orange-400"
+                onClick={(e) => handleCheck(e)}
+              />
+            </div>
+          </div>
+
+          <label className="text-lg basis-1/6 font-bold text-white mr-3 pl-5 pb-3">
             Comment:{' '}
           </label>
           <textarea
             name="comment"
-            className="input w-full"
+            className="input w-4/5 h-32"
             onChange={(e) => handlerChange(e)}
             value={input.comment}
             placeholder="Comment..."

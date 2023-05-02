@@ -5,7 +5,7 @@ export const MercadoPago = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://vizta-0hmx.onrender.com' }),
   endpoints: (builder) => ({
     getSubscribeAds: builder.query({
-      query: () => '/mercadopago/subscribeads',
+      query: () => '/mercadopago/subscribeproducts',
     }),
   }),
 });

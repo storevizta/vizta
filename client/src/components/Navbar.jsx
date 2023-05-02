@@ -87,7 +87,7 @@ export const Navbar = () => {
 
         <div className="flex">
           <ul className="flex items-center">
-            {favoriteLanding && favoriteProfile && favoritePost && (
+            {favoriteLanding && favoriteProfile && favoritePost && data?.access !== "Banned" && (
               <li className="font-semibold text-white mr-4 ">
                 {isAuthenticated ? (
                   <Link to="/favorite">
@@ -106,7 +106,7 @@ export const Navbar = () => {
               </li>
             )}
 
-            {isAuthenticated ? (
+            {isAuthenticated  ? (
               <>
                 <div className="dropdown dropdown-end">
                   <label
@@ -131,15 +131,15 @@ export const Navbar = () => {
                         <Profile />
                       </Link>
                     </li>
-                    {data && data.subscribe !== 'Subscribed' && (
+                    {data && data.subscribe !== 'Subscribed' && data?.access !== "Banned" && (
                       <li>
                         <Link to="/subscribe">Subscribe</Link>
                       </li>
                     )}
-
+                    {data?.access !== "Banned" ? 
                     <li>
                       <Link to="/post">Sell</Link>
-                    </li>
+                    </li>: null}
                     <li className="font-semibold text-white ml-4">
                       <LogOutButton />
                     </li>
