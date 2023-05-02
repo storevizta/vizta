@@ -46,10 +46,10 @@ export const Profile = () => {
     setActivePanel(activePanel === panel ? null : panel);
   };
 
-  console.log(dataUserId);
-
   return (
-    <div className="flex m-5">
+    <div>
+    {dataUserId?.access === "Banned" ? <div className='flex flex-col m-auto items-center justify-center w-screen'><h1 className='text-7xl'>SORRY</h1><p className='text-xl'>we decided to ban your account, therefore you will not have access to your profile or other features.</p></div> : (
+        <div className="flex m-5 overflow-hidden">
       <aside className="h-screen rounded-xl w-80 bg-zinc-700 flex flex-col text-left gap-10">
         <h1 className="text-center mt-5 text-3xl">Profile</h1>
         <div className="flex flex-col">
@@ -331,5 +331,7 @@ export const Profile = () => {
         )}
       </div>
     </div>
+      )}
+      </div>
   );
 };

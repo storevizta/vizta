@@ -26,7 +26,7 @@ export const Pagination = ({ items }) => {
   };
 
   return (
-    <>
+    <div className='m-5'>
       <div className="flex justify-center items-center gap-5">
         <div
           className="w-5 rounded-full hover:bg-zinc-600"
@@ -51,6 +51,6 @@ export const Pagination = ({ items }) => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };

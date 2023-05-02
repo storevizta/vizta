@@ -3,7 +3,7 @@ import landing from '../assets/landing.png';
 
 export const Landing = () => {
   return (
-    <div className="h-full flex flex-col">
+    <div className="relative top-36 flex flex-col">
       <div className="flex flex-grow justify-center items-center gap-24">
         <div className="flex flex-col gap-5">
           <div className="text-5x">VIZTA</div>
