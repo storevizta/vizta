@@ -62,14 +62,16 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="w-64 max-w-64 p-5 bg-zinc-700 flex flex-col gap-5">
-        <div>
-          <div className="text-lg font-bold flex">Categories</div>
+      <div className="bg-zinc-700 text-white h-full w-1/4 rounded-md">
+        <div className="p-2">
+          <h1 className="text-2xl font-bold focus:outline-none focus:text-indigo-400 text-left  flex justify-between items-center w-full py-5 space-x-14  leading-5  uppercase ">
+            categories
+          </h1>
           <div className="cursor-pointer">
             {data &&
               data?.map((el) => (
                 <div
-                  className="px-2 rounded hover:bg-zinc-600"
+                  className="px-5 m-3 bg-zinc-600 rounded hover:bg-base-100"
                   key={el.id}
                   onClick={() => handlerCategory(el.id)}
                 >
@@ -78,10 +80,13 @@ export const Sidebar = () => {
               ))}
           </div>
         </div>
-        <div>
-          <div className="text-lg font-bold flex">Filters</div>
+
+        <div className="p-2">
+          <h1 className="text-2xl font-bold focus:outline-none focus:text-indigo-400 text-left  flex justify-between items-center w-full py-5 space-x-14  leading-5  uppercase ">
+            filters
+          </h1>
           <div>
-            <div>Price:</div>
+            <h2>Price:</h2>
             <div>
               <form className="flex gap-5">
                 <input
@@ -98,7 +103,48 @@ export const Sidebar = () => {
                 />
               </form>
             </div>
+            <h2>Discount</h2>
+            <div>
+              <select
+                className="w-52 px-2 rounded outline-none"
+                onChange={(e) => handlerDiscount(e)}
+              >
+                <option value="">All</option>
+                <option value="10">10%</option>
+                <option value="20">20%</option>
+                <option value="30">30%</option>
+                <option value="40">40%</option>
+                <option value="50">50%</option>
+                <option value="60">60%</option>
+                <option value="70">70%</option>
+                <option value="80">80%</option>
+                <option value="90">90%</option>
+                <option value="100">100%</option>
+              </select>
+            </div>
+            <h2>Condition:</h2>
+            <div>
+              <div className="cursor-pointer">
+                <div
+                  className="px-2 rounded hover:bg-zinc-600"
+                  onClick={() => handlerCondition('new')}
+                >
+                  New
+                </div>
+                <div
+                  className="px-2 rounded hover:bg-zinc-600"
+                  onClick={() => handlerCondition('used')}
+                >
+                  Used
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+        <div className="p-2">
+          <h1 className="text-2xl font-bold focus:outline-none focus:text-indigo-400 text-left   flex justify-between items-center w-full py-5 space-x-14  leading-5  uppercase ">
+            order
+          </h1>
           <div>
             <div>Sort: </div>
             <select onChange={(e) => handlerSort(e)}>
@@ -108,55 +154,19 @@ export const Sidebar = () => {
               <option value="titleDesc">Title Descendente</option>
             </select>
           </div>
-
-          <div>
-            <div className="">Discount:</div>
-            <select
-              className="w-52 px-2 rounded outline-none"
-              onChange={(e) => handlerDiscount(e)}
-            >
-              <option value="">All</option>
-              <option value="10">10%</option>
-              <option value="20">20%</option>
-              <option value="30">30%</option>
-              <option value="40">40%</option>
-              <option value="50">50%</option>
-              <option value="60">60%</option>
-              <option value="70">70%</option>
-              <option value="80">80%</option>
-              <option value="90">90%</option>
-              <option value="100">100%</option>
-            </select>
-          </div>
-          <div>
-            <div>Condition:</div>
-            <div className="cursor-pointer">
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerCondition('new')}
-              >
-                New
-              </div>
-              <div
-                className="px-2 rounded hover:bg-zinc-600"
-                onClick={() => handlerCondition('used')}
-              >
-                Used
-              </div>
-            </div>
-          </div>
         </div>
-
-        <div className="flex justify-center">
-          <div
-            className="px-2 rounded bg-gray-600 hover:bg-red-600 cursor-pointer"
+        <div className="flex justify-center my-6">
+          <button
+            className="rounded bg-base-100 hover:bg-red-600 cursor-pointer px-4 py-2 text-white"
             onClick={handlerReset}
           >
             Reset
-          </div>
+          </button>
         </div>
-        <h4 className="">Vizta Copyrigth ©</h4>
-      </aside>
+        <div className="">
+          <p>Vizta Copyrigth ©</p>
+        </div>
+      </div>
     </>
   );
 };
