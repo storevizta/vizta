@@ -15,6 +15,8 @@ export const CreateMessage = (props) => {
     adId: adId,
   });
 
+  console.log(data);
+
   const [activeMessage, setActiveMessage] = useState(false);
 
   const handleActiveMessage = () => {
@@ -43,6 +45,7 @@ export const CreateMessage = (props) => {
       .catch((error) => {
         console.log(error);
       });
+
     swal('Message sent');
   };
 
@@ -62,7 +65,7 @@ export const CreateMessage = (props) => {
           >
             <label className="font-bold text-lg">Message: </label>
             <textarea
-              className="text-black w-full mb-5 mt-5 border-slate-400 border-2 rounded w-5/6 h-24 p-3"
+              className="text-white w-full mb-5 mt-5 border-slate-400 border-2 rounded w-5/6 h-24 p-3"
               value={data.message}
               onChange={handleInput}
               placeholder="Message..."

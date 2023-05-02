@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { useGetAdByIdQuery } from '../features/query/AdsQuery';
 
-import { useGetUserIdQuery } from "../features/query/UserQuery"
+import { useGetUserIdQuery } from '../features/query/UserQuery';
 
 import { Loading } from '../components/Loading';
 
@@ -31,20 +31,18 @@ const FakeIMG = 'https://picsum.photos/200/300';
 
 export const Detail = () => {
   const { id } = useParams();
-  
-  const dispatch = useDispatch();
-  
-  const [currentImage, setCurrentImage] = useState(0);
-  
-  const { data, error, isLoading } = useGetAdByIdQuery(id);
-  
-  const user = useGetUserIdQuery(data?.UserId)
 
-  const isUserBanned = useGetUserIdQuery(localStorage.getItem("id"))
+  const dispatch = useDispatch();
+
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const { data, error, isLoading } = useGetAdByIdQuery(id);
+
+  const user = useGetUserIdQuery(data?.UserId);
+
+  const isUserBanned = useGetUserIdQuery(localStorage.getItem('id'));
 
   const { isAuthenticated, loginWithRedirect } = useAuth0();
-
-  
 
   if (isLoading) {
     return (
@@ -102,7 +100,6 @@ export const Detail = () => {
     setCurrentImage(currentImage === 0 ? numberImage - 1 : currentImage - 1);
   };
 
-  
   const whatsapp = () => {
     window.location.href = `https://wa.me/${user.data.phone}`;
   };
@@ -113,7 +110,7 @@ export const Detail = () => {
         <div className="flex flex-row content-stretch" key={id}>
           <div className="flex justify-center items-center">
             <img
-              className="w-16"
+              className="w-16 cursor-pointer"
               src={rowLeft}
               alt="row-left"
               onClick={handlerNextImage}
@@ -145,7 +142,7 @@ export const Detail = () => {
               })
             )}
             <img
-              className="w-16"
+              className="w-16 cursor-pointer"
               src={rowRight}
               alt="row-right"
               onClick={handlerPreviousImage}
@@ -198,17 +195,17 @@ export const Detail = () => {
             </div>
 
             <div className="flex justify-center">
-            {user?.data?.phone && isUserBanned?.data?.access !== "Banned"?
-              <div className="bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
-                <img
-                  className="h-6"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/479px-WhatsApp_icon.png"
-                />
-                <button onClick={() => whatsapp()}>Whatsapp</button>
-              </div>
-            : null}
+              {user?.data?.phone && isUserBanned?.data?.access !== 'Banned' ? (
+                <div className="bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
+                  <img
+                    className="h-6"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/479px-WhatsApp_icon.png"
+                  />
+                  <button onClick={() => whatsapp()}>Whatsapp</button>
+                </div>
+              ) : null}
 
-              {isAuthenticated && isUserBanned?.data?.access !== "Banned" ? (
+              {isAuthenticated && isUserBanned?.data?.access !== 'Banned' ? (
                 <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
                   <img
                     className="h-3"
@@ -226,12 +223,13 @@ export const Detail = () => {
             </div>
           </div>
         </div>
-        {isUserBanned?.data?.access !== "Banned" ? 
-        <Link to={`/reportAd/${id}`}>
-          <p className="font-bold border p-2 rounded w-fit">
-            Report Advertisement
-          </p>
-        </Link>: null}
+        {isUserBanned?.data?.access !== 'Banned' ? (
+          <Link to={`/reportAd/${id}`}>
+            <p className="font-bold border p-2 rounded w-fit">
+              Report Advertisement
+            </p>
+          </Link>
+        ) : null}
       </div>
 
       <Messages adId={id} userId={UserId} />

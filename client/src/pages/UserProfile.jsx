@@ -91,11 +91,13 @@ export const UserProfile = () => {
             <div className="flex w-150">
               <label className="ml-5 w-full font-bold text-lg">Address:</label>
               <p className="w-full text-rigth mr-5 text-lg">
-                {address[0].street} {address[0].number}
+                {address[0]?.country}, {address[0]?.province},{' '}
+                {address[0]?.municipality}
               </p>
-              <div className="divider"></div>
             </div>
           )}
+
+          <div className="divider"></div>
 
           <div className="flex w-150">
             <label className="ml-5 w-full font-bold text-lg">
