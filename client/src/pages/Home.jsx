@@ -48,7 +48,7 @@ export const Home = () => {
       <Sidebar />
       <div className="w-full p-5">
         <Featured />
-        <Pagination items={data.length} />
+        <Pagination items={data.length}/>
         {data && data.ads.length === 0 ? (
           <p>No results found.</p>
         ) : (

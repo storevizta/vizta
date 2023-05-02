@@ -40,6 +40,8 @@ export const Detail = () => {
   
   const user = useGetUserIdQuery(data?.UserId)
 
+  const isUserBanned = useGetUserIdQuery(localStorage.getItem("id"))
+
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   if (isLoading) {
@@ -198,7 +200,7 @@ export const Detail = () => {
             </div>
 
             <div className="flex justify-center">
-            {user?.data?.phone ?
+            {user?.data?.phone && isUserBanned.data.access !== "Banned"?
               <div className="bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
                 <img
                   className="h-6"
@@ -208,7 +210,7 @@ export const Detail = () => {
               </div>
             : null}
 
-              {isAuthenticated ? (
+              {isAuthenticated && isUserBanned?.data?.access !== "Banned" ? (
                 <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
                   <img
                     className="h-3"
@@ -218,17 +220,7 @@ export const Detail = () => {
                     Add favorite
                   </button>
                 </div>
-              ) : (
-                <div className="bg-myBlue text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
-                  <img
-                    className="h-3"
-                    src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
-                  />
-                  <button onClick={() => loginWithRedirect()}>
-                    Add favorite
-                  </button>
-                </div>
-              )}
+              ) : null}
             </div>
 
             <div className="block text-white mt-15">
@@ -236,11 +228,12 @@ export const Detail = () => {
             </div>
           </div>
         </div>
+        {isUserBanned?.data?.access !== "Banned" ? 
         <Link to={`/reportAd/${id}`}>
           <p className="font-bold border p-2 rounded w-fit">
             Report Advertisement
           </p>
-        </Link>
+        </Link>: null}
       </div>
 
       <Messages adId={id} userId={UserId} />
