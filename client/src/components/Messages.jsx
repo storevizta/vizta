@@ -1,5 +1,7 @@
 import { useGetMessageByAdIdQuery } from '../features/query/MessagesQuery';
 
+import { useGetUserIdQuery } from "../features/query/UserQuery"
+
 import { CreateMessage } from './CreateMessage';
 
 import { Loading } from '../components/Loading';
@@ -10,6 +12,8 @@ import question from '../assets/question.svg';
 
 export const Messages = ({ adId, userId }) => {
   const { data, error, isLoading } = useGetMessageByAdIdQuery(adId);
+
+  const isUserBanned = useGetUserIdQuery(localStorage.getItem("id"))
 
   if (isLoading) {
     return (
@@ -67,7 +71,8 @@ export const Messages = ({ adId, userId }) => {
           )}
         </div>
       ))}
-      <CreateMessage userId={userId} adId={adId} />
+      {isUserBanned?.data?.access !== "Banned" ?
+      <CreateMessage userId={userId} adId={adId} /> : <p className='flex flex-col items-center m-5'>You are banned, you cant send a message</p>}
     </div>
   );
 };

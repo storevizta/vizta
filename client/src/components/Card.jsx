@@ -8,10 +8,14 @@ import { addToWishList } from '../features/slices/FavSlices';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
+import { useGetUserIdQuery } from "../features/query/UserQuery"
+
 // Cambie imageError por FakeIMG
 
 export const Card = ({ info }) => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
+
+  const user = useGetUserIdQuery(localStorage.getItem("id"))
 
   const dispatch = useDispatch();
 
@@ -43,15 +47,7 @@ export const Card = ({ info }) => {
 
       <div className="ml-4 text-lg">${price}</div>
 
-      {isAuthenticated ? (
-        <div className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
-          <img
-            className="h-3"
-            src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
-          />
-          <button onClick={() => addToWishHandler(info)}>Add favorite</button>
-        </div>
-      ) : (
+      {isAuthenticated && user?.data?.access !== "Banned" ? (
         <div className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
           <img
             className="h-3"
@@ -59,7 +55,9 @@ export const Card = ({ info }) => {
           />
           <button onClick={() => loginWithRedirect()}>Add favorite</button>
         </div>
-      )}
+      ) :
+        null
+      }
     </div>
   );
 };
