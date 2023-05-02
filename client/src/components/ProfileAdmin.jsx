@@ -4,7 +4,7 @@ import { useGetUserIdQuery } from '../features/query/UserQuery';
 
 import { useGetAllReportsQuery } from "../features/query/ReportQuery"
 
-import { useGetMetricsQuery, useControlleBanMutation, useCreateCategoryMutation } from "../features/query/AdminQuery"
+import { useGetMetricsQuery, useControlleBanMutation } from "../features/query/AdminQuery"
 
 import { LogOutButton } from '../components/LogOutButton';
 
@@ -35,7 +35,6 @@ export const Admin = () => {
   const showDefaultPanel = activePanel === null;
 
   const [controlleBan] = useControlleBanMutation()
-  const [newCategory] = useCreateCategoryMutation()
 
   const [banControll, setBanControll] = useState({
     status: "",
@@ -43,9 +42,7 @@ export const Admin = () => {
     reason: ""
   })
 
-  const [categoryInfo, setCategoryInfo] = useState({
-    name: ""
-  })
+
 
   const {
     data: dataUserId,
@@ -98,14 +95,8 @@ export const Admin = () => {
     swal("User has unbanned")
   }
 
-  const handleCategory = (e) => {
-    setCategoryInfo({...categoryInfo, [e.target.name]: e.target.value})
-  }
+  
 
-  const createCategory = (e) => {
-    e.preventDefault()
-    newCategory(categoryInfo)
-  }
 
   const handlePanelClick = (panel) => {
     setActivePanel(activePanel === panel ? null : panel);
@@ -162,7 +153,7 @@ export const Admin = () => {
             ></img>
             <button
               className="text-left"
-              onClick={() => handlePanelClick('Users')}
+              onClick={() => handlePanelClick('Users Actions')}
             >
               Users Actions
             </button>
@@ -175,7 +166,7 @@ export const Admin = () => {
             ></img>
             <button
               className="text-left"
-              onClick={() => handlePanelClick('Ads')}
+              onClick={() => handlePanelClick('Advertisement Actions')}
             >
               Advertisement Actions
             </button>
@@ -188,7 +179,7 @@ export const Admin = () => {
             ></img>
             <button
               className="text-left"
-              onClick={() => handlePanelClick('CategoryADM')}
+              onClick={() => handlePanelClick('Category Actions')}
             >
               Category Actions
             </button>
@@ -261,7 +252,7 @@ export const Admin = () => {
           </div>
         )}
         
-        {activePanel === 'Users' && (
+        {activePanel === 'Users Actions' && (
           <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
             <h2>Users Actions</h2>
             <div className="gap-2 mb-5">
@@ -284,7 +275,7 @@ export const Admin = () => {
         </div>
           </div>
         )}
-        {activePanel === "Ads" && (
+        {activePanel === "Advertisement Actions" && (
           <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
           <div className="m-5">
           <h3 className="text-center">Delete an ad by Id</h3>
@@ -296,19 +287,15 @@ export const Admin = () => {
         </div>
         </div>
         )}
-        {activePanel === "CategoryADM" && (
+        {activePanel === "Category Actions" && (
         <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
           <div className="w-100 flex flex-col items-center gap-4 m-5">
             <h3>Create Category</h3>
-            <form onSubmit={createCategory}>
-              <input type="text" placeholder="Category name" name='name' onChange={handleCategory} className="input w-full" />
-              <button className="btn btn-info w-52">Create</button>
-            </form>
+            <CreateCategoryForm/>
           </div>
           <div className="w-100 flex flex-col items-center gap-4 m-5">
             <h3>Delete Category</h3>
-            <input type="text" placeholder="Category name" className="input w-full" />
-            <button className="btn btn-error w-52">Delete</button>
+            <DeleteCategoryForm/>
           </div>
         </div>
         )}
@@ -321,15 +308,7 @@ export const Admin = () => {
                 }
           </div>
         )}
-        {activePanel === 'Category' && (
-          <div className="panel">
-            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
-              <h2 className="text-4xl">Category</h2>
-              <CreateCategoryForm/>
-              <DeleteCategoryForm/>
-            </div>
-          </div>
-        )}
+       
           
         
       </div>

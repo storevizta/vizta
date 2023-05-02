@@ -2,20 +2,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { useGetUserIdQuery } from '../features/query/UserQuery';
 
-import { useGetUserAdsQuery } from '../features/query/UserQuery';
-
-import {
-  useGetRatingQuery,
-  useGetRatingByIdQuery,
-  useGetRatingByUserIdQuery,
-  useCreateRatingMutation,
-} from '../features/query/RatingQuery';
-
 import { LogOutButton } from '../components/LogOutButton';
 
 import { Configuration } from '../components/generalConfiguration.jsx';
-
-import { Admin } from '../components/ProfileAdmin';
 
 import { ProfileMessages } from '../components/ProfileMessages';
 
@@ -92,19 +81,6 @@ export const Profile = () => {
               onClick={() => handlePanelClick('Messages')}
             >
               Messages
-            </button>
-          </div>
-
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
-            <img
-              className="brightness-0 invert h-5"
-              src="https://www.svgrepo.com/show/376856/creditcard-hand.svg"
-            ></img>
-            <button
-              className="text-left"
-              onClick={() => handlePanelClick('Subscription')}
-            >
-              Subscription
             </button>
           </div>
 
@@ -241,44 +217,7 @@ export const Profile = () => {
             </div>
           </div>
         )}
-        {activePanel === 'Subscription' && (
-          <div className="h-screen p-2 flex flex-col gap-2 bg-zinc-700 rounded-2xl ml-3">
-            <h2 className="text-center mb-10 mt-5">Subscription</h2>
-            <div className="m-10">
-              <div className="flex">
-                <h3 className="w-48">Current Plan:</h3>
-                <p>Basic Plan</p>
-              </div>
-              <div className="divider"></div>
-              <div className="flex">
-                <h3 className="w-48">Next Billing Date:</h3>
-                <p>May 12th, 2023</p>
-              </div>
-              <div className="divider"></div>
-              <div className="flex">
-                <h3 className="w-48">Payment Method:</h3>
-                <p>Credit Card ending in 1234</p>
-              </div>
-              <div className="divider"></div>
-              <div className="flex">
-                <h3 className="w-48">Billing History:</h3>
-                <ul>
-                  <li>April 12th, 2023 - $9.99</li>
-                  <li>March 12th, 2023 - $9.99</li>
-                  <li>February 12th, 2023 - $9.99</li>
-                </ul>
-              </div>
-              <div className="divider"></div>
-              <div className="flex">
-                <h3 className="w-48">Upgrade Plan:</h3>
-                <p>
-                  <a href="#">Upgrade to Premium</a>
-                </p>
-              </div>
-              <div className="divider"></div>
-            </div>
-          </div>
-        )}
+        
         {activePanel === 'Reputation' && (
           <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
             <h2 className="text-4xl">Reputation</h2>

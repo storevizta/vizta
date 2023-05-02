@@ -13,6 +13,12 @@ export const UserDetail = (userId) => {
 
   const { data, error, isLoading } = useGetUserIdQuery(id);
 
+  const {
+    data: dataRating,
+    errorRating,
+    isLoadingRating,
+  } = useGetRatingByUserIdQuery(id);
+
   if (isLoading) {
     return (
       <div>
@@ -29,12 +35,6 @@ export const UserDetail = (userId) => {
     );
   }
 
-  const {
-    data: dataRating,
-    errorRating,
-    isLoadingRating,
-  } = useGetRatingByUserIdQuery(id);
-
   if (errorRating) {
     return <div>Error</div>;
   }
@@ -45,11 +45,11 @@ export const UserDetail = (userId) => {
 
   let inicialValue = 0;
 
-  const sumaRating = dataRating.reduce(
+  const sumaRating = dataRating?.reduce(
     (acumulator, rating) => acumulator + rating.rating,
     inicialValue
   );
-  const promedioRating = Math.round(sumaRating / dataRating.length);
+  const promedioRating = Math.round(sumaRating / dataRating?.length);
 
   const { name, address, createdAt } = data;
 
@@ -103,21 +103,21 @@ export const UserDetail = (userId) => {
           </div>
         </div>
 
-        <p className="text-sm pl-8 text-black">
+        <div className="text-sm pl-8 text-black">
           {address ? (
             <div>
-              <p>{address[0].country}</p>
-              <p>{address[0].province}</p>
-              <p>{address[0].municipality}</p>
+              <p>{address[0]?.country}</p>
+              <p>{address[0]?.province}</p>
+              <p>{address[0]?.municipality}</p>
             </div>
           ) : (
             <p>Address is undefined</p>
           )}
-        </p>
+        </div>
         <p className="text-sm pl-8 text-black">Joined Vizta {created}</p>
       </div>
 
-      <Link classname="justify-end" to={`/userProfile/${id}`}>
+      <Link className="justify-end" to={`/userProfile/${id}`}>
         <p className="text-black text-sm text-right border p-1 px-2 rounded w-fit border-black mt-2 hover:font-bold">
           See more data about {name}
         </p>

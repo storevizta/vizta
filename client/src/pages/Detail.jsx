@@ -44,6 +44,8 @@ export const Detail = () => {
 
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
+  
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -98,10 +100,6 @@ export const Detail = () => {
 
   const handlerPreviousImage = (e) => {
     setCurrentImage(currentImage === 0 ? numberImage - 1 : currentImage - 1);
-  };
-
-  const addToWishHandler = (data) => {
-    dispatch(addToWishList(data));
   };
 
   
@@ -200,7 +198,7 @@ export const Detail = () => {
             </div>
 
             <div className="flex justify-center">
-            {user?.data?.phone && isUserBanned.data.access !== "Banned"?
+            {user?.data?.phone && isUserBanned?.data?.access !== "Banned"?
               <div className="bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
                 <img
                   className="h-6"
