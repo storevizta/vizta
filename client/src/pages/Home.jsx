@@ -46,7 +46,7 @@ export const Home = () => {
   return (
     <>
       Home
-      <div className="h-full flex flex-grow">
+      {/* <div className="h-full flex flex-grow">
         <Sidebar />
         <div className="w-full p-5">
           <Featured />
@@ -64,7 +64,7 @@ export const Home = () => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
