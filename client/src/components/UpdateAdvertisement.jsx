@@ -269,7 +269,7 @@ export const UpdateAdvertisement = ({ ad }) => {
           <div className="flex gap-10 justify-center">
             {image ? (
               image.map((value, index) => (
-                <div>
+                <div className="flex flex-row" key={index}>
                   <img className="w-40 h-40 object-cover" src={value}></img>
                   <button
                     className="btn"

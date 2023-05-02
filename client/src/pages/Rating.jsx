@@ -56,41 +56,41 @@ export const Rating = () => {
         <h2 className="text-center text-white pt-5 text-3xl">
           Please rate the user
         </h2>
-        <div className="flex flex-col items-center pr-5 pt-8">
-          <div className="pb-5">
-            <div className="rating">
-              <label className="pr-3">Rating: </label>
+        <div className="flex flex-col items-center pr-5 pt-5">
+          <div className="pb-5 flex flex-row items-center m-auto">
+            <p className="pr-3 h-auto text-lg font-bold">Rating: </p>
+            <div className="rating rating-lg">
               <input
                 type="radio"
-                name="rating-2"
+                name="rating-8"
                 value={1}
                 className="mask mask-star-2 bg-orange-400"
                 onClick={(e) => handleCheck(e)}
               />
               <input
                 type="radio"
-                name="rating-2"
+                name="rating-8"
                 value={2}
                 className="mask mask-star-2 bg-orange-400"
                 onClick={(e) => handleCheck(e)}
               />
               <input
                 type="radio"
-                name="rating-2"
+                name="rating-8"
                 value={3}
                 className="mask mask-star-2 bg-orange-400"
                 onClick={(e) => handleCheck(e)}
               />
               <input
                 type="radio"
-                name="rating-2"
+                name="rating-8"
                 value={4}
                 className="mask mask-star-2 bg-orange-400"
                 onClick={(e) => handleCheck(e)}
               />
               <input
                 type="radio"
-                name="rating-2"
+                name="rating-8"
                 value={5}
                 className="mask mask-star-2 bg-orange-400"
                 onClick={(e) => handleCheck(e)}
