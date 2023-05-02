@@ -31,6 +31,16 @@ export const Admin = () => {
   const [controlleBan] = useControlleBanMutation()
   const [newCategory] = useCreateCategoryMutation()
 
+  const [banControll, setBanControll] = useState({
+    status: "",
+    email: "",
+    reason: ""
+  })
+
+  const [categoryInfo, setCategoryInfo] = useState({
+    name: ""
+  })
+
   const {
     data: dataUserId,
     error: errorUserId,
@@ -64,35 +74,28 @@ export const Admin = () => {
     <Error/>
   }
 
-  const [banControll, setBanControll] = useState({
-    status: "",
-    email: "",
-    reason: ""
-  })
-
-  const [categoryInfo, setCategoryInfo] = useState({
-    name: ""
-  })
-
   const handleInputBan = (e) => {
     setBanControll({...banControll, [e.target.name]: e.target.value})
   }
 
-  const onSubmitBan = () => {
+  const onSubmitBan = (e) => {
+    e.preventDefault()
     banControll.status = "Banned"
     controlleBan(banControll)
   }
 
-  const onSubmitUnBan = () => {
+  const onSubmitUnBan = (e) => {
+    e.preventDefault()
     banControll.status = "NotBanned"
     controlleBan(banControll)
   }
 
   const handleCategory = (e) => {
-    setCategoryInfo({...categoryInfo, [e.name.target]: e.target.value})
+    setCategoryInfo({...categoryInfo, [e.target.name]: e.target.value})
   }
 
-  const createCategory = () => {
+  const createCategory = (e) => {
+    e.preventDefault()
     newCategory(categoryInfo)
   }
 
