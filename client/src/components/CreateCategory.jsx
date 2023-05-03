@@ -16,8 +16,8 @@ export const CreateCategoryForm = () => {
   };
  
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form className="flex flex-col w-100 items-center gap-4" onSubmit={handleSubmit}>
+      <div className="m-5">
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -26,7 +26,7 @@ export const CreateCategoryForm = () => {
           onChange={(e) => setName(e.target.value)}
         />
       </div>
-      <button type="submit" disabled={isLoading}>
+      <button className="btn btn-error w-52" type="submit" disabled={isLoading}>
         {isLoading ? 'Creating...' : 'Create Category'}
       </button>
     </form>
