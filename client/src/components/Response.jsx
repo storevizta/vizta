@@ -30,6 +30,7 @@ export const Response = ({ id }) => {
         console.log(error);
       });
     swal('Response sent');
+    setInput({ ...input, response: '' });
   };
 
   return (
@@ -40,7 +41,7 @@ export const Response = ({ id }) => {
       >
         <p className="text-lg font-bold">Response: </p>
         <textarea
-          className="text-black w-full mb-5 mt-5 border-slate-400 border-2 w-5/6 h-24 p-3 rounded"
+          className="text-white w-full mb-5 mt-5 border-slate-400 border-2 w-5/6 h-24 p-3 rounded"
           onChange={handleInput}
           value={input.response}
           placeholder="Response..."

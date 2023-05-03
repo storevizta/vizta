@@ -8,8 +8,6 @@ import { useGetMetricsQuery, useControlleBanMutation } from "../features/query/A
 
 import { LogOutButton } from '../components/LogOutButton';
 
-import { ProfileAdvertisements } from '../components/ProfileAdvertisements';
-
 import { ReportsCards } from "./reportsCards"
 
 import { Error } from "./Error"
@@ -21,6 +19,8 @@ import { DeleteCategoryForm } from './DeleteCategory';
 import { useEffect, useState } from 'react';
 
 import swal from 'sweetalert';
+
+import {Link} from 'react-router-dom';
 
 
 export const Admin = () => {
@@ -109,18 +109,14 @@ export const Admin = () => {
         <h1 className="text-center mt-5 text-3xl">Dashboard Admin</h1>
         <div className="flex flex-col">
           
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+        <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
               className="brightness-0 invert h-5"
-              src="https://www.svgrepo.com/show/376891/folder.svg"
+              src="https://www.svgrepo.com/show/376950/logout.svg"
             ></img>
-            <button
-              className="text-left"
-              onClick={() => handlePanelClick('Advertisements')}
-            >
-              Advertisements
-            </button>
+             <Link to='/profile'><button>Profile</button></Link>
           </div>
+
 
           <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
@@ -134,18 +130,7 @@ export const Admin = () => {
               Reports
             </button>
           </div>
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
-            <img
-              className="brightness-0 invert h-5"
-              src="https://www.svgrepo.com/show/377112/users.svg"
-            ></img>
-            <button
-              className="text-left"
-              onClick={() => handlePanelClick('Category')}
-            >
-              Category
-            </button>
-          </div>
+
           <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
               className="brightness-0 invert h-5"
@@ -159,18 +144,6 @@ export const Admin = () => {
             </button>
           </div>
 
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
-            <img
-              className="brightness-0 invert h-5"
-              src="https://www.svgrepo.com/show/377112/users.svg"
-            ></img>
-            <button
-              className="text-left"
-              onClick={() => handlePanelClick('Advertisement Actions')}
-            >
-              Advertisement Actions
-            </button>
-          </div>
 
           <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
@@ -240,18 +213,6 @@ export const Admin = () => {
           </div>
         </div>
       )}
-
-      <div className="panel-container">
-        {activePanel === 'Advertisements' && (
-          <div className="panel">
-            <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
-              <h2 className="text-4xl">Advertisements</h2>
-              <ProfileAdvertisements userId={user.sub} />
-      
-            </div>
-          </div>
-        )}
-        
         {activePanel === 'Users Actions' && (
           <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
             <h2>Users Actions</h2>
@@ -275,18 +236,7 @@ export const Admin = () => {
         </div>
           </div>
         )}
-        {activePanel === "Advertisement Actions" && (
-          <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
-          <div className="m-5">
-          <h3 className="text-center">Delete an ad by Id</h3>
-          <form className="flex flex-col w-100 items-center gap-4">
-            <input type="text" placeholder="Ad Id" className="input w-full" />
-            <input type="text" placeholder="Reason" className="input w-full" />
-            <button className="btn btn-error w-52">Delete</button>
-          </form>
-        </div>
-        </div>
-        )}
+        
         {activePanel === "Category Actions" && (
         <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
           <div className="w-100 flex flex-col items-center gap-4 m-5">
@@ -312,6 +262,5 @@ export const Admin = () => {
           
         
       </div>
-    </div>
   );
 };

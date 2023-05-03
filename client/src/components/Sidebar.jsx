@@ -11,7 +11,6 @@ import {
   setMinPrice,
   setMaxPrice,
   setSort,
-  setDiscount,
   setCondition,
   resetFilters,
 } from '../features/slices/FilterSlice';
@@ -46,10 +45,6 @@ export const Sidebar = () => {
   const handlerSort = (e) => {
     const sortValue = e.target.value;
     dispatch(setSort(sortValue));
-  };
-
-  const handlerDiscount = (e) => {
-    dispatch(setDiscount(e.target.value));
   };
 
   const handlerCondition = (e) => {
@@ -87,7 +82,7 @@ export const Sidebar = () => {
           </h1>
           <div>
             <h2>Price:</h2>
-            <div>
+            <div className="pb-3">
               <form className="flex gap-5">
                 <input
                   className="w-24 rounded outline-none"
@@ -103,25 +98,7 @@ export const Sidebar = () => {
                 />
               </form>
             </div>
-            <h2>Discount</h2>
-            <div>
-              <select
-                className="w-52 px-2 rounded outline-none"
-                onChange={(e) => handlerDiscount(e)}
-              >
-                <option value="">All</option>
-                <option value="10">10%</option>
-                <option value="20">20%</option>
-                <option value="30">30%</option>
-                <option value="40">40%</option>
-                <option value="50">50%</option>
-                <option value="60">60%</option>
-                <option value="70">70%</option>
-                <option value="80">80%</option>
-                <option value="90">90%</option>
-                <option value="100">100%</option>
-              </select>
-            </div>
+
             <h2>Condition:</h2>
             <div>
               <div className="cursor-pointer">

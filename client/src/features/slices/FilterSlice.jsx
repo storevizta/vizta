@@ -10,7 +10,6 @@ export const FilterSlice = createSlice({
     minPrice: '',
     maxPrice: '',
     sort: '',
-    discount: '',
     condition: '',
   },
 
@@ -40,9 +39,6 @@ export const FilterSlice = createSlice({
     setSort: (state, action) => {
       state.sort = action.payload;
     },
-    setDiscount: (state, action) => {
-      state.discount = action.payload;
-    },
     setCondition: (state, action) => {
       state.condition = action.payload;
     },
@@ -65,7 +61,6 @@ export const {
   setMinPrice,
   setMaxPrice,
   setSort,
-  setDiscount,
   setCondition,
   resetFilters,
 } = FilterSlice.actions;
