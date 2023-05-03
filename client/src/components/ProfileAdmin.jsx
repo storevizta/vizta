@@ -22,6 +22,8 @@ import { useEffect, useState } from 'react';
 
 import swal from 'sweetalert';
 
+import {Link} from 'react-router-dom';
+
 
 export const Admin = () => {
   const { user, isLoading } = useAuth0();
@@ -109,6 +111,14 @@ export const Admin = () => {
         <h1 className="text-center mt-5 text-3xl">Dashboard Admin</h1>
         <div className="flex flex-col">
           
+        <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+            <img
+              className="brightness-0 invert h-5"
+              src="https://www.svgrepo.com/show/376950/logout.svg"
+            ></img>
+             <Link to='/profile'><button>Profile</button></Link>
+          </div>
+
           <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
               className="brightness-0 invert h-5"
@@ -134,6 +144,7 @@ export const Admin = () => {
               Reports
             </button>
           </div>
+
           <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
               className="brightness-0 invert h-5"
