@@ -26,6 +26,8 @@ import { addToWishList } from '../features/slices/FavSlices';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
+import { DeleteAdvertisement } from '../components/DeleteAdvertisement';
+
 const FakeIMG = 'https://picsum.photos/200/300';
 // Cambie image por FakeIMG para Mokup
 
@@ -219,6 +221,10 @@ export const Detail = () => {
                     Add favorite
                   </button>
                 </div>
+              ) : null}
+
+            {isAuthenticated && isUserBanned?.data?.role === 'Admin' ? (
+                <DeleteAdvertisement/>
               ) : null}
             </div>
 
