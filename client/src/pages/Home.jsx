@@ -52,7 +52,7 @@ export const Home = () => {
         {data && data.ads.length === 0 ? (
           <p>No results found.</p>
         ) : (
-          <div className="grid grid-cols-3">
+          <div className="grid grid-cols-6">
             {data &&
               data.ads.map((el) => (
                 <div key={el.id} className="m-3">

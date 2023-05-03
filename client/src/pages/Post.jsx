@@ -229,6 +229,7 @@ export const Post = () => {
                 name="image"
                 className="file-input w-full max-w-xs"
                 onChange={(e) => setImageUpload(e.target.files)}
+                accept="image/*"
                 multiple
                 required
               />

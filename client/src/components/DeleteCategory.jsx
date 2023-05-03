@@ -21,13 +21,13 @@ export const DeleteCategoryForm = () => {
     };
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='w-full flex flex-col gap-4 items-center'>
         <h1>Delete Category</h1>
-        <select className="select select-bordered w-full max-w-xs" name="name" value={name.name} onChange={handleInput}>
+        <select className="select select-bordered w-52" name="name" value={name.name} onChange={handleInput}>
           <option disabled selected>Select a Category</option>
           {allCategorys?.data?.map(value => (<option>{value.name}</option>))}
         </select>
-        <button type='submit' className='btn btn-error'>Delete</button>
+        <button type='submit' className='btn btn-error w-52'>Delete</button>
       </form>
       </div>
   );
