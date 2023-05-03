@@ -37,11 +37,11 @@ export const router = createBrowserRouter([
 
     children: [
       {
-        path: "/home",
+        index: true,
         element: <Landing />,
       },
       {
-        index: 'true',
+        path: '/home',
         element: <Home />,
       },
       {
