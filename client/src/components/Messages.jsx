@@ -1,5 +1,7 @@
 import { useGetMessageByAdIdQuery } from '../features/query/MessagesQuery';
 
+import { useGetUserIdQuery } from '../features/query/UserQuery';
+
 import { CreateMessage } from './CreateMessage';
 
 import { Loading } from '../components/Loading';
@@ -10,6 +12,8 @@ import question from '../assets/question.svg';
 
 export const Messages = ({ adId, userId }) => {
   const { data, error, isLoading } = useGetMessageByAdIdQuery(adId);
+
+  const isUserBanned = useGetUserIdQuery(localStorage.getItem('id'));
 
   if (isLoading) {
     return (
@@ -27,15 +31,16 @@ export const Messages = ({ adId, userId }) => {
     );
   }
 
-  console.log(data);
-
   return (
     <div className="mt-5">
       <div className="bg-slate-700 pt-3 pb-3 text-lg">
         <h2 className="font-bold text-center">Messages to the seller</h2>
       </div>
       {data?.map((message) => (
-        <div className="border-b-4 border-slate-400 pt-3 pb-3 pr-4 pl-4">
+        <div
+          className="border-b-4 border-slate-400 pt-3 pb-3 pr-4 pl-4"
+          key={message.id}
+        >
           <div className="flex justify-between" key={message.id}>
             <p className="inline">
               {message.createdAt
@@ -48,7 +53,7 @@ export const Messages = ({ adId, userId }) => {
               <p className="inline pl-3">{message.message}</p>
             </div>
 
-            <p className="inline">Denunciar</p>
+            <p></p>
           </div>
           {message.response ? (
             <div className="flex justify-between">
@@ -59,15 +64,20 @@ export const Messages = ({ adId, userId }) => {
               </p>
 
               <p className="inline pl-3">{message.response}</p>
-
-              <p className="inline">Denunciar</p>
+              <p></p>
             </div>
           ) : (
             <p className="text-center">No answer now</p>
           )}
         </div>
       ))}
-      <CreateMessage userId={userId} adId={adId} />
+      {isUserBanned?.data?.access !== 'Banned' ? (
+        <CreateMessage userId={userId} adId={adId} />
+      ) : (
+        <p className="flex flex-col items-center m-5">
+          You are banned, you cant send a message
+        </p>
+      )}
     </div>
   );
 };

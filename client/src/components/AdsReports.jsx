@@ -6,13 +6,15 @@ export const AdsReports = ({ adId }) => {
   if (isLoading) {
     return <p>isLoading</p>;
   }
-  console.log(data);
 
   return (
     <div>
       {data ? (
         data.map((report) => (
-          <div className="w-140 p-2 mt-5 flex flex-col gap-2 bg-gray-600 rounded-2xl ml-3">
+          <div
+            className="w-140 p-2 mt-5 flex flex-col gap-2 bg-blue-700 rounded-2xl ml-3 p-4"
+            key={report.id}
+          >
             <p className="text-lg text-bold text-white">
               Report: {report.reason}
             </p>

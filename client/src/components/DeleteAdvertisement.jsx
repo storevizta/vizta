@@ -1,5 +1,5 @@
 import { useDeleteAdMutation } from '../features/query/AdsQuery';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 export const DeleteAdvertisement = ({ adId }) => {
   const [deleteAd] = useDeleteAdMutation();

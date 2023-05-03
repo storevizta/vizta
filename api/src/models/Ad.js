@@ -24,10 +24,6 @@ module.exports = (sequelize) => {
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    discount: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
     condition: {
       type: DataTypes.ENUM('New', 'Used'),
       allowNull: false,

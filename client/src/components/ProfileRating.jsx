@@ -21,8 +21,6 @@ export const ProfileRating = ({ userId }) => {
     );
   }
 
-  console.log(data);
-
   let inicialValue = 0;
 
   const sumaRating = data.reduce(
@@ -30,8 +28,6 @@ export const ProfileRating = ({ userId }) => {
     inicialValue
   );
   const promedioRating = Math.round(sumaRating / data.length);
-
-  console.log(promedioRating);
 
   return (
     <div>

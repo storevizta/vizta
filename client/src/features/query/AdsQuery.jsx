@@ -13,7 +13,6 @@ export const Ads = createApi({
         minPrice = null,
         maxPrice = null,
         sort = null,
-        discount = null,
         condition = null,
       }) => {
         let url = '/product';
@@ -26,7 +25,6 @@ export const Ads = createApi({
           minPrice ||
           maxPrice ||
           sort ||
-          discount ||
           condition
         ) {
           url += '?';
@@ -37,7 +35,6 @@ export const Ads = createApi({
           if (minPrice) url += `minPrice=${minPrice}&`;
           if (maxPrice) url += `maxPrice=${maxPrice}&`;
           if (sort) url += `sort=${sort}&`;
-          if (discount) url += `discount=${discount}&`;
           if (condition) url += `condition=${condition}&`;
           url = url.slice(0, -1);
         }

@@ -87,24 +87,40 @@ export const Navbar = () => {
 
         <div className="flex">
           <ul className="flex items-center">
-            {favoriteLanding && favoriteProfile && favoritePost && (
-              <li className="font-semibold text-white mr-4 ">
-                {isAuthenticated ? (
-                  <Link to="/favorite">
-                    <button className="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans">
-                      Favorites ({wishlistsItems?.length})
-                    </button>
-                  </Link>
-                ) : (
-                  <button
-                    className="duration-300 hover:scale-105 hover:border-b-4 border-white font-bold font-sans"
-                    onClick={() => loginWithRedirect()}
-                  >
-                    Favorites
-                  </button>
-                )}
-              </li>
-            )}
+            {favoriteLanding &&
+              favoriteProfile &&
+              favoritePost &&
+              data?.access !== 'Banned' && (
+                <li className="font-semibold text-white mr-4 ">
+                  {isAuthenticated ? (
+                    <Link to="/favorite">
+                      <button className="hover:scale-105 font-bold">
+                      <div className="flex items-center">
+                        <span className="mr-2">{wishlistsItems.length}</span>
+                        <img
+                          className="h-8"
+                          src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
+                          alt="Icono de estrella"
+                        />
+                      </div>
+                    </button> 
+                    </Link>
+                  ) : (
+                    <button
+                      className="hover:scale-105 font-bold"
+                      onClick={() => loginWithRedirect()}
+                    >
+                      <div className="flex items-center">
+                      <img
+                        className="h-8"
+                        src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
+                        alt="Icono de estrella"
+                      />
+                      </div>
+                      </button>
+                  )}
+                </li>
+              )}
 
             {isAuthenticated ? (
               <>
@@ -131,15 +147,18 @@ export const Navbar = () => {
                         <Profile />
                       </Link>
                     </li>
-                    {data && data.subscribe !== 'Subscribed' && (
+                    {data &&
+                      data.subscribe !== 'Subscribed' &&
+                      data?.access !== 'Banned' && (
+                        <li>
+                          <Link to="/subscribe">Subscribe</Link>
+                        </li>
+                      )}
+                    {data?.access !== 'Banned' ? (
                       <li>
-                        <Link to="/subscribe">Subscribe</Link>
+                        <Link to="/post">Sell</Link>
                       </li>
-                    )}
-
-                    <li>
-                      <Link to="/post">Sell</Link>
-                    </li>
+                    ) : null}
                     <li className="font-semibold text-white ml-4">
                       <LogOutButton />
                     </li>

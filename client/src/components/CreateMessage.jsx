@@ -4,7 +4,11 @@ import swal from 'sweetalert';
 
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 export const CreateMessage = (props) => {
+  const navigate = useNavigate();
+
   const [createMessage] = useCreateMessageMutation();
 
   const { userId, adId } = props;
@@ -14,6 +18,8 @@ export const CreateMessage = (props) => {
     userId: userId,
     adId: adId,
   });
+
+  console.log(data);
 
   const [activeMessage, setActiveMessage] = useState(false);
 
@@ -43,7 +49,10 @@ export const CreateMessage = (props) => {
       .catch((error) => {
         console.log(error);
       });
+
     swal('Message sent');
+    setData({ ...data, message: '' });
+    navigate('/home');
   };
 
   return (
@@ -62,7 +71,7 @@ export const CreateMessage = (props) => {
           >
             <label className="font-bold text-lg">Message: </label>
             <textarea
-              className="text-black w-full mb-5 mt-5 border-slate-400 border-2 rounded w-5/6 h-24 p-3"
+              className="text-white w-full mb-5 mt-5 border-slate-400 border-2 rounded w-5/6 h-24 p-3"
               value={data.message}
               onChange={handleInput}
               placeholder="Message..."

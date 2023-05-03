@@ -85,11 +85,22 @@ export const Subscribe = () => {
   return (
     <div className="h-full flex flex-col justify-center items-center">
       {renderSpinner()}
-      <div className="checkout">
-        <div className="container_checkout">
-          <div className="block-heading">
-            <h2>Blue</h2>
-            <p>Featured Announcements</p>
+      <div>
+        <div>
+          <div>
+            <h2>Verification </h2>
+            <p>Featured Ads</p>
+            <p>
+              Get the visibility your ads deserve with our verified featured
+              ads! When you sign up for our verification subscription, your ads
+              will not only be verified for authenticity and quality, but
+              they'll also be featured prominently on our site. That means more
+              eyes on your ads, more clicks, and more success for your business.
+              Our featured ads are carefully selected to ensure maximum
+              exposure, so you can be confident that your ad is getting the
+              attention it deserves. Don't miss out on this exclusive
+              opportunity - get verified and get featured today!
+            </p>
           </div>
           <div className="form-checkout">
             <div className="flex">

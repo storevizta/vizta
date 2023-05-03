@@ -1,13 +1,17 @@
 import { useParams } from 'react-router-dom';
 import { useCreateRatingMutation } from '../features/query/RatingQuery';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 export const Rating = () => {
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const [createRating] = useCreateRatingMutation();
 
   const [input, setInput] = useState({
-    rating: 1,
+    rating: null,
     comment: '',
   });
 
@@ -22,6 +26,11 @@ export const Rating = () => {
         ...errors,
         comment: 'The Comment must be more than 10 characters',
       });
+    } else if (input.rating === null) {
+      setErrors({
+        ...errors,
+        rating: 'You must enter a rating',
+      });
     } else {
       setErrors('');
     }
@@ -35,19 +44,23 @@ export const Rating = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createRating({
-      rating: input.rating,
-      comment: input.comment,
-      userId: id,
-    })
-      .unwrap()
-      .then((data) => {
-        console.log(data);
+    if (input.rating !== null && !input.rating !== '' && errors === '') {
+      createRating({
+        rating: input.rating,
+        comment: input.comment,
+        userId: id,
       })
-      .catch((error) => {
-        console.log(error);
-      });
-    swal('Rating sent!');
+        .unwrap()
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      navigate('/home');
+      swal('Rating sent!');
+      setInput({ rating: null, comment: '' });
+    }
   };
 
   return (
@@ -56,47 +69,55 @@ export const Rating = () => {
         <h2 className="text-center text-white pt-5 text-3xl">
           Please rate the user
         </h2>
-        <div className="flex flex-col items-center pr-5 pt-8">
-          <div className="pb-5">
-            <div className="rating">
-              <label className="pr-3">Rating: </label>
+        <div className="flex flex-col items-center pr-5 pt-5">
+          <div className="pb-5 flex flex-row items-center m-auto">
+            <p className="pr-3 h-auto text-lg font-bold">Rating: </p>
+            <div className="rating rating-lg">
               <input
                 type="radio"
-                name="rating-2"
+                name="rating-8"
                 value={1}
                 className="mask mask-star-2 bg-orange-400"
                 onClick={(e) => handleCheck(e)}
               />
               <input
                 type="radio"
-                name="rating-2"
+                name="rating-8"
                 value={2}
                 className="mask mask-star-2 bg-orange-400"
                 onClick={(e) => handleCheck(e)}
               />
               <input
                 type="radio"
-                name="rating-2"
+                name="rating-8"
                 value={3}
                 className="mask mask-star-2 bg-orange-400"
                 onClick={(e) => handleCheck(e)}
               />
               <input
                 type="radio"
-                name="rating-2"
+                name="rating-8"
                 value={4}
                 className="mask mask-star-2 bg-orange-400"
                 onClick={(e) => handleCheck(e)}
               />
               <input
                 type="radio"
-                name="rating-2"
+                name="rating-8"
                 value={5}
                 className="mask mask-star-2 bg-orange-400"
                 onClick={(e) => handleCheck(e)}
               />
             </div>
           </div>
+
+          {errors.rating && (
+            <div className="bg-red-600 w-96 m-auto p-1 rounded">
+              <p className="text-center text-white font-bold capitalize">
+                {errors.rating}
+              </p>
+            </div>
+          )}
 
           <label className="text-lg basis-1/6 font-bold text-white mr-3 pl-5 pb-3">
             Comment:{' '}
@@ -118,7 +139,11 @@ export const Rating = () => {
           </div>
         )}
         <div className="flex items-center pt-5">
-          <button className="btn m-auto" type="submit">
+          <button
+            className="btn m-auto"
+            type="submit"
+            disabled={!input.rating || !input.comment}
+          >
             Send
           </button>
         </div>

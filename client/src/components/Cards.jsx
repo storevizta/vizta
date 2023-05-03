@@ -31,11 +31,9 @@ export const Cards = ({ userId }) => {
         <div className="grid grid-cols-4 pl-16 mt-5 gap-4">
           {data &&
             userAds.map((el) => (
-              <Link to={`/detail/${el.id}`} key={el.id}>
-                <div>
-                  <Card key={el.id} info={el} />
-                </div>
-              </Link>
+              <div key={el.id}>
+                <Card info={el} />
+              </div>
             ))}
         </div>
       )}

@@ -26,7 +26,6 @@ export const UpdateAdvertisement = ({ ad }) => {
     condition,
     shipment,
     state,
-    discount,
   } = ad;
 
   const navigate = useNavigate();
@@ -40,7 +39,6 @@ export const UpdateAdvertisement = ({ ad }) => {
     condition: condition,
     shipment: shipment,
     state: state,
-    discount: discount,
   });
 
   const [imageUpload, setImageUpload] = useState(null);
@@ -141,7 +139,6 @@ export const UpdateAdvertisement = ({ ad }) => {
         shipment: data.shipment,
         state: data.state,
         condition: data.condition,
-        discount: data.discount,
       })
         .unwrap()
         .then((data) => {
@@ -269,7 +266,7 @@ export const UpdateAdvertisement = ({ ad }) => {
           <div className="flex gap-10 justify-center">
             {image ? (
               image.map((value, index) => (
-                <div>
+                <div className="flex flex-row" key={index}>
                   <img className="w-40 h-40 object-cover" src={value}></img>
                   <button
                     className="btn"
@@ -322,21 +319,6 @@ export const UpdateAdvertisement = ({ ad }) => {
               </p>
             </div>
           )}
-
-          <div className="flex ml-52">
-            <label className="basis-1/6 font-bold text-white mr-3">
-              Discount:{' '}
-            </label>
-            <input
-              type="number"
-              placeholder="Discount"
-              name="discount"
-              value={data.discount}
-              onChange={handleInput}
-              className="input w-full max-w-xs"
-              required
-            />
-          </div>
 
           <div className="flex ml-52">
             <label className="basis-1/6 font-bold text-white mr-3">

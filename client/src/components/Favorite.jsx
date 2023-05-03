@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { removeWishlist } from '../features/slices/FavSlices';
 
-/*import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';*/
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export const Favorite = ({ wishlist }) => {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ export const Favorite = ({ wishlist }) => {
             onClick={() => removeWishlishHandler(wishlist)}
             className="dark:text-rose-600"
           >
-            {/*<FontAwesomeIcon className="text-red-600" icon={faTrash} />*/}
+            <FontAwesomeIcon className="text-red-600" icon={faTrash} />
           </button>
         </div>
       </div>
