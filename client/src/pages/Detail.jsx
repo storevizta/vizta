@@ -104,6 +104,10 @@ export const Detail = () => {
     window.location.href = `https://wa.me/${user.data.phone}`;
   };
 
+  const addToWishHandler = (info) => {
+    dispatch(addToWishList(info));
+  };
+
   return (
     <div className="w-2/3 m-auto">
       <div>
