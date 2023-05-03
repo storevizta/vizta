@@ -41,7 +41,7 @@ export const Favorite = ({ wishlist }) => {
       </Link>
       <div className="flex flex-col justify-between p-4 leading-normal">
         <Link to={`/detail/${id}`}>
-          <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white break-all">
             {title}
           </h3>
           <h4 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
