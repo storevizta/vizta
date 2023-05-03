@@ -19,11 +19,25 @@ export const Favorite = ({ wishlist }) => {
   return (
     <div class="flex flex-col items-center bg-white rounded-lg shadow md:flex-row md:max-w-xl dark:bg-myBlue ">
       <Link to={`/detail/${id}`}>
-        <img
+        {/* <img
           class="object-cover w-full rounded-t-lg h-96 mx-2 my-1 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
           src={image}
           alt=""
+        /> */}        
+        {!image ? (
+          <img
+          className="w-56 h-56 rounded object-cover"
+          src={image}
+          alt="image"
         />
+      ) : (
+        <img
+          className="w-full h-56 rounded object-cover"
+          src={image[0]}
+          alt="image"
+          onError={(e) => (e.target.src = `${imageError}`)}
+        />
+      )}
       </Link>
       <div className="flex flex-col justify-between p-4 leading-normal">
         <Link to={`/detail/${id}`}>
@@ -34,12 +48,11 @@ export const Favorite = ({ wishlist }) => {
             $ {price}
           </h4>
         </Link>
-        <div className="flex flex-row  items-center py-1">
+        <div className="flex flex-row justify-center py-1 w-10 rounded-md ">
           <button
             onClick={() => removeWishlishHandler(wishlist)}
-            className="dark:text-rose-600"
           >
-            <FontAwesomeIcon className="text-red-600" icon={faTrash} />
+            <FontAwesomeIcon className="text-gray-800 text-red-500/90" icon={faTrash} />
           </button>
         </div>
       </div>
