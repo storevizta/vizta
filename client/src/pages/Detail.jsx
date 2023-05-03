@@ -154,18 +154,13 @@ export const Detail = () => {
               onClick={handlerPreviousImage}
             />
           </div>
-          <div className="w-100 h-120 break-words basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md">
-            <h1 className="font-bold text-white pl-5 text-3xl pt-3 pr-3">
+          <div className="w-100 break-words basis-1/3 pl-15 ml-3 bg-zinc-700 block ml-15 rounded-md">
+            <h1 className="font-bold text-white pl-5 text-3xl pt-3 pr-3 pb-2">
               {title}
             </h1>
 
             <div>
-              <p className="pl-5 text-white">$ {price}</p>
-            </div>
-
-            <div className="pb-4 pr-5">
-              <p className="pl-5 text-white font-bold pt-5">Description: </p>
-              <p className="pl-8 text-white pb-3">{description}</p>
+              <p className="pl-5 text-white pb-1">$ {price}</p>
             </div>
 
             <div className="pb-4">
@@ -200,7 +195,7 @@ export const Detail = () => {
               <p className="inline text-white pb-15">{shipment}</p>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-around mb-5">
               {user?.data?.phone && isUserBanned?.data?.access !== 'Banned' ? (
                 <div className="bg-whatsapp text-white flex w-28 justify-center rounded m-2 ml-5 h-8 items-center">
                   <img
@@ -223,7 +218,7 @@ export const Detail = () => {
                 </div>
               ) : null}
 
-            {isAuthenticated && isUserBanned?.data?.role !== 'user' ? (
+              {isAuthenticated && isUserBanned?.data?.role !== 'user' ? (
                 <DeleteAdvertisement adId={id} />
               ) : null}
             </div>
@@ -240,6 +235,11 @@ export const Detail = () => {
             </p>
           </Link>
         ) : null}
+      </div>
+
+      <div className="pb-4 pr-5 bg-zinc-700 block rounded-md mt-5">
+        <p className="pl-5 text-white font-bold pt-5 pb-4">Description: </p>
+        <p className="pl-8 text-white pb-3">{description}</p>
       </div>
 
       <Messages adId={id} userId={UserId} />
