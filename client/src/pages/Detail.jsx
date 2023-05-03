@@ -223,8 +223,8 @@ export const Detail = () => {
                 </div>
               ) : null}
 
-            {isAuthenticated && isUserBanned?.data?.role === 'Admin' ? (
-                <DeleteAdvertisement/>
+            {isAuthenticated && isUserBanned?.data?.role !== 'user' ? (
+                <DeleteAdvertisement adId={id} />
               ) : null}
             </div>
 

@@ -35,7 +35,7 @@ export const DeleteAdvertisement = ({ adId }) => {
         className="text-right btn bg-red-500 text-white font-bold border-transparent"
         onClick={(e) => handleDelete(e)}
       >
-        Delete Advertisement
+        Delete Ad
       </button>
     </div>
   );
