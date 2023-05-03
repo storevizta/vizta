@@ -48,6 +48,7 @@ export const Subscribe = () => {
       body: JSON.stringify(orderData),
     })
       .then((response) => {
+        console.log(response.json());
         return response.json();
       })
       .then((preference) => {
@@ -83,12 +84,11 @@ export const Subscribe = () => {
   };
 
   return (
-    <div className="h-full flex flex-col justify-center items-center">
-      {renderSpinner()}
-      <div>
-        <div>
-          <div>
-            <h2>Verification </h2>
+    <>
+      <div className="h-screen flex flex-col justify-center items-center">
+        <div className="w-96 p-5 bg-myBlue rounded-xl flex flex-col justify-center items-center">
+          <div className="">
+            <h2>Verification</h2>
             <p>Featured Ads</p>
             <p>
               Get the visibility your ads deserve with our verified featured
@@ -102,19 +102,13 @@ export const Subscribe = () => {
               opportunity - get verified and get featured today!
             </p>
           </div>
-          <div className="form-checkout">
-            <div className="flex">
-              <label>Price:</label>
-              <p>{orderData.price}</p>
-            </div>
+          <p>{orderData.price}</p>
+          <div className={paymentClass}>
+            {renderSpinner()}
+            {renderCheckoutButton(preferenceId)}
           </div>
         </div>
       </div>
-      <div className={paymentClass}>
-        <div className="container_payment">
-          {renderCheckoutButton(preferenceId)}
-        </div>
-      </div>
-    </div>
+    </>
   );
 };

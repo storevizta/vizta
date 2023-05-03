@@ -74,16 +74,6 @@ const getSubscribeUserAds = async (req, res) => {
 const createPreference = async (req, res) => {
   const { description, price, quantity, userId } = req.body;
 
-  if (userId) {
-    const user = await User.findByPk(userId);
-
-    if (user) {
-      user.subscribe = 'Subscribed';
-
-      user.save();
-    }
-  }
-
   let preference = {
     items: [
       {
@@ -103,6 +93,16 @@ const createPreference = async (req, res) => {
   mercadopago.preferences
     .create(preference)
     .then(function (response) {
+      if (userId) {
+        const user = User.findByPk(userId);
+
+        if (user) {
+          user.subscribe = 'Subscribed';
+
+          user.save();
+        }
+      }
+
       res.json({
         id: response.body.id,
       });
