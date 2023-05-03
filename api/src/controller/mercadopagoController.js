@@ -48,23 +48,16 @@ mercadopago.configure({
 // };
 
 const subscribeUser = async (req, res) => {
-  try {
-    const { userId } = req.body;
+  const { userId } = req.body;
 
-    if (userId) {
-      const user = await User.findByPk(userId);
+  if (userId) {
+    const user = await User.findByPk(userId);
 
-      if (user) {
-        user.subscribe = 'Subscribed';
+    if (user) {
+      user.subscribe = 'Subscribed';
 
-        user.save();
-
-        return res.status(200).json({ message: 'Succeful' });
-      }
+      user.save();
     }
-  } catch (error) {
-    console.log(error);
-    return res.status(400).json({ message: 'Error' });
   }
 };
 
