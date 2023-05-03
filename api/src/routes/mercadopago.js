@@ -6,14 +6,14 @@ const {
   getSubscribeUserAds,
   createPreference,
   feedback,
-  subscribeUser,
+  // subscribeUser,
 } = require('../controller/mercadopagoController.js');
 
 router.get('/subscribeproducts', getSubscribeUserAds);
 
 router.post('/create_preference', createPreference);
 
-router.post('/subscribeuser', subscribeUser);
+// router.post('/subscribeuser', subscribeUser);
 
 router.get('/feedback', feedback);
 
