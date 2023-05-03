@@ -1,7 +1,6 @@
 import { useGetUserAdsQuery } from '../features/query/UserQuery';
 import { Card } from './Card';
 import { Link } from 'react-router-dom';
-import { StateAdvertisement } from '../components/StateAdvertisement';
 import { Loading } from '../components/Loading';
 import { AdsReports } from './AdsReports';
 import { DeleteAdvertisement } from './DeleteAdvertisement';
@@ -32,8 +31,8 @@ export const ProfileAdvertisements = ({ userId }) => {
   const pausedAds = data.filter((ad) => ad.state === 'Paused');
 
   return (
-    <div>
-      <div className="pl-7 pt-5">
+    <div className="w-170">
+      <div className="pl-7 pt-5 w-170 overflow-auto">
         <h2 className="text-lg text-bold pb-5">Active Advertisements: </h2>
         <div className="">
           {activeAds.length ? (
@@ -46,18 +45,15 @@ export const ProfileAdvertisements = ({ userId }) => {
                       src={ad.image[0]}
                       alt="image"
                     />
+
+                    <p className="font-bold pl-5 my-auto pr-14">{ad.title}</p>
                   </Link>
-
-                  <p className="font-bold pl-5 my-auto pr-14">{ad.title}</p>
-
                   <Link
                     className="my-auto p-3 rounded bg-gray-600 text-white"
                     to={`/update/${ad.id}`}
                   >
                     <p>Update</p>
                   </Link>
-
-                  <StateAdvertisement ad={ad} />
                 </div>
                 <DeleteAdvertisement adId={ad.id} />
                 <AdsReports adId={ad.id} />
@@ -87,8 +83,6 @@ export const ProfileAdvertisements = ({ userId }) => {
                 >
                   <p>Update</p>
                 </Link>
-
-                <StateAdvertisement ad={ad} />
               </div>
             ))
           ) : (
@@ -115,8 +109,6 @@ export const ProfileAdvertisements = ({ userId }) => {
                 >
                   <p>Update</p>
                 </Link>
-
-                <StateAdvertisement ad={ad} />
               </div>
             ))
           ) : (
