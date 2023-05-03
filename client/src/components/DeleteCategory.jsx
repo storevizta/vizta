@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDeleteCategoryMutation } from '../features/query/CategoryQuery';
 
-export const DeleteCategoryForm = ({name}) => {
+export const DeleteCategoryForm = () => {
   const [name, setName] = useState('');
 
     const [deleteCategory, { isLoading }] = useDeleteCategoryMutation();
