@@ -144,18 +144,6 @@ export const Admin = () => {
             </button>
           </div>
 
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
-            <img
-              className="brightness-0 invert h-5"
-              src="https://www.svgrepo.com/show/377112/users.svg"
-            ></img>
-            <button
-              className="text-left"
-              onClick={() => handlePanelClick('Advertisement Actions')}
-            >
-              Advertisement Actions
-            </button>
-          </div>
 
           <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
@@ -225,8 +213,6 @@ export const Admin = () => {
           </div>
         </div>
       )}
-
-        
         {activePanel === 'Users Actions' && (
           <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
             <h2>Users Actions</h2>
