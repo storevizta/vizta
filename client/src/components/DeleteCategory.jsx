@@ -16,7 +16,7 @@ export const DeleteCategoryForm = ({name}) => {
     <div>
       <div className="m-5">
         <label className="flex flex-col w-100 items-center gap-4" htmlFor="name">Name:</label>
-        <input
+        <input className="input w-full"
           type="text"
           id="name"
           value={name}

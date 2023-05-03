@@ -19,7 +19,7 @@ export const CreateCategoryForm = () => {
     <form className="flex flex-col w-100 items-center gap-4" onSubmit={handleSubmit}>
       <div className="m-5">
         <label htmlFor="name">Name:</label>
-        <input
+        <input className="input w-full"
           type="text"
           id="name"
           value={name}
