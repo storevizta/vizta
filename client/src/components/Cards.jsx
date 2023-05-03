@@ -28,7 +28,7 @@ export const Cards = ({ userId }) => {
       {data && data.length === 0 ? (
         <p>No results found.</p>
       ) : (
-        <div className="grid grid-cols-4 pl-16 mt-5 gap-4">
+        <div className="grid grid-cols-6 pl-16 mt-5 gap-4">
           {data &&
             userAds.map((el) => (
               <div key={el.id}>

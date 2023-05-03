@@ -57,11 +57,11 @@ export const Navbar = () => {
   if (error) return <div>Error...</div>;
 
   return (
-    <div className="bg-base-100">
-      <nav className="flex justify-between px-10 py-5 items-center">
-        <Link to="/home">
+    <div className="bg-zinc-700">
+      <nav className="flex w-full justify-between px-10 py-5 items-center">
+        <Link to="/home" className='w-1/13'>
           <h1
-            className="text-white text-3xl font-bold uppercase tracking-widest"
+            className="flex justify-center text-white text-3xl font-bold uppercase tracking-widest"
             style={{
               fontFamily:
                 '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif',
@@ -75,7 +75,7 @@ export const Navbar = () => {
         {searchProfile && searchLanding && searchDetail && searchPost && (
           <div>
             <input
-              className="bg-zinc-700 px-3 py-2 rounded-full w-140 transition-all duration-500 outline-none hover:bg-white hover:border-white"
+              className="bg-gray-600 px-3 py-2 rounded-full w-140 transition-all duration-500 outline-none hover:bg-white hover:border-white"
               type="text"
               name="search"
               id="search"

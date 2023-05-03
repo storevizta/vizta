@@ -38,22 +38,20 @@ const getCategory = async (req, res) => {
 };
 
 const createCategory = async (req, res) => {
-    try {
-      const { name
-      } = req.body;
-  
-      const existingCategory = await Category.findOne({ where: { name } });
-  
-      if (!existingCategory) {
-        const category = await Category.create({name});
-  
-        return res.status(201).json({ message: 'Category created' });
-      }
-  
-    } catch (error) {
-      console.log(error);
-      return res.status(500).json({ message: 'Error creating category', error });
+  try {
+    const { name } = req.body;
+
+    const existingCategory = await Category.findOne({ where: { name } });
+
+    if (!existingCategory) {
+      const category = await Category.create({ name });
+
+      return res.status(201).json({ message: 'Category created' });
     }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Error creating category', error });
+  }
 };
 
 const deleteCategory = async (req, res) => {

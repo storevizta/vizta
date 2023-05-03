@@ -57,74 +57,74 @@ export const Sidebar = () => {
 
   return (
     <>
-      <div className="bg-zinc-700 text-white h-full w-1/4 rounded-md">
+      <div className="bg-zinc-700 text-white h-screen w-2/12 relative sticky top-0">
         <div className="p-2">
-          <h1 className="text-2xl font-bold focus:outline-none focus:text-indigo-400 text-left  flex justify-between items-center w-full py-5 space-x-14  leading-5  uppercase ">
+          <h1 className="text-2xl text-center font-bold focus:outline-none focus:text-indigo-400 w-full py-5 space-x-14  leading-5  uppercase ">
             categories
           </h1>
           <div className="cursor-pointer">
             {data &&
               data?.map((el) => (
                 <div
-                  className="px-5 m-3 bg-zinc-600 rounded hover:bg-base-100"
+                className="bg-gray-600 my-2 rounded-2xl p-2 hover:bg-slate-700 cursor-pointer w-full"
                   key={el.id}
                   onClick={() => handlerCategory(el.id)}
                 >
-                  {el.name}
+                  ➤ {el.name}
                 </div>
               ))}
           </div>
         </div>
 
         <div className="p-2">
-          <h1 className="text-2xl font-bold focus:outline-none focus:text-indigo-400 text-left  flex justify-between items-center w-full py-5 space-x-14  leading-5  uppercase ">
+          <h1 className="text-2xl text-center font-bold focus:outline-none focus:text-indigo-400 w-full py-5 space-x-14  leading-5  uppercase ">
             filters
           </h1>
           <div>
-            <h2>Price:</h2>
-            <div className="pb-3">
+            <h2 className='text-xl text-center'>Price:</h2>
+            <div className="pb-3 flex flex-col items-center">
               <form className="flex gap-5">
                 <input
-                  className="w-24 rounded outline-none"
-                  type="text"
+                  className="w-24 outline-none bg-gray-600"
+                  type="number"
                   placeholder="Min."
                   onChange={handlerMinPrice}
                 />
                 <input
-                  className="w-24 rounded outline-none"
-                  type="text"
+                  className="w-24 rounded outline-none bg-gray-600"
+                  type="number"
                   placeholder="Max."
                   onChange={handlerMaxPrice}
                 />
               </form>
             </div>
 
-            <h2>Condition:</h2>
+            <h2 className='text-xl text-center'>Condition:</h2>
             <div>
               <div className="cursor-pointer">
                 <div
-                  className="px-2 rounded hover:bg-zinc-600"
+                  className="bg-gray-600 my-2 rounded-2xl p-2 hover:bg-slate-700 cursor-pointer w-full"
                   onClick={() => handlerCondition('new')}
                 >
-                  New
+                  ➤ New
                 </div>
                 <div
-                  className="px-2 rounded hover:bg-zinc-600"
+                  className="bg-gray-600 my-2 rounded-2xl p-2 hover:bg-slate-700 cursor-pointer w-full"
                   onClick={() => handlerCondition('used')}
                 >
-                  Used
+                  ➤ Used
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div className="p-2">
-          <h1 className="text-2xl font-bold focus:outline-none focus:text-indigo-400 text-left   flex justify-between items-center w-full py-5 space-x-14  leading-5  uppercase ">
+          <h1 className="text-2xl text-center font-bold focus:outline-none focus:text-indigo-400 w-full py-5 space-x-14  leading-5  uppercase ">
             order
           </h1>
           <div>
-            <div>Sort: </div>
-            <select onChange={(e) => handlerSort(e)}>
+            <div className='text-center'>Sort: </div>
+            <select className="select w-full max-w-xs bg-gray-600" onChange={(e) => handlerSort(e)}>
               <option value="priceAsc">Price Ascendente</option>
               <option value="priceDesc">Price Descendente</option>
               <option value="titleAsc">Title Ascendente</option>
@@ -140,7 +140,7 @@ export const Sidebar = () => {
             Reset
           </button>
         </div>
-        <div className="">
+        <div>
           <p>Vizta Copyrigth ©</p>
         </div>
       </div>

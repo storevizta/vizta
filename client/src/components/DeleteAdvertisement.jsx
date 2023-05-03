@@ -30,7 +30,7 @@ export const DeleteAdvertisement = ({ adId }) => {
   };
 
   return (
-    <div className="flex justify-end">
+    <div className='my-2'>
       <button
         className="text-right btn bg-red-500 text-white font-bold border-transparent"
         onClick={(e) => handleDelete(e)}

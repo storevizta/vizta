@@ -58,15 +58,15 @@ export const UserDetail = (userId) => {
     .replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
 
   return (
-    <div className="bg-white p-4">
-      <p className="font-bold text-black">Seller: </p>
+    <div className="bg-gray-600 p-4 my-5">
+      <p className="font-bold">Seller: </p>
 
-      <div className="flex flex-col">
-        <p className="text-sm pl-8 text-black">{name}</p>
+      <div className="flex flex-col gap-1">
+        <p className="text-sm pl-8">{name}</p>
 
         <div className="flex gap-2">
-          <div className="flex flex-row pl-8 pt-1">
-            <p className="text-sm text-black">Rating Average:</p>
+          <div className="flex flex-row pl-8 pt-1 items-center">
+            <p className="text-sm">Rating Average:</p>
 
             <div className="rating rating-sm pl-2">
               <input
@@ -103,7 +103,7 @@ export const UserDetail = (userId) => {
           </div>
         </div>
 
-        <div className="text-sm pl-8 text-black">
+        <div className="text-sm pl-8">
           {address && address.length > 0 ? (
             <div>
               <p className="inline">{address[0]?.country}, </p>
@@ -114,11 +114,11 @@ export const UserDetail = (userId) => {
             <p>Address is undefined</p>
           )}
         </div>
-        <p className="text-sm pl-8 text-black">Joined Vizta {created}</p>
+        <p className="text-sm pl-8">Joined Vizta {created}</p>
       </div>
 
       <Link className="justify-end" to={`/userProfile/${id}`}>
-        <p className="text-black text-sm text-right border p-1 px-2 rounded w-fit border-black mt-2 hover:font-bold">
+        <p className="text-sm text-right border p-1 px-2 rounded w-fit border-black mt-2 hover:font-bold">
           See more data about {name}
         </p>
       </Link>

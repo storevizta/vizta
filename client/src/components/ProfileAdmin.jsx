@@ -109,74 +109,63 @@ export const Admin = () => {
         <h1 className="text-center mt-5 text-3xl">Dashboard Admin</h1>
         <div className="flex flex-col">
           
-        <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+        <Link to='/profile'><div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
             <img
               className="brightness-0 invert h-5"
               src="https://www.svgrepo.com/show/376950/logout.svg"
             ></img>
-             <Link to='/profile'><button>Profile</button></Link>
-          </div>
+              <button>Profile</button>
+          </div></Link>
 
 
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700 cursor-pointer" onClick={() => handlePanelClick('Reports')}>
             <img
               className="brightness-0 invert h-5"
               src="https://www.svgrepo.com/show/376813/chats-2.svg"
             ></img>
             <button
               className="text-left"
-              onClick={() => handlePanelClick('Reports')}
             >
               Reports
             </button>
           </div>
 
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700 cursor-pointer" onClick={() => handlePanelClick('Users Actions')}>
             <img
               className="brightness-0 invert h-5"
               src="https://www.svgrepo.com/show/377112/users.svg"
             ></img>
             <button
               className="text-left"
-              onClick={() => handlePanelClick('Users Actions')}
             >
               Users Actions
             </button>
           </div>
 
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700 cursor-pointer" onClick={() => handlePanelClick('Advertisement Actions')}>
             <img
               className="brightness-0 invert h-5"
               src="https://www.svgrepo.com/show/377112/users.svg"
             ></img>
             <button
               className="text-left"
-              onClick={() => handlePanelClick('Advertisement Actions')}
             >
               Advertisement Actions
             </button>
           </div>
 
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
+          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700 cursor-pointer" onClick={() => handlePanelClick('Category Actions')}>
             <img
               className="brightness-0 invert h-5"
               src="https://www.svgrepo.com/show/377112/users.svg"
             ></img>
             <button
               className="text-left"
-              onClick={() => handlePanelClick('Category Actions')}
             >
               Category Actions
             </button>
           </div>
-          
-          <div className="bg-gray-600 m-2 rounded-2xl flex items-center p-2 gap-3 hover:bg-slate-700">
-            <img
-              className="brightness-0 invert h-5"
-              src="https://www.svgrepo.com/show/376950/logout.svg"
-            ></img>
             <LogOutButton />
-          </div>
         </div>
         <h4 className="absolute bottom-3 ml-5">Vizta Copyrigth ©</h4>
       </aside>
@@ -254,11 +243,9 @@ export const Admin = () => {
         {activePanel === "Category Actions" && (
         <div className="h-screen p-5 flex flex-col items-center gap-2 bg-zinc-700 rounded-2xl ml-3">
           <div className="w-100 flex flex-col items-center gap-4 m-5">
-            <h3>Create Category</h3>
             <CreateCategoryForm/>
           </div>
           <div className="w-100 flex flex-col items-center gap-4 m-5">
-            <h3>Delete Category</h3>
             <DeleteCategoryForm/>
           </div>
         </div>

@@ -12,6 +12,7 @@ export default {
         150: '50rem',
         170: '55rem',
         200: '100rem',
+        '1/13': '11%',
       },
       colors: {
         myBlue: '#36404D',

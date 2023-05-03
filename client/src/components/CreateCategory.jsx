@@ -22,10 +22,10 @@ export const CreateCategoryForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className='w-full flex flex-col gap-4 items-center'>
       <h1>Create Category</h1>
-      <input type="text" placeholder="Category Name" name='name' value={name.name} onChange={handleInput} className="input input-bordered w-full max-w-xs" />
-      <button className='btn btn-info'type='submit'>Create</button>
+      <input type="text" placeholder="Category Name" name='name' value={name.name} onChange={handleInput} className="input input-bordered w-full" />
+      <button className='btn btn-info w-52' type='submit'>Create</button>
     </form>
   );
 };

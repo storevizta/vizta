@@ -33,8 +33,8 @@ export const Messages = ({ adId, userId }) => {
 
   return (
     <div className="mt-5">
-      <div className="bg-slate-700 pt-3 pb-3 text-lg">
-        <h2 className="font-bold text-center">Messages to the seller</h2>
+      <div className="flex flex-col items-center">
+        <h2 className="bg-gray-600 w-full text-center text-2xl font-bold p-1">Messages to the seller</h2>
       </div>
       {data?.map((message) => (
         <div
