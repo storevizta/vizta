@@ -2,9 +2,12 @@ import { useParams } from 'react-router';
 import { useState } from 'react';
 import { useCreateReportMutation } from '../features/query/ReportQuery';
 import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 
 export const ReportAd = () => {
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const [createReport] = useCreateReportMutation();
 
@@ -40,7 +43,9 @@ export const ReportAd = () => {
         .catch((error) => {
           console.log(error);
         });
+      navigate('/home');
       swal('Report sent!');
+      input = '';
     }
   };
 

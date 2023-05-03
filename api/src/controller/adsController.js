@@ -24,7 +24,6 @@ const getAds = async (req, res) => {
       minPrice,
       maxPrice,
       sort,
-      discount,
       condition,
     } = req.query;
 
@@ -75,12 +74,6 @@ const getAds = async (req, res) => {
       options.order = [['title', 'DESC']];
     }
 
-    if (discount) {
-      options.where.discount = {
-        [Op.eq]: +discount,
-      };
-    }
-
     if (condition === 'new') {
       options.where.condition = 'New';
     } else if (condition === 'used') {
@@ -129,7 +122,6 @@ const createAd = async (req, res) => {
       title,
       description,
       price,
-      discount,
       condition,
       method,
       shipment,
@@ -154,7 +146,6 @@ const createAd = async (req, res) => {
       title,
       description,
       price,
-      discount,
       condition,
       method,
       shipment,
@@ -197,7 +188,6 @@ const updateAd = async (req, res) => {
       title: title,
       description: description,
       price: price,
-      discount: discount,
       condition: condition,
       method: method,
       shipment: shipment,
