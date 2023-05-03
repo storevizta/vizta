@@ -140,7 +140,7 @@ export const Sidebar = () => {
             Reset
           </button>
         </div>
-        <div className="">
+        <div className="text-zinc-900 m-3">
           <p>Vizta Copyrigth ©</p>
         </div>
       </div>
