@@ -1,13 +1,17 @@
 import { useParams } from 'react-router-dom';
 import { useCreateRatingMutation } from '../features/query/RatingQuery';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 export const Rating = () => {
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const [createRating] = useCreateRatingMutation();
 
   const [input, setInput] = useState({
-    rating: 1,
+    rating: null,
     comment: '',
   });
 
@@ -22,6 +26,11 @@ export const Rating = () => {
         ...errors,
         comment: 'The Comment must be more than 10 characters',
       });
+    } else if (input.rating === null) {
+      setErrors({
+        ...errors,
+        rating: 'You must enter a rating',
+      });
     } else {
       setErrors('');
     }
@@ -35,19 +44,23 @@ export const Rating = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createRating({
-      rating: input.rating,
-      comment: input.comment,
-      userId: id,
-    })
-      .unwrap()
-      .then((data) => {
-        console.log(data);
+    if (input.rating !== null && !input.rating !== '' && errors === '') {
+      createRating({
+        rating: input.rating,
+        comment: input.comment,
+        userId: id,
       })
-      .catch((error) => {
-        console.log(error);
-      });
-    swal('Rating sent!');
+        .unwrap()
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      navigate('/home');
+      swal('Rating sent!');
+      setInput({ rating: null, comment: '' });
+    }
   };
 
   return (
@@ -98,6 +111,14 @@ export const Rating = () => {
             </div>
           </div>
 
+          {errors.rating && (
+            <div className="bg-red-600 w-96 m-auto p-1 rounded">
+              <p className="text-center text-white font-bold capitalize">
+                {errors.rating}
+              </p>
+            </div>
+          )}
+
           <label className="text-lg basis-1/6 font-bold text-white mr-3 pl-5 pb-3">
             Comment:{' '}
           </label>
@@ -118,7 +139,11 @@ export const Rating = () => {
           </div>
         )}
         <div className="flex items-center pt-5">
-          <button className="btn m-auto" type="submit">
+          <button
+            className="btn m-auto"
+            type="submit"
+            disabled={!input.rating || !input.comment}
+          >
             Send
           </button>
         </div>

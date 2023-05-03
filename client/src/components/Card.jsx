@@ -53,7 +53,7 @@ export const Card = ({ info }) => {
               className="h-3"
               src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
             />
-            <button onClick={() => addToWishHandler()}>Add favorite</button>
+            <button onClick={() => addToWishHandler(info)}>Add favorite</button>
           </div>
         ) : null}
       </div>

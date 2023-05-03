@@ -4,7 +4,11 @@ import swal from 'sweetalert';
 
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 export const CreateMessage = (props) => {
+  const navigate = useNavigate();
+
   const [createMessage] = useCreateMessageMutation();
 
   const { userId, adId } = props;
@@ -47,6 +51,8 @@ export const CreateMessage = (props) => {
       });
 
     swal('Message sent');
+    setData({ ...data, message: '' });
+    navigate('/home');
   };
 
   return (

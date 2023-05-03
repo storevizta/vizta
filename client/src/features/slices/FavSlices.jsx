@@ -30,11 +30,16 @@ export const wishlistsSlice = createSlice({
 
     //remove from wishlist
     removeWishlist: (state, action) => {
-      const updatedWishlists = state.wishlistsItems?.filter((item) => item?.id !== action.payload?.id)
+      const updatedWishlists = state.wishlistsItems?.filter(
+        (item) => item?.id !== action.payload?.id
+      );
 
       state.wishlistsItems = updatedWishlists;
 
-      localStorage.setItem("wishlistItems", JSON.stringify(state.wishlistsItems));
+      localStorage.setItem(
+        'wishlistItems',
+        JSON.stringify(state.wishlistsItems)
+      );
     },
 
     //clear Lists
