@@ -23,7 +23,7 @@ export const CreateMessage = (props) => {
 
   const [data, setData] = useState({
     message: '',
-    userId: user.sub,
+    userId: user?.sub ? user.sub : null,
     adId: adId,
   });
 
@@ -65,7 +65,9 @@ export const CreateMessage = (props) => {
 
   return (
     <div>
-      {activeMessage === true && user.sub !== userId ? (
+      {activeMessage === true &&
+      data.userId !== userId &&
+      data.userId !== null ? (
         <div className="border-slate-400 border-2 pb-5">
           <button
             className="bg-red-600 mt-3 ml-3 py-1 px-2 rounded text-white"
