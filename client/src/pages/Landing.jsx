@@ -6,7 +6,7 @@ export const Landing = () => {
     <div className="relative top-36 flex flex-col">
       <div className="flex flex-grow justify-center items-center gap-24">
         <div className="flex flex-col gap-5">
-          <div className="text-5x">VIZTA</div>
+          <h1 className="text-5xl">VIZTA</h1>
           <div className="text-2xl">
             Discover new opportunities with our classified ads portal.
           </div>
