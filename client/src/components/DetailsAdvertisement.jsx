@@ -25,14 +25,12 @@ export const DetailsAdvertisement = ({ adId }) => {
     );
   }
 
-  console.log(data);
-
   return (
     <div>
-      <p className="text-lg text-bold">Advertisement: </p>
+      <p className="text-2xl">Advertisement: </p>
       <Link className="flex mt-5" to={`/detail/${data.id}`}>
         <img src={data.image[0]} className="w-24 rounded" />
-        <p className="text-lg pl-5 my-auto">{data.title}</p>
+        <p className="text-xl pl-5 my-auto">{data.title}</p>
       </Link>
     </div>
   );

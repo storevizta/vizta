@@ -47,7 +47,7 @@ export const Response = ({ id }) => {
           placeholder="Response..."
         />
         <button
-          className="p-3 rounded bg-zinc-700 text-white w-40"
+          className="p-3 rounded bg-zinc-700 text-white w-40 mb-4"
           type="submit"
         >
           Send
