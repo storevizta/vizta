@@ -45,7 +45,7 @@ export const ReportAd = () => {
         });
       navigate('/home');
       swal('Report sent!');
-      input = '';
+      setInput('');
     }
   };
 

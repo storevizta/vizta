@@ -34,7 +34,7 @@ export const ProfileMessages = ({ userId }) => {
   );
 
   return (
-    <div className="p-2 flex flex-col gap-2 bg-zinc-700 rounded-2xl ml-3 w-150">
+    <div className="p-2 flex flex-col gap-2 bg-zinc-700 rounded-2xl ml-3 w-170">
       {mensajesSinResponder.length ? (
         mensajesSinResponder.map((message) => (
           <div className="bg-gray-600 rounded-2xl p-10">
