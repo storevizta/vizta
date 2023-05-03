@@ -1,10 +1,10 @@
 import { useGetUserAdsQuery } from '../features/query/UserQuery';
 import { Card } from './Card';
 import { Link } from 'react-router-dom';
-import { StateAdvertisement } from '../components/StateAdvertisement';
 import { Loading } from '../components/Loading';
 import { AdsReports } from './AdsReports';
 import { DeleteAdvertisement } from './DeleteAdvertisement';
+import { PendingMessage } from './PendingMessage';
 
 import { Error } from '../components/Error';
 
@@ -33,33 +33,33 @@ export const ProfileAdvertisements = ({ userId }) => {
 
   return (
     <div>
-      <div className="pl-7 pt-5">
+      <div className="pl-7 pt-5 w-180 overflow-auto">
         <h2 className="text-lg text-bold pb-5">Active Advertisements: </h2>
         <div className="">
           {activeAds.length ? (
             activeAds.map((ad) => (
               <div className="border-b-2 pb-5">
-                <div className="flex flex-row pt-3">
+                <div className="flex flex-row pt-3 justify-between pr-5">
                   <Link className="flex" to={`/detail/${ad.id}`}>
                     <img
                       className="w-24 rounded"
                       src={ad.image[0]}
                       alt="image"
                     />
+
+                    <p className="font-bold pl-5 my-auto">{ad.title}</p>
                   </Link>
-
-                  <p className="font-bold pl-5 my-auto pr-14">{ad.title}</p>
-
                   <Link
                     className="my-auto p-3 rounded bg-gray-600 text-white"
                     to={`/update/${ad.id}`}
                   >
                     <p>Update</p>
                   </Link>
-
-                  <StateAdvertisement ad={ad} />
+                  <div className="my-auto">
+                    <DeleteAdvertisement adId={ad.id} />
+                  </div>
                 </div>
-                <DeleteAdvertisement adId={ad.id} />
+                <PendingMessage adId={ad.id} />
                 <AdsReports adId={ad.id} />
               </div>
             ))
@@ -87,8 +87,6 @@ export const ProfileAdvertisements = ({ userId }) => {
                 >
                   <p>Update</p>
                 </Link>
-
-                <StateAdvertisement ad={ad} />
               </div>
             ))
           ) : (
@@ -115,8 +113,6 @@ export const ProfileAdvertisements = ({ userId }) => {
                 >
                   <p>Update</p>
                 </Link>
-
-                <StateAdvertisement ad={ad} />
               </div>
             ))
           ) : (

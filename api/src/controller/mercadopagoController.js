@@ -47,6 +47,27 @@ mercadopago.configure({
 //   }
 // };
 
+// const subscribeUser = async (req, res) => {
+//   try {
+//     const { userId } = req.body;
+
+//     if (userId) {
+//       const user = await User.findByPk(userId);
+
+//       if (user) {
+//         user.subscribe = 'Subscribed';
+
+//         user.save();
+
+//         return res.status(200).json({ message: 'Succeful' });
+//       }
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(400).json({ message: 'Error' });
+//   }
+// };
+
 const getSubscribeUserAds = async (req, res) => {
   try {
     const subscribedUsers = await User.findAll({
@@ -73,16 +94,6 @@ const getSubscribeUserAds = async (req, res) => {
 
 const createPreference = async (req, res) => {
   const { description, price, quantity, userId } = req.body;
-
-  if (userId) {
-    const user = await User.findByPk(userId);
-
-    if (user) {
-      user.subscribe = 'Subscribed';
-
-      user.save();
-    }
-  }
 
   let preference = {
     items: [
@@ -120,4 +131,8 @@ const feedback = async (req, res) => {
   });
 };
 
-module.exports = { getSubscribeUserAds, createPreference, feedback };
+module.exports = {
+  getSubscribeUserAds,
+  createPreference,
+  feedback,
+};

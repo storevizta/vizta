@@ -140,7 +140,7 @@ export const Sidebar = () => {
             Reset
           </button>
         </div>
-        <div>
+        <div className="m-3">
           <p>Vizta Copyrigth ©</p>
         </div>
       </div>

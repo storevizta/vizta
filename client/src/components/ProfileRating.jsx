@@ -29,50 +29,54 @@ export const ProfileRating = ({ userId }) => {
   );
   const promedioRating = Math.round(sumaRating / data.length);
 
+  console.log(data.length);
+
   return (
     <div>
-      <div className="flex gap-2 mb-5">
-        <div className="flex flex-row items-center m-auto pt-3">
-          <p className="h-auto text-lg font-bold">Rating Average:</p>
+      <div className="flex gap-2 mb-5 w-170">
+        {data.length !== 0 ? (
+          <div className="flex flex-row items-center m-auto pt-3">
+            <p className="h-auto text-lg font-bold">Rating Average:</p>
 
-          <div className="rating rating-lg pl-5">
-            <input
-              type="radio"
-              name="rating-8"
-              value={1}
-              className="mask mask-star-2 bg-orange-400"
-              checked={1 === promedioRating}
-            />
-            <input
-              type="radio"
-              name="rating-8"
-              value={2}
-              className="mask mask-star-2 bg-orange-400"
-              checked={2 === promedioRating}
-            />
-            <input
-              type="radio"
-              name="rating-8"
-              value={3}
-              className="mask mask-star-2 bg-orange-400"
-              checked={3 === promedioRating}
-            />
-            <input
-              type="radio"
-              name="rating-8"
-              value={4}
-              className="mask mask-star-2 bg-orange-400"
-              checked={4 === promedioRating}
-            />
-            <input
-              type="radio"
-              name="rating-8"
-              className="mask mask-star-2 bg-orange-400"
-              value={5}
-              checked={5 === promedioRating}
-            />
+            <div className="rating rating-lg pl-5">
+              <input
+                type="radio"
+                name="rating-8"
+                value={1}
+                className="mask mask-star-2 bg-orange-400"
+                checked={1 === promedioRating}
+              />
+              <input
+                type="radio"
+                name="rating-8"
+                value={2}
+                className="mask mask-star-2 bg-orange-400"
+                checked={2 === promedioRating}
+              />
+              <input
+                type="radio"
+                name="rating-8"
+                value={3}
+                className="mask mask-star-2 bg-orange-400"
+                checked={3 === promedioRating}
+              />
+              <input
+                type="radio"
+                name="rating-8"
+                value={4}
+                className="mask mask-star-2 bg-orange-400"
+                checked={4 === promedioRating}
+              />
+              <input
+                type="radio"
+                name="rating-8"
+                className="mask mask-star-2 bg-orange-400"
+                value={5}
+                checked={5 === promedioRating}
+              />
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
       <div className="flex items-center gap-2 mb-5 m-auto justify-center">
         <p>Number of Ratings:</p>
@@ -97,7 +101,7 @@ export const ProfileRating = ({ userId }) => {
           </div>
         ))
       ) : (
-        <p>You don't have any Ratings</p>
+        <p className="text-center">You don't have any Ratings</p>
       )}
     </div>
   );

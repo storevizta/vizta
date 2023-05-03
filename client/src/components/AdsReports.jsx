@@ -16,7 +16,7 @@ export const AdsReports = ({ adId }) => {
             key={report.id}
           >
             <p className="text-lg text-bold text-white">
-              Report: {report.reason}
+              Report about this advertisement: {report.reason}
             </p>
             <p>
               Date:{' '}

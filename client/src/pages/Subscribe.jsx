@@ -10,6 +10,8 @@ import { SpinnerCircular } from 'spinners-react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
+// import { useSubscribeMutation } from '../features/query/MercadoPagoQuery';
+
 initMercadoPago('APP_USR-8c230a5f-f7e1-4a20-9da4-1d3d45c1c226');
 
 export const Subscribe = () => {
@@ -26,9 +28,10 @@ export const Subscribe = () => {
     price: '0.5',
     amount: 0.5,
     description: 'Blue',
-    userId: user.sub,
   });
   const [isReady, setIsReady] = useState(false);
+
+  // const [subscribe] = useSubscribeMutation();
 
   useEffect(() => {
     handleClick();
@@ -37,6 +40,10 @@ export const Subscribe = () => {
   const handleOnReady = () => {
     setIsReady(true);
   };
+
+  // const handleSubscribe = () => {
+  //   subscribe({ userId: user.sub });
+  // };
 
   const handleClick = () => {
     setIsLoading(true);
@@ -48,6 +55,7 @@ export const Subscribe = () => {
       body: JSON.stringify(orderData),
     })
       .then((response) => {
+        console.log(response.json());
         return response.json();
       })
       .then((preference) => {
@@ -83,12 +91,11 @@ export const Subscribe = () => {
   };
 
   return (
-    <div className="h-full flex flex-col justify-center items-center">
-      {renderSpinner()}
-      <div>
-        <div>
-          <div>
-            <h2>Verification </h2>
+    <>
+      <div className="h-screen flex flex-col justify-center items-center">
+        <div className="w-96 p-5 bg-myBlue rounded-xl flex flex-col justify-center items-center">
+          <div className="">
+            <h2>Verification</h2>
             <p>Featured Ads</p>
             <p>
               Get the visibility your ads deserve with our verified featured
@@ -102,19 +109,13 @@ export const Subscribe = () => {
               opportunity - get verified and get featured today!
             </p>
           </div>
-          <div className="form-checkout">
-            <div className="flex">
-              <label>Price:</label>
-              <p>{orderData.price}</p>
-            </div>
+          <p>{orderData.price}</p>
+          <div className={paymentClass}>
+            {renderSpinner()}
+            {renderCheckoutButton(preferenceId)}
           </div>
         </div>
       </div>
-      <div className={paymentClass}>
-        <div className="container_payment">
-          {renderCheckoutButton(preferenceId)}
-        </div>
-      </div>
-    </div>
+    </>
   );
 };

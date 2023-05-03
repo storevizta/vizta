@@ -1,5 +1,7 @@
 import { useCreateMessageMutation } from '../features/query/MessagesQuery';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 import swal from 'sweetalert';
 
 import { useState } from 'react';
@@ -7,6 +9,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const CreateMessage = (props) => {
+  const { user, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>isLoading</div>;
+  }
+
   const navigate = useNavigate();
 
   const [createMessage] = useCreateMessageMutation();
@@ -15,7 +23,7 @@ export const CreateMessage = (props) => {
 
   const [data, setData] = useState({
     message: '',
-    userId: userId,
+    userId: user?.sub ? user.sub : null,
     adId: adId,
   });
 
@@ -57,7 +65,9 @@ export const CreateMessage = (props) => {
 
   return (
     <div>
-      {activeMessage === true ? (
+      {activeMessage === true &&
+      data.userId !== userId &&
+      data.userId !== null ? (
         <div className="border-slate-400 border-2 pb-5">
           <button
             className="bg-red-600 mt-3 ml-3 py-1 px-2 rounded text-white"

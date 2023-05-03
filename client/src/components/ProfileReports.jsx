@@ -10,10 +10,10 @@ export const ProfileReports = ({ userId }) => {
   console.log(data);
 
   return (
-    <div>
+    <div className="w-170">
       {data && data.length > 0 ? (
         data.map((report) => (
-          <div className="w-140 p-2 mt-5 flex flex-col gap-2 bg-gray-600 rounded-2xl ml-3">
+          <div className="w-140 p-4 mt-5 flex flex-col gap-2 bg-gray-600 rounded-2xl ml-3">
             <p className="text-lg text-bold text-white">
               Report: {report.reason}
             </p>
@@ -26,7 +26,7 @@ export const ProfileReports = ({ userId }) => {
           </div>
         ))
       ) : (
-        <p>You don't have any reports</p>
+        <p className="text-center pt-5">You don't have any reports</p>
       )}
     </div>
   );

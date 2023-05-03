@@ -1,8 +1,11 @@
 import { useDeleteAdMutation } from '../features/query/AdsQuery';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 export const DeleteAdvertisement = ({ adId }) => {
   const [deleteAd] = useDeleteAdMutation();
+
+  const navigate = useNavigate();
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -25,6 +28,7 @@ export const DeleteAdvertisement = ({ adId }) => {
             console.log(error);
           });
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+        navigate('/home');
       }
     });
   };
@@ -35,7 +39,7 @@ export const DeleteAdvertisement = ({ adId }) => {
         className="text-right btn bg-red-500 text-white font-bold border-transparent"
         onClick={(e) => handleDelete(e)}
       >
-        Delete Advertisement
+        Delete Ad
       </button>
     </div>
   );
