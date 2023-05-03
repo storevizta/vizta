@@ -10,6 +10,8 @@ import { SpinnerCircular } from 'spinners-react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
+import { useSubscribeMutation } from '../features/query/MercadoPagoQuery';
+
 initMercadoPago('APP_USR-8c230a5f-f7e1-4a20-9da4-1d3d45c1c226');
 
 export const Subscribe = () => {
@@ -26,9 +28,10 @@ export const Subscribe = () => {
     price: '0.5',
     amount: 0.5,
     description: 'Blue',
-    userId: user.sub,
   });
   const [isReady, setIsReady] = useState(false);
+
+  const [subscribe] = useSubscribeMutation();
 
   useEffect(() => {
     handleClick();
@@ -36,6 +39,10 @@ export const Subscribe = () => {
 
   const handleOnReady = () => {
     setIsReady(true);
+  };
+
+  const handleSubscribe = () => {
+    subscribe({ userId: user.sub });
   };
 
   const handleClick = () => {
@@ -105,7 +112,9 @@ export const Subscribe = () => {
           <p>{orderData.price}</p>
           <div className={paymentClass}>
             {renderSpinner()}
-            {renderCheckoutButton(preferenceId)}
+            <div onClick={handleSubscribe}>
+              {renderCheckoutButton(preferenceId)}
+            </div>
           </div>
         </div>
       </div>
