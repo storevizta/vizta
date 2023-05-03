@@ -7,7 +7,14 @@ export const MercadoPago = createApi({
     getSubscribeAds: builder.query({
       query: () => '/mercadopago/subscribeproducts',
     }),
+    subscribe: builder.mutation({
+      query: (data) => ({
+        url: `/mercadopago/subscribeuser`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useGetSubscribeAdsQuery } = MercadoPago;
+export const { useGetSubscribeAdsQuery, useSubscribeMutation } = MercadoPago;

@@ -47,6 +47,20 @@ mercadopago.configure({
 //   }
 // };
 
+const subscribeUser = async (req, res) => {
+  const { userId } = req.body;
+
+  if (userId) {
+    const user = await User.findByPk(userId);
+
+    if (user) {
+      user.subscribe = 'Subscribed';
+
+      user.save();
+    }
+  }
+};
+
 const getSubscribeUserAds = async (req, res) => {
   try {
     const subscribedUsers = await User.findAll({
@@ -93,16 +107,6 @@ const createPreference = async (req, res) => {
   mercadopago.preferences
     .create(preference)
     .then(function (response) {
-      if (userId) {
-        const user = User.findByPk(userId);
-
-        if (user) {
-          user.subscribe = 'Subscribed';
-
-          user.save();
-        }
-      }
-
       res.json({
         id: response.body.id,
       });
@@ -120,4 +124,9 @@ const feedback = async (req, res) => {
   });
 };
 
-module.exports = { getSubscribeUserAds, createPreference, feedback };
+module.exports = {
+  getSubscribeUserAds,
+  createPreference,
+  feedback,
+  subscribeUser,
+};
