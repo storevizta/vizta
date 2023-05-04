@@ -46,9 +46,13 @@ export const Home = () => {
   return (
     <div className="h-full flex flex-grow">
       <Sidebar />
-      <div className="w-full p-5">
-        <Featured />
-        <Pagination items={data.length} />
+      <div className="w-full p-5 flex flex-col gap-5">
+        <div>
+          <Featured />
+        </div>
+        <div>
+          <Pagination items={data.length}/>
+        </div>
         {data && data.ads.length === 0 ? (
           <p>No results found.</p>
         ) : (

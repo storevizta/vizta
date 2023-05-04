@@ -48,7 +48,7 @@ return (
           onChange={handleInputBan}
         />
       </label>
-      <button type="submit" className="btn btn-error w-24 text-xs">Ban User</button>
+      <button onSubmit={onSubmitBan} type="submit" className="btn btn-error w-24 text-xs">Ban User</button>
     </form>
   );
 }

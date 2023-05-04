@@ -1,13 +1,49 @@
 import {useGetAdByIdQuery} from "../features/query/AdsQuery"
 import {useGetUserIdQuery} from "../features/query/UserQuery"
 import {DeleteAdvertisement} from '../components/DeleteAdvertisement'
-import { BanButton } from "./BanButton";
-import { UnBanButton } from "./UnBanButton";
+import {useControlleBanMutation } from "../features/query/AdminQuery"
+import { useEffect, useState } from 'react';
+import swal from 'sweetalert';
 
 export const ReportsCards = ({info}) => {
-    
-    const ad  = useGetAdByIdQuery(info.AdId)
-    const user = useGetUserIdQuery(info.UserId)
+const ad  = useGetAdByIdQuery(info.AdId)
+const user = useGetUserIdQuery(info.UserId)
+
+const [controlleBan] = useControlleBanMutation()
+
+const [banControll, setBanControll] = useState({
+    status: "",
+    email: user?.data?.email,
+    reason: ""
+  })
+
+
+  const onSubmitBan = async (e) => {
+    e.preventDefault()
+    banControll.status = "Banned"
+    try {
+      const result = await controlleBan(banControll)
+      console.log(result)
+      swal("User has Banned")
+    } catch (error) {
+      console.error(error)
+      swal("Error", error.message, "error")
+    }
+  }
+
+  const onSubmitUnBan = async (e) => {
+    e.preventDefault()
+    banControll.status = "NotBanned"
+    try {
+      const result = await controlleBan(banControll)
+      console.log(result)
+      swal("User has been unbanned")
+    } catch (error) {
+      console.error(error)
+      swal("Error", error.message, "error")
+    }
+  }
+
     return(
         <div className="w-140 h-44 bg-gray-600 m-5 rounded">
             {info.AdId ? (
@@ -63,8 +99,8 @@ export const ReportsCards = ({info}) => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                <BanButton email={user?.data?.email} />
-                <UnBanButton email={user?.data?.email} />
+                <button onSubmit={onSubmitBan} type="submit" className="btn btn-error w-24 text-xs">Ban User</button>
+                <button onSubmit={onSubmitUnBan} className="btn btn-success w-24 text-xs" type="submit">Unban User</button>
                     <button className="btn btn-info w-24 text-xs">Review</button>
                 </div>
             </div>
