@@ -23,7 +23,6 @@ export const FilterSlice = createSlice({
       state.minPrice = '';
       state.maxPrice = '';
       state.sort = '';
-      state.discount = '';
       state.condition = '';
       state.title = action.payload;
     },
@@ -48,7 +47,15 @@ export const FilterSlice = createSlice({
       state.minPrice = '';
       state.maxPrice = '';
       state.sort = '';
-      state.discount = '';
+      state.condition = '';
+    },
+    resetHome: (state) => {
+      state.page = 0;
+      state.title = '';
+      state.category = '';
+      state.minPrice = '';
+      state.maxPrice = '';
+      state.sort = '';
       state.condition = '';
     },
   },
@@ -63,6 +70,7 @@ export const {
   setSort,
   setCondition,
   resetFilters,
+  resetHome,
 } = FilterSlice.actions;
 
 export default FilterSlice.reducer;

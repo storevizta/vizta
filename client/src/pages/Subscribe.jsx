@@ -98,9 +98,9 @@ export const Subscribe = () => {
     <>
       <div className="h-screen flex flex-col justify-center items-center">
         <div className="w-96 p-5 bg-myBlue rounded-xl flex flex-col justify-center items-center">
-          <div className="">
-            <h2>Verification</h2>
-            <p>Featured Ads</p>
+          <div>
+            <h2 className="text-3xl">Verification</h2>
+            <p className="text-2xl">Featured Ads</p>
             <p>
               Get the visibility your ads deserve with our verified featured
               ads! When you sign up for our verification subscription, your ads
@@ -113,7 +113,7 @@ export const Subscribe = () => {
               opportunity - get verified and get featured today!
             </p>
           </div>
-          <p>{orderData.price}</p>
+          <p className="text-5xl">$ {orderData.price}</p>
           <div className={paymentClass}>
             {renderSpinner()}
             {renderCheckoutButton(preferenceId)}
