@@ -151,6 +151,13 @@ const createAd = async (req, res) => {
       shipment,
     });
 
+    await transporter.sendMail({
+      from: "vizta <storevizta@gmail.com>",
+      to: user.email,
+      subject: "Ad successfully published",
+      text: "Your post has been successfully created on plataform.",
+    })
+
     return res.status(201).json({ message: 'Ad create' });
   } catch (error) {
     console.log(error);

@@ -51,10 +51,10 @@ export const Home = () => {
           <Featured />
         </div>
         <div>
-          <Pagination items={data.length}/>
+          <Pagination items={data.length} />
         </div>
         {data && data.ads.length === 0 ? (
-          <p>No results found.</p>
+          <p className="text-3xl">No results found.</p>
         ) : (
           <div className="grid grid-cols-6">
             {data &&
