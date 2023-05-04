@@ -25,9 +25,9 @@ export const Featured = () => {
 
   const isUserBanned = useGetUserIdQuery(localStorage.getItem('id'));
 
-  const { wishlistsItems } = useSelector((value) => value?.wishlists);
+  const { wishlistsItems } = useSelector(value => value?.wishlists)
 
-  const [isFavorite, setIsFavorite] = useState({});
+  const [isFavorite, setIsFavorite] = useState({})
 
   const makeFavorite = async () => {
     let oldFavorite = {
@@ -35,29 +35,27 @@ export const Featured = () => {
       1: false,
       2: false,
       3: false,
-      4: false,
-    };
+      4: false
+    }
     for (let i = 0; i < data?.length; i++) {
-      let search = await wishlistsItems?.find(
-        (value) => value?.id === data?.[i]?.id
-      );
+      let search = await wishlistsItems?.find(value => value?.id === data?.[i]?.id)
       if (search) {
-        oldFavorite[i] = true;
+        oldFavorite[i] = true
       }
     }
-    setIsFavorite(oldFavorite);
-  };
+    setIsFavorite(oldFavorite)
+  }
 
   useEffect(() => {
-    makeFavorite();
-  }, [wishlistsItems, data]);
+    makeFavorite()
+  }, [wishlistsItems, data])
 
   const addToWishHandler = (info) => {
     dispatch(addToWishList(info));
   };
 
   const removeWishlishHandler = (info, index) => {
-    setIsFavorite({ ...isFavorite, [index]: false });
+    setIsFavorite({ ...isFavorite, [index]: false })
     dispatch(removeWishlist(info));
   };
 
@@ -68,11 +66,11 @@ export const Featured = () => {
   console.log(isFavorite);
 
   return (
-    <div className="p-5 bg-gray-700 rounded-xl">
-      <div>
-        <div className="text-3xl">Featured</div>
+    <div className='mb-14'>
+      <div className="h-96">
+        <div>Featured</div>
         {data && data === 0 ? (
-          <p className="text-3xl">No results found.</p>
+          <p>No results found.</p>
         ) : (
           <div className="grid grid-cols-6">
             {data &&
@@ -95,41 +93,35 @@ export const Featured = () => {
                         />
                       )}
                       <div className="ml-4 mr-4 h-20 w-70 flex flex-col justify-center">
-                        <p className="break-words font-bold">{el.title}</p>
+                        <p className='break-words font-bold'>{el.title}</p>
                       </div>
                     </Link>
 
-                    <div className="flex items-center w-full h-20">
-                      <div className="ml-4 w-6/12">${el.price}</div>
+                    <div className='flex items-center w-full h-20'>
+                      <div className='ml-4 w-6/12'>${el.price}</div>
                       <div className="mr-4 6/12">
-                        {isAuthenticated &&
-                        isUserBanned?.data?.access !== 'Banned' ? (
+                        {isAuthenticated && isUserBanned?.data?.access !== 'Banned' ? (
                           <div>
                             {isFavorite?.[index] === true ? (
-                              <div
-                                onClick={() => removeWishlishHandler(el, index)}
-                                className="bg-red-700 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1  ml-5 h-8 items-center"
-                              >
+                              <div onClick={() => removeWishlishHandler(el, index)} className="bg-red-700 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1  ml-5 h-8 items-center cursor-pointer">
                                 <img
                                   className="h-3"
                                   src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
                                 />
                                 <p>Remove</p>
                               </div>
-                            ) : (
-                              <div
-                                onClick={() => addToWishHandler(el)}
-                                className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1 ml-5 h-8 items-center"
-                              >
+                            ) :
+                              <div onClick={() => addToWishHandler(el)} className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1 ml-5 h-8 items-center cursor-pointer">
                                 <img
                                   className="h-3"
                                   src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
                                 />
                                 <p>Add favorite</p>
                               </div>
-                            )}
+                            }
                           </div>
                         ) : null}
+
                       </div>
                     </div>
                   </div>
