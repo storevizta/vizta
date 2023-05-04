@@ -220,7 +220,7 @@ export const Admin = () => {
                       <h3 className="text-center">Ban a user by email</h3>
                       <form className="flex flex-col w-100 items-center gap-4" onSubmit={onSubmitBan}>
                         <input type="text" placeholder="User email" name='email' onChange={handleInputBan} className="input w-full" />
-                        <input type="text" placeholder="Reason" name='reason' onChange={handleInputBan} className="input w-full" />
+                        <input type="text" placeholder="Reason" name='banReason' onChange={handleInputBan} className="input w-full" />
                         <button className="btn btn-error w-52">Ban</button>
                       </form>
                    
@@ -230,7 +230,7 @@ export const Admin = () => {
           <h3 className="text-center">Unban user</h3>
           <form className="flex flex-col w-100 items-center gap-4" onSubmit={onSubmitUnBan}>
             <input type="text" placeholder="User email" name='email' onChange={handleInputBan} className="input w-full" />
-            <input type="text" placeholder="Reason" name='reason' onChange={handleInputBan} className="input w-full" />
+            <input type="text" placeholder="Reason" name='banReason' onChange={handleInputBan} className="input w-full" />
             <button className="btn btn-success w-52">Unban</button>
           </form>
             
