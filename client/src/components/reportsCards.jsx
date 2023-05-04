@@ -14,7 +14,7 @@ const [controlleBan] = useControlleBanMutation()
 const [banControll, setBanControll] = useState({
     status: "",
     email: user?.data?.email,
-    reason: ""
+    reason: info.reason
   })
 
 
