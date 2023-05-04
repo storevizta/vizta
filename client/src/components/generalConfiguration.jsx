@@ -26,7 +26,6 @@ export const Configuration = ({info}) => {
 
     useEffect(() => {
         if(userData?.data.address){
-            console.log(userData?.data.address);
             setOldAddress(userData?.data.address)
         }
     }, [])
@@ -94,13 +93,12 @@ export const Configuration = ({info}) => {
         copyAddress.map(value => newAddress.push(value))
         setOldAddress(newAddress)
     } 
-    console.log(oldAddress);
     
     const [updateUser] = useUpdateUserMutation()
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        swal("User updated")
+        swal("User updated. Reload the page to see the changes")
         const totalAddress = oldAddress.concat(address)
         dispatch(updateUser({
             id: info.sub,
@@ -109,7 +107,7 @@ export const Configuration = ({info}) => {
             picture: image,
             address: totalAddress,
             phone: data.phone
-        }))
+        })).then(data => console.log(data))
     }
     
     return (

@@ -24,7 +24,7 @@ export const Response = ({ id }) => {
     })
       .unwrap()
       .then((data) => {
-        console.log(data);
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);

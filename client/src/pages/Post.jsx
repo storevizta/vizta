@@ -143,7 +143,7 @@ export const Post = () => {
       })
         .unwrap()
         .then((data) => {
-          console.log(data);
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error);

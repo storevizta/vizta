@@ -56,7 +56,7 @@ export const CreateMessage = (props) => {
       userId: data.userId,
       adId: data.adId,
       message: data.message,
-    })
+    }).then(() => window.location.reload())
       .unwrap()
       .then((data) => {
         console.log(data);

@@ -32,7 +32,7 @@ export const ProfileRating = ({ userId }) => {
   console.log(data.length);
 
   return (
-    <div>
+    <div className='overflow-auto'>
       <div className="flex gap-2 mb-5 w-170">
         {data.length !== 0 ? (
           <div className="flex flex-row items-center m-auto pt-3">

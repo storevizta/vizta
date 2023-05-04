@@ -149,7 +149,7 @@ export const Detail = () => {
               {!image ? (
                 <div>
                   <img
-                    className="object-cover w-full h-full"
+                    className="h-100 w-150 object-contain bg-white"
                     src={FakeIMG}
                     alt="image"
                   />
@@ -161,7 +161,7 @@ export const Detail = () => {
                       {currentImage === index && (
                         <div>
                           <img
-                            className="h-100 w-150 object-cover"
+                            className="h-100 w-150 object-contain bg-white"
                             src={image}
                             key={index}
                             alt="image"

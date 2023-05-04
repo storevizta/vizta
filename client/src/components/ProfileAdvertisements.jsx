@@ -32,7 +32,7 @@ export const ProfileAdvertisements = ({ userId }) => {
   const pausedAds = data.filter((ad) => ad.state === 'Paused');
 
   return (
-    <div>
+    <div className='overflow-auto'>
       <div className="pl-7 pt-5 w-180 overflow-auto">
         <h2 className="text-lg text-bold pb-5">Active Advertisements: </h2>
         <div className="">
