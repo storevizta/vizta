@@ -10,6 +10,8 @@ const {
   User,
 } = require('../database');
 
+const {transporter} = require("../middleware/nodemailer.js");
+
 const getUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -83,6 +85,13 @@ const createUser = async (req, res) => {
         picture,
       });
 
+      await transporter.sendMail({
+        from: "vizta <storevizta@gmail.com>",
+        to: email,
+        subject: "Welcome to our website!",
+        text: "Welcome to our website! We are delighted that you decided to register on our platform and become a part of our online community.",
+      });
+      
       return res.status(201).json({ message: 'User create' });
     }
   } catch (error) {
