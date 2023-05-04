@@ -23,50 +23,26 @@ mercadopago.configure({
     'APP_USR-6692975538978394-042219-d37b80b1c2522d0df0522dc6cc4d64e4-1174786288',
 });
 
-// const getSubscribeUserAds = async (req, res) => {
-//   try {
-//     const subscribedUsers = await User.findAll({
-//       where: { subscribe: 'Subscribed' },
-//       attributes: ['id'],
-//     });
+const subscribeUser = async (req, res) => {
+  try {
+    const { userId } = req.body;
 
-//     const options = {
-//       limit: 5,
-//       order: [['createdAt', 'DESC']],
-//     };
+    if (userId) {
+      const user = await User.findByPk(userId);
 
-//     const subscribedAds = await Ad.findAll({
-//       where: { UserId: { [Op.in]: subscribedUsers.map((user) => user.id) } },
-//       ...options,
-//     });
+      if (user) {
+        user.subscribe = 'Subscribed';
 
-//     return res.status(200).json(subscribedAds);
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(500).json({ message: 'Error' });
-//   }
-// };
+        user.save();
 
-// const subscribeUser = async (req, res) => {
-//   try {
-//     const { userId } = req.body;
-
-//     if (userId) {
-//       const user = await User.findByPk(userId);
-
-//       if (user) {
-//         user.subscribe = 'Subscribed';
-
-//         user.save();
-
-//         return res.status(200).json({ message: 'Succeful' });
-//       }
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(400).json({ message: 'Error' });
-//   }
-// };
+        return res.status(200).json({ message: 'Succeful' });
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ message: 'Error' });
+  }
+};
 
 const getSubscribeUserAds = async (req, res) => {
   try {
@@ -135,4 +111,5 @@ module.exports = {
   getSubscribeUserAds,
   createPreference,
   feedback,
+  subscribeUser,
 };
