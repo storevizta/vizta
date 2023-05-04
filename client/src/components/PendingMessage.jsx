@@ -27,7 +27,7 @@ export const PendingMessage = ({ adId }) => {
   );
 
   return (
-    <div className="p-2 mt-4 flex flex-col gap-2 bg-zinc-700 rounded-2xl w-170">
+    <div className="p-2 mt-4 flex flex-col gap-2 bg-zinc-700 rounded-2xl w-170 overflow-auto">
       {mensajesSinResponder.length ? (
         mensajesSinResponder.map((message) => (
           <div className="bg-gray-600 rounded-2xl px-10 overflow-auto">

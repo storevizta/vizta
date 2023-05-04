@@ -10,7 +10,7 @@ export const ProfileReports = ({ userId }) => {
   console.log(data);
 
   return (
-    <div className="w-170">
+    <div className="w-170 overflow-auto">
       {data && data.length > 0 ? (
         data.map((report) => (
           <div className="w-140 p-4 mt-5 flex flex-col gap-2 bg-gray-600 rounded-2xl ml-3">
