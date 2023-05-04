@@ -14,9 +14,9 @@ const [controlleBan] = useControlleBanMutation()
 const [banControll, setBanControll] = useState({
     status: "",
     email: user?.data?.email,
-    reason: ""
+    reason: info.reason
   })
-
+console.log(user.data.email)
 
   const onSubmitBan = async (e) => {
     e.preventDefault()
