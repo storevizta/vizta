@@ -25,6 +25,7 @@ export const AdminDeleteAd = ({ adId }) => {
             console.log(error);
           });
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+        navigate('/admin');
       }
     });
   };
