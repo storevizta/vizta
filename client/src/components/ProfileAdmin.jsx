@@ -38,7 +38,7 @@ export const Admin = () => {
   const [banControll, setBanControll] = useState({
     access: "",
     email: "",
-    reason: ""
+    banReason: ""
   })
 
 
@@ -85,11 +85,6 @@ export const Admin = () => {
     banControll.access = "Banned"
     console.log(controlleBan(banControll))
     swal("User has Banned")
-    setBanControll({
-      access: "",
-      email: "",
-      reason: ""
-  })
   }
 
   const onSubmitUnBan = (e) => {
@@ -97,11 +92,6 @@ export const Admin = () => {
     banControll.access = "NotBanned"
     console.log(controlleBan(banControll))
     swal("User has unbanned")
-    setBanControll({
-      access: "",
-      email: "",
-      reason: ""
-  })
   }
 
   
