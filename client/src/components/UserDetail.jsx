@@ -17,6 +17,8 @@ export const UserDetail = (userId) => {
 
   const { data, error, isLoading } = useGetUserIdQuery(id);
 
+  const isUserBanned = useGetUserIdQuery(localStorage.getItem('id'));
+
   const {
     data: dataRating,
     errorRating,
@@ -121,7 +123,7 @@ export const UserDetail = (userId) => {
         <p className="text-sm pl-8">Joined Vizta {created}</p>
       </div>
 
-      {isAuthenticated ? (
+      {isAuthenticated && isUserBanned.data.access !== "Banned" ? (
         <Link className="justify-end" to={`/userProfile/${id}`}>
           <p className="text-sm text-right border p-1 px-2 rounded w-fit border-black mt-2 hover:font-bold">
             See more data about {name}
