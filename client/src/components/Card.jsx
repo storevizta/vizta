@@ -76,7 +76,7 @@ export const Card = ({ info }) => {
           {isAuthenticated && user?.data?.access !== 'Banned' ? (
             <div>
               {isFavorite === true ? (
-                <div onClick={() => removeWishlishHandler()} className="bg-red-700 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1  ml-5 h-8 items-center">
+                <div onClick={() => removeWishlishHandler()} className="bg-red-700 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1  ml-5 h-8 items-center cursor-pointer">
                 <img
                   className="h-3"
                   src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
@@ -84,7 +84,7 @@ export const Card = ({ info }) => {
                 <p>Remove</p>
               </div>
               ) :
-              <div onClick={() => addToWishHandler()} className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1 ml-5 h-8 items-center">
+              <div onClick={() => addToWishHandler()} className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1 ml-5 h-8 items-center cursor-pointer">
               <img
                 className="h-3"
                 src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"

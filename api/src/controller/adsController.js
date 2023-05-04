@@ -156,7 +156,7 @@ const createAd = async (req, res) => {
       to: user.email,
       subject: "Ad successfully published",
       text: "Your post has been successfully created on plataform.",
-    })
+    });
 
     return res.status(201).json({ message: 'Ad create' });
   } catch (error) {
