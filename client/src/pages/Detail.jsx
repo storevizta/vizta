@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useGetAdByIdQuery } from '../features/query/AdsQuery';
 
@@ -22,11 +22,13 @@ import rowRight from '../assets/row-right.svg';
 
 import { useDispatch } from 'react-redux';
 
-import { addToWishList } from '../features/slices/FavSlices';
+import { addToWishList, removeWishlist } from '../features/slices/FavSlices';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { DeleteAdvertisement } from '../components/DeleteAdvertisement';
+
+import { useSelector } from 'react-redux';
 
 const FakeIMG = 'https://picsum.photos/200/300';
 // Cambie image por FakeIMG para Mokup
@@ -38,6 +40,8 @@ export const Detail = () => {
 
   const [currentImage, setCurrentImage] = useState(0);
 
+  const [isFavorite, setIsFavorite] = useState(false)
+
   const { data, error, isLoading } = useGetAdByIdQuery(id);
 
   const user = useGetUserIdQuery(data?.UserId);
@@ -45,6 +49,15 @@ export const Detail = () => {
   const isUserBanned = useGetUserIdQuery(localStorage.getItem('id'));
 
   const { isAuthenticated, loginWithRedirect } = useAuth0();
+
+  const { wishlistsItems } = useSelector(value => value?.wishlists)
+
+  useEffect(() => {
+    const search = wishlistsItems?.find(value => value?.id === data?.id)
+    if(search){
+      setIsFavorite(true)
+    }
+  }, [data, wishlistsItems])
 
   if (isLoading) {
     return (
@@ -112,6 +125,11 @@ export const Detail = () => {
 
   const addToWishHandler = (info) => {
     dispatch(addToWishList(info));
+  };
+
+  const removeWishlishHandler = (info, ) => {
+    setIsFavorite(false)
+    dispatch(removeWishlist(info));
   };
 
 
@@ -195,7 +213,8 @@ export const Detail = () => {
                       </div>
                       <div className='flex gap-5 items-center'>
                         <p className='w-36 my-5'>Options for user:</p>
-                        <div className="bg-myBlue text-white flex w-28 justify-center items-center rounded h-8 items-center gap-1">
+                        {isFavorite === false ? (
+                          <div className="bg-myBlue text-white flex w-28 justify-center items-center rounded h-8 items-center gap-1">
                           <img
                             className="h-3"
                             src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
@@ -204,6 +223,17 @@ export const Detail = () => {
                             Add favorite
                           </button>
                         </div>
+                        ):(
+                          <div className="bg-red-600 text-white flex w-28 justify-center items-center rounded h-8 items-center gap-1">
+                          <img
+                            className="h-3"
+                            src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
+                          />
+                          <button onClick={() => removeWishlishHandler(data)}>
+                            Remove
+                          </button>
+                        </div>
+                        )}
                         <Link to={`/reportAd/${id}`} className="bg-myBlue text-white flex w-28 justify-center rounded h-8 items-center gap-1">
                           <img className="brightness-0 invert h-5" src='https://www.svgrepo.com/show/376931/info-circle.svg'/>
                           <p>

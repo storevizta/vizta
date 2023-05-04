@@ -85,13 +85,13 @@ export const Sidebar = () => {
             <div className="pb-3 flex flex-col items-center">
               <form className="flex gap-5">
                 <input
-                  className="w-24 outline-none bg-gray-600"
+                  className="w-32 rounded p-1 outline-none bg-gray-600"
                   type="number"
                   placeholder="Min."
                   onChange={handlerMinPrice}
                 />
                 <input
-                  className="w-24 rounded outline-none bg-gray-600"
+                  className="w-32 rounded p-1 outline-none bg-gray-600"
                   type="number"
                   placeholder="Max."
                   onChange={handlerMaxPrice}

@@ -52,7 +52,7 @@ const getSubscribeUserAds = async (req, res) => {
     });
 
     const options = {
-      limit: 5,
+      limit: 6,
       order: sequelize.literal('random()'),
     };
 
