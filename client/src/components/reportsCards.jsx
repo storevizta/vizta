@@ -1,5 +1,8 @@
 import {useGetAdByIdQuery} from "../features/query/AdsQuery"
 import {useGetUserIdQuery} from "../features/query/UserQuery"
+import {DeleteAdvertisement} from '../components/DeleteAdvertisement'
+import { BanButton } from "./BanButton";
+import { UnBanButton } from "./UnBanButton";
 
 export const ReportsCards = ({info}) => {
     
@@ -30,8 +33,7 @@ export const ReportsCards = ({info}) => {
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                        <button className="btn btn-error w-24 text-xs">Ban</button>
-                        <button className="btn btn-success w-24 text-xs">No Ban</button>
+                    <DeleteAdvertisement adId={info.AdId} />
                         <button className="btn btn-info w-24 text-xs">Review</button>
                     </div>
                 </div>
@@ -61,8 +63,8 @@ export const ReportsCards = ({info}) => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                    <button className="btn btn-error w-24 text-xs">Banear</button>
-                    <button className="btn btn-success w-24 text-xs">No banear</button>
+                <BanButton email={user?.data?.email} />
+                <UnBanButton email={user?.data?.email} />
                     <button className="btn btn-info w-24 text-xs">Review</button>
                 </div>
             </div>
