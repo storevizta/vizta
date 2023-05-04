@@ -11,7 +11,7 @@ export const Pagination = ({ items }) => {
 
   const page = useSelector((state) => state.filter.page);
 
-  const totalPages = Math.ceil(items / 10);
+  const totalPages = Math.ceil(items / 12);
   let pagesNumber = [];
   for (let i = 1; i <= totalPages; i++) {
     pagesNumber.push(i);
