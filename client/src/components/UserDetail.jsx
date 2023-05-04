@@ -8,8 +8,12 @@ import { Error } from '../components/Error';
 
 import { Link } from 'react-router-dom';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 export const UserDetail = (userId) => {
   const { id } = userId;
+
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   const { data, error, isLoading } = useGetUserIdQuery(id);
 
@@ -117,11 +121,13 @@ export const UserDetail = (userId) => {
         <p className="text-sm pl-8">Joined Vizta {created}</p>
       </div>
 
-      <Link className="justify-end" to={`/userProfile/${id}`}>
-        <p className="text-sm text-right border p-1 px-2 rounded w-fit border-black mt-2 hover:font-bold">
-          See more data about {name}
-        </p>
-      </Link>
+      {isAuthenticated ? (
+        <Link className="justify-end" to={`/userProfile/${id}`}>
+          <p className="text-sm text-right border p-1 px-2 rounded w-fit border-black mt-2 hover:font-bold">
+            See more data about {name}
+          </p>
+        </Link>
+      ) : null}
     </div>
   );
 };

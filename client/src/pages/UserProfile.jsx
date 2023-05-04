@@ -4,6 +4,8 @@ import { useGetUserIdQuery } from '../features/query/UserQuery';
 
 import { useGetUserAdsQuery } from '../features/query/UserQuery';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 import { Loading } from '../components/Loading';
 
 import { Error } from '../components/Error';
@@ -14,6 +16,12 @@ import { Link } from 'react-router-dom';
 
 export const UserProfile = () => {
   const { id } = useParams();
+
+  const { user, isLoadingUser } = useAuth0();
+
+  if (isLoadingUser) {
+    return <div>Loading ...</div>;
+  }
 
   const { data, error, isLoading } = useGetUserIdQuery(id);
 
@@ -64,11 +72,13 @@ export const UserProfile = () => {
                 Report User
               </p>
             </Link>
-            <Link to={`/rating/${id}`}>
-              <p className="font-bold border mt-2 p-2 rounded w-fit bg-white text-sm text-right text-black">
-                To give a Rating
-              </p>
-            </Link>
+            {user.sub !== id ? (
+              <Link to={`/rating/${id}`}>
+                <p className="font-bold border mt-2 p-2 rounded w-fit bg-white text-sm text-right text-black">
+                  To give a Rating
+                </p>
+              </Link>
+            ) : null}
           </div>
 
           {nickname && (

@@ -32,6 +32,13 @@ export const CreateMessage = (props) => {
   const [activeMessage, setActiveMessage] = useState(false);
 
   const handleActiveMessage = () => {
+    if (data.userId === userId) {
+      return swal("You can't send a message to your own advertisement");
+    }
+
+    if (data.userId === null) {
+      return swal("To send a message, it's necessary for you to log in");
+    }
     setActiveMessage(true);
   };
 
@@ -65,9 +72,7 @@ export const CreateMessage = (props) => {
 
   return (
     <div>
-      {activeMessage === true &&
-      data.userId !== userId &&
-      data.userId !== null ? (
+      {activeMessage === true ? (
         <div className="border-slate-400 border-2 pb-5">
           <button
             className="bg-red-600 mt-3 ml-3 py-1 px-2 rounded text-white"
