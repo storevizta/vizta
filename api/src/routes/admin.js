@@ -24,7 +24,7 @@ router.get('/', getMetrics);
 
 router.put('/users/:id', updateUser);
 
-router.put('/users/', controlleBan);
+router.put('/access/', controlleBan);
 
 router.delete('/users/:id', deleteUser);
 

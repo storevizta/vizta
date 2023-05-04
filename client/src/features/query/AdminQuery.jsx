@@ -12,7 +12,7 @@ export const Admin = createApi({
     }),
     controlleBan: builder.mutation({
       query: (data) => ({
-        url: `admin/users/`,
+        url: `admin/access/`,
         method: 'PUT',
         body: data,
       }),
