@@ -80,7 +80,7 @@ export const Admin = () => {
 
   const onSubmitBan = (e) => {
     e.preventDefault();
-    setBanControll({ ...banControll, status: 'Banned' });
+    banControll.status = 'Banned';
     controlleBan(banControll)
       .unwrap()
       .then((data) => console.log(data))
@@ -90,7 +90,7 @@ export const Admin = () => {
 
   const onSubmitUnBan = (e) => {
     e.preventDefault();
-    setBanControll({ ...banControll, status: 'NotBanned' });
+    banControll.status = 'NotBanned';
     controlleBan(banControll)
       .unwrap()
       .then((data) => console.log(data))
