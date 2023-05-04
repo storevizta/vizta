@@ -66,7 +66,7 @@ export const Featured = () => {
   console.log(isFavorite);
 
   return (
-    <>
+    <div className='mb-14'>
       <div className="h-96">
         <div>Featured</div>
         {data && data === 0 ? (
@@ -130,6 +130,6 @@ export const Featured = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };

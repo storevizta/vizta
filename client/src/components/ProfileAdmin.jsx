@@ -223,7 +223,6 @@ export const Admin = () => {
                         <input type="text" placeholder="Reason" name='reason' onChange={handleInputBan} className="input w-full" />
                         <button className="btn btn-error w-52">Ban</button>
                       </form>
-                   
                     </div>
             </div>
             <div className="m-5">
