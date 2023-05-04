@@ -1,6 +1,6 @@
 import {useGetAdByIdQuery} from "../features/query/AdsQuery"
 import {useGetUserIdQuery} from "../features/query/UserQuery"
-import {DeleteAdvertisement} from '../components/DeleteAdvertisement'
+import {AdminDeleteAd} from '../components/AdminDeleteAd'
 import {useControlleBanMutation } from "../features/query/AdminQuery"
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
@@ -69,7 +69,7 @@ const [banControll, setBanControll] = useState({
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                    <DeleteAdvertisement adId={info.AdId} />
+                    <AdminDeleteAd adId={info.AdId} />
                         <button className="btn btn-info w-24 text-xs">Review</button>
                     </div>
                 </div>
@@ -99,8 +99,13 @@ const [banControll, setBanControll] = useState({
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                <button onSubmit={onSubmitBan} type="submit" className="btn btn-error w-24 text-xs">Ban User</button>
-                <button onSubmit={onSubmitUnBan} className="btn btn-success w-24 text-xs" type="submit">Unban User</button>
+                    <form onSubmit={onSubmitBan}>
+                    <button type="submit" className="btn btn-error w-24 text-xs">Ban User</button>
+                    </form>
+                <form onSubmit={onSubmitUnBan}>
+                <button  className="btn btn-success w-24 text-xs" type="submit">Unban User</button>
+                </form>
+                
                     <button className="btn btn-info w-24 text-xs">Review</button>
                 </div>
             </div>
