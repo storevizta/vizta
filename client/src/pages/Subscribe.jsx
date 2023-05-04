@@ -10,7 +10,7 @@ import { SpinnerCircular } from 'spinners-react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
-// import { useSubscribeMutation } from '../features/query/MercadoPagoQuery';
+import { useSubscribeMutation } from '../features/query/MercadoPagoQuery';
 
 initMercadoPago('APP_USR-8c230a5f-f7e1-4a20-9da4-1d3d45c1c226');
 
@@ -27,11 +27,11 @@ export const Subscribe = () => {
     quantity: '1',
     price: '0.5',
     amount: 0.5,
-    description: 'Blue',
+    description: 'Verification',
   });
   const [isReady, setIsReady] = useState(false);
 
-  // const [subscribe] = useSubscribeMutation();
+  const [subscribe] = useSubscribeMutation();
 
   useEffect(() => {
     handleClick();
@@ -41,9 +41,10 @@ export const Subscribe = () => {
     setIsReady(true);
   };
 
-  // const handleSubscribe = () => {
-  //   subscribe({ userId: user.sub });
-  // };
+  const handleSubscribe = (event) => {
+    event.preventDefault();
+    subscribe({ userId: user.sub });
+  };
 
   const handleClick = () => {
     setIsLoading(true);
@@ -55,7 +56,6 @@ export const Subscribe = () => {
       body: JSON.stringify(orderData),
     })
       .then((response) => {
-        console.log(response.json());
         return response.json();
       })
       .then((preference) => {
@@ -77,10 +77,14 @@ export const Subscribe = () => {
     if (!preferenceId) return null;
 
     return (
-      <Wallet
-        initialization={{ preferenceId: preferenceId }}
-        onReady={handleOnReady}
-      />
+      <>
+        <div onClick={handleSubscribe}>
+          <Wallet
+            initialization={{ preferenceId: preferenceId }}
+            onReady={handleOnReady}
+          />
+        </div>
+      </>
     );
   };
 
