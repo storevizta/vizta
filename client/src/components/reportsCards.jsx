@@ -3,6 +3,7 @@ import { useGetUserIdQuery } from '../features/query/UserQuery';
 import { AdminDeleteAd } from '../components/AdminDeleteAd';
 import { useControlleBanMutation } from '../features/query/AdminQuery';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 
 export const ReportsCards = ({ info }) => {
@@ -21,8 +22,8 @@ export const ReportsCards = ({ info }) => {
 
   const onSubmitBan = async (e) => {
     e.preventDefault();
-    setBanControll({ ...banControll, status: 'Banned' });
-    setBanControll({ ...banControll, email: user?.data?.email });
+    banControll.status = 'Banned';
+    banControll.email = user?.data?.email;
     controlleBan(banControll)
       .unwrap()
       .then((data) => console.log(data))
@@ -33,6 +34,7 @@ export const ReportsCards = ({ info }) => {
   const onSubmitUnBan = async (e) => {
     e.preventDefault();
     banControll.status = 'NotBanned';
+    banControll.email = user?.data?.email;
     controlleBan(banControll)
       .unwrap()
       .then((data) => console.log(data))
@@ -70,7 +72,10 @@ export const ReportsCards = ({ info }) => {
           </div>
           <div className="flex flex-col gap-2">
             <AdminDeleteAd adId={info.AdId} />
-            <button className="btn btn-info w-24 text-xs">Review</button>
+
+            <Link to={`/detail/${info.AdId}`}>
+              <button className="btn btn-info w-24 text-xs">Review</button>
+            </Link>
           </div>
         </div>
       ) : (
@@ -114,7 +119,9 @@ export const ReportsCards = ({ info }) => {
               </button>
             </form>
 
-            <button className="btn btn-info w-24 text-xs">Review</button>
+            <Link to={`/userProfile/${info.UserId}`}>
+              <button className="btn btn-info w-24 text-xs">Review</button>
+            </Link>
           </div>
         </div>
       )}
