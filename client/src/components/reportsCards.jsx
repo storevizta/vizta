@@ -16,7 +16,7 @@ const [banControll, setBanControll] = useState({
     email: user?.data?.email,
     reason: info.reason
   })
-
+console.log(user.data.email)
 
   const onSubmitBan = async (e) => {
     e.preventDefault()
