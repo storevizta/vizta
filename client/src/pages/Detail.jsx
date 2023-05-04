@@ -116,11 +116,11 @@ export const Detail = () => {
   };
 
   const whatsapp = () => {
-    window.location.href = `https://wa.me/${user.data.phone}`;
+    window.location.href = `https://wa.me/${user?.data?.phone}`;
   };
 
   const sendEmail = () => {
-    window.location.href = 'mailto:storevizta@gmail.com';
+    window.location.href = `mailto:${user?.data?.email}`
   };
 
   const addToWishHandler = (info) => {
@@ -268,12 +268,12 @@ export const Detail = () => {
                   )}
                 </div>
               </div>
-              {user?.data?.phone &&
-              isUserBanned?.data?.access !== 'Banned' &&
+              {isUserBanned?.data?.access !== 'Banned' &&
               isAuthenticated ? (
                 <div>
                   <div className="flex items-center gap-5">
                     <p className="w-36 my-5">To buy contact for:</p>
+                    {user?.data?.phone?.length > 1 ?
                     <div
                       onClick={() => whatsapp()}
                       className="bg-whatsapp text-white flex w-28 justify-center rounded h-8 items-center gap-1"
@@ -283,7 +283,8 @@ export const Detail = () => {
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/479px-WhatsApp_icon.png"
                       />
                       <button>Whatsapp</button>
-                    </div>
+                      </div>
+                      : null}
                     <div
                       className="bg-cyan-900 text-white flex w-28 justify-center items-center rounded h-8 gap-1"
                       onClick={() => sendEmail()}
@@ -330,45 +331,7 @@ export const Detail = () => {
                     </Link>
                   </div>
                 </div>
-              ) : (
-                <div>
-                  <div className="flex items-center gap-5">
-                    <p className="w-36 my-5">To buy contact for:</p>
-                    <div
-                      className="bg-cyan-900 text-white flex w-28 justify-center items-center rounded h-8 gap-1"
-                      onClick={() => sendEmail()}
-                    >
-                      <img
-                        className="brightness-0 invert h-5"
-                        src="https://www.svgrepo.com/show/376954/mail.svg"
-                      />
-                      <button>Email</button>
-                    </div>
-                  </div>
-                  <div className="flex gap-5 items-center">
-                    <p className="w-36 my-5">Options for user:</p>
-                    <div className="bg-myBlue text-white flex w-28 justify-center items-center rounded h-8 items-center gap-1">
-                      <img
-                        className="h-3"
-                        src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
-                      />
-                      <button onClick={() => addToWishHandler(data)}>
-                        Add favorite
-                      </button>
-                    </div>
-                    <Link
-                      to={`/reportAd/${id}`}
-                      className="bg-myBlue text-white flex w-28 justify-center rounded h-8 items-center gap-1"
-                    >
-                      <img
-                        className="brightness-0 invert h-5"
-                        src="https://www.svgrepo.com/show/376931/info-circle.svg"
-                      />
-                      <p>Report</p>
-                    </Link>
-                  </div>
-                </div>
-              )}
+              ) : !isAuthenticated ? <p>Login to buy</p> : <p>You are banned</p>}
               {isAuthenticated && isUserBanned?.data?.role === 'admin' ? (
                 <DeleteAdvertisement adId={id} />
               ) : null}
