@@ -22,11 +22,6 @@ import swal from 'sweetalert';
 
 import {Link} from 'react-router-dom';
 
-import { BanButton } from '../components/BanButton';
-
-import { UnbanButton } from '../components/UnBanButton';
-
-
 export const Admin = () => {
   const { user, isLoading } = useAuth0();
 
@@ -100,7 +95,7 @@ export const Admin = () => {
   const onSubmitUnBan = (e) => {
     e.preventDefault()
     banControll.access = "NotBanned"
-    controlleBan(banControll)
+    console.log(controlleBan(banControll))
     swal("User has unbanned")
     setBanControll({
       access: "",
@@ -238,7 +233,7 @@ export const Admin = () => {
                         <input type="text" placeholder="Reason" name='reason' onChange={handleInputBan} className="input w-full" />
                         <button className="btn btn-error w-52">Ban</button>
                       </form>
-                    <BanButton/>
+                   
                     </div>
             </div>
             <div className="m-5">
@@ -248,7 +243,7 @@ export const Admin = () => {
             <input type="text" placeholder="Reason" name='reason' onChange={handleInputBan} className="input w-full" />
             <button className="btn btn-success w-52">Unban</button>
           </form>
-              <UnbanButton/>
+            
         </div>
           </div>
         )}
