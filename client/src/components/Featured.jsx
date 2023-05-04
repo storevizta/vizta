@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
-import { addToWishList, removeWishlist} from '../features/slices/FavSlices';
+import { addToWishList, removeWishlist } from '../features/slices/FavSlices';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -39,7 +39,7 @@ export const Featured = () => {
     }
     for (let i = 0; i < data?.length; i++) {
       let search = await wishlistsItems?.find(value => value?.id === data?.[i]?.id)
-      if(search){
+      if (search) {
         oldFavorite[i] = true
       }
     }
@@ -55,7 +55,7 @@ export const Featured = () => {
   };
 
   const removeWishlishHandler = (info, index) => {
-    setIsFavorite({...isFavorite, [index]: false})
+    setIsFavorite({ ...isFavorite, [index]: false })
     dispatch(removeWishlist(info));
   };
 
@@ -72,7 +72,7 @@ export const Featured = () => {
         {data && data === 0 ? (
           <p>No results found.</p>
         ) : (
-          <div className="grid grid-cols-5">
+          <div className="grid grid-cols-6">
             {data &&
               data.map((el, index) => (
                 <div key={el.id} className="m-3">
@@ -80,7 +80,7 @@ export const Featured = () => {
                     <Link to={`/detail/${el.id}`} key={el.id}>
                       {!el.image ? (
                         <img
-                        className="bg-white w-full h-60 object-contain"
+                          className="bg-white w-full h-60 object-contain"
                           src={el.image}
                           alt="image"
                         />
@@ -96,28 +96,28 @@ export const Featured = () => {
                         <p className='break-words font-bold'>{el.title}</p>
                       </div>
                     </Link>
-                      
+
                     <div className='flex items-center w-full h-20'>
                       <div className='ml-4 w-6/12'>${el.price}</div>
                       <div className="mr-4 6/12">
                         {isAuthenticated && isUserBanned?.data?.access !== 'Banned' ? (
                           <div>
                             {isFavorite?.[index] === true ? (
-                              <div onClick={() => removeWishlishHandler(el,index)} className="bg-red-700 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1  ml-5 h-8 items-center">
-                              <img
-                                className="h-3"
-                                src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
-                              />
-                              <p>Remove</p>
-                            </div>
+                              <div onClick={() => removeWishlishHandler(el, index)} className="bg-red-700 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1  ml-5 h-8 items-center">
+                                <img
+                                  className="h-3"
+                                  src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
+                                />
+                                <p>Remove</p>
+                              </div>
                             ) :
-                            <div onClick={() => addToWishHandler(el)} className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1 ml-5 h-8 items-center">
-                            <img
-                              className="h-3"
-                              src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
-                            />
-                            <p>Add favorite</p>
-                          </div>
+                              <div onClick={() => addToWishHandler(el)} className="bg-zinc-600 hover:bg-red-500/90 text-white flex w-28 justify-center rounded gap-1 ml-5 h-8 items-center">
+                                <img
+                                  className="h-3"
+                                  src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png"
+                                />
+                                <p>Add favorite</p>
+                              </div>
                             }
                           </div>
                         ) : null}
