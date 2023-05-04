@@ -25,13 +25,13 @@ export const Profile = () => {
   useEffect(() => {
     if (isAuthenticated) {
       createUser({
-        id: user.sub,
-        name: user.name,
-        nickname: user.nickname,
-        email: user.email,
-        picture: user.picture,
-        address: user.address,
-        phone: user.phone,
+        id: user?.sub,
+        name: user?.name,
+        nickname: user?.nickname,
+        email: user?.email,
+        picture: user?.picture,
+        address: user?.address,
+        phone: user?.phone,
       });
     }
   }, [isAuthenticated, user, createUser]);
