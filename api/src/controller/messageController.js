@@ -8,13 +8,27 @@ const {
   User,
 } = require('../database');
 
+const {transporter} = require("../middleware/nodemailer.js");
+
 const ask = async (req, res) => {
   const { userId, message, adId } = req.body;
   try {
+
+    const ad = await Ad.findByPk(adId);
+    
+    const user = await User.findByPk(ad.UserId);
+
     const newMessage = await Message.create({
       UserId: userId,
       AdId: adId,
       message: message,
+    });
+
+    await transporter.sendMail({
+      from: "vizta <storevizta@gmail.com>",
+      to: user.email,
+      subject: `You have a message in the ${ad.title} advertisement`,
+      text: `You have a message in the ${ad.title} advertisement. Please respond as soon as possible.`
     });
 
     res.status(200).json(newMessage);
@@ -28,9 +42,20 @@ const response = async (req, res) => {
   const { messageId, response } = req.body;
   try {
     const actualMessage = await Message.findOne({ where: { id: messageId } });
+
+    const user = await User.findByPk(actualMessage.UserId);
+
     actualMessage.update({
       response: response,
     });
+    
+      await transporter.sendMail({
+      from: "vizta <storevizta@gmail.com>",
+      to: user.email,
+      subject: `They replied to your message in the ${actualMessage.title} advertisement`,
+      text: `They replied to your message in the ${actualMessage.title} advertisement`
+    });
+
     res.status(200).json(actualMessage);
   } catch (error) {
     console.log(error.message);
