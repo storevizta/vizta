@@ -35,8 +35,7 @@ export const Post = () => {
     shipment: '',
     state: '',
   });
-
-  const [imageUpload, setImageUpload] = useState(null);
+  
   const [image, setImage] = useState([]);
 
   const [method, setMethod] = useState([]);
@@ -74,15 +73,22 @@ export const Post = () => {
 
   const uploadImage = async (e) => {
     e.preventDefault();
-    if (imageUpload === null) return;
-    for (let i = 0; i < imageUpload.length; i++) {
-      const imageRef = ref(storage, `posts/${imageUpload[i].name + v4()}`);
-      await uploadBytes(imageRef, imageUpload[i]).then(async (snaphsot) => {
+    let data = e?.target?.files
+    const allImages = []
+    if (data === null) return;
+    if(data.length > 5) swal(`We are going to upload just 5 of your ${data.length} images`)
+    for (let i = 0; i < data.length; i++) {
+      const imageRef = ref(storage, `posts/${data[i].name + v4()}`);
+      await uploadBytes(imageRef, data[i]).then(async (snaphsot) => {
         await getDownloadURL(snaphsot.ref).then((url) => {
-          setImage([...image, url]);
+          allImages.push(url)
         });
       });
     }
+    if(allImages.length > 5){
+      allImages.splice(5)
+    }
+    setImage(allImages)
   };
 
   const handleInput = (e) => {
@@ -149,7 +155,7 @@ export const Post = () => {
   };
 
   return (
-    <div>
+    <div className='m-10'>
       {!user ? (
         <p className="text-white">Loading...</p>
       ) : (
@@ -228,23 +234,20 @@ export const Post = () => {
                 type="file"
                 name="image"
                 className="file-input w-full max-w-xs"
-                onChange={(e) => setImageUpload(e.target.files)}
+                onChange={(e) => uploadImage(e)}
                 accept="image/*"
                 multiple
                 required
               />
-              <button onClick={uploadImage} className="btn ml-10">
-                Upload Image
-              </button>
             </div>
 
-            <div className="flex gap-10 justify-center">
+            <div className="flex gap-10 m-10">
               {image ? (
                 image.map((value, index) => (
                   <div className="flex flex-row" key={index}>
-                    <img className="w-40 h-40 object-cover" src={value}></img>
+                    <img className="w-52 h-40 object-contain bg-white" src={value}></img>
                     <button
-                      className="btn"
+                      className="m-2 absolute text-red-700 font-bold h-7 w-7 duration-150 rounded-full drop-shadow-2xl bg-zinc-900 hover:bg-red-700 hover:text-zinc-900"
                       type="button"
                       onClick={() => deleteImage(value, index)}
                     >
